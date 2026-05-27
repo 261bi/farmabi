@@ -107,18 +107,18 @@ Tablas iniciales del origen:
 
 Script de inicialización del origen:
 
-- [../../oltp-mysql/mysql/init/farma_oltp_db.sql](../../oltp-mysql/mysql/init/farma_oltp_db.sql)
-- [../../oltp-mysql/4_cargar_datos_didacticos_bi.sql](../../oltp-mysql/4_cargar_datos_didacticos_bi.sql), opcional para ampliar datos antes del snapshot
+- [oltp-mysql/mysql/init/farma_oltp_db.sql](https://github.com/261bi/farmabi/blob/main/oltp-mysql/mysql/init/farma_oltp_db.sql)
+- [oltp-mysql/4_cargar_datos_didacticos_bi.sql](https://github.com/261bi/farmabi/blob/main/oltp-mysql/4_cargar_datos_didacticos_bi.sql), opcional para ampliar datos antes del snapshot
 
 ## Conectores incluidos
 
 Archivos de configuración:
 
-- [connectors/mysql-source.config.json](../ingesta-debezium/connectors/mysql-source.config.json)
-- [connectors/postgres-sink.config.json](../ingesta-debezium/connectors/postgres-sink.config.json)
-- [scripts/register-source.ps1](../ingesta-debezium/scripts/register-source.ps1)
-- [scripts/register-sink.ps1](../ingesta-debezium/scripts/register-sink.ps1)
-- [scripts/register-connectors.ps1](../ingesta-debezium/scripts/register-connectors.ps1)
+- [connectors/mysql-source.config.json](https://github.com/261bi/farmabi/blob/main/ingesta-debezium/connectors/mysql-source.config.json)
+- [connectors/postgres-sink.config.json](https://github.com/261bi/farmabi/blob/main/ingesta-debezium/connectors/postgres-sink.config.json)
+- [scripts/register-source.ps1](https://github.com/261bi/farmabi/blob/main/ingesta-debezium/scripts/register-source.ps1)
+- [scripts/register-sink.ps1](https://github.com/261bi/farmabi/blob/main/ingesta-debezium/scripts/register-sink.ps1)
+- [scripts/register-connectors.ps1](https://github.com/261bi/farmabi/blob/main/ingesta-debezium/scripts/register-connectors.ps1)
 
 ## Cuándo usar este enfoque
 
@@ -182,7 +182,7 @@ Credenciales usadas por el conector source en este laboratorio:
 Inicializacion automatica:
 
 - crea la base `farma_oltp_db`;
-- ejecuta [../../oltp-mysql/mysql/init/farma_oltp_db.sql](../../oltp-mysql/mysql/init/farma_oltp_db.sql);
+- ejecuta [oltp-mysql/mysql/init/farma_oltp_db.sql](https://github.com/261bi/farmabi/blob/main/oltp-mysql/mysql/init/farma_oltp_db.sql);
 - deja disponible el acceso del usuario `root` para el conector source.
 
 Nota de laboratorio:

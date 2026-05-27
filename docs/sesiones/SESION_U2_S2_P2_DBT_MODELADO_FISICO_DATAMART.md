@@ -63,7 +63,7 @@ En esta sesión:
 
 Esta práctica usa el esquema renombrado actual definido en:
 
-- [farma_oltp_db.sql](../../oltp-mysql/mysql/init/farma_oltp_db.sql)
+- [farma_oltp_db.sql](https://github.com/261bi/farmabi/blob/main/oltp-mysql/mysql/init/farma_oltp_db.sql)
 
 Tablas fuente relevantes del OLTP:
 

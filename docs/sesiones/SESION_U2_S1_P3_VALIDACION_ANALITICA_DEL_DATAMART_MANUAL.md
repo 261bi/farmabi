@@ -23,9 +23,9 @@ Esta guía continúa directamente desde:
 
 En términos de scripts, esta validación asume que ya se trabajó en este orden:
 
-1. [1_dm.sql](../../oltp-mysql/1_dm.sql)
-2. [2_G_pasos.sql](../../oltp-mysql/2_G_pasos.sql) (opcional)
-3. [3_poblar.sql](../../oltp-mysql/3_poblar.sql)
+1. [1_dm.sql](https://github.com/261bi/farmabi/blob/main/oltp-mysql/1_dm.sql)
+2. [2_G_pasos.sql](https://github.com/261bi/farmabi/blob/main/oltp-mysql/2_G_pasos.sql) (opcional)
+3. [3_poblar.sql](https://github.com/261bi/farmabi/blob/main/oltp-mysql/3_poblar.sql)
 
 Antes de iniciar esta práctica deben existir y estar pobladas estas tablas:
 
