@@ -697,10 +697,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-mapa-actual-del-oltp-farmadb" class="md-nav__link">
+  <a href="#7-mapa-actual-del-oltp-farma_oltp_db" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Mapa actual del OLTP farmadb
+        7. Mapa actual del OLTP farma_oltp_db
       
     </span>
   </a>
@@ -1521,10 +1521,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-mapa-actual-del-oltp-farmadb" class="md-nav__link">
+  <a href="#7-mapa-actual-del-oltp-farma_oltp_db" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Mapa actual del OLTP farmadb
+        7. Mapa actual del OLTP farma_oltp_db
       
     </span>
   </a>
@@ -1712,7 +1712,7 @@
 <h2 id="1-titulo">1. Título</h2>
 <p>Implementación de una réplica batch desde MySQL hacia PostgreSQL usando Airbyte como herramienta de ingesta de datos.</p>
 <h2 id="2-objetivo">2. Objetivo</h2>
-<p>Configurar y validar una réplica inicial desde la base transaccional <code>farmadb</code> en MySQL hacia la capa <code>raw</code> de la base <code>farmacia_dw</code> en PostgreSQL, usando Airbyte local.</p>
+<p>Configurar y validar una réplica inicial desde la base transaccional <code>farma_oltp_db</code> en MySQL hacia la capa <code>raw</code> de la base <code>farmabi_dw</code> en PostgreSQL, usando Airbyte local.</p>
 <p>Al finalizar la sesión, el alumno debe poder:</p>
 <ul>
 <li>levantar el origen MySQL y el destino PostgreSQL</li>
@@ -1733,12 +1733,12 @@
 <li>Navegador web</li>
 </ul>
 <h2 id="4-entorno-de-trabajo">4. Entorno de trabajo</h2>
-<p>Trabaja sobre el proyecto <code>farmabi</code> usando:</p>
+<p>Trabaja sobre el proyecto <code>farmabi</code> usando:
+- MySQL fuente: <code>localhost:53306</code></p>
 <ul>
-<li>MySQL fuente: <code>localhost:13306</code></li>
-<li>PostgreSQL destino: <code>localhost:15432</code></li>
-<li>Base fuente MySQL: <code>farmadb</code></li>
-<li>Base destino PostgreSQL: <code>farmacia_dw</code></li>
+<li>PostgreSQL destino: <code>localhost:55432</code></li>
+<li>Base fuente MySQL: <code>farma_oltp_db</code></li>
+<li>Base destino PostgreSQL: <code>farmabi_dw</code></li>
 <li>Schema de aterrizaje: <code>raw</code></li>
 <li>Airbyte local: <code>http://localhost:8010</code></li>
 </ul>
@@ -1752,7 +1752,7 @@
 <li>contrasena: <code>postgres</code></li>
 </ul>
 <h2 id="5-flujo-de-la-practica">5. Flujo de la práctica</h2>
-<div class="highlight"><pre><span></span><code>MySQL (farmadb) -&gt; Airbyte -&gt; PostgreSQL (farmacia_dw.raw)
+<div class="highlight"><pre><span></span><code>MySQL (farma_oltp_db) -&gt; Airbyte -&gt; PostgreSQL (farmabi_dw.raw)
 </code></pre></div>
 <h2 id="6-fundamento-teorico-breve">6. Fundamento teorico breve</h2>
 <ul>
@@ -1780,20 +1780,20 @@
 <ul>
 <li>Airbyte trabaja sobre la captura y réplica desde el OLTP</li>
 <li>por eso, conceptualmente, <code>CDC</code> ocurre aquí</li>
-<li>como el <code>farmadb</code> actual ya incluye <code>fecha_creacion</code> y <code>fecha_modificacion</code>, ahora sí existe una base mínima para trabajar sincronización incremental con <code>cursor</code></li>
+<li>como el <code>farma_oltp_db</code> actual ya incluye <code>fecha_creacion</code> y <code>fecha_modificacion</code>, ahora sí existe una base mínima para trabajar sincronización incremental con <code>cursor</code></li>
 <li>eso no significa todavía CDC real basado en logs</li>
 <li>pero sí permite una réplica incremental más cercana a cambios recientes en las tablas</li>
 </ul>
 <p>Importante:</p>
 <ul>
-<li><code>farmadb</code> si es una fuente OLTP valida para una estrategia de CDC</li>
+<li><code>farma_oltp_db</code> si es una fuente OLTP valida para una estrategia de CDC</li>
 <li>pero CDC en MySQL requiere configuración adicional del motor y del conector</li>
 <li>en esta práctica, el uso de <code>cursor</code> se apoya en columnas temporales del modelo y no en binlog de MySQL</li>
 </ul>
-<h2 id="7-mapa-actual-del-oltp-farmadb">7. Mapa actual del OLTP <code>farmadb</code></h2>
+<h2 id="7-mapa-actual-del-oltp-farma_oltp_db">7. Mapa actual del OLTP <code>farma_oltp_db</code></h2>
 <p>Esta práctica usa el esquema renombrado actual definido en:</p>
 <ul>
-<li><a href="../oltp-mysql/mysql/init/farmadb.sql">farmadb.sql</a></li>
+<li><a href="../oltp-mysql/mysql/init/farma_oltp_db.sql">farma_oltp_db.sql</a></li>
 </ul>
 <p>Tablas fuente relevantes:</p>
 <ul>
@@ -1829,7 +1829,7 @@
 <span class="n">docker</span> <span class="n">compose</span> <span class="nb">ps</span>
 </code></pre></div>
 <h3 id="83-verifica-que-postgresql-tenga-los-schemas-del-dw">8.3 Verifica que PostgreSQL tenga los schemas del DW</h3>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-dw-pg</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-dw-pg</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmabi_dw</span>
 </code></pre></div>
 <p>Luego:</p>
 <div class="highlight"><pre><span></span><code><span class="err">\</span><span class="n">dn</span>
@@ -1846,10 +1846,10 @@
 </code></pre></div>
 <h3 id="85-crea-el-source-mysql">8.5 Crea el source MySQL</h3>
 <ul>
-<li>Source name: <code>mysql-farmadb</code></li>
+<li>Source name: <code>mysql-farma-oltp</code></li>
 <li>Host: <code>host.docker.internal</code></li>
-<li>Port: <code>13306</code></li>
-<li>Database: <code>farmadb</code></li>
+<li>Port: <code>53306</code></li>
+<li>Database: <code>farma_oltp_db</code></li>
 <li>Username: <code>root</code></li>
 <li>Password: <code>root</code></li>
 </ul>
@@ -1857,8 +1857,8 @@
 <ul>
 <li>Destination name: <code>postgres-farmacia-raw</code></li>
 <li>Host: <code>host.docker.internal</code></li>
-<li>Port: <code>15432</code></li>
-<li>Database: <code>farmacia_dw</code></li>
+<li>Port: <code>55432</code></li>
+<li>Database: <code>farmabi_dw</code></li>
 <li>Schema: <code>raw</code></li>
 <li>Username: <code>postgres</code></li>
 <li>Password: <code>postgres</code></li>
@@ -1897,7 +1897,7 @@
 <p>Observacion didactica:</p>
 <ul>
 <li>si alguna tabla o configuración puntual del conector no se deja resolver bien en incremental, puedes usar <code>Full refresh | Overwrite</code> como respaldo</li>
-<li>pero con el <code>farmadb</code> actual, la explicacion base ya debe presentar el uso de <code>cursor</code></li>
+<li>pero con el <code>farma_oltp_db</code> actual, la explicacion base ya debe presentar el uso de <code>cursor</code></li>
 </ul>
 <h3 id="88-configura-cada-stream-paso-a-paso">8.8 Configura cada stream paso a paso</h3>
 <p>En la lista de tablas, configura cada una asi:</p>
@@ -1941,7 +1941,7 @@
 <h3 id="89-configura-la-conexion">8.9 Configura la conexión</h3>
 <p>En la pantalla <code>Configure connection</code>, usa:</p>
 <ul>
-<li>Connection name: <code>mysql-farmadb -&gt; postgres-farmacia-raw</code></li>
+<li>Connection name: <code>mysql-farma-oltp -&gt; postgres-farmacia-raw</code></li>
 <li>Schedule type: <code>Manual</code></li>
 <li>Destination Namespace: <code>Destination-defined</code></li>
 <li>Stream Prefix: vacio</li>
@@ -1980,7 +1980,7 @@
 <li>la sincronización termina en estado <code>Succeeded</code></li>
 </ul>
 <h3 id="812-valida-que-airbyte-cargo-datos-en-raw">8.12 Valida que Airbyte cargo datos en <code>raw</code></h3>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-dw-pg</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-dw-pg</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmabi_dw</span>
 </code></pre></div>
 <p>Luego:</p>
 <div class="highlight"><pre><span></span><code><span class="err">\</span><span class="n">dt</span><span class="w"> </span><span class="n">raw</span><span class="p">.</span><span class="o">*</span>
@@ -2000,7 +2000,7 @@
 </ul>
 <h2 id="10-cierre">10. Cierre</h2>
 <p>Si la práctica salió correctamente, debes haber validado el flujo base de integración:</p>
-<div class="highlight"><pre><span></span><code>MySQL (farmadb) -&gt; Airbyte -&gt; PostgreSQL (farmacia_dw.raw)
+<div class="highlight"><pre><span></span><code>MySQL (farma_oltp_db) -&gt; Airbyte -&gt; PostgreSQL (farmabi_dw.raw)
 </code></pre></div>
 
 

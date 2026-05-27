@@ -596,10 +596,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-punto-de-partida-real-el-oltp-farmadb" class="md-nav__link">
+  <a href="#7-punto-de-partida-real-el-oltp-farma_oltp_db" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Punto de partida real: el OLTP farmadb
+        7. Punto de partida real: el OLTP farma_oltp_db
       
     </span>
   </a>
@@ -1975,10 +1975,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-punto-de-partida-real-el-oltp-farmadb" class="md-nav__link">
+  <a href="#7-punto-de-partida-real-el-oltp-farma_oltp_db" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Punto de partida real: el OLTP farmadb
+        7. Punto de partida real: el OLTP farma_oltp_db
       
     </span>
   </a>
@@ -2652,9 +2652,9 @@
 
 <h1 id="sesion-u2-s1-p1-implementacion-fisica-manual-del-datamart-dentro-del-mismo-oltp">Sesión U2 S1 P1: Implementación física manual del DataMart dentro del mismo OLTP</h1>
 <h2 id="1-titulo">1. Título</h2>
-<p>Implementación física manual del DataMart del caso <code>farmadb</code> dentro del mismo motor MySQL transaccional.</p>
+<p>Implementación física manual del DataMart del caso <code>farma_oltp_db</code> dentro del mismo motor MySQL transaccional.</p>
 <h2 id="2-proposito-de-la-sesion">2. Propósito de la sesión</h2>
-<p>En esta práctica el estudiante no usará todavía Airbyte ni dbt. Primero construirá manualmente la estructura física del DataMart directamente en la misma base <code>farmadb</code>, para entender cómo se implementa un modelo analítico con SQL antes de pasar a herramientas especializadas.</p>
+<p>En esta práctica el estudiante no usará todavía Airbyte ni dbt. Primero construirá manualmente la estructura física del DataMart directamente en la misma base <code>farma_oltp_db</code>, para entender cómo se implementa un modelo analítico con SQL antes de pasar a herramientas especializadas.</p>
 <p>Esta sesión se concentra solo en la parte física:</p>
 <ul>
 <li>revisar el OLTP real</li>
@@ -2666,7 +2666,7 @@
 </ul>
 <h2 id="3-caso-de-negocio-oficial">3. Caso de negocio oficial</h2>
 <p>Caso práctico del curso:</p>
-<p><strong>Análisis comercial y operativo del ciclo de pedidos de una distribuidora farmacéutica usando <code>farmadb</code>.</strong></p>
+<p><strong>Análisis comercial y operativo del ciclo de pedidos de una distribuidora farmacéutica usando <code>farma_oltp_db</code>.</strong></p>
 <h2 id="4-problema-de-negocio">4. Problema de negocio</h2>
 <p>La empresa registra pedidos y productos vendidos en una base transaccional, pero la información está distribuida entre cabecera del pedido, detalle, cliente, vendedor, producto, categoría y familia. Esto dificulta evaluar de manera integrada el desempeño comercial y la eficiencia operativa del proceso de atención del pedido.</p>
 <p>En consecuencia, la gerencia no puede responder con rapidez preguntas como:</p>
@@ -2695,10 +2695,10 @@
 </ul>
 <h2 id="6-objetivo-analitico">6. Objetivo analítico</h2>
 <p>Diseñar e implementar físicamente un DataMart que permita analizar el desempeño comercial y operativo del proceso de pedidos, integrando métricas de ventas, cantidades, descuentos, margen bruto y tiempos del ciclo del pedido.</p>
-<h2 id="7-punto-de-partida-real-el-oltp-farmadb">7. Punto de partida real: el OLTP <code>farmadb</code></h2>
+<h2 id="7-punto-de-partida-real-el-oltp-farma_oltp_db">7. Punto de partida real: el OLTP <code>farma_oltp_db</code></h2>
 <p>La base transaccional real se encuentra en:</p>
 <ul>
-<li><a href="mysql/init/farmadb.sql">farmadb.sql</a></li>
+<li><a href="mysql/init/farma_oltp_db.sql">farma_oltp_db.sql</a></li>
 </ul>
 <p>En esa base existen las tablas fuente:</p>
 <ul>
@@ -3117,7 +3117,7 @@
 <h3 id="alcance-oficial">Alcance oficial</h3>
 <p>DataMart de ventas y ciclo de pedidos</p>
 <h3 id="arquitectura-oficial">Arquitectura oficial</h3>
-<p>MySQL (<code>farmadb</code>) -&gt; Airbyte -&gt; PostgreSQL <code>raw</code> -&gt; dbt -&gt; DataMart -&gt; Power BI</p>
+<p>MySQL (<code>farma_oltp_db</code>) -&gt; Airbyte -&gt; PostgreSQL <code>raw</code> -&gt; dbt -&gt; DataMart -&gt; Power BI</p>
 <h3 id="kpi-rey">KPI rey</h3>
 <p>Lead time del pedido</p>
 <h3 id="hecho-principal_1">Hecho principal</h3>
@@ -3218,7 +3218,7 @@
 <li><code>categorias.familia_id</code> enlaza con <code>familias.id</code></li>
 </ul>
 <h2 id="22-decision-tecnica-de-esta-practica">22. Decisión técnica de esta práctica</h2>
-<p>En esta sesión el DataMart se construirá <strong>dentro de la misma base <code>farmadb</code></strong>.</p>
+<p>En esta sesión el DataMart se construirá <strong>dentro de la misma base <code>farma_oltp_db</code></strong>.</p>
 <p>Esto no es la arquitectura final recomendada, pero sí es una excelente estrategia pedagógica para que el estudiante comprenda:</p>
 <ul>
 <li>cómo se crean manualmente las tablas dimensionales</li>
@@ -3233,7 +3233,7 @@
 <span class="n">docker</span> <span class="n">compose</span> <span class="nb">ps</span>
 </code></pre></div>
 <p>Ingresa al motor:</p>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-oltp-mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">farmadb</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-oltp-mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">farma_oltp_db</span>
 </code></pre></div>
 <p>Valida las tablas transaccionales:</p>
 <div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span>

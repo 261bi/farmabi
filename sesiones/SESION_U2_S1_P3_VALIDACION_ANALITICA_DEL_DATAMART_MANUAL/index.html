@@ -2120,7 +2120,7 @@
 
 <h1 id="sesion-u2-s1-p3-validacion-analitica-del-datamart-manual">Sesión U2 S1 P3: Validación analítica del DataMart manual</h1>
 <h2 id="1-titulo">1. Título</h2>
-<p>Validación analítica del DataMart manual implementado dentro del mismo OLTP <code>farmadb</code>.</p>
+<p>Validación analítica del DataMart manual implementado dentro del mismo OLTP <code>farma_oltp_db</code>.</p>
 <h2 id="2-proposito-de-la-sesion">2. Propósito de la sesión</h2>
 <p>En la sesión anterior se cargaron las dimensiones y la tabla de hechos del DataMart manual. En esta práctica se validará si el modelo construido responde correctamente a las preguntas analíticas del caso y si las métricas obtenidas son consistentes con la fuente transaccional.</p>
 <p>Esta sesión tiene tres objetivos:</p>
@@ -2169,10 +2169,10 @@
 <span class="n">docker</span> <span class="n">compose</span> <span class="nb">ps</span>
 </code></pre></div>
 <p>Ingresa al motor:</p>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-oltp-mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">farmadb</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-oltp-mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">farma_oltp_db</span>
 </code></pre></div>
 <p>Configura la sesión:</p>
-<div class="highlight"><pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">farmadb</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">farma_oltp_db</span><span class="p">;</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">lc_time_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;es_ES&#39;</span><span class="p">;</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">sql_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&#39;</span><span class="p">;</span>
 </code></pre></div>

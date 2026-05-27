@@ -1907,7 +1907,7 @@
 <li><code>marts.fact_ventas</code></li>
 </ul>
 <h2 id="4-arquitectura-de-esta-practica">4. Arquitectura de esta práctica</h2>
-<div class="highlight"><pre><span></span><code>PostgreSQL farmacia_dw.marts -&gt; Power BI -&gt; Modelo semántico
+<div class="highlight"><pre><span></span><code>PostgreSQL farmabi_dw.marts -&gt; Power BI -&gt; Modelo semántico
 </code></pre></div>
 <p>En esta etapa:</p>
 <ul>
@@ -1951,8 +1951,8 @@ marts.dim_fecha
 <li>Elige <code>Base de datos PostgreSQL</code>.</li>
 <li>Usa los datos de conexión del laboratorio:</li>
 </ol>
-<div class="highlight"><pre><span></span><code>Servidor: 127.0.0.1:15432
-Base de datos: farmacia_dw
+<div class="highlight"><pre><span></span><code>Servidor: 127.0.0.1:55432
+Base de datos: farmabi_dw
 </code></pre></div>
 <p>Credenciales del contenedor:</p>
 <div class="highlight"><pre><span></span><code>Usuario: postgres
@@ -1960,8 +1960,8 @@ Password: postgres
 </code></pre></div>
 <p>Importante:</p>
 <ul>
-<li>si Power BI está instalado en Windows y PostgreSQL corre en Docker, usa <code>127.0.0.1:15432</code></li>
-<li>si <code>localhost:15432</code> falla con errores de lectura, usa <code>127.0.0.1:15432</code></li>
+<li>si Power BI está instalado en Windows y PostgreSQL corre en Docker, usa <code>127.0.0.1:55432</code></li>
+<li>si <code>localhost:55432</code> falla con errores de lectura, usa <code>127.0.0.1:55432</code></li>
 <li>si Power BI corre dentro de otro entorno, revisa el host publicado por Docker</li>
 <li>selecciona modo <code>Importar</code> para esta primera versión didáctica</li>
 <li>si el DataMart cambia, puedes recargar los datos con <code>Inicio -&gt; Actualizar</code></li>

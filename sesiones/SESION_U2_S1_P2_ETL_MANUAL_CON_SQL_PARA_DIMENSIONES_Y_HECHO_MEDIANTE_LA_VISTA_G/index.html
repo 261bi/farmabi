@@ -2056,7 +2056,7 @@
 <h2 id="1-titulo">1. Título</h2>
 <p>ETL manual con SQL para poblar dimensiones y tabla de hechos del DataMart dentro del mismo OLTP, usando una vista integrada denominada <code>G</code>.</p>
 <h2 id="2-proposito-de-la-sesion">2. Propósito de la sesión</h2>
-<p>En la sesión anterior se creó físicamente el esquema estrella dentro de <code>farmadb</code>. En esta práctica se realizará el proceso ETL manual:</p>
+<p>En la sesión anterior se creó físicamente el esquema estrella dentro de <code>farma_oltp_db</code>. En esta práctica se realizará el proceso ETL manual:</p>
 <ul>
 <li>cargar dimensiones con <code>INSERT INTO ... SELECT ...</code></li>
 <li>construir una vista lógica integrada del negocio</li>
@@ -2069,7 +2069,7 @@
 <ul>
 <li><a href="../SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP/">SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP.md</a></li>
 </ul>
-<p>Antes de empezar esta práctica, deben existir ya estas tablas en <code>farmadb</code>:</p>
+<p>Antes de empezar esta práctica, deben existir ya estas tablas en <code>farma_oltp_db</code>:</p>
 <ul>
 <li><code>dim_cliente</code></li>
 <li><code>dim_vendedor</code></li>
@@ -2112,7 +2112,7 @@
 <span class="n">docker</span> <span class="n">compose</span> <span class="nb">ps</span>
 </code></pre></div>
 <p>Ingresa al motor:</p>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-oltp-mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">farmadb</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-oltp-mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">farma_oltp_db</span>
 </code></pre></div>
 <h2 id="61-scripts-de-apoyo-de-esta-sesion">6.1 Scripts de apoyo de esta sesión</h2>
 <p>En esta sesión conviene distinguir dos archivos SQL:</p>
@@ -2138,7 +2138,7 @@
 </code></pre></div>
 <h2 id="8-configuracion-previa-de-la-sesion-sql">8. Configuración previa de la sesión SQL</h2>
 <p>Antes de comenzar la carga manual de dimensiones y hecho, configura la sesión SQL para trabajar con la base correcta y con nombres de tiempo en español.</p>
-<div class="highlight"><pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">farmadb</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">farma_oltp_db</span><span class="p">;</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">lc_time_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;es_ES&#39;</span><span class="p">;</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">sql_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&#39;</span><span class="p">;</span>
 
@@ -2147,7 +2147,7 @@
 </code></pre></div>
 <h3 id="por-que-se-hace-esta-configuracion">¿Por qué se hace esta configuración?</h3>
 <ul>
-<li><code>USE farmadb</code> asegura que todo el ETL manual se ejecute sobre la base donde conviven OLTP y DataMart en esta práctica.</li>
+<li><code>USE farma_oltp_db</code> asegura que todo el ETL manual se ejecute sobre la base donde conviven OLTP y DataMart en esta práctica.</li>
 <li><code>SET lc_time_names = 'es_ES'</code> permite que <code>DAYNAME()</code> y <code>MONTHNAME()</code> devuelvan nombres en español.</li>
 <li><code>SET sql_mode = ...</code> ayuda a trabajar con una configuración más estricta y controlada durante la carga.</li>
 </ul>

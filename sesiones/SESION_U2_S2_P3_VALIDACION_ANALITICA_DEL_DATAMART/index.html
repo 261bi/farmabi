@@ -1780,7 +1780,7 @@
 <h2 id="1-titulo">1. Título</h2>
 <p>Validación analítica del DataMart construido con Airbyte, PostgreSQL y dbt.</p>
 <h2 id="2-objetivo">2. Objetivo</h2>
-<p>Validar que la réplica en <code>raw</code>, la transformación en <code>staging</code> y el modelo final en <code>marts</code> responden correctamente al caso de negocio y mantienen consistencia con el OLTP <code>farmadb</code>.</p>
+<p>Validar que la réplica en <code>raw</code>, la transformación en <code>staging</code> y el modelo final en <code>marts</code> responden correctamente al caso de negocio y mantienen consistencia con el OLTP <code>farma_oltp_db</code>.</p>
 <p>En esta práctica, el foco principal ya no es construir el pipeline, sino comprobar que el DataMart final:</p>
 <ul>
 <li>conserva el grano esperado</li>
@@ -1837,7 +1837,7 @@
 </ul>
 <h3 id="44-comando-recomendado">4.4 Comando recomendado</h3>
 <p>Dentro del contenedor <code>dbt</code>, puedes ejecutar:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/usr/app/farmacia_bi
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/usr/app/farmabi
 dbt<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--select<span class="w"> </span>marts
 </code></pre></div>
 <p>Con eso, dbt ejecuta los tests genericos declarados para <code>marts</code> y también los tests singulares relaciónados.</p>
@@ -1955,7 +1955,7 @@ dbt<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-
 <h2 id="12-cierre">12. Cierre</h2>
 <p>Con esta práctica se cierra la sesión 2 del pipeline BI con herramientas. El estudiante valida que:</p>
 <ul>
-<li>Airbyte replica correctamente desde <code>farmadb</code></li>
+<li>Airbyte replica correctamente desde <code>farma_oltp_db</code></li>
 <li>dbt transforma correctamente desde <code>raw</code> hacia <code>staging</code> y <code>marts</code></li>
 <li>el modelo final responde al caso de negocio</li>
 <li><code>fact_ventas</code> conserva el grano esperado</li>

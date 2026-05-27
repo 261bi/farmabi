@@ -1624,8 +1624,8 @@ BI / consumo analítico
 </ul>
 <p>Este compose ya no levanta MySQL ni PostgreSQL propios. Usa los servicios del proyecto:</p>
 <ul>
-<li>MySQL OLTP: <code>farmabi-oltp-mysql</code>, servicio DNS <code>mysql-farmadb</code>, puerto host <code>13306</code></li>
-<li>PostgreSQL DW: <code>farmabi-dw-pg</code>, servicio DNS <code>postgres-farmacia-dw</code>, puerto host <code>15432</code></li>
+<li>MySQL OLTP: <code>farmabi-oltp-mysql</code>, servicio DNS <code>mysql-farma-oltp</code>, puerto host <code>53306</code></li>
+<li>PostgreSQL DW: <code>farmabi-dw-pg</code>, servicio DNS <code>postgres-farmabi-dw</code>, puerto host <code>55432</code></li>
 <li>red compartida: <code>farmabi-net</code></li>
 </ul>
 <p>Versiones actuales:</p>
@@ -1653,7 +1653,7 @@ BI / consumo analítico
 <li>Una raw histórica orientada a eventos; el sink actual deja una réplica operacional de tablas.</li>
 </ul>
 <h2 id="origen-mysql">Origen MySQL</h2>
-<p>El origen de esta maqueta ahora es MySQL 8. El compose levanta una base <code>farmadb</code> y la inicializa automáticamente con el esquema de farmacia entregado para el lab.</p>
+<p>El origen de esta maqueta ahora es MySQL 8. El compose levanta una base <code>farma_oltp_db</code> y la inicializa automáticamente con el esquema de farmacia entregado para el lab.</p>
 <p>Tablas iniciales del origen:</p>
 <ul>
 <li><code>familias</code>;</li>
@@ -1666,17 +1666,17 @@ BI / consumo analítico
 </ul>
 <p>Script de inicialización del origen:</p>
 <ul>
-<li><a href="../oltp-mysql/mysql/init/farmadb.sql">../oltp-mysql/mysql/init/farmadb.sql</a></li>
+<li><a href="../oltp-mysql/mysql/init/farma_oltp_db.sql">../oltp-mysql/mysql/init/farma_oltp_db.sql</a></li>
 <li><a href="../oltp-mysql/4_cargar_datos_didacticos_bi.sql">../oltp-mysql/4_cargar_datos_didacticos_bi.sql</a>, opcional para ampliar datos antes del snapshot</li>
 </ul>
 <h2 id="conectores-incluidos">Conectores incluidos</h2>
 <p>Archivos de configuración:</p>
 <ul>
-<li><a href="c:/261bigdata/cdc/connectors/mysql-source.config.json">connectors/mysql-source.config.json</a></li>
-<li><a href="c:/261bigdata/cdc/connectors/postgres-sink.config.json">connectors/postgres-sink.config.json</a></li>
-<li><a href="c:/261bigdata/cdc/scripts/register-source.ps1">scripts/register-source.ps1</a></li>
-<li><a href="c:/261bigdata/cdc/scripts/register-sink.ps1">scripts/register-sink.ps1</a></li>
-<li><a href="c:/261bigdata/cdc/scripts/register-connectors.ps1">scripts/register-connectors.ps1</a></li>
+<li><a href="../ingesta-debezium/connectors/mysql-source.config.json">connectors/mysql-source.config.json</a></li>
+<li><a href="../ingesta-debezium/connectors/postgres-sink.config.json">connectors/postgres-sink.config.json</a></li>
+<li><a href="../ingesta-debezium/scripts/register-source.ps1">scripts/register-source.ps1</a></li>
+<li><a href="../ingesta-debezium/scripts/register-sink.ps1">scripts/register-sink.ps1</a></li>
+<li><a href="../ingesta-debezium/scripts/register-connectors.ps1">scripts/register-connectors.ps1</a></li>
 </ul>
 <h2 id="cuando-usar-este-enfoque">Cuándo usar este enfoque</h2>
 <p>Este patrón sirve cuando:</p>
@@ -1712,13 +1712,13 @@ BI / consumo analítico
 <p>Se usa el MySQL OLTP del proyecto <code>oltp-mysql</code>, no un MySQL propio dentro de este compose.</p>
 <p>Puerto expuesto:</p>
 <ul>
-<li><code>13306</code></li>
+<li><code>53306</code></li>
 </ul>
 <p>Credenciales por defecto:</p>
 <ul>
 <li>usuario administrador: <code>root</code></li>
 <li>password administrador: <code>root</code></li>
-<li>base de datos: <code>farmadb</code></li>
+<li>base de datos: <code>farma_oltp_db</code></li>
 </ul>
 <p>Credenciales usadas por el conector source en este laboratorio:</p>
 <ul>
@@ -1727,8 +1727,8 @@ BI / consumo analítico
 </ul>
 <p>Inicializacion automatica:</p>
 <ul>
-<li>crea la base <code>farmadb</code>;</li>
-<li>ejecuta <a href="../oltp-mysql/mysql/init/farmadb.sql">../oltp-mysql/mysql/init/farmadb.sql</a>;</li>
+<li>crea la base <code>farma_oltp_db</code>;</li>
+<li>ejecuta <a href="../oltp-mysql/mysql/init/farma_oltp_db.sql">../oltp-mysql/mysql/init/farma_oltp_db.sql</a>;</li>
 <li>deja disponible el acceso del usuario <code>root</code> para el conector source.</li>
 </ul>
 <p>Nota de laboratorio:</p>
@@ -1779,7 +1779,7 @@ PostgreSQL replica cambios
 <p>Recibe los eventos de cambio publicados por los conectores.</p>
 <p>Puerto expuesto:</p>
 <ul>
-<li><code>39092</code></li>
+<li><code>59092</code></li>
 </ul>
 <h3 id="kafka-ui">Kafka UI</h3>
 <p>Interfaz web para inspeccionar el cluster Kafka del laboratorio.</p>
@@ -1789,11 +1789,11 @@ PostgreSQL replica cambios
 </ul>
 <p>Puerto expuesto:</p>
 <ul>
-<li><code>38085</code></li>
+<li><code>58085</code></li>
 </ul>
 <p>Acceso desde el navegador:</p>
 <ul>
-<li>http://localhost:38085</li>
+<li>http://localhost:58085</li>
 </ul>
 <p>Configuración del cluster dentro del compose:</p>
 <ul>
@@ -1809,24 +1809,24 @@ PostgreSQL replica cambios
 </ul>
 <p>Puerto expuesto:</p>
 <ul>
-<li><code>38083</code></li>
+<li><code>58083</code></li>
 </ul>
 <h3 id="postgresql-dw">PostgreSQL DW</h3>
 <p>Se usa el PostgreSQL DW del proyecto <code>dw-pg</code>, no un PostgreSQL propio dentro de este compose. El sink JDBC escribe la replica de tablas fuente en el esquema <code>raw</code>.</p>
 <p>Puerto expuesto:</p>
 <ul>
-<li><code>15432</code></li>
+<li><code>55432</code></li>
 </ul>
 <p>Credenciales por defecto:</p>
 <ul>
-<li>base de datos: <code>farmacia_dw</code></li>
+<li>base de datos: <code>farmabi_dw</code></li>
 <li>esquema de aterrizaje: <code>raw</code></li>
 <li>usuario: <code>postgres</code></li>
 <li>password: <code>postgres</code></li>
 </ul>
 <p>Comportamiento esperado:</p>
 <ul>
-<li>base creada automáticamente: <code>farmacia_dw</code>;</li>
+<li>base creada automáticamente: <code>farmabi_dw</code>;</li>
 <li>esquema <code>raw</code> creado al inicializar PostgreSQL;</li>
 <li>sin tablas de negocio al inicio dentro de <code>raw</code>;</li>
 <li>el conector sink crea tablas como <code>raw.familias</code>, <code>raw.clientes</code>, <code>raw.productos</code>, <code>raw.pedidos</code> y <code>raw.pedido_detalles</code>.</li>
@@ -1849,7 +1849,7 @@ PostgreSQL replica cambios
 <div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">logs</span> <span class="o">-f</span> <span class="n">connect</span>
 </code></pre></div>
 <p>Para abrir Kafka UI:</p>
-<div class="highlight"><pre><span></span><code>http://localhost:38085
+<div class="highlight"><pre><span></span><code>http://localhost:58085
 </code></pre></div>
 <p>Para detener todo:</p>
 <div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">down</span>
@@ -1862,7 +1862,7 @@ PostgreSQL replica cambios
 <p>El origen MySQL se administra desde <code>../oltp-mysql</code>.</p>
 <p>La semilla mínima ocurre en el primer arranque de <code>farmabi-oltp-mysql</code> mediante:</p>
 <ul>
-<li><code>../oltp-mysql/mysql/init/farmadb.sql</code></li>
+<li><code>../oltp-mysql/mysql/init/farma_oltp_db.sql</code></li>
 </ul>
 <p>Luego, para las prácticas BI, carga manualmente los datos didácticos:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd </span><span class="n">oltp-mysql</span>
@@ -1879,20 +1879,24 @@ PostgreSQL replica cambios
 <p>En este punto:</p>
 <ul>
 <li>MySQL se inicializa con los datos del laboratorio;</li>
-<li>PostgreSQL crea la base <code>farmacia_dw</code> y el esquema <code>raw</code>, pero sigue sin tablas de negocio dentro de <code>raw</code>;</li>
+<li>PostgreSQL crea la base <code>farmabi_dw</code> y el esquema <code>raw</code>, pero sigue sin tablas de negocio dentro de <code>raw</code>;</li>
 <li>Kafka y Connect quedan listos, pero todavía sin replicar datos a PostgreSQL.</li>
 </ul>
 <h3 id="2-confirmar-que-postgresql-sigue-vacio">2. Confirmar que PostgreSQL sigue vacío</h3>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span> <span class="n">-c</span> <span class="s2">&quot;select schemaname, tablename from pg_tables where schemaname = &#39;raw&#39; order by tablename;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmabi_dw</span> <span class="n">-c</span> <span class="s2">&quot;select schemaname, tablename from pg_tables where schemaname = &#39;raw&#39; order by tablename;&quot;</span>
 </code></pre></div>
 <p>Lo esperado aquí es que no aparezcan tablas de negocio como <code>familias</code>, <code>clientes</code> o <code>productos</code>.</p>
 <h3 id="3-registrar-solo-el-conector-source-de-mysql">3. Registrar solo el conector source de MySQL</h3>
-<p>No ejecutes <code>scripts/register-connectors.ps1</code> todavía, porque ese script registra source y sink juntos.</p>
+<p>No ejecutes <code>scripts/register-connectors.ps1</code> todavía, porque ese script registra source y sink juntos. Si prefieres el paso a paso, usa los scripts individuales:</p>
+<ul>
+<li><code>scripts/register-source.ps1</code></li>
+<li><code>scripts/register-sink.ps1</code></li>
+</ul>
 <p>Para dejar PostgreSQL vacío y empezar solo con la captura hacia Kafka, registra únicamente el source:</p>
 <div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="nb">register-source</span><span class="p">.</span><span class="n">ps1</span>
 </code></pre></div>
 <h3 id="4-verificar-que-el-source-quedo-activo">4. Verificar que el source quedó activo</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">mysql-farmadb-source</span><span class="p">/</span><span class="n">status</span>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">58083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">mysql-farma-oltp-source</span><span class="p">/</span><span class="n">status</span>
 </code></pre></div>
 <p>El conector debe quedar en <code>RUNNING</code>.</p>
 <h3 id="5-ver-los-eventos-en-kafka">5. Ver los eventos en Kafka</h3>
@@ -1900,10 +1904,10 @@ PostgreSQL replica cambios
 <div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">farmabi-debezium-kafka</span> <span class="n">bash</span> <span class="n">-lc</span> <span class="s2">&quot;kafka-topics.sh --bootstrap-server kafka:9092 --list&quot;</span>
 </code></pre></div>
 <p>Ver eventos de una tabla, por ejemplo <code>familias</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">farmabi-debezium-kafka</span> <span class="n">bash</span> <span class="n">-lc</span> <span class="s2">&quot;kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic farmadb.farmadb.familias --from-beginning&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">farmabi-debezium-kafka</span> <span class="n">bash</span> <span class="n">-lc</span> <span class="s2">&quot;kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic farma_oltp_db.farma_oltp_db.familias --from-beginning&quot;</span>
 </code></pre></div>
 <p>También puedes revisar topics y mensajes desde Kafka UI:</p>
-<div class="highlight"><pre><span></span><code>http://localhost:38085
+<div class="highlight"><pre><span></span><code>http://localhost:58085
 </code></pre></div>
 <p>Si el source quedó activo, aquí verás los eventos del snapshot inicial y luego los cambios nuevos.</p>
 <h3 id="6-poblar-postgresql-manualmente-cuando-tu-decidas">6. Poblar PostgreSQL manualmente cuando tú decidas</h3>
@@ -1918,7 +1922,7 @@ PostgreSQL replica cambios
 <div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="nb">register-sink</span><span class="p">.</span><span class="n">ps1</span>
 </code></pre></div>
 <p>Verifica su estado:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">postgres-cdc-sink</span><span class="p">/</span><span class="n">status</span>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">58083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">postgres-cdc-sink</span><span class="p">/</span><span class="n">status</span>
 </code></pre></div>
 <p>Desde ese momento:</p>
 <ul>
@@ -1930,19 +1934,20 @@ PostgreSQL replica cambios
 <p>Cuando <code>mysql</code>, <code>kafka</code>, <code>connect</code> y <code>postgres</code> estén arriba, registra ambos conectores:</p>
 <div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="nb">register-connectors</span><span class="p">.</span><span class="n">ps1</span>
 </code></pre></div>
-<p>Ese script combinado ahora llama internamente a:</p>
+<p>Hay 3 scripts disponibles:</p>
 <ul>
-<li><code>register-source.ps1</code></li>
-<li><code>register-sink.ps1</code></li>
+<li><code>scripts/register-connectors.ps1</code> — registra ambos conectores (source + sink) en un solo comando</li>
+<li><code>scripts/register-source.ps1</code> — registra solo el source</li>
+<li><code>scripts/register-sink.ps1</code> — registra solo el sink</li>
 </ul>
-<p>Nota: si recreas el contenedor <code>connect</code>, es normal tener que volver a ejecutar este registro.</p>
+<p>Nota: si recreas el contenedor <code>connect</code>, es normal tener que volver a ejecutar el registro.</p>
 <p>Consulta el estado:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span>
-<span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">mysql-farmadb-source</span><span class="p">/</span><span class="n">status</span>
-<span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">postgres-cdc-sink</span><span class="p">/</span><span class="n">status</span>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">58083</span><span class="p">/</span><span class="n">connectors</span>
+<span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">58083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">mysql-farma-oltp-source</span><span class="p">/</span><span class="n">status</span>
+<span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">58083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">postgres-cdc-sink</span><span class="p">/</span><span class="n">status</span>
 </code></pre></div>
 <p>Ejemplo con <code>mysql</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mysql</span> <span class="n">-u</span> <span class="n">root</span> <span class="n">-proot</span> <span class="n">-h</span> <span class="n">localhost</span> <span class="n">-P</span> <span class="n">13306</span> <span class="n">-D</span> <span class="n">farmadb</span> <span class="n">-e</span> <span class="s2">&quot;show tables;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span> <span class="n">-u</span> <span class="n">root</span> <span class="n">-proot</span> <span class="n">-h</span> <span class="n">localhost</span> <span class="n">-P</span> <span class="n">53306</span> <span class="n">-D</span> <span class="n">farma_oltp_db</span> <span class="n">-e</span> <span class="s2">&quot;show tables;&quot;</span>
 </code></pre></div>
 <p>El script crea y carga estas entidades en MySQL:</p>
 <ul>
@@ -1958,24 +1963,24 @@ PostgreSQL replica cambios
 <p>Validaciones básicas:</p>
 <ol>
 <li>Confirmar que los tres servicios están arriba con <code>docker compose ps</code>.</li>
-<li>Confirmar que MySQL responde en <code>localhost:13306</code>.</li>
-<li>Verificar que Kafka Connect responde en <code>http://localhost:38083/</code>.</li>
-<li>Confirmar que el endpoint de conectores responde en <code>http://localhost:38083/connectors</code>.</li>
-<li>Abrir Kafka UI en <code>http://localhost:38085</code> y confirmar que aparece el cluster <code>farmabi-debezium</code>.</li>
+<li>Confirmar que MySQL responde en <code>localhost:53306</code>.</li>
+<li>Verificar que Kafka Connect responde en <code>http://localhost:58083/</code>.</li>
+<li>Confirmar que el endpoint de conectores responde en <code>http://localhost:58083/connectors</code>.</li>
+<li>Abrir Kafka UI en <code>http://localhost:58085</code> y confirmar que aparece el cluster <code>farmabi-debezium</code>.</li>
 <li>Confirmar que PostgreSQL responde y que no tiene tablas de negocio antes de registrar el sink.</li>
 <li>Registrar conectores y validar que PostgreSQL empieza a crear tablas destino.</li>
-<li>Validar que el snapshot inicial copie las tablas de <code>farmadb</code> hacia PostgreSQL.</li>
+<li>Validar que el snapshot inicial copie las tablas de <code>farma_oltp_db</code> hacia PostgreSQL.</li>
 </ol>
 <p>Ejemplo:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">58083</span><span class="p">/</span><span class="n">connectors</span>
 </code></pre></div>
 <p>Ejemplo para validar PostgreSQL:</p>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span> <span class="n">-c</span> <span class="s2">&quot;select schemaname, tablename from pg_tables where schemaname = &#39;raw&#39; order by tablename;&quot;</span>
-<span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span> <span class="n">-c</span> <span class="s2">&quot;select count(*) as productos from raw.productos;&quot;</span>
-<span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span> <span class="n">-c</span> <span class="s2">&quot;select count(*) as detalles from raw.pedido_detalles;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmabi_dw</span> <span class="n">-c</span> <span class="s2">&quot;select schemaname, tablename from pg_tables where schemaname = &#39;raw&#39; order by tablename;&quot;</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmabi_dw</span> <span class="n">-c</span> <span class="s2">&quot;select count(*) as productos from raw.productos;&quot;</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmabi_dw</span> <span class="n">-c</span> <span class="s2">&quot;select count(*) as detalles from raw.pedido_detalles;&quot;</span>
 </code></pre></div>
 <p>Ejemplo para validar MySQL:</p>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">-D</span> <span class="n">farmadb</span> <span class="n">-e</span> <span class="s2">&quot;select count(*) as productos from productos; select count(*) as pedidos from pedidos;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">-D</span> <span class="n">farma_oltp_db</span> <span class="n">-e</span> <span class="s2">&quot;select count(*) as productos from productos; select count(*) as pedidos from pedidos;&quot;</span>
 </code></pre></div>
 <h2 id="flujo-recomendado-de-migracion">Flujo recomendado de migración</h2>
 <h2 id="integracion-con-dbt">Integración con dbt</h2>

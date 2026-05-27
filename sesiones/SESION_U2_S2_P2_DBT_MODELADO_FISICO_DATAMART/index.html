@@ -714,10 +714,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-mapa-actual-del-oltp-farmadb" class="md-nav__link">
+  <a href="#6-mapa-actual-del-oltp-farma_oltp_db" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Mapa actual del OLTP farmadb
+        6. Mapa actual del OLTP farma_oltp_db
       
     </span>
   </a>
@@ -1704,10 +1704,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-mapa-actual-del-oltp-farmadb" class="md-nav__link">
+  <a href="#6-mapa-actual-del-oltp-farma_oltp_db" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Mapa actual del OLTP farmadb
+        6. Mapa actual del OLTP farma_oltp_db
       
     </span>
   </a>
@@ -2147,10 +2147,10 @@
 <li>por eso, conceptualmente, <code>SCD</code> ocurre aquí</li>
 <li>en esta versión del laboratorio se trabaja una primera estrella base</li>
 </ul>
-<h2 id="6-mapa-actual-del-oltp-farmadb">6. Mapa actual del OLTP <code>farmadb</code></h2>
+<h2 id="6-mapa-actual-del-oltp-farma_oltp_db">6. Mapa actual del OLTP <code>farma_oltp_db</code></h2>
 <p>Esta práctica usa el esquema renombrado actual definido en:</p>
 <ul>
-<li><a href="../oltp-mysql/mysql/init/farmadb.sql">farmadb.sql</a></li>
+<li><a href="../oltp-mysql/mysql/init/farma_oltp_db.sql">farma_oltp_db.sql</a></li>
 </ul>
 <p>Tablas fuente relevantes del OLTP:</p>
 <ul>
@@ -2214,7 +2214,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-dw-dbt</span> <span class="n">bash</span>
 </code></pre></div>
 <p>Luego:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/usr/app/farmacia_bi
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/usr/app/farmabi
 </code></pre></div>
 <h3 id="84-verifica-la-instalacion-de-dbt">8.4 Verifica la instalación de dbt</h3>
 <div class="highlight"><pre><span></span><code>dbt<span class="w"> </span>--version
@@ -2255,7 +2255,7 @@ dbt_project.yml
 dbt_project.yml = como dbt construye staging y marts
 </code></pre></div>
 <h4 id="ejemplo-de-profilesyml">Ejemplo de <code>profiles.yml</code></h4>
-<div class="highlight"><pre><span></span><code><span class="nt">farmacia_bi</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="nt">farmabi</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
 <span class="w">  </span><span class="nt">outputs</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">dev</span><span class="p">:</span>
@@ -2264,7 +2264,7 @@ dbt_project.yml = como dbt construye staging y marts
 <span class="w">      </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres</span>
 <span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres</span>
 <span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5432</span>
-<span class="w">      </span><span class="nt">dbname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">farmacia_dw</span>
+<span class="w">      </span><span class="nt">dbname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">farmabi_dw</span>
 <span class="w">      </span><span class="nt">schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">marts</span>
 <span class="w">      </span><span class="nt">threads</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 </code></pre></div>
@@ -2272,7 +2272,7 @@ dbt_project.yml = como dbt construye staging y marts
 <ul>
 <li><code>host: farmabi-dw-pg</code></li>
 <li>dbt se conecta al contenedor PostgreSQL</li>
-<li><code>dbname: farmacia_dw</code></li>
+<li><code>dbname: farmabi_dw</code></li>
 <li>esta es la base analítica donde se construyen los modelos</li>
 <li><code>schema: marts</code></li>
 <li>este es el schema base del target actual</li>
@@ -2281,7 +2281,7 @@ dbt_project.yml = como dbt construye staging y marts
 </ul>
 <h4 id="ejemplo-de-dbt_projectyml">Ejemplo de <code>dbt_project.yml</code></h4>
 <div class="highlight"><pre><span></span><code><span class="nt">models</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">farmacia_bi</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">farmabi</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">staging</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">+materialized</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">view</span>
 <span class="w">      </span><span class="nt">+schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staging</span>
@@ -2300,7 +2300,7 @@ dbt_project.yml = como dbt construye staging y marts
 </ul>
 <h4 id="figura-resumen">Figura resumen</h4>
 <div class="highlight"><pre><span></span><code>profiles.yml
-    -&gt; conecta dbt a farmacia_dw
+    -&gt; conecta dbt a farmabi_dw
     -&gt; define el target activo
     -&gt; aporta el schema base
 
@@ -2358,7 +2358,7 @@ generate_schema_name.sql
 <h3 id="86-revisa-primero-la-capa-raw">8.6 Revisa primero la capa <code>raw</code></h3>
 <p>Antes de transformar, confirma que las tablas esperadas ya llegaron desde Airbyte.</p>
 <p>Desde otra terminal, fuera del contenedor <code>dbt</code>, ejecuta:</p>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-dw-pg</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-dw-pg</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmabi_dw</span>
 </code></pre></div>
 <p>Luego valida:</p>
 <div class="highlight"><pre><span></span><code><span class="err">\</span><span class="n">dt</span><span class="w"> </span><span class="n">raw</span><span class="p">.</span><span class="o">*</span>
@@ -2522,7 +2522,7 @@ generate_schema_name.sql
 <li>se crean dimensiones y hecho en el schema <code>marts</code></li>
 </ul>
 <h3 id="817-valida-la-estrella-final-en-postgresql">8.17 Valida la estrella final en PostgreSQL</h3>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-dw-pg</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-dw-pg</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmabi_dw</span>
 </code></pre></div>
 <p>Luego:</p>
 <div class="highlight"><pre><span></span><code><span class="err">\</span><span class="n">dv</span><span class="w"> </span><span class="n">staging</span><span class="p">.</span><span class="o">*</span>
