@@ -1,4 +1,4 @@
-farmacia_bi:
+farmabi:
   target: dev
   outputs:
     dev:
@@ -7,6 +7,6 @@ farmacia_bi:
       user: postgres
       password: postgres
       port: 5432
-      dbname: farmacia_dw
+      dbname: farmabi_dw
       schema: marts
       threads: 1

@@ -101,7 +101,7 @@ Gobierno: Comercial aprueba la regla, dbt la valida y BI documenta el impacto.
 Linaje del caso farmacia:
 
 ```text
-MySQL farmadb
+MySQL farma_oltp_db
   -> Airbyte o Debezium/Kafka
   -> PostgreSQL raw
   -> dbt staging

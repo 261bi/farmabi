@@ -6,7 +6,7 @@ ETL manual con SQL para poblar dimensiones y tabla de hechos del DataMart dentro
 
 ## 2. Propósito de la sesión
 
-En la sesión anterior se creó físicamente el esquema estrella dentro de `farmadb`. En esta práctica se realizará el proceso ETL manual:
+En la sesión anterior se creó físicamente el esquema estrella dentro de `farma_oltp_db`. En esta práctica se realizará el proceso ETL manual:
 
 - cargar dimensiones con `INSERT INTO ... SELECT ...`
 - construir una vista lógica integrada del negocio
@@ -21,7 +21,7 @@ Esta guía continúa directamente desde:
 
 - [SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP.md](SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP.md)
 
-Antes de empezar esta práctica, deben existir ya estas tablas en `farmadb`:
+Antes de empezar esta práctica, deben existir ya estas tablas en `farma_oltp_db`:
 
 - `dim_cliente`
 - `dim_vendedor`
@@ -73,7 +73,7 @@ docker compose ps
 Ingresa al motor:
 
 ```powershell
-docker exec -it farmabi-oltp-mysql mysql -uroot -proot farmadb
+docker exec -it farmabi-oltp-mysql mysql -uroot -proot farma_oltp_db
 ```
 
 ## 6.1 Scripts de apoyo de esta sesión
@@ -108,7 +108,7 @@ SELECT * FROM pedido_detalles;
 Antes de comenzar la carga manual de dimensiones y hecho, configura la sesión SQL para trabajar con la base correcta y con nombres de tiempo en español.
 
 ```sql
-USE farmadb;
+USE farma_oltp_db;
 SET lc_time_names = 'es_ES';
 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
@@ -118,7 +118,7 @@ SET sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVIS
 
 ### ¿Por qué se hace esta configuración?
 
-- `USE farmadb` asegura que todo el ETL manual se ejecute sobre la base donde conviven OLTP y DataMart en esta práctica.
+- `USE farma_oltp_db` asegura que todo el ETL manual se ejecute sobre la base donde conviven OLTP y DataMart en esta práctica.
 - `SET lc_time_names = 'es_ES'` permite que `DAYNAME()` y `MONTHNAME()` devuelvan nombres en español.
 - `SET sql_mode = ...` ayuda a trabajar con una configuración más estricta y controlada durante la carga.
 

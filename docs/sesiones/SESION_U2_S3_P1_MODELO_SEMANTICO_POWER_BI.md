@@ -54,8 +54,8 @@ En Power BI Desktop:
 3. Usa:
 
 ```text
-Servidor: 127.0.0.1:15432
-Base de datos: farmacia_dw
+Servidor: 127.0.0.1:55432
+Base de datos: farmabi_dw
 Usuario: postgres
 Password: postgres
 ```

@@ -59,11 +59,11 @@ En esta sesión:
 - por eso, conceptualmente, `SCD` ocurre aquí
 - en esta versión del laboratorio se trabaja una primera estrella base
 
-## 6. Mapa actual del OLTP `farmadb`
+## 6. Mapa actual del OLTP `farma_oltp_db`
 
 Esta práctica usa el esquema renombrado actual definido en:
 
-- [farmadb.sql](../oltp-mysql/mysql/init/farmadb.sql)
+- [farma_oltp_db.sql](../oltp-mysql/mysql/init/farma_oltp_db.sql)
 
 Tablas fuente relevantes del OLTP:
 
@@ -140,7 +140,7 @@ docker exec -it farmabi-dw-dbt bash
 Luego:
 
 ```bash
-cd /usr/app/farmacia_bi
+cd /usr/app/farmabi
 ```
 
 ### 8.4 Verifica la instalación de dbt
@@ -198,7 +198,7 @@ dbt_project.yml = como dbt construye staging y marts
 #### Ejemplo de `profiles.yml`
 
 ```yaml
-farmacia_bi:
+farmabi:
   target: dev
   outputs:
     dev:
@@ -207,7 +207,7 @@ farmacia_bi:
       user: postgres
       password: postgres
       port: 5432
-      dbname: farmacia_dw
+      dbname: farmabi_dw
       schema: marts
       threads: 1
 ```
@@ -216,7 +216,7 @@ Lectura pedagógica:
 
 - `host: farmabi-dw-pg`
   - dbt se conecta al contenedor PostgreSQL
-- `dbname: farmacia_dw`
+- `dbname: farmabi_dw`
   - esta es la base analítica donde se construyen los modelos
 - `schema: marts`
   - este es el schema base del target actual
@@ -227,7 +227,7 @@ Lectura pedagógica:
 
 ```yaml
 models:
-  farmacia_bi:
+  farmabi:
     staging:
       +materialized: view
       +schema: staging
@@ -249,7 +249,7 @@ Lectura pedagógica:
 
 ```text
 profiles.yml
-    -> conecta dbt a farmacia_dw
+    -> conecta dbt a farmabi_dw
     -> define el target activo
     -> aporta el schema base
 
@@ -332,7 +332,7 @@ Antes de transformar, confirma que las tablas esperadas ya llegaron desde Airbyt
 Desde otra terminal, fuera del contenedor `dbt`, ejecuta:
 
 ```powershell
-docker exec -it farmabi-dw-pg psql -U postgres -d farmacia_dw
+docker exec -it farmabi-dw-pg psql -U postgres -d farmabi_dw
 ```
 
 Luego valida:
@@ -552,7 +552,7 @@ Resultado esperado:
 ### 8.17 Valida la estrella final en PostgreSQL
 
 ```powershell
-docker exec -it farmabi-dw-pg psql -U postgres -d farmacia_dw
+docker exec -it farmabi-dw-pg psql -U postgres -d farmabi_dw
 ```
 
 Luego:

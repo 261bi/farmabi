@@ -42,7 +42,7 @@ Tablas esperadas:
 ## 4. Arquitectura de esta práctica
 
 ```text
-PostgreSQL farmacia_dw.marts -> Power BI -> Modelo semántico
+PostgreSQL farmabi_dw.marts -> Power BI -> Modelo semántico
 ```
 
 En esta etapa:
@@ -96,8 +96,8 @@ En Power BI Desktop:
 3. Usa los datos de conexión del laboratorio:
 
 ```text
-Servidor: 127.0.0.1:15432
-Base de datos: farmacia_dw
+Servidor: 127.0.0.1:55432
+Base de datos: farmabi_dw
 ```
 
 Credenciales del contenedor:
@@ -109,8 +109,8 @@ Password: postgres
 
 Importante:
 
-- si Power BI está instalado en Windows y PostgreSQL corre en Docker, usa `127.0.0.1:15432`
-- si `localhost:15432` falla con errores de lectura, usa `127.0.0.1:15432`
+- si Power BI está instalado en Windows y PostgreSQL corre en Docker, usa `127.0.0.1:55432`
+- si `localhost:55432` falla con errores de lectura, usa `127.0.0.1:55432`
 - si Power BI corre dentro de otro entorno, revisa el host publicado por Docker
 - selecciona modo `Importar` para esta primera versión didáctica
 - si el DataMart cambia, puedes recargar los datos con `Inicio -> Actualizar`

@@ -240,7 +240,7 @@ Configura formato:
 
 Las medidas de esta práctica también quedan listadas en:
 
-- [medidas_farmacia_bi.dax](medidas_farmacia_bi.dax)
+- [medidas_farmabi.dax](medidas_farmabi.dax)
 
 ## 14. Evidencias a entregar
 

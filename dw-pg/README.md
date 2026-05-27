@@ -5,8 +5,8 @@ PostgreSQL analitico para alojar `raw`, `staging` y `marts` del proyecto `farmab
 ## Configuracion clave
 
 - contenedor: `farmabi-dw-pg`
-- puerto host: `15432`
-- base: `farmacia_dw`
+- puerto host: `55432`
+- base: `farmabi_dw`
 - usuario: `postgres`
 - password: `postgres`
 - compose: `compose.yml`
@@ -22,7 +22,7 @@ docker compose ps
 Acceso opcional:
 
 ```powershell
-docker exec -it farmabi-dw-pg psql -U postgres -d farmacia_dw
+docker exec -it farmabi-dw-pg psql -U postgres -d farmabi_dw
 ```
 
 ## Documentacion

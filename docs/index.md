@@ -10,10 +10,10 @@ MySQL OLTP -> Airbyte o Debezium -> PostgreSQL RAW -> dbt -> PostgreSQL DW -> Po
 
 ```mermaid
 flowchart LR
-    A[MySQL OLTP<br/>farmadb] --> B[Airbyte o Debezium<br/>Ingesta]
-    B --> C[PostgreSQL RAW<br/>farmacia_dw<br/>.raw]
+    A[MySQL OLTP<br/>farma_oltp_db] --> B[Airbyte o Debezium<br/>Ingesta]
+    B --> C[PostgreSQL RAW<br/>farmabi_dw<br/>.raw]
     C --> D[dbt<br/>Transformacion]
-    D --> E[PostgreSQL DW<br/>farmacia_dw<br/>.staging y .marts]
+    D --> E[PostgreSQL DW<br/>farmabi_dw<br/>.staging y .marts]
     E --> F[Power BI<br/>Consumo analitico]
 ```
 
@@ -21,8 +21,8 @@ flowchart LR
 
 | Modulo | Rol |
 |---|---|
-| `oltp-mysql/` | Origen transaccional MySQL (base `farmadb`) |
-| `dw-pg/` | PostgreSQL analitico (base `farmacia_dw`) |
+| `oltp-mysql/` | Origen transaccional MySQL (base `farma_oltp_db`) |
+| `dw-pg/` | PostgreSQL analitico (base `farmabi_dw`) |
 | `ingesta-airbyte/` | Replica MySQL -> PostgreSQL via Airbyte |
 | `ingesta-debezium/` | CDC con Debezium + Kafka (replicacion en tiempo real) |
 | `dw-dbt/` | Transformacion con dbt: staging -> marts |

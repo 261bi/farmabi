@@ -50,13 +50,14 @@ cd ../ingesta-airbyte
 # Opcion B: Debezium CDC
 cd ../ingesta-debezium
 docker compose up -d
+# Si es primera vez, seguir README.md de cd ../ingesta-debezium
 
 # 4. dbt
 cd ../dw-dbt
 docker compose up -d --build
 docker exec -it farmabi-dw-dbt bash
 # dentro del contenedor:
-# cd /usr/app/farmacia_bi
+# cd /usr/app/farmabi
 # dbt run --select staging
 # dbt run --select +marts
 ```

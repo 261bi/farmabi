@@ -2,7 +2,7 @@
 
 ## Contexto del nuevo modelo
 
-Esta práctica adapta los pasos 24 y 25 del laboratorio original de Power BI a un modelo de **ventas/pedidos** basado en la base de datos `farmadb`.
+Esta práctica adapta los pasos 24 y 25 del laboratorio original de Power BI a un modelo de **ventas/pedidos** basado en la base de datos `farma_oltp_db`.
 
 Modelo sugerido:
 

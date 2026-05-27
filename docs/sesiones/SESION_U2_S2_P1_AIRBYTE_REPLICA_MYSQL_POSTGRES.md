@@ -6,7 +6,7 @@ Implementación de una réplica batch desde MySQL hacia PostgreSQL usando Airbyt
 
 ## 2. Objetivo
 
-Configurar y validar una réplica inicial desde la base transaccional `farmadb` en MySQL hacia la capa `raw` de la base `farmacia_dw` en PostgreSQL, usando Airbyte local.
+Configurar y validar una réplica inicial desde la base transaccional `farma_oltp_db` en MySQL hacia la capa `raw` de la base `farmabi_dw` en PostgreSQL, usando Airbyte local.
 
 Al finalizar la sesión, el alumno debe poder:
 
@@ -30,11 +30,11 @@ Al finalizar la sesión, el alumno debe poder:
 ## 4. Entorno de trabajo
 
 Trabaja sobre el proyecto `farmabi` usando:
+- MySQL fuente: `localhost:53306`
 
-- MySQL fuente: `localhost:13306`
-- PostgreSQL destino: `localhost:15432`
-- Base fuente MySQL: `farmadb`
-- Base destino PostgreSQL: `farmacia_dw`
+- PostgreSQL destino: `localhost:55432`
+- Base fuente MySQL: `farma_oltp_db`
+- Base destino PostgreSQL: `farmabi_dw`
 - Schema de aterrizaje: `raw`
 - Airbyte local: `http://localhost:8010`
 
@@ -50,7 +50,7 @@ Credenciales del entorno:
 ## 5. Flujo de la práctica
 
 ```text
-MySQL (farmadb) -> Airbyte -> PostgreSQL (farmacia_dw.raw)
+MySQL (farma_oltp_db) -> Airbyte -> PostgreSQL (farmabi_dw.raw)
 ```
 
 ## 6. Fundamento teorico breve
@@ -82,21 +82,21 @@ En esta sesión:
 
 - Airbyte trabaja sobre la captura y réplica desde el OLTP
 - por eso, conceptualmente, `CDC` ocurre aquí
-- como el `farmadb` actual ya incluye `fecha_creacion` y `fecha_modificacion`, ahora sí existe una base mínima para trabajar sincronización incremental con `cursor`
+- como el `farma_oltp_db` actual ya incluye `fecha_creacion` y `fecha_modificacion`, ahora sí existe una base mínima para trabajar sincronización incremental con `cursor`
 - eso no significa todavía CDC real basado en logs
 - pero sí permite una réplica incremental más cercana a cambios recientes en las tablas
 
 Importante:
 
-- `farmadb` si es una fuente OLTP valida para una estrategia de CDC
+- `farma_oltp_db` si es una fuente OLTP valida para una estrategia de CDC
 - pero CDC en MySQL requiere configuración adicional del motor y del conector
 - en esta práctica, el uso de `cursor` se apoya en columnas temporales del modelo y no en binlog de MySQL
 
-## 7. Mapa actual del OLTP `farmadb`
+## 7. Mapa actual del OLTP `farma_oltp_db`
 
 Esta práctica usa el esquema renombrado actual definido en:
 
-- [farmadb.sql](../oltp-mysql/mysql/init/farmadb.sql)
+- [farma_oltp_db.sql](../oltp-mysql/mysql/init/farma_oltp_db.sql)
 
 Tablas fuente relevantes:
 
@@ -138,7 +138,7 @@ docker compose ps
 ### 8.3 Verifica que PostgreSQL tenga los schemas del DW
 
 ```powershell
-docker exec -it farmabi-dw-pg psql -U postgres -d farmacia_dw
+docker exec -it farmabi-dw-pg psql -U postgres -d farmabi_dw
 ```
 
 Luego:
@@ -163,10 +163,10 @@ http://localhost:8010
 
 ### 8.5 Crea el source MySQL
 
-- Source name: `mysql-farmadb`
+- Source name: `mysql-farma-oltp`
 - Host: `host.docker.internal`
-- Port: `13306`
-- Database: `farmadb`
+- Port: `53306`
+- Database: `farma_oltp_db`
 - Username: `root`
 - Password: `root`
 
@@ -174,8 +174,8 @@ http://localhost:8010
 
 - Destination name: `postgres-farmacia-raw`
 - Host: `host.docker.internal`
-- Port: `15432`
-- Database: `farmacia_dw`
+- Port: `55432`
+- Database: `farmabi_dw`
 - Schema: `raw`
 - Username: `postgres`
 - Password: `postgres`
@@ -215,7 +215,7 @@ Configuración recomendada de streams:
 Observacion didactica:
 
 - si alguna tabla o configuración puntual del conector no se deja resolver bien en incremental, puedes usar `Full refresh | Overwrite` como respaldo
-- pero con el `farmadb` actual, la explicacion base ya debe presentar el uso de `cursor`
+- pero con el `farma_oltp_db` actual, la explicacion base ya debe presentar el uso de `cursor`
 
 ### 8.8 Configura cada stream paso a paso
 
@@ -261,7 +261,7 @@ Importante:
 
 En la pantalla `Configure connection`, usa:
 
-- Connection name: `mysql-farmadb -> postgres-farmacia-raw`
+- Connection name: `mysql-farma-oltp -> postgres-farmacia-raw`
 - Schedule type: `Manual`
 - Destination Namespace: `Destination-defined`
 - Stream Prefix: vacio
@@ -305,7 +305,7 @@ Resultado esperado:
 ### 8.12 Valida que Airbyte cargo datos en `raw`
 
 ```powershell
-docker exec -it farmabi-dw-pg psql -U postgres -d farmacia_dw
+docker exec -it farmabi-dw-pg psql -U postgres -d farmabi_dw
 ```
 
 Luego:
@@ -332,5 +332,5 @@ SELECT * FROM raw.pedido_detalles LIMIT 10;
 Si la práctica salió correctamente, debes haber validado el flujo base de integración:
 
 ```text
-MySQL (farmadb) -> Airbyte -> PostgreSQL (farmacia_dw.raw)
+MySQL (farma_oltp_db) -> Airbyte -> PostgreSQL (farmabi_dw.raw)
 ```

@@ -5,7 +5,7 @@ Proyecto dbt para transformar `raw` hacia `staging` y `marts`.
 ## Configuracion clave
 
 - contenedor: `farmabi-dw-dbt`
-- proyecto dbt: `farmacia_bi`
+- proyecto dbt: `farmabi`
 - profile: `.dbt/profiles.yml`
 - compose: `compose.yml`
 
@@ -26,7 +26,7 @@ docker exec -it farmabi-dw-dbt bash
 Dentro del contenedor:
 
 ```bash
-cd /usr/app/farmacia_bi
+cd /usr/app/farmabi
 dbt debug
 dbt run --select staging
 dbt run --select +marts

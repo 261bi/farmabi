@@ -3,12 +3,12 @@
 -- Ampliacion manual de datos para analisis BI
 --
 -- Ejecutar despues de explicar el ETL simple con los datos minimos
--- de farmadb.sql. Este script agrega volumen y temporalidad para
+-- de farma_oltp_db.sql. Este script agrega volumen y temporalidad para
 -- practicas de Power BI: OLAP, storytelling, KPIs, rankings,
 -- comparativos por anio/mes/dia de semana y lectura de anios parciales.
 -- =========================================
 
-USE farmadb;
+USE farma_oltp_db;
 
 -- =========================================
 -- 1. CLIENTES Y VENDEDORES ADICIONALES

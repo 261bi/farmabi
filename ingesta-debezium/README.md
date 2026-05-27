@@ -2,18 +2,20 @@
 
 Modulo CDC con Debezium, Kafka y Kafka Connect para replicar cambios desde MySQL hacia PostgreSQL.
 
-## Configuracion clave
+## Servicios
 
-- Kafka UI: `farmabi-debezium-kafka-ui`
-- Kafka Connect: `farmabi-debezium-connect`
-- puerto Kafka UI: `38085`
-- puerto Kafka Connect: `38083`
-- compose: `compose.yml`
+| Servicio | Contenedor | Puerto host |
+|---|---|---|
+| Zookeeper | `farmabi-debezium-zookeeper` | `52181` |
+| Kafka | `farmabi-debezium-kafka` | `59092` |
+| Kafka UI | `farmabi-debezium-kafka-ui` | `58085` |
+| Kafka Connect | `farmabi-debezium-connect` | `58083` |
 
 ## Prerequisitos
 
-- `oltp-mysql/` levantado.
-- `dw-pg/` levantado.
+- `oltp-mysql/` levantado
+- `dw-pg/` levantado
+- Red `farmabi-net` creada
 
 ## Operacion minima
 
@@ -23,19 +25,37 @@ docker compose up -d
 docker compose ps
 ```
 
-Registrar conectores:
+Esperar a que todos los servicios esten healthy (~60s), luego registrar conectores:
+
+### Opcion 1: Un solo comando (ambos conectores)
 
 ```powershell
 .\scripts\register-connectors.ps1
 ```
 
-Kafka UI:
+### Opcion 2: Paso a paso (para enseñanza)
 
-```text
-http://localhost:38085
+```powershell
+.\scripts\register-source.ps1
+# verificar que el source quedo activo
+Invoke-RestMethod http://localhost:58083/connectors/mysql-farma-oltp-source/status
+
+.\scripts\register-sink.ps1
+# verificar que el sink quedo activo
+Invoke-RestMethod http://localhost:58083/connectors/postgres-cdc-sink/status
+```
+
+## Verificacion rapida
+
+```powershell
+# Estado de conectores
+Invoke-RestMethod http://localhost:58083/connectors
+
+# Kafka UI
+start http://localhost:58085
 ```
 
 ## Documentacion
 
 - Guia de clase: [`../docs/sesiones/SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD.md`](../docs/sesiones/SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD.md)
-- Detalle historico del modulo: [`../docs/guias/ingesta-debezium-detalle.md`](../docs/guias/ingesta-debezium-detalle.md)
+- Detalle del modulo: [`../docs/guias/ingesta-debezium-detalle.md`](../docs/guias/ingesta-debezium-detalle.md)

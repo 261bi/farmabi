@@ -1,20 +1,8 @@
 -- =========================================
 -- 3_poblar.sql
--- ETL manual del DataMart dentro de farmadb
--- Bloques:
--- 1. Configuracion
--- 2. Carga de dimensiones
--- 3. Construccion de vw_g_ventas
--- 4. Carga de fact_ventas
--- 5. Validaciones finales
--- =========================================
+-- ETL manual del DataMart dentro de farma_oltp_db
 
-
--- =========================================
--- 1. CONFIGURACION
--- =========================================
-
-USE farmadb;
+USE farma_oltp_db;
 SET lc_time_names = 'es_ES';
 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 

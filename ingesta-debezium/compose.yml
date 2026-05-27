@@ -1,9 +1,3 @@
-# objetivo: usar MySQL OLTP y PostgreSQL DW del proyecto farmabi
-# https://debezium.io/documentation/reference/2.7/connectors/mysql.html
-# y mantener sincronizados ambos sistemas (Change Data Capture), para esto se necesita un conector de debezium para mysql, y otro sink jdbc para postgresql
-
-
-
 name: farmabi-debezium
 
 services:
@@ -11,33 +5,47 @@ services:
     image: debezium/zookeeper:2.7.3.Final
     container_name: farmabi-debezium-zookeeper
     ports:
-      - "32181:2181"
+      - "52181:2181"
     networks:
       - farmabi-net
+    healthcheck:
+      test: echo srvr | nc -z localhost 2181 || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   kafka:
     image: debezium/kafka:2.7.3.Final
     container_name: farmabi-debezium-kafka
     ports:
-      - "39092:9092"
+      - "59092:9092"
     environment:
       ZOOKEEPER_CONNECT: zookeeper:2181
     depends_on:
-      - zookeeper
+      zookeeper:
+        condition: service_healthy
     networks:
       - farmabi-net
+    healthcheck:
+      test: nc -z localhost 9092 || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   kafka-ui:
     image: provectuslabs/kafka-ui:v0.7.2
     container_name: farmabi-debezium-kafka-ui
     restart: unless-stopped
     ports:
-      - "38085:8080"
-    depends_on:
-      - kafka
+      - "58085:8080"
     environment:
       KAFKA_CLUSTERS_0_NAME: farmabi-debezium
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+    depends_on:
+      kafka:
+        condition: service_healthy
     networks:
       - farmabi-net
 
@@ -45,7 +53,7 @@ services:
     image: debezium/connect:2.7.3.Final
     container_name: farmabi-debezium-connect
     ports:
-      - "38083:8083"
+      - "58083:8083"
     environment:
       BOOTSTRAP_SERVERS: kafka:9092
       GROUP_ID: "1"
@@ -53,9 +61,16 @@ services:
       OFFSET_STORAGE_TOPIC: "connect_offsets"
       STATUS_STORAGE_TOPIC: "connect_statuses"
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     networks:
       - farmabi-net
+    healthcheck:
+      test: curl -f http://localhost:8083 || exit 1
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
 
 networks:
   farmabi-net:

@@ -6,7 +6,7 @@ Validación analítica del DataMart construido con Airbyte, PostgreSQL y dbt.
 
 ## 2. Objetivo
 
-Validar que la réplica en `raw`, la transformación en `staging` y el modelo final en `marts` responden correctamente al caso de negocio y mantienen consistencia con el OLTP `farmadb`.
+Validar que la réplica en `raw`, la transformación en `staging` y el modelo final en `marts` responden correctamente al caso de negocio y mantienen consistencia con el OLTP `farma_oltp_db`.
 
 En esta práctica, el foco principal ya no es construir el pipeline, sino comprobar que el DataMart final:
 
@@ -75,7 +75,7 @@ Y falla si devuelve:
 Dentro del contenedor `dbt`, puedes ejecutar:
 
 ```bash
-cd /usr/app/farmacia_bi
+cd /usr/app/farmabi
 dbt test --select marts
 ```
 
@@ -237,7 +237,7 @@ FROM marts.fact_ventas;
 
 Con esta práctica se cierra la sesión 2 del pipeline BI con herramientas. El estudiante valida que:
 
-- Airbyte replica correctamente desde `farmadb`
+- Airbyte replica correctamente desde `farma_oltp_db`
 - dbt transforma correctamente desde `raw` hacia `staging` y `marts`
 - el modelo final responde al caso de negocio
 - `fact_ventas` conserva el grano esperado

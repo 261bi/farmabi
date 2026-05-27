@@ -1,6 +1,6 @@
 
-CREATE DATABASE IF NOT EXISTS `farmadb` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
-USE `farmadb`;
+CREATE DATABASE IF NOT EXISTS `farma_oltp_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
+USE `farma_oltp_db`;
 
 CREATE TABLE IF NOT EXISTS dim_cliente (
     cliente_key INT AUTO_INCREMENT,

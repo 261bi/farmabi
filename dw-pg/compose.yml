@@ -1,25 +1,25 @@
 name: farmabi-dw
 
 services:
-  postgres-farmacia-dw:
-    image: postgres:16
+  postgres-farmabi-dw:
+    image: postgres:16-alpine
     container_name: farmabi-dw-pg
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: farmacia_dw
+      POSTGRES_DB: farmabi_dw
       TZ: America/Lima
     ports:
-      - "15432:5432"
+      - "55432:5432"
     volumes:
-      - postgres_farmacia_dw_data:/var/lib/postgresql/data
+      - farmabi_dw_data:/var/lib/postgresql/data
       - ./postgres/init:/docker-entrypoint-initdb.d
     networks:
       - farmabi-net
 
 volumes:
-  postgres_farmacia_dw_data:
+  farmabi_dw_data:
 
 networks:
   farmabi-net:

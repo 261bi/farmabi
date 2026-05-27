@@ -2,7 +2,7 @@
 
 ## 1. Título
 
-Validación analítica del DataMart manual implementado dentro del mismo OLTP `farmadb`.
+Validación analítica del DataMart manual implementado dentro del mismo OLTP `farma_oltp_db`.
 
 ## 2. Propósito de la sesión
 
@@ -62,13 +62,13 @@ docker compose ps
 Ingresa al motor:
 
 ```powershell
-docker exec -it farmabi-oltp-mysql mysql -uroot -proot farmadb
+docker exec -it farmabi-oltp-mysql mysql -uroot -proot farma_oltp_db
 ```
 
 Configura la sesión:
 
 ```sql
-USE farmadb;
+USE farma_oltp_db;
 SET lc_time_names = 'es_ES';
 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 ```

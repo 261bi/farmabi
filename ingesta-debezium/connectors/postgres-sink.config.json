@@ -1,8 +1,8 @@
 {
   "connector.class": "io.debezium.connector.jdbc.JdbcSinkConnector",
   "tasks.max": "1",
-  "topics.regex": "farmadb\\.farmadb\\.(familias|clientes|vendedores|categorias|productos|pedidos|pedido_detalles)",
-  "connection.url": "jdbc:postgresql://postgres-farmacia-dw:5432/farmacia_dw?reWriteBatchedInserts=true",
+  "topics.regex": "farma_oltp_db\\.farma_oltp_db\\.(familias|clientes|vendedores|categorias|productos|pedidos|pedido_detalles)",
+  "connection.url": "jdbc:postgresql://postgres-farmabi-dw:5432/farmabi_dw?reWriteBatchedInserts=true",
   "connection.username": "postgres",
   "connection.password": "postgres",
   "insert.mode": "upsert",

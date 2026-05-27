@@ -2,11 +2,11 @@
 
 ## 1. Título
 
-Implementación física manual del DataMart del caso `farmadb` dentro del mismo motor MySQL transaccional.
+Implementación física manual del DataMart del caso `farma_oltp_db` dentro del mismo motor MySQL transaccional.
 
 ## 2. Propósito de la sesión
 
-En esta práctica el estudiante no usará todavía Airbyte ni dbt. Primero construirá manualmente la estructura física del DataMart directamente en la misma base `farmadb`, para entender cómo se implementa un modelo analítico con SQL antes de pasar a herramientas especializadas.
+En esta práctica el estudiante no usará todavía Airbyte ni dbt. Primero construirá manualmente la estructura física del DataMart directamente en la misma base `farma_oltp_db`, para entender cómo se implementa un modelo analítico con SQL antes de pasar a herramientas especializadas.
 
 Esta sesión se concentra solo en la parte física:
 
@@ -21,7 +21,7 @@ Esta sesión se concentra solo en la parte física:
 
 Caso práctico del curso:
 
-**Análisis comercial y operativo del ciclo de pedidos de una distribuidora farmacéutica usando `farmadb`.**
+**Análisis comercial y operativo del ciclo de pedidos de una distribuidora farmacéutica usando `farma_oltp_db`.**
 
 ## 4. Problema de negocio
 
@@ -58,11 +58,11 @@ junto con las entidades de contexto:
 
 Diseñar e implementar físicamente un DataMart que permita analizar el desempeño comercial y operativo del proceso de pedidos, integrando métricas de ventas, cantidades, descuentos, margen bruto y tiempos del ciclo del pedido.
 
-## 7. Punto de partida real: el OLTP `farmadb`
+## 7. Punto de partida real: el OLTP `farma_oltp_db`
 
 La base transaccional real se encuentra en:
 
-- [farmadb.sql](mysql/init/farmadb.sql)
+- [farma_oltp_db.sql](mysql/init/farma_oltp_db.sql)
 
 En esa base existen las tablas fuente:
 
@@ -428,7 +428,7 @@ DataMart de ventas y ciclo de pedidos
 
 ### Arquitectura oficial
 
-MySQL (`farmadb`) -> Airbyte -> PostgreSQL `raw` -> dbt -> DataMart -> Power BI
+MySQL (`farma_oltp_db`) -> Airbyte -> PostgreSQL `raw` -> dbt -> DataMart -> Power BI
 
 ### KPI rey
 
@@ -551,7 +551,7 @@ Medidas congeladas:
 
 ## 22. Decisión técnica de esta práctica
 
-En esta sesión el DataMart se construirá **dentro de la misma base `farmadb`**.
+En esta sesión el DataMart se construirá **dentro de la misma base `farma_oltp_db`**.
 
 Esto no es la arquitectura final recomendada, pero sí es una excelente estrategia pedagógica para que el estudiante comprenda:
 
@@ -574,7 +574,7 @@ docker compose ps
 Ingresa al motor:
 
 ```powershell
-docker exec -it farmabi-oltp-mysql mysql -uroot -proot farmadb
+docker exec -it farmabi-oltp-mysql mysql -uroot -proot farma_oltp_db
 ```
 
 Valida las tablas transaccionales:

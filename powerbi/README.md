@@ -6,7 +6,7 @@ Capa de consumo analitico y visualizacion del proyecto `farmabi`.
 
 Power BI debe consumir principalmente el modelo estrella final construido en PostgreSQL:
 
-- base: `farmacia_dw`
+- base: `farmabi_dw`
 - schema principal: `marts`
 
 ## Contenido esperado

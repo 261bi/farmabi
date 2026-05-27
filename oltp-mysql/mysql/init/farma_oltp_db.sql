@@ -1,5 +1,5 @@
 /*
-Esquema renombrado de farmadb
+Esquema OLTP de farma_oltp_db
 Convenciones aplicadas:
 - tablas en plural
 - columnas en snake_case
@@ -15,8 +15,8 @@ Convenciones aplicadas:
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE DATABASE IF NOT EXISTS `farmadb` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
-USE `farmadb`;
+CREATE DATABASE IF NOT EXISTS `farma_oltp_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
+USE `farma_oltp_db`;
 
 DROP TABLE IF EXISTS `pedido_detalles`;
 DROP TABLE IF EXISTS `pedidos`;

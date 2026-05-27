@@ -62,8 +62,8 @@ El archivo `compose.yml` levanta estos servicios:
 
 Este compose ya no levanta MySQL ni PostgreSQL propios. Usa los servicios del proyecto:
 
-- MySQL OLTP: `farmabi-oltp-mysql`, servicio DNS `mysql-farmadb`, puerto host `13306`
-- PostgreSQL DW: `farmabi-dw-pg`, servicio DNS `postgres-farmacia-dw`, puerto host `15432`
+- MySQL OLTP: `farmabi-oltp-mysql`, servicio DNS `mysql-farma-oltp`, puerto host `53306`
+- PostgreSQL DW: `farmabi-dw-pg`, servicio DNS `postgres-farmabi-dw`, puerto host `55432`
 - red compartida: `farmabi-net`
 
 Versiones actuales:
@@ -93,7 +93,7 @@ Este repositorio no incluye aún:
 
 ## Origen MySQL
 
-El origen de esta maqueta ahora es MySQL 8. El compose levanta una base `farmadb` y la inicializa automáticamente con el esquema de farmacia entregado para el lab.
+El origen de esta maqueta ahora es MySQL 8. El compose levanta una base `farma_oltp_db` y la inicializa automáticamente con el esquema de farmacia entregado para el lab.
 
 Tablas iniciales del origen:
 
@@ -107,18 +107,18 @@ Tablas iniciales del origen:
 
 Script de inicialización del origen:
 
-- [../oltp-mysql/mysql/init/farmadb.sql](../oltp-mysql/mysql/init/farmadb.sql)
+- [../oltp-mysql/mysql/init/farma_oltp_db.sql](../oltp-mysql/mysql/init/farma_oltp_db.sql)
 - [../oltp-mysql/4_cargar_datos_didacticos_bi.sql](../oltp-mysql/4_cargar_datos_didacticos_bi.sql), opcional para ampliar datos antes del snapshot
 
 ## Conectores incluidos
 
 Archivos de configuración:
 
-- [connectors/mysql-source.config.json](c:/261bigdata/cdc/connectors/mysql-source.config.json)
-- [connectors/postgres-sink.config.json](c:/261bigdata/cdc/connectors/postgres-sink.config.json)
-- [scripts/register-source.ps1](c:/261bigdata/cdc/scripts/register-source.ps1)
-- [scripts/register-sink.ps1](c:/261bigdata/cdc/scripts/register-sink.ps1)
-- [scripts/register-connectors.ps1](c:/261bigdata/cdc/scripts/register-connectors.ps1)
+- [connectors/mysql-source.config.json](../ingesta-debezium/connectors/mysql-source.config.json)
+- [connectors/postgres-sink.config.json](../ingesta-debezium/connectors/postgres-sink.config.json)
+- [scripts/register-source.ps1](../ingesta-debezium/scripts/register-source.ps1)
+- [scripts/register-sink.ps1](../ingesta-debezium/scripts/register-sink.ps1)
+- [scripts/register-connectors.ps1](../ingesta-debezium/scripts/register-connectors.ps1)
 
 ## Cuándo usar este enfoque
 
@@ -166,13 +166,13 @@ Se usa el MySQL OLTP del proyecto `oltp-mysql`, no un MySQL propio dentro de est
 
 Puerto expuesto:
 
-- `13306`
+- `53306`
 
 Credenciales por defecto:
 
 - usuario administrador: `root`
 - password administrador: `root`
-- base de datos: `farmadb`
+- base de datos: `farma_oltp_db`
 
 Credenciales usadas por el conector source en este laboratorio:
 
@@ -181,8 +181,8 @@ Credenciales usadas por el conector source en este laboratorio:
 
 Inicializacion automatica:
 
-- crea la base `farmadb`;
-- ejecuta [../oltp-mysql/mysql/init/farmadb.sql](../oltp-mysql/mysql/init/farmadb.sql);
+- crea la base `farma_oltp_db`;
+- ejecuta [../oltp-mysql/mysql/init/farma_oltp_db.sql](../oltp-mysql/mysql/init/farma_oltp_db.sql);
 - deja disponible el acceso del usuario `root` para el conector source.
 
 Nota de laboratorio:
@@ -244,7 +244,7 @@ Recibe los eventos de cambio publicados por los conectores.
 
 Puerto expuesto:
 
-- `39092`
+- `59092`
 
 ### Kafka UI
 
@@ -256,11 +256,11 @@ Imagen usada:
 
 Puerto expuesto:
 
-- `38085`
+- `58085`
 
 Acceso desde el navegador:
 
-- http://localhost:38085
+- http://localhost:58085
 
 Configuración del cluster dentro del compose:
 
@@ -278,7 +278,7 @@ Es el runtime donde se registran conectores como:
 
 Puerto expuesto:
 
-- `38083`
+- `58083`
 
 ### PostgreSQL DW
 
@@ -286,18 +286,18 @@ Se usa el PostgreSQL DW del proyecto `dw-pg`, no un PostgreSQL propio dentro de 
 
 Puerto expuesto:
 
-- `15432`
+- `55432`
 
 Credenciales por defecto:
 
-- base de datos: `farmacia_dw`
+- base de datos: `farmabi_dw`
 - esquema de aterrizaje: `raw`
 - usuario: `postgres`
 - password: `postgres`
 
 Comportamiento esperado:
 
-- base creada automáticamente: `farmacia_dw`;
+- base creada automáticamente: `farmabi_dw`;
 - esquema `raw` creado al inicializar PostgreSQL;
 - sin tablas de negocio al inicio dentro de `raw`;
 - el conector sink crea tablas como `raw.familias`, `raw.clientes`, `raw.productos`, `raw.pedidos` y `raw.pedido_detalles`.
@@ -332,7 +332,7 @@ docker compose logs -f connect
 Para abrir Kafka UI:
 
 ```text
-http://localhost:38085
+http://localhost:58085
 ```
 
 Para detener todo:
@@ -354,7 +354,7 @@ El origen MySQL se administra desde `../oltp-mysql`.
 
 La semilla mínima ocurre en el primer arranque de `farmabi-oltp-mysql` mediante:
 
-- `../oltp-mysql/mysql/init/farmadb.sql`
+- `../oltp-mysql/mysql/init/farma_oltp_db.sql`
 
 Luego, para las prácticas BI, carga manualmente los datos didácticos:
 
@@ -379,20 +379,23 @@ docker compose ps
 En este punto:
 
 - MySQL se inicializa con los datos del laboratorio;
-- PostgreSQL crea la base `farmacia_dw` y el esquema `raw`, pero sigue sin tablas de negocio dentro de `raw`;
+- PostgreSQL crea la base `farmabi_dw` y el esquema `raw`, pero sigue sin tablas de negocio dentro de `raw`;
 - Kafka y Connect quedan listos, pero todavía sin replicar datos a PostgreSQL.
 
 ### 2. Confirmar que PostgreSQL sigue vacío
 
 ```powershell
-docker compose exec postgres psql -U postgres -d farmacia_dw -c "select schemaname, tablename from pg_tables where schemaname = 'raw' order by tablename;"
+docker compose exec postgres psql -U postgres -d farmabi_dw -c "select schemaname, tablename from pg_tables where schemaname = 'raw' order by tablename;"
 ```
 
 Lo esperado aquí es que no aparezcan tablas de negocio como `familias`, `clientes` o `productos`.
 
 ### 3. Registrar solo el conector source de MySQL
 
-No ejecutes `scripts/register-connectors.ps1` todavía, porque ese script registra source y sink juntos.
+No ejecutes `scripts/register-connectors.ps1` todavía, porque ese script registra source y sink juntos. Si prefieres el paso a paso, usa los scripts individuales:
+
+- `scripts/register-source.ps1`
+- `scripts/register-sink.ps1`
 
 Para dejar PostgreSQL vacío y empezar solo con la captura hacia Kafka, registra únicamente el source:
 
@@ -403,7 +406,7 @@ Para dejar PostgreSQL vacío y empezar solo con la captura hacia Kafka, registra
 ### 4. Verificar que el source quedó activo
 
 ```powershell
-Invoke-RestMethod http://localhost:38083/connectors/mysql-farmadb-source/status
+Invoke-RestMethod http://localhost:58083/connectors/mysql-farma-oltp-source/status
 ```
 
 El conector debe quedar en `RUNNING`.
@@ -419,13 +422,13 @@ docker exec farmabi-debezium-kafka bash -lc "kafka-topics.sh --bootstrap-server 
 Ver eventos de una tabla, por ejemplo `familias`:
 
 ```powershell
-docker exec farmabi-debezium-kafka bash -lc "kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic farmadb.farmadb.familias --from-beginning"
+docker exec farmabi-debezium-kafka bash -lc "kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic farma_oltp_db.farma_oltp_db.familias --from-beginning"
 ```
 
 También puedes revisar topics y mensajes desde Kafka UI:
 
 ```text
-http://localhost:38085
+http://localhost:58085
 ```
 
 Si el source quedó activo, aquí verás los eventos del snapshot inicial y luego los cambios nuevos.
@@ -449,7 +452,7 @@ Cuando ya quieras que Kafka empiece a escribir en PostgreSQL, registra el sink m
 Verifica su estado:
 
 ```powershell
-Invoke-RestMethod http://localhost:38083/connectors/postgres-cdc-sink/status
+Invoke-RestMethod http://localhost:58083/connectors/postgres-cdc-sink/status
 ```
 
 Desde ese momento:
@@ -466,25 +469,26 @@ Cuando `mysql`, `kafka`, `connect` y `postgres` estén arriba, registra ambos co
 .\scripts\register-connectors.ps1
 ```
 
-Ese script combinado ahora llama internamente a:
+Hay 3 scripts disponibles:
 
-- `register-source.ps1`
-- `register-sink.ps1`
+- `scripts/register-connectors.ps1` — registra ambos conectores (source + sink) en un solo comando
+- `scripts/register-source.ps1` — registra solo el source
+- `scripts/register-sink.ps1` — registra solo el sink
 
-Nota: si recreas el contenedor `connect`, es normal tener que volver a ejecutar este registro.
+Nota: si recreas el contenedor `connect`, es normal tener que volver a ejecutar el registro.
 
 Consulta el estado:
 
 ```powershell
-Invoke-RestMethod http://localhost:38083/connectors
-Invoke-RestMethod http://localhost:38083/connectors/mysql-farmadb-source/status
-Invoke-RestMethod http://localhost:38083/connectors/postgres-cdc-sink/status
+Invoke-RestMethod http://localhost:58083/connectors
+Invoke-RestMethod http://localhost:58083/connectors/mysql-farma-oltp-source/status
+Invoke-RestMethod http://localhost:58083/connectors/postgres-cdc-sink/status
 ```
 
 Ejemplo con `mysql`:
 
 ```powershell
-mysql -u root -proot -h localhost -P 13306 -D farmadb -e "show tables;"
+mysql -u root -proot -h localhost -P 53306 -D farma_oltp_db -e "show tables;"
 ```
 
 El script crea y carga estas entidades en MySQL:
@@ -502,32 +506,32 @@ El script crea y carga estas entidades en MySQL:
 Validaciones básicas:
 
 1. Confirmar que los tres servicios están arriba con `docker compose ps`.
-2. Confirmar que MySQL responde en `localhost:13306`.
-3. Verificar que Kafka Connect responde en `http://localhost:38083/`.
-4. Confirmar que el endpoint de conectores responde en `http://localhost:38083/connectors`.
-5. Abrir Kafka UI en `http://localhost:38085` y confirmar que aparece el cluster `farmabi-debezium`.
+2. Confirmar que MySQL responde en `localhost:53306`.
+3. Verificar que Kafka Connect responde en `http://localhost:58083/`.
+4. Confirmar que el endpoint de conectores responde en `http://localhost:58083/connectors`.
+5. Abrir Kafka UI en `http://localhost:58085` y confirmar que aparece el cluster `farmabi-debezium`.
 6. Confirmar que PostgreSQL responde y que no tiene tablas de negocio antes de registrar el sink.
 7. Registrar conectores y validar que PostgreSQL empieza a crear tablas destino.
-8. Validar que el snapshot inicial copie las tablas de `farmadb` hacia PostgreSQL.
+8. Validar que el snapshot inicial copie las tablas de `farma_oltp_db` hacia PostgreSQL.
 
 Ejemplo:
 
 ```powershell
-Invoke-RestMethod http://localhost:38083/connectors
+Invoke-RestMethod http://localhost:58083/connectors
 ```
 
 Ejemplo para validar PostgreSQL:
 
 ```powershell
-docker compose exec postgres psql -U postgres -d farmacia_dw -c "select schemaname, tablename from pg_tables where schemaname = 'raw' order by tablename;"
-docker compose exec postgres psql -U postgres -d farmacia_dw -c "select count(*) as productos from raw.productos;"
-docker compose exec postgres psql -U postgres -d farmacia_dw -c "select count(*) as detalles from raw.pedido_detalles;"
+docker compose exec postgres psql -U postgres -d farmabi_dw -c "select schemaname, tablename from pg_tables where schemaname = 'raw' order by tablename;"
+docker compose exec postgres psql -U postgres -d farmabi_dw -c "select count(*) as productos from raw.productos;"
+docker compose exec postgres psql -U postgres -d farmabi_dw -c "select count(*) as detalles from raw.pedido_detalles;"
 ```
 
 Ejemplo para validar MySQL:
 
 ```powershell
-docker compose exec mysql mysql -uroot -proot -D farmadb -e "select count(*) as productos from productos; select count(*) as pedidos from pedidos;"
+docker compose exec mysql mysql -uroot -proot -D farma_oltp_db -e "select count(*) as productos from productos; select count(*) as pedidos from pedidos;"
 ```
 
 ## Flujo recomendado de migración

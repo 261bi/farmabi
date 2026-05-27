@@ -40,7 +40,7 @@ En el modelo BI de farmacia se adapta a:
 ```text
 dim_fecha[fecha]
 [Ventas Netas]
-farmacia_dw.marts.fact_ventas
+farmabi_dw.marts.fact_ventas
 ```
 
 Si se trabaja directamente con el archivo Excel del laboratorio, reemplaza `dim_fecha[fecha]` por `DTIEMPO[Date]` y `[Ventas Netas]` por `[Ventas]`.
