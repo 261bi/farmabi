@@ -471,7 +471,7 @@ Cuando `mysql`, `kafka`, `connect` y `postgres` estén arriba, registra ambos co
 
 Hay 3 scripts disponibles:
 
-- `scripts/register-connectors.ps1` — registra ambos conectores (source + sink) en un solo comando
+- `scripts/register-connectors.ps1` — ejecuta `register-source.ps1` y `register-sink.ps1` en un solo comando
 - `scripts/register-source.ps1` — registra solo el source
 - `scripts/register-sink.ps1` — registra solo el sink
 

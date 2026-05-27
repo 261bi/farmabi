@@ -8,15 +8,7 @@
   "database.server.id": "5401",
   "topic.prefix": "farma_oltp_db",
   "database.include.list": "farma_oltp_db",
-  "table.include.list": [
-    "farma_oltp_db.familias",
-    "farma_oltp_db.clientes",
-    "farma_oltp_db.vendedores",
-    "farma_oltp_db.categorias",
-    "farma_oltp_db.productos",
-    "farma_oltp_db.pedidos",
-    "farma_oltp_db.pedido_detalles"
-  ],
+  "table.include.list": "farma_oltp_db.familias,farma_oltp_db.clientes,farma_oltp_db.vendedores,farma_oltp_db.categorias,farma_oltp_db.productos,farma_oltp_db.pedidos,farma_oltp_db.pedido_detalles",
   "schema.history.internal.kafka.bootstrap.servers": "kafka:9092",
   "schema.history.internal.kafka.topic": "schema-changes.farma_oltp_db",
   "include.schema.changes": "false",

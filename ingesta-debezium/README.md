@@ -25,9 +25,11 @@ docker compose up -d
 docker compose ps
 ```
 
-Esperar a que todos los servicios esten healthy (~60s), luego registrar conectores:
+Esperar ~30-60s a que Zookeeper, Kafka y Kafka Connect terminen de iniciar. Luego registrar conectores:
 
 ### Opcion 1: Un solo comando (ambos conectores)
+
+Este script ejecuta internamente `register-source.ps1` y `register-sink.ps1`.
 
 ```powershell
 .\scripts\register-connectors.ps1
@@ -50,6 +52,8 @@ Invoke-RestMethod http://localhost:58083/connectors/postgres-cdc-sink/status
 ```powershell
 # Estado de conectores
 Invoke-RestMethod http://localhost:58083/connectors
+Invoke-RestMethod http://localhost:58083/connectors/mysql-farma-oltp-source/status
+Invoke-RestMethod http://localhost:58083/connectors/postgres-cdc-sink/status
 
 # Kafka UI
 start http://localhost:58085

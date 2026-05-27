@@ -8,12 +8,6 @@ services:
       - "52181:2181"
     networks:
       - farmabi-net
-    healthcheck:
-      test: echo srvr | nc -z localhost 2181 || exit 1
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 30s
 
   kafka:
     image: debezium/kafka:2.7.3.Final
@@ -23,16 +17,9 @@ services:
     environment:
       ZOOKEEPER_CONNECT: zookeeper:2181
     depends_on:
-      zookeeper:
-        condition: service_healthy
+      - zookeeper
     networks:
       - farmabi-net
-    healthcheck:
-      test: nc -z localhost 9092 || exit 1
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 30s
 
   kafka-ui:
     image: provectuslabs/kafka-ui:v0.7.2
@@ -44,8 +31,7 @@ services:
       KAFKA_CLUSTERS_0_NAME: farmabi-debezium
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
     depends_on:
-      kafka:
-        condition: service_healthy
+      - kafka
     networks:
       - farmabi-net
 
@@ -61,16 +47,9 @@ services:
       OFFSET_STORAGE_TOPIC: "connect_offsets"
       STATUS_STORAGE_TOPIC: "connect_statuses"
     depends_on:
-      kafka:
-        condition: service_healthy
+      - kafka
     networks:
       - farmabi-net
-    healthcheck:
-      test: curl -f http://localhost:8083 || exit 1
-      interval: 15s
-      timeout: 10s
-      retries: 10
-      start_period: 60s
 
 networks:
   farmabi-net:
