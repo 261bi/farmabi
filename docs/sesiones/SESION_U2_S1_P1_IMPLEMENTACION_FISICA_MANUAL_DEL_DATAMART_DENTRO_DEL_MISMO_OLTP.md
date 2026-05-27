@@ -62,7 +62,7 @@ Diseñar e implementar físicamente un DataMart que permita analizar el desempe�
 
 La base transaccional real se encuentra en:
 
-- [farma_oltp_db.sql](mysql/init/farma_oltp_db.sql)
+- [farma_oltp_db.sql](../../oltp-mysql/mysql/init/farma_oltp_db.sql)
 
 En esa base existen las tablas fuente:
 

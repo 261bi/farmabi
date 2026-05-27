@@ -80,14 +80,14 @@ docker exec -it farmabi-oltp-mysql mysql -uroot -proot farma_oltp_db
 
 En esta sesión conviene distinguir dos archivos SQL:
 
-- [2_G_pasos.sql](2_G_pasos.sql): guion pedagógico para entender la construcción progresiva de la vista `G`.
-- [3_poblar.sql](3_poblar.sql): script operativo final para poblar dimensiones, crear `vw_g_ventas` y cargar `fact_ventas`.
+- [2_G_pasos.sql](../../oltp-mysql/2_G_pasos.sql): guion pedagógico para entender la construcción progresiva de la vista `G`.
+- [3_poblar.sql](../../oltp-mysql/3_poblar.sql): script operativo final para poblar dimensiones, crear `vw_g_ventas` y cargar `fact_ventas`.
 
 Orden recomendado de ejecución dentro de `oltp-mysql`:
 
-1. [1_dm.sql](1_dm.sql)
-2. [2_G_pasos.sql](2_G_pasos.sql)
-3. [3_poblar.sql](3_poblar.sql)
+1. [1_dm.sql](../../oltp-mysql/1_dm.sql)
+2. [2_G_pasos.sql](../../oltp-mysql/2_G_pasos.sql)
+3. [3_poblar.sql](../../oltp-mysql/3_poblar.sql)
 
 ## 7. Revisión previa de tablas fuente
 

@@ -107,8 +107,8 @@ Tablas iniciales del origen:
 
 Script de inicialización del origen:
 
-- [../oltp-mysql/mysql/init/farma_oltp_db.sql](../oltp-mysql/mysql/init/farma_oltp_db.sql)
-- [../oltp-mysql/4_cargar_datos_didacticos_bi.sql](../oltp-mysql/4_cargar_datos_didacticos_bi.sql), opcional para ampliar datos antes del snapshot
+- [../../oltp-mysql/mysql/init/farma_oltp_db.sql](../../oltp-mysql/mysql/init/farma_oltp_db.sql)
+- [../../oltp-mysql/4_cargar_datos_didacticos_bi.sql](../../oltp-mysql/4_cargar_datos_didacticos_bi.sql), opcional para ampliar datos antes del snapshot
 
 ## Conectores incluidos
 
@@ -182,7 +182,7 @@ Credenciales usadas por el conector source en este laboratorio:
 Inicializacion automatica:
 
 - crea la base `farma_oltp_db`;
-- ejecuta [../oltp-mysql/mysql/init/farma_oltp_db.sql](../oltp-mysql/mysql/init/farma_oltp_db.sql);
+- ejecuta [../../oltp-mysql/mysql/init/farma_oltp_db.sql](../../oltp-mysql/mysql/init/farma_oltp_db.sql);
 - deja disponible el acceso del usuario `root` para el conector source.
 
 Nota de laboratorio:
