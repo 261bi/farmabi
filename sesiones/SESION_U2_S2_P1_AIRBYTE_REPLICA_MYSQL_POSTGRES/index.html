@@ -731,6 +731,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#82-levanta-el-postgresql-del-dw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Levanta el PostgreSQL del DW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#83-verifica-que-postgresql-tenga-los-schemas-del-dw" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1555,6 +1566,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#82-levanta-el-postgresql-del-dw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Levanta el PostgreSQL del DW
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#83-verifica-que-postgresql-tenga-los-schemas-del-dw" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1726,7 +1748,7 @@
 <h2 id="3-herramientas-utilizadas">3. Herramientas utilizadas</h2>
 <ul>
 <li>Docker Compose</li>
-<li>MySQL 8.4</li>
+<li>MySQL 8.0</li>
 <li>PostgreSQL 16</li>
 <li>Airbyte local</li>
 <li>PowerShell</li>
@@ -1793,7 +1815,7 @@
 <h2 id="7-mapa-actual-del-oltp-farma_oltp_db">7. Mapa actual del OLTP <code>farma_oltp_db</code></h2>
 <p>Esta práctica usa el esquema renombrado actual definido en:</p>
 <ul>
-<li><a href="../oltp-mysql/mysql/init/farma_oltp_db.sql">farma_oltp_db.sql</a></li>
+<li><a href="../../oltp-mysql/mysql/init/farma_oltp_db.sql">farma_oltp_db.sql</a></li>
 </ul>
 <p>Tablas fuente relevantes:</p>
 <ul>
@@ -1823,8 +1845,11 @@
 <h2 id="8-desarrollo-de-la-practica">8. Desarrollo de la práctica</h2>
 <h3 id="81-levanta-el-oltp-mysql">8.1 Levanta el OLTP MySQL</h3>
 <div class="highlight"><pre><span></span><code><span class="nb">cd </span><span class="n">oltp-mysql</span>
-
-<span class="nb">cd </span><span class="p">../</span><span class="n">dw-pg</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="nb">ps</span>
+</code></pre></div>
+<h3 id="82-levanta-el-postgresql-del-dw">8.2 Levanta el PostgreSQL del DW</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd </span><span class="p">../</span><span class="n">dw-pg</span>
 <span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span>
 <span class="n">docker</span> <span class="n">compose</span> <span class="nb">ps</span>
 </code></pre></div>
@@ -1855,7 +1880,7 @@
 </ul>
 <h3 id="86-crea-el-destination-postgresql">8.6 Crea el destination PostgreSQL</h3>
 <ul>
-<li>Destination name: <code>postgres-farmacia-raw</code></li>
+<li>Destination name: <code>postgres-farmabi-raw</code></li>
 <li>Host: <code>host.docker.internal</code></li>
 <li>Port: <code>55432</code></li>
 <li>Database: <code>farmabi_dw</code></li>
@@ -1941,7 +1966,7 @@
 <h3 id="89-configura-la-conexion">8.9 Configura la conexión</h3>
 <p>En la pantalla <code>Configure connection</code>, usa:</p>
 <ul>
-<li>Connection name: <code>mysql-farma-oltp -&gt; postgres-farmacia-raw</code></li>
+<li>Connection name: <code>mysql-farma-oltp -&gt; postgres-farmabi-raw</code></li>
 <li>Schedule type: <code>Manual</code></li>
 <li>Destination Namespace: <code>Destination-defined</code></li>
 <li>Stream Prefix: vacio</li>
