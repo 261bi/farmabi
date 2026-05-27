@@ -1,0 +1,276 @@
+﻿Ventas Brutas = SUM(fact_ventas[venta_bruta])
+
+Descuentos = SUM(fact_ventas[descuento_total])
+
+Ventas Netas = SUM(fact_ventas[venta_neta])
+
+Costo Total = SUM(fact_ventas[costo_total])
+
+Margen Bruto = SUM(fact_ventas[margen_bruto])
+
+Unidades Vendidas = SUM(fact_ventas[cantidad_vendida])
+
+Líneas de Venta = COUNTROWS(fact_ventas)
+
+Pedidos = DISTINCTCOUNT(fact_ventas[pedido_id])
+
+% Margen Bruto = DIVIDE([Margen Bruto], [Ventas Netas])
+
+% Descuento = DIVIDE([Descuentos], [Ventas Brutas])
+
+Ticket Promedio = DIVIDE([Ventas Netas], [Pedidos])
+
+Precio Promedio Neto = DIVIDE([Ventas Netas], [Unidades Vendidas])
+
+Minutos Confirmación Promedio = AVERAGE(fact_ventas[minutos_confirmacion])
+
+Minutos Despacho Promedio = AVERAGE(fact_ventas[minutos_despacho])
+
+Horas Entrega Promedio = AVERAGE(fact_ventas[horas_entrega])
+
+Horas Lead Time Promedio = AVERAGE(fact_ventas[horas_lead_time])
+
+Ventas Netas Acumuladas =
+CALCULATE(
+    [Ventas Netas],
+    FILTER(
+        ALLSELECTED(dim_fecha),
+        dim_fecha[fecha] <= MAX(dim_fecha[fecha])
+    )
+)
+
+Participación Ventas Netas =
+DIVIDE(
+    [Ventas Netas],
+    CALCULATE([Ventas Netas], ALLSELECTED())
+)
+
+% Pedidos a Tiempo =
+DIVIDE(
+    CALCULATE(
+        DISTINCTCOUNT(fact_ventas[pedido_id]),
+        FILTER(
+            fact_ventas,
+            NOT ISBLANK(fact_ventas[horas_lead_time])
+                && fact_ventas[horas_lead_time] <= 24
+        )
+    ),
+    [Pedidos]
+)
+
+Minutos Entrega Promedio = [Horas Entrega Promedio] * 60
+
+Ventas Anio Previo Mismo Periodo =
+VAR __anio_actual =
+    SELECTEDVALUE(dim_fecha[año])
+VAR __meses_actuales =
+    VALUES(dim_fecha[mes_numero])
+VAR __dias_actuales =
+    VALUES(dim_fecha[dia])
+VAR __usar_dia =
+    ISINSCOPE(dim_fecha[dia])
+RETURN
+    IF(
+        ISBLANK(__anio_actual),
+        BLANK(),
+        IF(
+            __usar_dia,
+            CALCULATE(
+                [Ventas Netas],
+                REMOVEFILTERS(dim_fecha),
+                dim_fecha[año] = __anio_actual - 1,
+                TREATAS(__meses_actuales, dim_fecha[mes_numero]),
+                TREATAS(__dias_actuales, dim_fecha[dia])
+            ),
+            CALCULATE(
+                [Ventas Netas],
+                REMOVEFILTERS(dim_fecha),
+                dim_fecha[año] = __anio_actual - 1,
+                TREATAS(__meses_actuales, dim_fecha[mes_numero])
+            )
+        )
+    )
+
+Ventas Anio Previo Completo =
+VAR __anio_actual =
+    SELECTEDVALUE(dim_fecha[año])
+VAR __mes_actual =
+    SELECTEDVALUE(dim_fecha[mes_numero])
+VAR __en_mes =
+    ISINSCOPE(dim_fecha[mes_desc])
+        || ISINSCOPE(dim_fecha[mes_numero])
+RETURN
+    IF(
+        ISBLANK(__anio_actual),
+        BLANK(),
+        IF(
+            __en_mes,
+            CALCULATE(
+                [Ventas Netas],
+                REMOVEFILTERS(dim_fecha),
+                dim_fecha[año] = __anio_actual - 1,
+                dim_fecha[mes_numero] = __mes_actual
+            ),
+            CALCULATE(
+                [Ventas Netas],
+                REMOVEFILTERS(dim_fecha),
+                dim_fecha[año] = __anio_actual - 1
+            )
+        )
+    )
+
+Variacion Ventas vs Anio Previo =
+[Ventas Netas] - [Ventas Anio Previo Mismo Periodo]
+
+% Variacion Ventas vs Anio Previo =
+DIVIDE(
+    [Variacion Ventas vs Anio Previo],
+    [Ventas Anio Previo Mismo Periodo]
+)
+
+Titulo Ventas Actual vs Anio Previo =
+VAR __ultf =
+    LASTNONBLANK(dim_fecha[fecha], [Ventas Netas])
+VAR __anioact =
+    FORMAT(__ultf, "yyyy")
+VAR __anioprev =
+    FORMAT(
+        DATE(YEAR(__ultf) - 1, 1, 1),
+        "yyyy"
+    )
+RETURN
+    __anioact & " VS " & __anioprev
+
+Titulo Ventas Actual vs Anio Previo x Dias =
+VAR __ultf =
+    LASTNONBLANK(dim_fecha[fecha], [Ventas Netas])
+VAR __anioact =
+    FORMAT(__ultf, "dd-mmmm-yyyy")
+VAR __anioprev =
+    FORMAT(
+        DATE(
+            YEAR(__ultf) - 1,
+            MONTH(__ultf),
+            DAY(__ultf)
+        ),
+        "dd-mmmm-yyyy"
+    )
+RETURN
+    __anioact & " VS " & __anioprev
+
+Venta Mes Anterior =
+VAR __anio_actual =
+    SELECTEDVALUE(dim_fecha[año])
+VAR __mes_actual =
+    SELECTEDVALUE(dim_fecha[mes_numero])
+VAR __anio_previo =
+    IF(__mes_actual = 1, __anio_actual - 1, __anio_actual)
+VAR __mes_previo =
+    IF(__mes_actual = 1, 12, __mes_actual - 1)
+VAR __dias_actuales =
+    VALUES(dim_fecha[dia])
+VAR __usar_dia =
+    ISINSCOPE(dim_fecha[dia])
+RETURN
+    IF(
+        ISBLANK(__anio_actual) || ISBLANK(__mes_actual),
+        BLANK(),
+        IF(
+            __usar_dia,
+            CALCULATE(
+                [Ventas Netas],
+                REMOVEFILTERS(dim_fecha),
+                dim_fecha[año] = __anio_previo,
+                dim_fecha[mes_numero] = __mes_previo,
+                TREATAS(__dias_actuales, dim_fecha[dia])
+            ),
+            CALCULATE(
+                [Ventas Netas],
+                REMOVEFILTERS(dim_fecha),
+                dim_fecha[año] = __anio_previo,
+                dim_fecha[mes_numero] = __mes_previo
+            )
+        )
+    )
+
+Ventas Netas Eje Dia =
+VAR __anio_actual =
+    SELECTEDVALUE(dim_fecha[año])
+VAR __mes_actual =
+    SELECTEDVALUE(dim_fecha[mes_numero])
+VAR __dia_eje =
+    SELECTEDVALUE('Dias Eje'[dia])
+RETURN
+    CALCULATE(
+        [Ventas Netas],
+        REMOVEFILTERS(dim_fecha),
+        dim_fecha[año] = __anio_actual,
+        dim_fecha[mes_numero] = __mes_actual,
+        dim_fecha[dia] = __dia_eje
+    )
+
+Venta Mes Anterior Eje Dia =
+VAR __anio_actual =
+    SELECTEDVALUE(dim_fecha[año])
+VAR __mes_actual =
+    SELECTEDVALUE(dim_fecha[mes_numero])
+VAR __anio_previo =
+    IF(__mes_actual = 1, __anio_actual - 1, __anio_actual)
+VAR __mes_previo =
+    IF(__mes_actual = 1, 12, __mes_actual - 1)
+VAR __dia_eje =
+    SELECTEDVALUE('Dias Eje'[dia])
+RETURN
+    CALCULATE(
+        [Ventas Netas],
+        REMOVEFILTERS(dim_fecha),
+        dim_fecha[año] = __anio_previo,
+        dim_fecha[mes_numero] = __mes_previo,
+        dim_fecha[dia] = __dia_eje
+    )
+
+Variacion Ventas vs Mes Anterior =
+[Ventas Netas] - [Venta Mes Anterior]
+
+% Variacion Ventas vs Mes Anterior =
+DIVIDE(
+    [Variacion Ventas vs Mes Anterior],
+    [Venta Mes Anterior]
+)
+
+Titulo Ventas Mes Actual vs Mes Anterior =
+VAR __ultf =
+    LASTNONBLANK(dim_fecha[fecha], [Ventas Netas])
+VAR __mesact =
+    FORMAT(__ultf, "mmmm yyyy")
+VAR __mesprev =
+    FORMAT(EDATE(__ultf, -1), "mmmm yyyy")
+RETURN
+    __mesact & " VS " & __mesprev
+
+Ventas Meta Anual =
+[Ventas Anio Previo Mismo Periodo] * 1.20
+
+Variacion Ventas vs Meta Anual =
+[Ventas Netas] - [Ventas Meta Anual]
+
+% Cumplimiento Meta Anual =
+DIVIDE(
+    [Ventas Netas],
+    [Ventas Meta Anual]
+)
+
+KPI Var Ventas =
+IF(
+    [% Variacion Ventas vs Anio Previo] >= 0,
+    UNICHAR(9650),
+    UNICHAR(9660)
+)
+
+KPI Var Ventas Color =
+IF(
+    [% Variacion Ventas vs Anio Previo] >= 0,
+    "Green",
+    "Red"
+)
+

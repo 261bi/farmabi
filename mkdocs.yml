@@ -1,0 +1,61 @@
+site_name: farmabi - Business Intelligence
+site_description: Documentacion del proyecto BI farmabi
+docs_dir: docs
+
+nav:
+  - Inicio: index.md
+  - Sesiones:
+      - Unidad 2 Sesion 1: sesiones/UNIDAD_2_SESION_1.md
+      - Unidad 2 Sesion 2: sesiones/UNIDAD_2_SESION_2.md
+      - Unidad 2 Sesion 3: sesiones/UNIDAD_2_SESION_3.md
+      - Unidad 2 Sesion 4: sesiones/UNIDAD_2_SESION_4.md
+      - Unidad 2 Sesion 5: sesiones/UNIDAD_2_SESION_5.md
+      - Unidad 2 Sesion 6: sesiones/UNIDAD_2_SESION_6.md
+      - Unidad 2 Sesion 7: sesiones/UNIDAD_2_SESION_7.md
+      - S1 P1 Implementacion fisica manual: sesiones/SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP.md
+      - S1 P2 ETL manual con SQL: sesiones/SESION_U2_S1_P2_ETL_MANUAL_CON_SQL_PARA_DIMENSIONES_Y_HECHO_MEDIANTE_LA_VISTA_G.md
+      - S1 P3 Validacion analitica manual: sesiones/SESION_U2_S1_P3_VALIDACION_ANALITICA_DEL_DATAMART_MANUAL.md
+      - S2 P1 Airbyte replica MySQL PostgreSQL: sesiones/SESION_U2_S2_P1_AIRBYTE_REPLICA_MYSQL_POSTGRES.md
+      - S2 P2 dbt modelado fisico: sesiones/SESION_U2_S2_P2_DBT_MODELADO_FISICO_DATAMART.md
+      - S2 P3 Validacion analitica dbt: sesiones/SESION_U2_S2_P3_VALIDACION_ANALITICA_DEL_DATAMART.md
+      - S2 P4 CDC Debezium: sesiones/SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD.md
+      - S3 P1 Modelo semantico Power BI: sesiones/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI.md
+      - S3 P2 Medidas DAX: sesiones/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES.md
+      - S4 Exploracion OLAP: sesiones/SESION_U2_S4_P1_EXPLORACION_OLAP_STORYTELLING_POWER_BI.md
+      - S5 P1 Dashboard KPIs: sesiones/SESION_U2_S5_P1_DASHBOARD_KPIS_VISUALIZACION_BI.md
+      - S5 P2 Dashboard KPIs: sesiones/SESION_U2_S5_P2_DASHBOARD_KPIS_VISUALIZACION_BI.md
+      - S5 P3 KPI variacion: sesiones/SESION_U2_S5_P3_TABLA_KPI_VARIACION_BI.md
+      - S6 Gobierno del dato: sesiones/SESION_U2_S6_P1_GOBIERNO_DEL_DATO_BI.md
+      - S7 Evaluacion BI end-to-end: sesiones/SESION_U2_S7_P1_EVALUACION_U2_BI_END_TO_END.md
+  - Guias:
+      - Plantilla entregable U2: guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART.md
+      - Comparativos ventas pedidos: guias/pasos_24_25_comparativos_ventas_pedidos.md
+  - Historico:
+      - Modelo semantico version anterior: historico/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI_vAnterior.md
+      - Medidas DAX version anterior: historico/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES_vAnterior.md
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+
+plugins:
+  - search
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/mermaid.js

@@ -1,0 +1,20 @@
+name: farmabi-dbt
+
+services:
+  dbt:
+    build: .
+    container_name: farmabi-dw-dbt
+    volumes:
+      - .:/usr/app
+      - ./.dbt:/root/.dbt
+    working_dir: /usr/app
+    command: sleep infinity
+    networks:
+      - farmabi-net
+    tty: true
+    stdin_open: true
+
+networks:
+  farmabi-net:
+    external: true
+    name: farmabi-net

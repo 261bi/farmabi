@@ -1,0 +1,16 @@
+name: farmabi-docs
+
+services:
+  mkdocs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: farmabi-docs
+    working_dir: /workspace
+    volumes:
+      - ../:/workspace
+    ports:
+      - "8002:8000"
+    environment:
+      - WATCHFILES_FORCE_POLLING=true
+    command: mkdocs serve -f mkdocs.yml -a 0.0.0.0:8000 --livereload --dirtyreload
