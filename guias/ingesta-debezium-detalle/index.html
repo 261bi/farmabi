@@ -1666,17 +1666,17 @@ BI / consumo analítico
 </ul>
 <p>Script de inicialización del origen:</p>
 <ul>
-<li><a href="../../oltp-mysql/mysql/init/farma_oltp_db.sql">../../oltp-mysql/mysql/init/farma_oltp_db.sql</a></li>
-<li><a href="../../oltp-mysql/4_cargar_datos_didacticos_bi.sql">../../oltp-mysql/4_cargar_datos_didacticos_bi.sql</a>, opcional para ampliar datos antes del snapshot</li>
+<li><a href="https://github.com/261bi/farmabi/blob/main/oltp-mysql/mysql/init/farma_oltp_db.sql">oltp-mysql/mysql/init/farma_oltp_db.sql</a></li>
+<li><a href="https://github.com/261bi/farmabi/blob/main/oltp-mysql/4_cargar_datos_didacticos_bi.sql">oltp-mysql/4_cargar_datos_didacticos_bi.sql</a>, opcional para ampliar datos antes del snapshot</li>
 </ul>
 <h2 id="conectores-incluidos">Conectores incluidos</h2>
 <p>Archivos de configuración:</p>
 <ul>
-<li><a href="../ingesta-debezium/connectors/mysql-source.config.json">connectors/mysql-source.config.json</a></li>
-<li><a href="../ingesta-debezium/connectors/postgres-sink.config.json">connectors/postgres-sink.config.json</a></li>
-<li><a href="../ingesta-debezium/scripts/register-source.ps1">scripts/register-source.ps1</a></li>
-<li><a href="../ingesta-debezium/scripts/register-sink.ps1">scripts/register-sink.ps1</a></li>
-<li><a href="../ingesta-debezium/scripts/register-connectors.ps1">scripts/register-connectors.ps1</a></li>
+<li><a href="https://github.com/261bi/farmabi/blob/main/ingesta-debezium/connectors/mysql-source.config.json">connectors/mysql-source.config.json</a></li>
+<li><a href="https://github.com/261bi/farmabi/blob/main/ingesta-debezium/connectors/postgres-sink.config.json">connectors/postgres-sink.config.json</a></li>
+<li><a href="https://github.com/261bi/farmabi/blob/main/ingesta-debezium/scripts/register-source.ps1">scripts/register-source.ps1</a></li>
+<li><a href="https://github.com/261bi/farmabi/blob/main/ingesta-debezium/scripts/register-sink.ps1">scripts/register-sink.ps1</a></li>
+<li><a href="https://github.com/261bi/farmabi/blob/main/ingesta-debezium/scripts/register-connectors.ps1">scripts/register-connectors.ps1</a></li>
 </ul>
 <h2 id="cuando-usar-este-enfoque">Cuándo usar este enfoque</h2>
 <p>Este patrón sirve cuando:</p>
@@ -1728,7 +1728,7 @@ BI / consumo analítico
 <p>Inicializacion automatica:</p>
 <ul>
 <li>crea la base <code>farma_oltp_db</code>;</li>
-<li>ejecuta <a href="../../oltp-mysql/mysql/init/farma_oltp_db.sql">../../oltp-mysql/mysql/init/farma_oltp_db.sql</a>;</li>
+<li>ejecuta <a href="https://github.com/261bi/farmabi/blob/main/oltp-mysql/mysql/init/farma_oltp_db.sql">oltp-mysql/mysql/init/farma_oltp_db.sql</a>;</li>
 <li>deja disponible el acceso del usuario <code>root</code> para el conector source.</li>
 </ul>
 <p>Nota de laboratorio:</p>
