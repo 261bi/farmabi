@@ -21,7 +21,7 @@ Al finalizar la sesión, el alumno debe poder:
 ## 3. Herramientas utilizadas
 
 - Docker Compose
-- MySQL 8.4
+- MySQL 8.0
 - PostgreSQL 16
 - Airbyte local
 - PowerShell
@@ -96,7 +96,7 @@ Importante:
 
 Esta práctica usa el esquema renombrado actual definido en:
 
-- [farma_oltp_db.sql](../oltp-mysql/mysql/init/farma_oltp_db.sql)
+- [farma_oltp_db.sql](../../oltp-mysql/mysql/init/farma_oltp_db.sql)
 
 Tablas fuente relevantes:
 
@@ -129,7 +129,13 @@ Campos utiles para incremental:
 
 ```powershell
 cd oltp-mysql
+docker compose up -d
+docker compose ps
+```
 
+### 8.2 Levanta el PostgreSQL del DW
+
+```powershell
 cd ../dw-pg
 docker compose up -d
 docker compose ps
@@ -172,7 +178,7 @@ http://localhost:8010
 
 ### 8.6 Crea el destination PostgreSQL
 
-- Destination name: `postgres-farmacia-raw`
+- Destination name: `postgres-farmabi-raw`
 - Host: `host.docker.internal`
 - Port: `55432`
 - Database: `farmabi_dw`
@@ -261,7 +267,7 @@ Importante:
 
 En la pantalla `Configure connection`, usa:
 
-- Connection name: `mysql-farma-oltp -> postgres-farmacia-raw`
+- Connection name: `mysql-farma-oltp -> postgres-farmabi-raw`
 - Schedule type: `Manual`
 - Destination Namespace: `Destination-defined`
 - Stream Prefix: vacio
