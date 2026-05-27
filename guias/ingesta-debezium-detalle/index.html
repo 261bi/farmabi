@@ -1,0 +1,2100 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentacion del proyecto BI farmabi">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>CDC MySQL -> PostgreSQL con Debezium y Kafka - farmabi - Business Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cdc-mysql-postgresql-con-debezium-y-kafka" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="farmabi - Business Intelligence" class="md-header__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            farmabi - Business Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CDC MySQL -&gt; PostgreSQL con Debezium y Kafka
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="farmabi - Business Intelligence" class="md-nav__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    farmabi - Business Intelligence
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sesiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 P1 Implementacion fisica manual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S1_P2_ETL_MANUAL_CON_SQL_PARA_DIMENSIONES_Y_HECHO_MEDIANTE_LA_VISTA_G/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 P2 ETL manual con SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S1_P3_VALIDACION_ANALITICA_DEL_DATAMART_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 P3 Validacion analitica manual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S2_P1_AIRBYTE_REPLICA_MYSQL_POSTGRES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P1 Airbyte replica MySQL PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S2_P2_DBT_MODELADO_FISICO_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P2 dbt modelado fisico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S2_P3_VALIDACION_ANALITICA_DEL_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P3 Validacion analitica dbt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P4 CDC Debezium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 P1 Modelo semantico Power BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 P2 Medidas DAX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S4_P1_EXPLORACION_OLAP_STORYTELLING_POWER_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S4 Exploracion OLAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S5_P1_DASHBOARD_KPIS_VISUALIZACION_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 P1 Dashboard KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S5_P2_DASHBOARD_KPIS_VISUALIZACION_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 P2 Dashboard KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S5_P3_TABLA_KPI_VARIACION_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 P3 KPI variacion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S6_P1_GOBIERNO_DEL_DATO_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S6 Gobierno del dato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S7_P1_EVALUACION_U2_BI_END_TO_END/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S7 Evaluacion BI end-to-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pasos_24_25_comparativos_ventas_pedidos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparativos ventas pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Historico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../historico/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo semantico version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../historico/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medidas DAX version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#guia-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Guía de sesión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-contiene-hoy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué contiene hoy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-hace-este-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué hace este stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-no-hace-todavia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué no hace todavía
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#origen-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Origen MySQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conectores-incluidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conectores incluidos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuando-usar-este-enfoque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuándo usar este enfoque
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bulk-load-vs-cdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bulk Load vs CDC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bulk Load vs CDC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bulk-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bulk load
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CDC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Componentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zookeeper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zookeeper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MySQL 8
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-este-mysql-si-habilita-cdc-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué este MySQL sí habilita CDC real
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kafka
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kafka UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-connect-debezium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kafka Connect / Debezium
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-dw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PostgreSQL DW
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requisitos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-levantar-el-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo levantar el stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-poblar-el-origen-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo poblar el origen MySQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejecucion-manual-desde-cero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejecución manual desde cero
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejecución manual desde cero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-borrar-datos-previos-y-levantar-el-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Borrar datos previos y levantar el stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-confirmar-que-postgresql-sigue-vacio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Confirmar que PostgreSQL sigue vacío
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-registrar-solo-el-conector-source-de-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Registrar solo el conector source de MySQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verificar-que-el-source-quedo-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Verificar que el source quedó activo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-ver-los-eventos-en-kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Ver los eventos en Kafka
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-poblar-postgresql-manualmente-cuando-tu-decidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Poblar PostgreSQL manualmente cuando tú decidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-activar-el-sink-cuando-quieras-empezar-la-replica-a-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Activar el sink cuando quieras empezar la réplica a PostgreSQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registro-de-conectores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registro de conectores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-validar-que-quedo-operativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo validar que quedó operativo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flujo-recomendado-de-migracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo recomendado de migración
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integracion-con-dbt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integración con dbt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitaciones-actuales-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitaciones actuales del proyecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-pasos-sugeridos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Próximos pasos sugeridos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="cdc-mysql-postgresql-con-debezium-y-kafka">CDC MySQL -&gt; PostgreSQL con Debezium y Kafka</h1>
+<p>Este proyecto levanta una base mínima de infraestructura para trabajar Change Data Capture (CDC) con Debezium sobre Kafka.</p>
+<h2 id="guia-de-sesion">Guía de sesión</h2>
+<p>Esta carpeta complementa la sesión 2 de la Unidad 2:</p>
+<ul>
+<li><a href="../../sesiones/SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD/">SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD.md</a></li>
+</ul>
+<p>La intención del stack es servir como laboratorio o punto de partida para una migración desde MySQL hacia PostgreSQL, manteniendo ambos sistemas sincronizados mientras se realiza la carga histórica inicial.</p>
+<h2 id="objetivo">Objetivo</h2>
+<p>Separar la migración en dos flujos:</p>
+<ul>
+<li>Bulk load: mover el histórico grande desde MySQL hacia PostgreSQL.</li>
+<li>CDC: capturar cambios nuevos en MySQL y propagarlos hacia PostgreSQL mediante Debezium y Kafka.</li>
+</ul>
+<p>Arquitectura objetivo:</p>
+<div class="highlight"><pre><span></span><code>MySQL
+ ├── Bulk load (histórico)
+ │       ↓
+ │   PostgreSQL
+ │
+ └── CDC (Debezium)
+         ↓
+      Kafka
+         ↓
+   PostgreSQL (sync)
+</code></pre></div>
+<p>Arquitectura analítica sugerida con <code>dbt</code>:</p>
+<div class="highlight"><pre><span></span><code>MySQL OLTP
+   ↓
+Debezium MySQL Source
+   ↓
+Kafka
+   ↓
+PostgreSQL raw replica
+   ↓
+dbt staging
+   ↓
+dbt marts
+   ↓
+BI / consumo analítico
+</code></pre></div>
+<h2 id="que-contiene-hoy">Qué contiene hoy</h2>
+<p>El archivo <code>compose.yml</code> levanta estos servicios:</p>
+<ul>
+<li>Zookeeper</li>
+<li>Kafka</li>
+<li>Kafka UI para revisar brokers, topics y mensajes desde el navegador</li>
+<li>Kafka Connect con Debezium</li>
+<li>configuraciones de conectores MySQL source y PostgreSQL sink</li>
+</ul>
+<p>Este compose ya no levanta MySQL ni PostgreSQL propios. Usa los servicios del proyecto:</p>
+<ul>
+<li>MySQL OLTP: <code>farmabi-oltp-mysql</code>, servicio DNS <code>mysql-farmadb</code>, puerto host <code>13306</code></li>
+<li>PostgreSQL DW: <code>farmabi-dw-pg</code>, servicio DNS <code>postgres-farmacia-dw</code>, puerto host <code>15432</code></li>
+<li>red compartida: <code>farmabi-net</code></li>
+</ul>
+<p>Versiones actuales:</p>
+<ul>
+<li><code>debezium/zookeeper:2.7.3.Final</code></li>
+<li><code>debezium/kafka:2.7.3.Final</code></li>
+<li><code>debezium/connect:2.7.3.Final</code></li>
+<li><code>provectuslabs/kafka-ui:v0.7.2</code></li>
+</ul>
+<h2 id="que-hace-este-stack">Qué hace este stack</h2>
+<ul>
+<li>Provee Kafka y Kafka Connect para registrar conectores de Debezium.</li>
+<li>Permite conectar una fuente MySQL para CDC.</li>
+<li>Permite publicar eventos de cambios en topics de Kafka.</li>
+<li>Sirve como base para luego consumir esos eventos y aplicarlos en PostgreSQL.</li>
+<li>Puede reemplazar la capa <code>MySQL -&gt; PostgreSQL raw</code> que antes resolvías con Airbyte, con menor latencia para cambios nuevos.</li>
+</ul>
+<h2 id="que-no-hace-todavia">Qué no hace todavía</h2>
+<p>Este repositorio no incluye aún:</p>
+<ul>
+<li>Conectores auto-registrados en el arranque.</li>
+<li>Carga histórica inicial masiva.</li>
+<li>Persistencia de volúmenes para Kafka Connect o Kafka.</li>
+<li>Observabilidad o monitoreo.</li>
+<li>Una raw histórica orientada a eventos; el sink actual deja una réplica operacional de tablas.</li>
+</ul>
+<h2 id="origen-mysql">Origen MySQL</h2>
+<p>El origen de esta maqueta ahora es MySQL 8. El compose levanta una base <code>farmadb</code> y la inicializa automáticamente con el esquema de farmacia entregado para el lab.</p>
+<p>Tablas iniciales del origen:</p>
+<ul>
+<li><code>familias</code>;</li>
+<li><code>clientes</code>;</li>
+<li><code>vendedores</code>;</li>
+<li><code>categorias</code>;</li>
+<li><code>productos</code>;</li>
+<li><code>pedidos</code>;</li>
+<li><code>pedido_detalles</code>.</li>
+</ul>
+<p>Script de inicialización del origen:</p>
+<ul>
+<li><a href="../oltp-mysql/mysql/init/farmadb.sql">../oltp-mysql/mysql/init/farmadb.sql</a></li>
+<li><a href="../oltp-mysql/4_cargar_datos_didacticos_bi.sql">../oltp-mysql/4_cargar_datos_didacticos_bi.sql</a>, opcional para ampliar datos antes del snapshot</li>
+</ul>
+<h2 id="conectores-incluidos">Conectores incluidos</h2>
+<p>Archivos de configuración:</p>
+<ul>
+<li><a href="c:/261bigdata/cdc/connectors/mysql-source.config.json">connectors/mysql-source.config.json</a></li>
+<li><a href="c:/261bigdata/cdc/connectors/postgres-sink.config.json">connectors/postgres-sink.config.json</a></li>
+<li><a href="c:/261bigdata/cdc/scripts/register-source.ps1">scripts/register-source.ps1</a></li>
+<li><a href="c:/261bigdata/cdc/scripts/register-sink.ps1">scripts/register-sink.ps1</a></li>
+<li><a href="c:/261bigdata/cdc/scripts/register-connectors.ps1">scripts/register-connectors.ps1</a></li>
+</ul>
+<h2 id="cuando-usar-este-enfoque">Cuándo usar este enfoque</h2>
+<p>Este patrón sirve cuando:</p>
+<ul>
+<li>MySQL es el sistema actual y no puede apagarse de inmediato.</li>
+<li>PostgreSQL será el destino final, local o en la nube.</li>
+<li>Se necesita mantener sincronía entre ambos durante la transición.</li>
+<li>El histórico es demasiado grande para moverlo solo con CDC.</li>
+</ul>
+<h2 id="bulk-load-vs-cdc">Bulk Load vs CDC</h2>
+<h3 id="bulk-load">Bulk load</h3>
+<p>Bulk load no es una librería ni un contenedor específico. Es la carga inicial masiva del histórico.</p>
+<p>Normalmente se implementa con herramientas o procesos externos, por ejemplo:</p>
+<ul>
+<li>extracción por lotes o rangos desde MySQL;</li>
+<li>archivos intermedios CSV o Parquet;</li>
+<li>carga en PostgreSQL con <code>COPY</code>;</li>
+<li>procesos paralelos por tabla o por partición.</li>
+</ul>
+<p>En volúmenes de terabytes, esta suele ser la forma correcta de mover el histórico.</p>
+<h3 id="cdc">CDC</h3>
+<p>CDC se usa después o durante la carga inicial para replicar cambios nuevos:</p>
+<ul>
+<li>inserts;</li>
+<li>updates;</li>
+<li>deletes.</li>
+</ul>
+<p>Debezium lee cambios desde MySQL y los publica en Kafka. Luego un sink o proceso consumidor aplica esos eventos en PostgreSQL.</p>
+<h2 id="componentes">Componentes</h2>
+<h3 id="zookeeper">Zookeeper</h3>
+<p>Se usa como dependencia del broker Kafka en esta composición actual.</p>
+<h3 id="mysql-8">MySQL 8</h3>
+<p>Se usa el MySQL OLTP del proyecto <code>oltp-mysql</code>, no un MySQL propio dentro de este compose.</p>
+<p>Puerto expuesto:</p>
+<ul>
+<li><code>13306</code></li>
+</ul>
+<p>Credenciales por defecto:</p>
+<ul>
+<li>usuario administrador: <code>root</code></li>
+<li>password administrador: <code>root</code></li>
+<li>base de datos: <code>farmadb</code></li>
+</ul>
+<p>Credenciales usadas por el conector source en este laboratorio:</p>
+<ul>
+<li>usuario: <code>root</code></li>
+<li>password: <code>root</code></li>
+</ul>
+<p>Inicializacion automatica:</p>
+<ul>
+<li>crea la base <code>farmadb</code>;</li>
+<li>ejecuta <a href="../oltp-mysql/mysql/init/farmadb.sql">../oltp-mysql/mysql/init/farmadb.sql</a>;</li>
+<li>deja disponible el acceso del usuario <code>root</code> para el conector source.</li>
+</ul>
+<p>Nota de laboratorio:</p>
+<ul>
+<li>la imagen usada es <code>mysql:8.0</code>;</li>
+<li>el origen ya trae binlog en formato <code>ROW</code> y <code>binlog_row_image=FULL</code> para Debezium;</li>
+<li>PostgreSQL sigue arrancando vacío y el sink crea las tablas al recibir el snapshot inicial y los cambios posteriores.</li>
+</ul>
+<h3 id="por-que-este-mysql-si-habilita-cdc-real">Por qué este MySQL sí habilita CDC real</h3>
+<p>En este laboratorio, la base MySQL se levanta con esta configuración:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">mysql</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:8.0</span>
+<span class="w">  </span><span class="nt">command</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--server-id=223344</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--log-bin=mysql-bin</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--binlog-format=ROW</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--binlog-row-image=FULL</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--gtid-mode=ON</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--enforce-gtid-consistency=ON</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--default-authentication-plugin=mysql_native_password</span>
+</code></pre></div>
+<p>Esto es lo que habilita CDC real con Debezium:</p>
+<ul>
+<li><code>--log-bin=mysql-bin</code>: activa el binary log de MySQL;</li>
+<li><code>--binlog-format=ROW</code>: registra cambios por fila y no solo por sentencia SQL;</li>
+<li><code>--binlog-row-image=FULL</code>: incluye la imagen completa de la fila para updates y deletes;</li>
+<li><code>--server-id=223344</code>: identifica la instancia dentro del mecanismo de replicación/binlog;</li>
+<li><code>--gtid-mode=ON</code> y <code>--enforce-gtid-consistency=ON</code>: ayudan a mantener una posición consistente en el log.</li>
+</ul>
+<p>En otras palabras:</p>
+<div class="highlight"><pre><span></span><code>MySQL escribe cambios en binlog
+   ↓
+Debezium lee binlog
+   ↓
+Kafka publica eventos
+   ↓
+PostgreSQL replica cambios
+</code></pre></div>
+<p>Eso no depende de una columna de auditoría como <code>fecha_modificacion</code>.</p>
+<p>Comparación práctica con el enfoque incremental por cursor:</p>
+<ul>
+<li>con Airbyte por cursor, normalmente consultas <code>todo lo que cambió después de X</code> usando una columna como <code>fecha_modificacion</code>;</li>
+<li>con Debezium, se leen cambios reales del motor desde el binlog;</li>
+<li>por eso este enfoque suele tener menos latencia y menos riesgo de perder cambios cuando el timestamp no se actualiza correctamente.</li>
+</ul>
+<p>Si en otro proyecto quieres que Airbyte haga CDC real sobre MySQL, también necesitas que el servicio MySQL arranque con estos flags de binlog y replicación. Sin eso, lo normal es terminar usando sincronización incremental por cursor con una columna como <code>fecha_modificacion</code>.</p>
+<h3 id="kafka">Kafka</h3>
+<p>Recibe los eventos de cambio publicados por los conectores.</p>
+<p>Puerto expuesto:</p>
+<ul>
+<li><code>39092</code></li>
+</ul>
+<h3 id="kafka-ui">Kafka UI</h3>
+<p>Interfaz web para inspeccionar el cluster Kafka del laboratorio.</p>
+<p>Imagen usada:</p>
+<ul>
+<li><code>provectuslabs/kafka-ui:v0.7.2</code></li>
+</ul>
+<p>Puerto expuesto:</p>
+<ul>
+<li><code>38085</code></li>
+</ul>
+<p>Acceso desde el navegador:</p>
+<ul>
+<li>http://localhost:38085</li>
+</ul>
+<p>Configuración del cluster dentro del compose:</p>
+<ul>
+<li>nombre del cluster: <code>farmabi-debezium</code></li>
+<li>bootstrap server interno: <code>kafka:9092</code></li>
+</ul>
+<p>Nota: este Kafka sigue usando Zookeeper porque la imagen de Debezium Kafka usada en el laboratorio es <code>debezium/kafka:2.7.3.Final</code>. Kafka UI solo se conecta al broker por <code>kafka:9092</code>; no reemplaza ni elimina Zookeeper.</p>
+<h3 id="kafka-connect-debezium">Kafka Connect / Debezium</h3>
+<p>Es el runtime donde se registran conectores como:</p>
+<ul>
+<li>MySQL source connector;</li>
+<li>PostgreSQL sink connector o un flujo consumidor alternativo.</li>
+</ul>
+<p>Puerto expuesto:</p>
+<ul>
+<li><code>38083</code></li>
+</ul>
+<h3 id="postgresql-dw">PostgreSQL DW</h3>
+<p>Se usa el PostgreSQL DW del proyecto <code>dw-pg</code>, no un PostgreSQL propio dentro de este compose. El sink JDBC escribe la replica de tablas fuente en el esquema <code>raw</code>.</p>
+<p>Puerto expuesto:</p>
+<ul>
+<li><code>15432</code></li>
+</ul>
+<p>Credenciales por defecto:</p>
+<ul>
+<li>base de datos: <code>farmacia_dw</code></li>
+<li>esquema de aterrizaje: <code>raw</code></li>
+<li>usuario: <code>postgres</code></li>
+<li>password: <code>postgres</code></li>
+</ul>
+<p>Comportamiento esperado:</p>
+<ul>
+<li>base creada automáticamente: <code>farmacia_dw</code>;</li>
+<li>esquema <code>raw</code> creado al inicializar PostgreSQL;</li>
+<li>sin tablas de negocio al inicio dentro de <code>raw</code>;</li>
+<li>el conector sink crea tablas como <code>raw.familias</code>, <code>raw.clientes</code>, <code>raw.productos</code>, <code>raw.pedidos</code> y <code>raw.pedido_detalles</code>.</li>
+</ul>
+<h2 id="requisitos">Requisitos</h2>
+<ul>
+<li>Docker Desktop o Docker Engine con Compose.</li>
+<li>Acceso de red hacia la base MySQL fuente.</li>
+<li>Usuario MySQL con permisos de replicación y lectura para Debezium.</li>
+<li>Si no usas el contenedor MySQL del compose, una instancia MySQL compatible con binlog en formato <code>ROW</code>.</li>
+</ul>
+<h2 id="como-levantar-el-stack">Cómo levantar el stack</h2>
+<p>Desde la raíz del proyecto:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span>
+</code></pre></div>
+<p>Para revisar el estado:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="nb">ps</span>
+</code></pre></div>
+<p>Para ver logs de Connect:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">logs</span> <span class="o">-f</span> <span class="n">connect</span>
+</code></pre></div>
+<p>Para abrir Kafka UI:</p>
+<div class="highlight"><pre><span></span><code>http://localhost:38085
+</code></pre></div>
+<p>Para detener todo:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">down</span>
+</code></pre></div>
+<p>Si quieres recrear también los datos de laboratorio desde cero, elimina los volúmenes de MySQL y PostgreSQL:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">down</span> <span class="n">-v</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span>
+</code></pre></div>
+<h2 id="como-poblar-el-origen-mysql">Cómo poblar el origen MySQL</h2>
+<p>El origen MySQL se administra desde <code>../oltp-mysql</code>.</p>
+<p>La semilla mínima ocurre en el primer arranque de <code>farmabi-oltp-mysql</code> mediante:</p>
+<ul>
+<li><code>../oltp-mysql/mysql/init/farmadb.sql</code></li>
+</ul>
+<p>Luego, para las prácticas BI, carga manualmente los datos didácticos:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd </span><span class="n">oltp-mysql</span>
+<span class="nb">Get-Content</span> <span class="p">.\</span><span class="n">4_cargar_datos_didacticos_bi</span><span class="p">.</span><span class="n">sql</span> <span class="n">-Raw</span> <span class="p">|</span>
+  <span class="n">docker</span> <span class="n">exec</span> <span class="n">-i</span> <span class="n">farmabi-oltp-mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span>
+</code></pre></div>
+<h2 id="ejecucion-manual-desde-cero">Ejecución manual desde cero</h2>
+<p>Si quieres iniciar el laboratorio desde cero y dejar PostgreSQL vacío para poblarlo manualmente después, usa este orden.</p>
+<h3 id="1-borrar-datos-previos-y-levantar-el-stack">1. Borrar datos previos y levantar el stack</h3>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">down</span> <span class="n">-v</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="nb">ps</span>
+</code></pre></div>
+<p>En este punto:</p>
+<ul>
+<li>MySQL se inicializa con los datos del laboratorio;</li>
+<li>PostgreSQL crea la base <code>farmacia_dw</code> y el esquema <code>raw</code>, pero sigue sin tablas de negocio dentro de <code>raw</code>;</li>
+<li>Kafka y Connect quedan listos, pero todavía sin replicar datos a PostgreSQL.</li>
+</ul>
+<h3 id="2-confirmar-que-postgresql-sigue-vacio">2. Confirmar que PostgreSQL sigue vacío</h3>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span> <span class="n">-c</span> <span class="s2">&quot;select schemaname, tablename from pg_tables where schemaname = &#39;raw&#39; order by tablename;&quot;</span>
+</code></pre></div>
+<p>Lo esperado aquí es que no aparezcan tablas de negocio como <code>familias</code>, <code>clientes</code> o <code>productos</code>.</p>
+<h3 id="3-registrar-solo-el-conector-source-de-mysql">3. Registrar solo el conector source de MySQL</h3>
+<p>No ejecutes <code>scripts/register-connectors.ps1</code> todavía, porque ese script registra source y sink juntos.</p>
+<p>Para dejar PostgreSQL vacío y empezar solo con la captura hacia Kafka, registra únicamente el source:</p>
+<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="nb">register-source</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<h3 id="4-verificar-que-el-source-quedo-activo">4. Verificar que el source quedó activo</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">mysql-farmadb-source</span><span class="p">/</span><span class="n">status</span>
+</code></pre></div>
+<p>El conector debe quedar en <code>RUNNING</code>.</p>
+<h3 id="5-ver-los-eventos-en-kafka">5. Ver los eventos en Kafka</h3>
+<p>Listar topics:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">farmabi-debezium-kafka</span> <span class="n">bash</span> <span class="n">-lc</span> <span class="s2">&quot;kafka-topics.sh --bootstrap-server kafka:9092 --list&quot;</span>
+</code></pre></div>
+<p>Ver eventos de una tabla, por ejemplo <code>familias</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">farmabi-debezium-kafka</span> <span class="n">bash</span> <span class="n">-lc</span> <span class="s2">&quot;kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic farmadb.farmadb.familias --from-beginning&quot;</span>
+</code></pre></div>
+<p>También puedes revisar topics y mensajes desde Kafka UI:</p>
+<div class="highlight"><pre><span></span><code>http://localhost:38085
+</code></pre></div>
+<p>Si el source quedó activo, aquí verás los eventos del snapshot inicial y luego los cambios nuevos.</p>
+<h3 id="6-poblar-postgresql-manualmente-cuando-tu-decidas">6. Poblar PostgreSQL manualmente cuando tú decidas</h3>
+<p>Mientras no registres el sink, PostgreSQL seguirá vacío de tablas de negocio. Eso te permite:</p>
+<ul>
+<li>revisar eventos en Kafka;</li>
+<li>hacer tus propias validaciones;</li>
+<li>poblar PostgreSQL manualmente por otra vía si quieres.</li>
+</ul>
+<h3 id="7-activar-el-sink-cuando-quieras-empezar-la-replica-a-postgresql">7. Activar el sink cuando quieras empezar la réplica a PostgreSQL</h3>
+<p>Cuando ya quieras que Kafka empiece a escribir en PostgreSQL, registra el sink manualmente:</p>
+<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="nb">register-sink</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>Verifica su estado:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">postgres-cdc-sink</span><span class="p">/</span><span class="n">status</span>
+</code></pre></div>
+<p>Desde ese momento:</p>
+<ul>
+<li>el sink crea las tablas destino en PostgreSQL;</li>
+<li>aplica el snapshot inicial publicado por el source;</li>
+<li>y luego sigue consumiendo cambios nuevos por CDC.</li>
+</ul>
+<h2 id="registro-de-conectores">Registro de conectores</h2>
+<p>Cuando <code>mysql</code>, <code>kafka</code>, <code>connect</code> y <code>postgres</code> estén arriba, registra ambos conectores:</p>
+<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="nb">register-connectors</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>Ese script combinado ahora llama internamente a:</p>
+<ul>
+<li><code>register-source.ps1</code></li>
+<li><code>register-sink.ps1</code></li>
+</ul>
+<p>Nota: si recreas el contenedor <code>connect</code>, es normal tener que volver a ejecutar este registro.</p>
+<p>Consulta el estado:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span>
+<span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">mysql-farmadb-source</span><span class="p">/</span><span class="n">status</span>
+<span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span><span class="p">/</span><span class="n">postgres-cdc-sink</span><span class="p">/</span><span class="n">status</span>
+</code></pre></div>
+<p>Ejemplo con <code>mysql</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">mysql</span> <span class="n">-u</span> <span class="n">root</span> <span class="n">-proot</span> <span class="n">-h</span> <span class="n">localhost</span> <span class="n">-P</span> <span class="n">13306</span> <span class="n">-D</span> <span class="n">farmadb</span> <span class="n">-e</span> <span class="s2">&quot;show tables;&quot;</span>
+</code></pre></div>
+<p>El script crea y carga estas entidades en MySQL:</p>
+<ul>
+<li><code>familias</code></li>
+<li><code>clientes</code></li>
+<li><code>vendedores</code></li>
+<li><code>categorias</code></li>
+<li><code>productos</code></li>
+<li><code>pedidos</code></li>
+<li><code>pedido_detalles</code></li>
+</ul>
+<h2 id="como-validar-que-quedo-operativo">Cómo validar que quedó operativo</h2>
+<p>Validaciones básicas:</p>
+<ol>
+<li>Confirmar que los tres servicios están arriba con <code>docker compose ps</code>.</li>
+<li>Confirmar que MySQL responde en <code>localhost:13306</code>.</li>
+<li>Verificar que Kafka Connect responde en <code>http://localhost:38083/</code>.</li>
+<li>Confirmar que el endpoint de conectores responde en <code>http://localhost:38083/connectors</code>.</li>
+<li>Abrir Kafka UI en <code>http://localhost:38085</code> y confirmar que aparece el cluster <code>farmabi-debezium</code>.</li>
+<li>Confirmar que PostgreSQL responde y que no tiene tablas de negocio antes de registrar el sink.</li>
+<li>Registrar conectores y validar que PostgreSQL empieza a crear tablas destino.</li>
+<li>Validar que el snapshot inicial copie las tablas de <code>farmadb</code> hacia PostgreSQL.</li>
+</ol>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">38083</span><span class="p">/</span><span class="n">connectors</span>
+</code></pre></div>
+<p>Ejemplo para validar PostgreSQL:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span> <span class="n">-c</span> <span class="s2">&quot;select schemaname, tablename from pg_tables where schemaname = &#39;raw&#39; order by tablename;&quot;</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span> <span class="n">-c</span> <span class="s2">&quot;select count(*) as productos from raw.productos;&quot;</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">postgres</span> <span class="n">psql</span> <span class="n">-U</span> <span class="n">postgres</span> <span class="n">-d</span> <span class="n">farmacia_dw</span> <span class="n">-c</span> <span class="s2">&quot;select count(*) as detalles from raw.pedido_detalles;&quot;</span>
+</code></pre></div>
+<p>Ejemplo para validar MySQL:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">exec</span> <span class="n">mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">-D</span> <span class="n">farmadb</span> <span class="n">-e</span> <span class="s2">&quot;select count(*) as productos from productos; select count(*) as pedidos from pedidos;&quot;</span>
+</code></pre></div>
+<h2 id="flujo-recomendado-de-migracion">Flujo recomendado de migración</h2>
+<h2 id="integracion-con-dbt">Integración con dbt</h2>
+<p>Si ya tienes el proyecto <code>dw-dbt</code> de <code>farmabi</code>, el encaje recomendado queda así:</p>
+<ol>
+<li>MySQL sigue siendo la fuente OLTP.</li>
+<li>Debezium captura snapshot inicial y cambios nuevos.</li>
+<li>Kafka recibe los eventos de CDC.</li>
+<li>El sink JDBC aterriza las tablas en PostgreSQL como capa <code>raw replica</code>.</li>
+<li><code>dbt</code> consume esa capa en PostgreSQL y construye <code>staging</code> y <code>marts</code>.</li>
+</ol>
+<p>En otras palabras, para este laboratorio la arquitectura pasa de:</p>
+<div class="highlight"><pre><span></span><code>MySQL -&gt; Airbyte -&gt; PostgreSQL raw -&gt; dbt staging -&gt; dbt marts
+</code></pre></div>
+<p>a esta variante más liviana:</p>
+<div class="highlight"><pre><span></span><code>MySQL -&gt; Debezium/Kafka -&gt; PostgreSQL raw replica -&gt; dbt staging -&gt; dbt marts
+</code></pre></div>
+<p>Diferencia importante:</p>
+<ul>
+<li>Airbyte suele dejar una capa <code>raw</code> más pensada para ingesta ELT.</li>
+<li>El sink actual de Debezium deja una réplica casi 1:1 de las tablas fuente.</li>
+<li>Para <code>staging</code> y <code>marts</code> en <code>dbt</code>, esa réplica suele ser suficiente y reduce la latencia frente a Airbyte.</li>
+</ul>
+<p>Si el objetivo es analytics con menor demora para ver cambios nuevos, este stack encaja bien como reemplazo de Airbyte en la parte <code>MySQL OLTP -&gt; PostgreSQL raw replica</code>.</p>
+<p>Para una migración MySQL -&gt; PostgreSQL a gran escala, el orden recomendado es:</p>
+<ol>
+<li>Analizar esquema, tipos y tablas críticas.</li>
+<li>Ejecutar bulk load del histórico hacia PostgreSQL.</li>
+<li>Levantar CDC desde MySQL con Debezium.</li>
+<li>Publicar eventos en Kafka.</li>
+<li>Aplicar cambios en PostgreSQL mediante sink o consumidor.</li>
+<li>Validar conteos, checksums y lag.</li>
+<li>Hacer cutover final cuando PostgreSQL esté al día.</li>
+</ol>
+<h2 id="limitaciones-actuales-del-proyecto">Limitaciones actuales del proyecto</h2>
+<ul>
+<li>El <code>docker-compose</code> actual es una base mínima de laboratorio.</li>
+<li>El MySQL incluido es una base de laboratorio y no reemplaza afinamiento de una instancia productiva.</li>
+<li>El snapshot inicial del conector source sirve para esta maqueta, pero no es la estrategia recomendada para una migración de terabytes.</li>
+<li>No hay persistencia declarada para datos o configuraciones.</li>
+<li>No hay tuning de Kafka Connect para producción.</li>
+<li>No hay manejo de secretos ni variables externas.</li>
+</ul>
+<h2 id="proximos-pasos-sugeridos">Próximos pasos sugeridos</h2>
+<ol>
+<li>Agregar volúmenes persistentes.</li>
+<li>Añadir ejemplos de configuración de conectores MySQL y PostgreSQL.</li>
+<li>Definir estrategia de bulk load fuera de Kafka.</li>
+<li>Preparar una variante orientada a nube.</li>
+</ol>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li>Debezium MySQL Connector: https://debezium.io/documentation/reference/2.7/connectors/mysql.html</li>
+<li>Debezium JDBC Sink Connector: https://debezium.io/documentation/reference/2.7/connectors/jdbc.html</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid.js"></script>
+      
+    
+  </body>
+</html>

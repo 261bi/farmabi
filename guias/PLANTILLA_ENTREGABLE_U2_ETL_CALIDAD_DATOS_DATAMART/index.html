@@ -1,0 +1,3391 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentacion del proyecto BI farmabi">
+      
+      
+      
+      
+        <link rel="prev" href="../../sesiones/SESION_U2_S7_P1_EVALUACION_U2_BI_END_TO_END/">
+      
+      
+        <link rel="next" href="../pasos_24_25_comparativos_ventas_pedidos/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Plantilla entregable U2 - farmabi - Business Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plantilla-entregable-u2-etl-calidad-de-datos-y-datamart" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="farmabi - Business Intelligence" class="md-header__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            farmabi - Business Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plantilla entregable U2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="farmabi - Business Intelligence" class="md-nav__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    farmabi - Business Intelligence
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sesiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/UNIDAD_2_SESION_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 P1 Implementacion fisica manual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S1_P2_ETL_MANUAL_CON_SQL_PARA_DIMENSIONES_Y_HECHO_MEDIANTE_LA_VISTA_G/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 P2 ETL manual con SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S1_P3_VALIDACION_ANALITICA_DEL_DATAMART_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 P3 Validacion analitica manual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S2_P1_AIRBYTE_REPLICA_MYSQL_POSTGRES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P1 Airbyte replica MySQL PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S2_P2_DBT_MODELADO_FISICO_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P2 dbt modelado fisico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S2_P3_VALIDACION_ANALITICA_DEL_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P3 Validacion analitica dbt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P4 CDC Debezium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 P1 Modelo semantico Power BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 P2 Medidas DAX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S4_P1_EXPLORACION_OLAP_STORYTELLING_POWER_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S4 Exploracion OLAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S5_P1_DASHBOARD_KPIS_VISUALIZACION_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 P1 Dashboard KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S5_P2_DASHBOARD_KPIS_VISUALIZACION_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 P2 Dashboard KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S5_P3_TABLA_KPI_VARIACION_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 P3 KPI variacion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S6_P1_GOBIERNO_DEL_DATO_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S6 Gobierno del dato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sesiones/SESION_U2_S7_P1_EVALUACION_U2_BI_END_TO_END/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S7 Evaluacion BI end-to-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U2
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-datos-generales-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Datos generales del proyecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-contexto-analitico-heredado-de-la-unidad-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Contexto analítico heredado de la Unidad 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Contexto analítico heredado de la Unidad 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-problema-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Problema de negocio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-kpis-o-metricas-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 KPIs o métricas principales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-modelo-dimensional-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Modelo dimensional objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sesion-6-implementacion-manual-del-datamart-con-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sesión 6 - Implementación manual del DataMart con SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sesión 6 - Implementación manual del DataMart con SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-diseno-fisico-manual-del-datamart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Diseño físico manual del DataMart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-script-de-creacion-de-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Script de creación de tablas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-etl-manual-con-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 ETL manual con SQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-uso-de-vista-o-consulta-integradora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Uso de vista o consulta integradora
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-evidencia-de-carga-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Evidencia de carga manual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sesion-7-pipeline-bi-con-herramientas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Sesión 7 - Pipeline BI con herramientas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Sesión 7 - Pipeline BI con herramientas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-arquitectura-implementada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Arquitectura implementada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#411-separacion-fisica-de-bases-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.1 Separación física de bases de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ingesta-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Ingesta de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#421-evidencia-de-airbyte-o-debezium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1 Evidencia de Airbyte o Debezium
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-capas-del-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Capas del pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#431-proyecto-dbt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.1 Proyecto dbt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-transformaciones-dbt-en-staging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Transformaciones dbt en staging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-construccion-del-datamart-con-dbt-en-marts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Construcción del DataMart con dbt en marts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-materializacion-e-incrementalidad-en-dbt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Materialización e incrementalidad en dbt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-carga-incremental-cdc-u-optimizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Carga incremental, CDC u optimización
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-calidad-de-datos-y-validacion-analitica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Calidad de datos y validación analítica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Calidad de datos y validación analítica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-controles-de-calidad-aplicados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Controles de calidad aplicados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-validacion-de-dimensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Validación de dimensiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-validacion-de-tabla-de-hechos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Validación de tabla de hechos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-comparacion-oltp-vs-datamart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Comparación OLTP vs DataMart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-hallazgos-de-calidad-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Hallazgos de calidad de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sesion-8-modelo-semantico-y-metricas-bi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Sesión 8 - Modelo semántico y métricas BI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sesión 8 - Modelo semántico y métricas BI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-conexion-del-datamart-a-power-bi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Conexión del DataMart a Power BI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-relaciones-del-modelo-semantico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Relaciones del modelo semántico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-jerarquias-olap-creadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Jerarquías OLAP creadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-medidas-dax-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Medidas DAX implementadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-validacion-sql-vs-power-bi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Validación SQL vs Power BI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-evidencia-visual-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Evidencia visual del modelo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-evidencias-obligatorias-del-entregable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Evidencias obligatorias del entregable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-conclusiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Conclusiones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-participacion-individual-del-equipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Participación individual del equipo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pasos_24_25_comparativos_ventas_pedidos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparativos ventas pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Historico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../historico/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo semantico version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../historico/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medidas DAX version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-datos-generales-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Datos generales del proyecto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-contexto-analitico-heredado-de-la-unidad-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Contexto analítico heredado de la Unidad 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Contexto analítico heredado de la Unidad 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-problema-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Problema de negocio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-kpis-o-metricas-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 KPIs o métricas principales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-modelo-dimensional-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Modelo dimensional objetivo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sesion-6-implementacion-manual-del-datamart-con-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sesión 6 - Implementación manual del DataMart con SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sesión 6 - Implementación manual del DataMart con SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-diseno-fisico-manual-del-datamart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Diseño físico manual del DataMart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-script-de-creacion-de-tablas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Script de creación de tablas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-etl-manual-con-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 ETL manual con SQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-uso-de-vista-o-consulta-integradora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Uso de vista o consulta integradora
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-evidencia-de-carga-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Evidencia de carga manual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sesion-7-pipeline-bi-con-herramientas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Sesión 7 - Pipeline BI con herramientas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Sesión 7 - Pipeline BI con herramientas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-arquitectura-implementada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Arquitectura implementada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#411-separacion-fisica-de-bases-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.1 Separación física de bases de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ingesta-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Ingesta de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#421-evidencia-de-airbyte-o-debezium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1 Evidencia de Airbyte o Debezium
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-capas-del-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Capas del pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#431-proyecto-dbt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.1 Proyecto dbt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-transformaciones-dbt-en-staging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Transformaciones dbt en staging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-construccion-del-datamart-con-dbt-en-marts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Construcción del DataMart con dbt en marts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-materializacion-e-incrementalidad-en-dbt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Materialización e incrementalidad en dbt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-carga-incremental-cdc-u-optimizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Carga incremental, CDC u optimización
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-calidad-de-datos-y-validacion-analitica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Calidad de datos y validación analítica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Calidad de datos y validación analítica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-controles-de-calidad-aplicados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Controles de calidad aplicados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-validacion-de-dimensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Validación de dimensiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-validacion-de-tabla-de-hechos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Validación de tabla de hechos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-comparacion-oltp-vs-datamart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Comparación OLTP vs DataMart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-hallazgos-de-calidad-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Hallazgos de calidad de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sesion-8-modelo-semantico-y-metricas-bi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Sesión 8 - Modelo semántico y métricas BI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sesión 8 - Modelo semántico y métricas BI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-conexion-del-datamart-a-power-bi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Conexión del DataMart a Power BI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-relaciones-del-modelo-semantico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Relaciones del modelo semántico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-jerarquias-olap-creadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Jerarquías OLAP creadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-medidas-dax-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Medidas DAX implementadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-validacion-sql-vs-power-bi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Validación SQL vs Power BI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-evidencia-visual-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Evidencia visual del modelo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-evidencias-obligatorias-del-entregable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Evidencias obligatorias del entregable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-conclusiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Conclusiones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-participacion-individual-del-equipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Participación individual del equipo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="plantilla-entregable-u2-etl-calidad-de-datos-y-datamart">PLANTILLA - ENTREGABLE U2: ETL, calidad de datos y DataMart</h1>
+<p>Esta plantilla integra las actividades autónomas de las sesiones de la Unidad 2:</p>
+<ul>
+<li>S6 Implementación manual del DW/DataMart con SQL</li>
+<li>S7 Implementación del pipeline BI con herramientas</li>
+<li>S8 Modelo semántico y métricas BI</li>
+</ul>
+<p>El entregable debe demostrar que el estudiante puede construir, cargar, validar y consumir analíticamente un DataMart, pasando desde el OLTP hacia una arquitectura BI más organizada.</p>
+<hr />
+<h2 id="1-datos-generales-del-proyecto">1. Datos generales del proyecto</h2>
+<p><strong>Nombre del proyecto BI:</strong>  </p>
+<p><strong>Integrantes:</strong>  </p>
+<p><strong>Proceso de negocio analizado:</strong>  </p>
+<p><strong>Fuente transaccional usada:</strong>  </p>
+<p><strong>Herramientas utilizadas:</strong>  </p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Herramienta / tecnología</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OLTP</td>
+<td>MySQL / otro</td>
+<td></td>
+</tr>
+<tr>
+<td>Ingesta</td>
+<td>Airbyte / Debezium</td>
+<td></td>
+</tr>
+<tr>
+<td>DW / DataMart</td>
+<td>PostgreSQL / otro</td>
+<td></td>
+</tr>
+<tr>
+<td>Transformación</td>
+<td>dbt / SQL</td>
+<td></td>
+</tr>
+<tr>
+<td>Modelo semántico</td>
+<td>Power BI</td>
+<td></td>
+</tr>
+<tr>
+<td>Validación</td>
+<td>SQL / Power BI</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-contexto-analitico-heredado-de-la-unidad-1">2. Contexto analítico heredado de la Unidad 1</h2>
+<h3 id="21-problema-de-negocio">2.1 Problema de negocio</h3>
+<p>Breve descripción del problema que se busca analizar con BI.</p>
+<ul>
+<li>Área o proceso involucrado:</li>
+<li>Decisiones que se buscan mejorar:</li>
+<li>Usuarios principales:</li>
+</ul>
+<h3 id="22-kpis-o-metricas-principales">2.2 KPIs o métricas principales</h3>
+<table>
+<thead>
+<tr>
+<th>KPI / métrica</th>
+<th>Definición</th>
+<th>Fórmula</th>
+<th>Fuente</th>
+<th>Usuario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-modelo-dimensional-objetivo">2.3 Modelo dimensional objetivo</h3>
+<p><strong>Tabla de hechos principal:</strong>  </p>
+<p><strong>Grano de la tabla de hechos:</strong>  </p>
+<p><strong>Dimensiones consideradas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th>Atributos principales</th>
+<th>Jerarquías</th>
+<th>Fuente OLTP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fecha</td>
+<td></td>
+<td>Día, mes, trimestre, año</td>
+<td></td>
+</tr>
+<tr>
+<td>Producto</td>
+<td></td>
+<td>Familia, categoría, producto</td>
+<td></td>
+</tr>
+<tr>
+<td>Cliente</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Vendedor</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-sesion-6-implementacion-manual-del-datamart-con-sql">3. Sesión 6 - Implementación manual del DataMart con SQL</h2>
+<h3 id="31-diseno-fisico-manual-del-datamart">3.1 Diseño físico manual del DataMart</h3>
+<p>Indicar las tablas creadas manualmente para el DataMart.</p>
+<table>
+<thead>
+<tr>
+<th>Tabla DataMart</th>
+<th>Tipo</th>
+<th>Descripción</th>
+<th>Clave principal</th>
+<th>Claves foráneas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dim_fecha</td>
+<td>Dimensión</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dim_producto</td>
+<td>Dimensión</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dim_cliente</td>
+<td>Dimensión</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fact_ventas</td>
+<td>Hecho</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-script-de-creacion-de-tablas">3.2 Script de creación de tablas</h3>
+<p>Pegar o referenciar el script SQL usado.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- CREATE TABLE ...</span>
+</code></pre></div>
+<h3 id="33-etl-manual-con-sql">3.3 ETL manual con SQL</h3>
+<p>Describir cómo se extrajeron, transformaron y cargaron los datos.</p>
+<table>
+<thead>
+<tr>
+<th>Etapa ETL</th>
+<th>Descripción</th>
+<th>Tablas origen</th>
+<th>Tablas destino</th>
+<th>Regla aplicada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Extracción</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Transformación</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Carga de dimensiones</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Carga de hechos</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-uso-de-vista-o-consulta-integradora">3.4 Uso de vista o consulta integradora</h3>
+<p>Si se usó una vista general, como <code>G</code>, describir su propósito.</p>
+<table>
+<thead>
+<tr>
+<th>Vista / consulta</th>
+<th>Tablas que integra</th>
+<th>Uso dentro del ETL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1">-- SELECT usado para integrar datos del OLTP</span>
+</code></pre></div>
+<h3 id="35-evidencia-de-carga-manual">3.5 Evidencia de carga manual</h3>
+<table>
+<thead>
+<tr>
+<th>Tabla</th>
+<th style="text-align: right;">Cantidad de registros esperada</th>
+<th style="text-align: right;">Cantidad cargada</th>
+<th>Observación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dim_fecha</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+<tr>
+<td>dim_producto</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+<tr>
+<td>dim_cliente</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+<tr>
+<td>fact_ventas</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-sesion-7-pipeline-bi-con-herramientas">4. Sesión 7 - Pipeline BI con herramientas</h2>
+<p>En esta sesión el ETL se implementa con herramientas:</p>
+<ul>
+<li><strong>E - Extracción / ingesta:</strong> Airbyte o Debezium desde la BD transaccional hacia la BD analítica.</li>
+<li><strong>T - Transformación:</strong> dbt sobre la capa <code>raw</code> para construir modelos <code>staging</code>.</li>
+<li><strong>L - Carga analítica:</strong> dbt materializa dimensiones y hechos en <code>marts</code>.</li>
+</ul>
+<h3 id="41-arquitectura-implementada">4.1 Arquitectura implementada</h3>
+<p>Representar el flujo construido.</p>
+<div class="highlight"><pre><span></span><code>BD transaccional OLTP -&gt; Airbyte/Debezium -&gt; BD analítica DW -&gt; raw -&gt; dbt staging -&gt; dbt marts -&gt; Power BI
+</code></pre></div>
+<h3 id="411-separacion-fisica-de-bases-de-datos">4.1.1 Separación física de bases de datos</h3>
+<p>El pipeline debe evidenciar separación entre la base transaccional y la base analítica. Pueden estar en contenedores distintos, servidores distintos o servicios distintos. El uso de Airbyte o Debezium valida esta separación porque replica o captura cambios desde una base origen hacia una base destino.</p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Motor</th>
+<th>Contenedor / servidor / servicio</th>
+<th>Puerto</th>
+<th>Rol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BD origen OLTP</td>
+<td>MySQL / PostgreSQL / otro</td>
+<td></td>
+<td></td>
+<td>Sistema transaccional</td>
+</tr>
+<tr>
+<td>Herramienta de ingesta</td>
+<td>Airbyte / Debezium</td>
+<td></td>
+<td></td>
+<td>Replicación o CDC</td>
+</tr>
+<tr>
+<td>BD destino DW</td>
+<td>PostgreSQL / otro</td>
+<td></td>
+<td></td>
+<td>Base analítica</td>
+</tr>
+<tr>
+<td>Transformación</td>
+<td>dbt</td>
+<td></td>
+<td></td>
+<td>Modelado <code>staging</code> y <code>marts</code></td>
+</tr>
+<tr>
+<td>Consumo BI</td>
+<td>Power BI</td>
+<td></td>
+<td></td>
+<td>Modelo semántico y métricas</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nota:</strong> No se considera suficiente copiar tablas dentro de la misma base como solución de pipeline automatizado. La práctica manual de la sesión 6 puede ocurrir dentro del mismo entorno, pero la sesión 7 debe mostrar una arquitectura separada entre origen transaccional y destino analítico.</p>
+<h3 id="42-ingesta-de-datos">4.2 Ingesta de datos</h3>
+<table>
+<thead>
+<tr>
+<th>Origen</th>
+<th>Destino</th>
+<th>Herramienta</th>
+<th>Modo de carga</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL / PostgreSQL OLTP</td>
+<td>PostgreSQL DW <code>raw</code></td>
+<td>Airbyte / Debezium</td>
+<td>Completa / incremental / CDC</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="421-evidencia-de-airbyte-o-debezium">4.2.1 Evidencia de Airbyte o Debezium</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Evidencia esperada</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conexión al origen OLTP</td>
+<td>Captura o configuración del source</td>
+<td></td>
+</tr>
+<tr>
+<td>Conexión al destino DW</td>
+<td>Captura o configuración del destination</td>
+<td></td>
+</tr>
+<tr>
+<td>Flujo de sincronización</td>
+<td>Captura del connection/job</td>
+<td></td>
+</tr>
+<tr>
+<td>Resultado de la carga</td>
+<td>Tablas replicadas en <code>raw</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Carga incremental o CDC</td>
+<td>Evidencia de cursor, log o evento de cambio</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-capas-del-pipeline">4.3 Capas del pipeline</h3>
+<table>
+<thead>
+<tr>
+<th>Capa</th>
+<th>Equivalencia</th>
+<th>Propósito</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>raw</td>
+<td>Bronze</td>
+<td>Datos crudos replicados desde el OLTP</td>
+<td></td>
+</tr>
+<tr>
+<td>staging</td>
+<td>Silver</td>
+<td>Modelos dbt limpiados, renombrados y estandarizados</td>
+<td></td>
+</tr>
+<tr>
+<td>marts</td>
+<td>Gold</td>
+<td>Modelos dbt dimensionales listos para análisis</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="431-proyecto-dbt">4.3.1 Proyecto dbt</h3>
+<p>Documentar la estructura mínima del proyecto dbt usado para transformar <code>raw</code> en <code>staging</code> y <code>marts</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Elemento dbt</th>
+<th>Descripción</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>profiles.yml</code> / conexión</td>
+<td>Conexión hacia la BD analítica</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sources.yml</code></td>
+<td>Declaración de fuentes <code>raw</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Modelos <code>staging</code></td>
+<td>Limpieza, estandarización y renombrado</td>
+<td></td>
+</tr>
+<tr>
+<td>Modelos <code>marts</code></td>
+<td>Dimensiones y hechos del DataMart</td>
+<td></td>
+</tr>
+<tr>
+<td>Tests dbt</td>
+<td><code>not_null</code>, <code>unique</code>, <code>relationships</code> u otros</td>
+<td></td>
+</tr>
+<tr>
+<td>Documentación dbt</td>
+<td>Descripción de modelos y columnas</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-transformaciones-dbt-en-staging">4.4 Transformaciones dbt en staging</h3>
+<table>
+<thead>
+<tr>
+<th>Modelo / tabla staging</th>
+<th>Origen</th>
+<th>Transformación aplicada</th>
+<th>Justificación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="45-construccion-del-datamart-con-dbt-en-marts">4.5 Construcción del DataMart con dbt en marts</h3>
+<table>
+<thead>
+<tr>
+<th>Tabla marts</th>
+<th>Tipo</th>
+<th>Fuente staging</th>
+<th>Regla de negocio</th>
+<th>KPI soportado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dim_fecha</td>
+<td>Dimensión</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dim_producto</td>
+<td>Dimensión</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fact_ventas</td>
+<td>Hecho</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="46-materializacion-e-incrementalidad-en-dbt">4.6 Materialización e incrementalidad en dbt</h3>
+<table>
+<thead>
+<tr>
+<th>Modelo dbt</th>
+<th>Materialización</th>
+<th>Motivo</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>view / table / incremental</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>view / table / incremental</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>view / table / incremental</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="47-carga-incremental-cdc-u-optimizacion">4.7 Carga incremental, CDC u optimización</h3>
+<p>Completar según lo implementado en la práctica.</p>
+<table>
+<thead>
+<tr>
+<th>Mecanismo</th>
+<th>¿Se implementó?</th>
+<th>Descripción</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Carga incremental</td>
+<td>Sí / No</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CDC con Debezium o equivalente</td>
+<td>Sí / No</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Índices / optimización</td>
+<td>Sí / No</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nota sobre SCD:</strong> SCD se revisa solo como referencia conceptual de modelado dimensional. En esta versión del laboratorio no se exige implementar dimensiones históricas.</p>
+<hr />
+<h2 id="5-calidad-de-datos-y-validacion-analitica">5. Calidad de datos y validación analítica</h2>
+<p>La validación debe entenderse como un solo bloque de control, aplicado en varios niveles del pipeline.</p>
+<table>
+<thead>
+<tr>
+<th>Nivel de validación</th>
+<th>Qué se valida</th>
+<th>Evidencia esperada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OLTP vs <code>raw</code></td>
+<td>Que la ingesta conserve registros y campos principales</td>
+<td>Conteos, totales o log de Airbyte/Debezium</td>
+</tr>
+<tr>
+<td><code>raw</code> vs <code>staging</code></td>
+<td>Que dbt limpie, renombre y estandarice sin perder información crítica</td>
+<td>Consultas SQL o modelos dbt</td>
+</tr>
+<tr>
+<td><code>staging</code> vs <code>marts</code></td>
+<td>Que dimensiones y hechos se construyan con claves, grano y reglas correctas</td>
+<td>Consultas SQL, <code>dbt run</code>, <code>dbt test</code></td>
+</tr>
+<tr>
+<td>DataMart analítico</td>
+<td>Que los KPIs calculados en SQL respondan al negocio</td>
+<td>Consultas agregadas sobre <code>marts</code></td>
+</tr>
+<tr>
+<td>Power BI vs SQL</td>
+<td>Que las medidas DAX coincidan con los resultados del DataMart</td>
+<td>Tabla comparativa SQL vs Power BI</td>
+</tr>
+</tbody>
+</table>
+<h3 id="51-controles-de-calidad-aplicados">5.1 Controles de calidad aplicados</h3>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Tabla / campo</th>
+<th>Regla esperada</th>
+<th>Resultado</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Completitud</td>
+<td></td>
+<td>No debe tener nulos críticos</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Unicidad</td>
+<td></td>
+<td>Claves sin duplicados</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Integridad referencial</td>
+<td></td>
+<td>FK válidas entre hecho y dimensiones</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Consistencia</td>
+<td></td>
+<td>Montos y cantidades coherentes</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Rango válido</td>
+<td></td>
+<td>Fechas, precios o cantidades dentro de rango</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-validacion-de-dimensiones">5.2 Validación de dimensiones</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Consultas de validación de dimensiones</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th>Validación realizada</th>
+<th>Resultado</th>
+<th>Observación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dim_fecha</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dim_producto</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dim_cliente</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-validacion-de-tabla-de-hechos">5.3 Validación de tabla de hechos</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Consultas de validación de la tabla de hechos</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Validación</th>
+<th>Consulta / criterio</th>
+<th>Resultado</th>
+<th>Observación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total de registros</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Total de ventas</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Total de unidades</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Integridad con dimensiones</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="54-comparacion-oltp-vs-datamart">5.4 Comparación OLTP vs DataMart</h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th style="text-align: right;">Resultado OLTP</th>
+<th style="text-align: right;">Resultado DataMart</th>
+<th style="text-align: right;">Diferencia</th>
+<th>¿Coincide?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ventas totales</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td>Sí / No</td>
+</tr>
+<tr>
+<td>Cantidad de pedidos</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td>Sí / No</td>
+</tr>
+<tr>
+<td>Unidades vendidas</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td>Sí / No</td>
+</tr>
+<tr>
+<td>Margen</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td>Sí / No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="55-hallazgos-de-calidad-de-datos">5.5 Hallazgos de calidad de datos</h3>
+<p>Registrar errores, inconsistencias o limitaciones encontradas.</p>
+<table>
+<thead>
+<tr>
+<th>Hallazgo</th>
+<th>Impacto analítico</th>
+<th>Acción tomada</th>
+<th>Estado final</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-sesion-8-modelo-semantico-y-metricas-bi">6. Sesión 8 - Modelo semántico y métricas BI</h2>
+<h3 id="61-conexion-del-datamart-a-power-bi">6.1 Conexión del DataMart a Power BI</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Motor de datos</td>
+<td></td>
+</tr>
+<tr>
+<td>Base de datos</td>
+<td></td>
+</tr>
+<tr>
+<td>Schema usado</td>
+<td>marts</td>
+</tr>
+<tr>
+<td>Modo de conexión</td>
+<td>Import / DirectQuery</td>
+</tr>
+<tr>
+<td>Tablas importadas</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-relaciones-del-modelo-semantico">6.2 Relaciones del modelo semántico</h3>
+<table>
+<thead>
+<tr>
+<th>Tabla dimensión</th>
+<th>Tabla hecho</th>
+<th>Campo dimensión</th>
+<th>Campo hecho</th>
+<th>Cardinalidad</th>
+<th>Dirección de filtro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dim_fecha</td>
+<td>fact_ventas</td>
+<td></td>
+<td></td>
+<td>1:*</td>
+<td></td>
+</tr>
+<tr>
+<td>dim_producto</td>
+<td>fact_ventas</td>
+<td></td>
+<td></td>
+<td>1:*</td>
+<td></td>
+</tr>
+<tr>
+<td>dim_cliente</td>
+<td>fact_ventas</td>
+<td></td>
+<td></td>
+<td>1:*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-jerarquias-olap-creadas">6.3 Jerarquías OLAP creadas</h3>
+<table>
+<thead>
+<tr>
+<th>Jerarquía</th>
+<th>Niveles</th>
+<th>Tabla</th>
+<th>Uso analítico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Calendario</td>
+<td>Año, trimestre, mes, día</td>
+<td>dim_fecha</td>
+<td>Análisis temporal</td>
+</tr>
+<tr>
+<td>Producto</td>
+<td>Familia, categoría, producto</td>
+<td>dim_producto</td>
+<td>Análisis comercial</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="64-medidas-dax-implementadas">6.4 Medidas DAX implementadas</h3>
+<table>
+<thead>
+<tr>
+<th>Medida</th>
+<th>Fórmula DAX</th>
+<th>Formato</th>
+<th>KPI asociado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total Ventas</td>
+<td></td>
+<td>Moneda</td>
+<td></td>
+</tr>
+<tr>
+<td>Total Unidades</td>
+<td></td>
+<td>Entero</td>
+<td></td>
+</tr>
+<tr>
+<td>Margen</td>
+<td></td>
+<td>Moneda</td>
+<td></td>
+</tr>
+<tr>
+<td>% Margen</td>
+<td></td>
+<td>Porcentaje</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Pegar aquí las medidas principales</span>
+</code></pre></div>
+<h3 id="65-validacion-sql-vs-power-bi">6.5 Validación SQL vs Power BI</h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th style="text-align: right;">Resultado SQL DataMart</th>
+<th style="text-align: right;">Resultado Power BI</th>
+<th style="text-align: right;">Diferencia</th>
+<th>Observación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total Ventas</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+<tr>
+<td>Total Unidades</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+<tr>
+<td>Margen</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+<tr>
+<td>% Margen</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="66-evidencia-visual-del-modelo">6.6 Evidencia visual del modelo</h3>
+<p>Agregar capturas o enlaces de:</p>
+<ul>
+<li>Modelo de relaciones en Power BI</li>
+<li>Medidas DAX creadas</li>
+<li>Jerarquías creadas</li>
+<li>Tabla o matriz de prueba</li>
+<li>Comparación contra SQL</li>
+</ul>
+<hr />
+<h2 id="7-evidencias-obligatorias-del-entregable">7. Evidencias obligatorias del entregable</h2>
+<p>Las evidencias son una condición transversal del producto. Deben sustentar todos los criterios de la rúbrica.</p>
+<table>
+<thead>
+<tr>
+<th>Evidencia</th>
+<th>Formato sugerido</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Script SQL de creación manual del DataMart</td>
+<td><code>.sql</code> / captura</td>
+<td></td>
+</tr>
+<tr>
+<td>Script SQL de ETL manual</td>
+<td><code>.sql</code> / captura</td>
+<td></td>
+</tr>
+<tr>
+<td>Evidencia de separación OLTP y DW</td>
+<td>captura de contenedores, servidores o conexiones</td>
+<td></td>
+</tr>
+<tr>
+<td>Evidencia de ingesta con Airbyte o Debezium</td>
+<td>captura / log / job / evento CDC</td>
+<td></td>
+</tr>
+<tr>
+<td>Proyecto dbt</td>
+<td>carpeta del proyecto / repositorio / captura</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sources.yml</code> y modelos staging</td>
+<td>archivos dbt / capturas</td>
+<td></td>
+</tr>
+<tr>
+<td>Modelos marts en dbt</td>
+<td>archivos dbt / capturas</td>
+<td></td>
+</tr>
+<tr>
+<td>Tests dbt ejecutados</td>
+<td>captura / log de <code>dbt test</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Consultas de validación de calidad</td>
+<td><code>.sql</code> / captura</td>
+<td></td>
+</tr>
+<tr>
+<td>Comparación OLTP vs DataMart</td>
+<td>tabla / captura</td>
+<td></td>
+</tr>
+<tr>
+<td>Archivo Power BI conectado al DataMart</td>
+<td><code>.pbix</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Captura del modelo semántico</td>
+<td>imagen</td>
+<td></td>
+</tr>
+<tr>
+<td>Medidas DAX documentadas</td>
+<td>tabla / captura</td>
+<td></td>
+</tr>
+<tr>
+<td>Validación SQL vs Power BI</td>
+<td>tabla / captura</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-conclusiones">8. Conclusiones</h2>
+<p>Responder brevemente:</p>
+<ol>
+<li>¿El DataMart construido soporta los KPIs definidos en la Unidad 1?</li>
+<li>¿Cómo se evidencia la separación entre OLTP y DW/DataMart?</li>
+<li>¿Qué diferencia existe entre el ETL manual y el pipeline con Airbyte/Debezium + dbt?</li>
+<li>¿Qué problemas de calidad de datos se encontraron?</li>
+<li>¿Las medidas de Power BI coinciden con las consultas SQL del DataMart?</li>
+<li>¿Qué limitaciones tiene la solución actual?</li>
+</ol>
+<hr />
+<h2 id="9-participacion-individual-del-equipo">9. Participación individual del equipo</h2>
+<p>Cada integrante debe registrar sus aportes principales y la evidencia asociada.</p>
+<table>
+<thead>
+<tr>
+<th>Integrante</th>
+<th>Actividades realizadas</th>
+<th>Sesión / componente</th>
+<th>Evidencia</th>
+<th>Autoevaluación breve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>Sesión 6 / Sesión 7 / Sesión 8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Sesión 6 / Sesión 7 / Sesión 8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Sesión 6 / Sesión 7 / Sesión 8</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="rubrica-de-evaluacion-del-producto-de-la-unidad-2">Rúbrica de Evaluación del Producto de la Unidad 2</h1>
+<p><strong>Nota:</strong> Las herramientas usadas en clase son Airbyte/Debezium, dbt, PostgreSQL y Power BI. Los equipos pueden usar herramientas equivalentes, siempre que evidencien el mismo rol dentro del pipeline: ingesta, transformación, carga analítica, modelo semántico y consumo BI.</p>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>Sesión evaluada</th>
+<th>N3 - Logro alto</th>
+<th>N2 - Esperado</th>
+<th>N1 - En proceso</th>
+<th>N0 - Deficiente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. ETL manual y DataMart inicial con SQL</td>
+<td>Sesión 6</td>
+<td>Implementa manualmente dimensiones y hechos, carga datos con SQL y documenta grano, claves, transformación, carga y validación analítica</td>
+<td>Implementa el DataMart manual con errores menores o documentación parcial</td>
+<td>DataMart o ETL manual incompleto, con relaciones o cargas poco claras</td>
+<td>No implementa DataMart manual ni ETL SQL</td>
+</tr>
+<tr>
+<td>2. Extracción / ingesta con herramientas</td>
+<td>Sesión 7</td>
+<td>Evidencia separación OLTP-DW en contenedores, servidores o servicios distintos, e ingesta funcional con Airbyte, Debezium o herramienta equivalente hacia <code>raw</code>, incluyendo carga incremental o CDC cuando corresponda</td>
+<td>La ingesta funciona, pero la evidencia de separación, sincronización incremental o CDC es parcial</td>
+<td>La ingesta es incompleta, poco verificable o no llega claramente a <code>raw</code></td>
+<td>No implementa ingesta con Airbyte/Debezium ni herramienta equivalente</td>
+</tr>
+<tr>
+<td>3. Transformación, carga analítica y optimización con dbt</td>
+<td>Sesión 7</td>
+<td>Usa dbt o herramienta equivalente correctamente para <code>sources</code>, <code>staging</code> y <code>marts</code>, materializando dimensiones/hechos, carga incremental u optimización cuando corresponde</td>
+<td>Construye <code>staging</code> y <code>marts</code>, pero con documentación, materializaciones, incrementalidad u optimización incompletas</td>
+<td>Proyecto de transformación parcial, desordenado o con reglas poco justificadas</td>
+<td>No usa dbt ni herramienta equivalente para transformar y cargar el DataMart</td>
+</tr>
+<tr>
+<td>4. Modelo semántico y métricas BI</td>
+<td>Sesión 8</td>
+<td>Construye en Power BI o herramienta equivalente relaciones, cardinalidades, jerarquías OLAP, medidas y agregaciones coherentes con el DataMart y los KPIs</td>
+<td>Modelo semántico funcional con errores menores en relaciones, jerarquías, medidas o agregaciones</td>
+<td>Modelo incompleto o con medidas poco confiables</td>
+<td>No presenta modelo semántico ni medidas BI</td>
+</tr>
+<tr>
+<td>5. Validación multinivel y calidad de datos</td>
+<td>Sesiones 6, 7 y 8</td>
+<td>Valida calidad, integridad y resultados en varios niveles: OLTP vs <code>raw</code>, <code>raw</code> vs <code>staging</code>, <code>staging</code> vs <code>marts</code>, SQL analítico y Power BI</td>
+<td>Valida los niveles principales, pero con cobertura o explicación parcial</td>
+<td>Validación superficial, limitada a conteos o capturas aisladas</td>
+<td>No valida calidad ni resultados analíticos</td>
+</tr>
+<tr>
+<td>6. Participación individual del equipo</td>
+<td>Transversal</td>
+<td>Cada integrante evidencia aportes claros, verificables y equilibrados en construcción, validación, documentación o exposición</td>
+<td>La mayoría de integrantes evidencia aportes, con distribución parcialmente equilibrada</td>
+<td>Participación desigual o poco verificable entre integrantes</td>
+<td>No se evidencia participación individual o el trabajo recae en una sola persona</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid.js"></script>
+      
+    
+  </body>
+</html>

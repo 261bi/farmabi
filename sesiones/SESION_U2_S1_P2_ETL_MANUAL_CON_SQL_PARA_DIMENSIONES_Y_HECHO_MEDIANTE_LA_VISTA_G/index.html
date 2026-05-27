@@ -1,0 +1,2558 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentacion del proyecto BI farmabi">
+      
+      
+      
+      
+        <link rel="prev" href="../SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP/">
+      
+      
+        <link rel="next" href="../SESION_U2_S1_P3_VALIDACION_ANALITICA_DEL_DATAMART_MANUAL/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>S1 P2 ETL manual con SQL - farmabi - Business Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sesion-u2-s1-p2-etl-manual-con-sql-para-dimensiones-y-hecho-mediante-la-vista-g" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="farmabi - Business Intelligence" class="md-header__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            farmabi - Business Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              S1 P2 ETL manual con SQL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="farmabi - Business Intelligence" class="md-nav__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    farmabi - Business Intelligence
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sesiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UNIDAD_2_SESION_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UNIDAD_2_SESION_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UNIDAD_2_SESION_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UNIDAD_2_SESION_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UNIDAD_2_SESION_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UNIDAD_2_SESION_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UNIDAD_2_SESION_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unidad 2 Sesion 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 P1 Implementacion fisica manual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 P2 ETL manual con SQL
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 P2 ETL manual con SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-titulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Título
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-proposito-de-la-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Propósito de la sesión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-relacion-con-la-sesion-anterior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Relación con la sesión anterior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-objetivo-de-la-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Objetivo de la práctica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-idea-central-del-etl-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Idea central del ETL manual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-preparacion-del-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Preparación del entorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61-scripts-de-apoyo-de-esta-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Scripts de apoyo de esta sesión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-revision-previa-de-tablas-fuente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Revisión previa de tablas fuente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-configuracion-previa-de-la-sesion-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Configuración previa de la sesión SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Configuración previa de la sesión SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-se-hace-esta-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué se hace esta configuración?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-carga-manual-de-dimensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Carga manual de dimensiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Carga manual de dimensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-cargar-dim_cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Cargar dim_cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-cargar-dim_vendedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Cargar dim_vendedor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-cargar-dim_producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Cargar dim_producto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-cargar-dim_fecha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Cargar dim_fecha
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-cargar-dim_estado_pedido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 Cargar dim_estado_pedido
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-que-hace-exactamente-la-vista-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. ¿Qué hace exactamente la vista G?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-construccion-de-la-vista-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Construcción de la vista G
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Construcción de la vista G">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-crear-o-reemplazar-la-vista" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Crear o reemplazar la vista
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-validar-la-vista" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Validar la vista
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-como-leer-la-vista-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Cómo leer la vista G
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Cómo leer la vista G">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bloque-1-base-transaccional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloque 1. Base transaccional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloque-2-contexto-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloque 2. Contexto de negocio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloque-3-calculo-de-metricas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloque 3. Cálculo de métricas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloque-4-calculo-de-tiempos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloque 4. Cálculo de tiempos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-carga-de-fact_ventas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Carga de fact_ventas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-validacion-de-la-carga-del-hecho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Validación de la carga del hecho
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-diferencia-entre-este-enfoque-y-una-tabla-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Diferencia entre este enfoque y una tabla resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-consultas-de-verificacion-rapida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Consultas de verificación rápida
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Consultas de verificación rápida">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verificar-ventas-por-producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificar ventas por producto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-ventas-por-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificar ventas por cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-tiempos-del-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificar tiempos del proceso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-que-debe-quedar-listo-al-cerrar-esta-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Qué debe quedar listo al cerrar esta sesión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-que-viene-en-la-siguiente-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Qué viene en la siguiente práctica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-evidencias-a-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Evidencias a entregar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-cierre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Cierre
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S1_P3_VALIDACION_ANALITICA_DEL_DATAMART_MANUAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 P3 Validacion analitica manual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S2_P1_AIRBYTE_REPLICA_MYSQL_POSTGRES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P1 Airbyte replica MySQL PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S2_P2_DBT_MODELADO_FISICO_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P2 dbt modelado fisico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S2_P3_VALIDACION_ANALITICA_DEL_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P3 Validacion analitica dbt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 P4 CDC Debezium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 P1 Modelo semantico Power BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 P2 Medidas DAX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S4_P1_EXPLORACION_OLAP_STORYTELLING_POWER_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S4 Exploracion OLAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S5_P1_DASHBOARD_KPIS_VISUALIZACION_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 P1 Dashboard KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S5_P2_DASHBOARD_KPIS_VISUALIZACION_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 P2 Dashboard KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S5_P3_TABLA_KPI_VARIACION_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 P3 KPI variacion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S6_P1_GOBIERNO_DEL_DATO_BI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S6 Gobierno del dato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SESION_U2_S7_P1_EVALUACION_U2_BI_END_TO_END/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S7 Evaluacion BI end-to-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/pasos_24_25_comparativos_ventas_pedidos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparativos ventas pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Historico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../historico/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo semantico version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../historico/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medidas DAX version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-titulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Título
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-proposito-de-la-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Propósito de la sesión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-relacion-con-la-sesion-anterior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Relación con la sesión anterior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-objetivo-de-la-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Objetivo de la práctica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-idea-central-del-etl-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Idea central del ETL manual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-preparacion-del-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Preparación del entorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61-scripts-de-apoyo-de-esta-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Scripts de apoyo de esta sesión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-revision-previa-de-tablas-fuente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Revisión previa de tablas fuente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-configuracion-previa-de-la-sesion-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Configuración previa de la sesión SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Configuración previa de la sesión SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-se-hace-esta-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué se hace esta configuración?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-carga-manual-de-dimensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Carga manual de dimensiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Carga manual de dimensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-cargar-dim_cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Cargar dim_cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-cargar-dim_vendedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Cargar dim_vendedor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-cargar-dim_producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Cargar dim_producto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-cargar-dim_fecha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Cargar dim_fecha
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-cargar-dim_estado_pedido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 Cargar dim_estado_pedido
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-que-hace-exactamente-la-vista-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. ¿Qué hace exactamente la vista G?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-construccion-de-la-vista-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Construcción de la vista G
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Construcción de la vista G">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-crear-o-reemplazar-la-vista" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Crear o reemplazar la vista
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-validar-la-vista" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Validar la vista
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-como-leer-la-vista-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Cómo leer la vista G
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Cómo leer la vista G">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bloque-1-base-transaccional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloque 1. Base transaccional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloque-2-contexto-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloque 2. Contexto de negocio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloque-3-calculo-de-metricas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloque 3. Cálculo de métricas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloque-4-calculo-de-tiempos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloque 4. Cálculo de tiempos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-carga-de-fact_ventas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Carga de fact_ventas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-validacion-de-la-carga-del-hecho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Validación de la carga del hecho
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-diferencia-entre-este-enfoque-y-una-tabla-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Diferencia entre este enfoque y una tabla resumen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-consultas-de-verificacion-rapida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Consultas de verificación rápida
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Consultas de verificación rápida">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verificar-ventas-por-producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificar ventas por producto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-ventas-por-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificar ventas por cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-tiempos-del-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificar tiempos del proceso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-que-debe-quedar-listo-al-cerrar-esta-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Qué debe quedar listo al cerrar esta sesión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-que-viene-en-la-siguiente-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Qué viene en la siguiente práctica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-evidencias-a-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Evidencias a entregar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-cierre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Cierre
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sesion-u2-s1-p2-etl-manual-con-sql-para-dimensiones-y-hecho-mediante-la-vista-g">Sesión U2 S1 P2: ETL manual con SQL para dimensiones y hecho mediante la vista G</h1>
+<h2 id="1-titulo">1. Título</h2>
+<p>ETL manual con SQL para poblar dimensiones y tabla de hechos del DataMart dentro del mismo OLTP, usando una vista integrada denominada <code>G</code>.</p>
+<h2 id="2-proposito-de-la-sesion">2. Propósito de la sesión</h2>
+<p>En la sesión anterior se creó físicamente el esquema estrella dentro de <code>farmadb</code>. En esta práctica se realizará el proceso ETL manual:</p>
+<ul>
+<li>cargar dimensiones con <code>INSERT INTO ... SELECT ...</code></li>
+<li>construir una vista lógica integrada del negocio</li>
+<li>comprender la función de la vista <code>G</code></li>
+<li>cargar la tabla de hechos <code>fact_ventas</code></li>
+</ul>
+<p>Esta sesión es clave porque aquí el estudiante ve de manera explícita cómo se integran varias tablas transaccionales para producir una estructura analítica.</p>
+<h2 id="3-relacion-con-la-sesion-anterior">3. Relación con la sesión anterior</h2>
+<p>Esta guía continúa directamente desde:</p>
+<ul>
+<li><a href="../SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP/">SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP.md</a></li>
+</ul>
+<p>Antes de empezar esta práctica, deben existir ya estas tablas en <code>farmadb</code>:</p>
+<ul>
+<li><code>dim_cliente</code></li>
+<li><code>dim_vendedor</code></li>
+<li><code>dim_producto</code></li>
+<li><code>dim_fecha</code></li>
+<li><code>dim_estado_pedido</code></li>
+<li><code>fact_ventas</code></li>
+</ul>
+<h2 id="4-objetivo-de-la-practica">4. Objetivo de la práctica</h2>
+<p>Implementar manualmente el flujo ETL del DataMart de ventas y ciclo de pedidos usando SQL puro, partiendo desde las tablas transaccionales:</p>
+<ul>
+<li><code>clientes</code></li>
+<li><code>vendedores</code></li>
+<li><code>productos</code></li>
+<li><code>categorias</code></li>
+<li><code>familias</code></li>
+<li><code>pedidos</code></li>
+<li><code>pedido_detalles</code></li>
+</ul>
+<h2 id="5-idea-central-del-etl-manual">5. Idea central del ETL manual</h2>
+<p>En esta práctica se trabajará en tres momentos:</p>
+<ol>
+<li>poblar dimensiones</li>
+<li>construir la vista <code>G</code></li>
+<li>cargar <code>fact_ventas</code></li>
+</ol>
+<p>La vista <code>G</code> será la pieza central porque concentrará:</p>
+<ul>
+<li>la integración de cabecera y detalle del pedido</li>
+<li>la integración con cliente, vendedor y producto</li>
+<li>la clasificación comercial del producto</li>
+<li>el cálculo de métricas comerciales</li>
+<li>el cálculo de tiempos operativos</li>
+</ul>
+<p>Más adelante, cuando se use dbt, esta lógica dejará de vivir en una sola vista monolítica y se repartirá entre <code>staging</code> y <code>marts</code>. Por eso esta práctica también sirve como puente conceptual hacia la arquitectura moderna.</p>
+<h2 id="6-preparacion-del-entorno">6. Preparación del entorno</h2>
+<p>Levanta el servicio MySQL del laboratorio:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd </span><span class="n">oltp-mysql</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="nb">ps</span>
+</code></pre></div>
+<p>Ingresa al motor:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-oltp-mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">farmadb</span>
+</code></pre></div>
+<h2 id="61-scripts-de-apoyo-de-esta-sesion">6.1 Scripts de apoyo de esta sesión</h2>
+<p>En esta sesión conviene distinguir dos archivos SQL:</p>
+<ul>
+<li><a href="2_G_pasos.sql">2_G_pasos.sql</a>: guion pedagógico para entender la construcción progresiva de la vista <code>G</code>.</li>
+<li><a href="3_poblar.sql">3_poblar.sql</a>: script operativo final para poblar dimensiones, crear <code>vw_g_ventas</code> y cargar <code>fact_ventas</code>.</li>
+</ul>
+<p>Orden recomendado de ejecución dentro de <code>oltp-mysql</code>:</p>
+<ol>
+<li><a href="1_dm.sql">1_dm.sql</a></li>
+<li><a href="2_G_pasos.sql">2_G_pasos.sql</a></li>
+<li><a href="3_poblar.sql">3_poblar.sql</a></li>
+</ol>
+<h2 id="7-revision-previa-de-tablas-fuente">7. Revisión previa de tablas fuente</h2>
+<p>Antes de cargar el DataMart, revisa rápidamente las tablas transaccionales:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">clientes</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">vendedores</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">familias</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">categorias</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">productos</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pedidos</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pedido_detalles</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="8-configuracion-previa-de-la-sesion-sql">8. Configuración previa de la sesión SQL</h2>
+<p>Antes de comenzar la carga manual de dimensiones y hecho, configura la sesión SQL para trabajar con la base correcta y con nombres de tiempo en español.</p>
+<div class="highlight"><pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">farmadb</span><span class="p">;</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">lc_time_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;es_ES&#39;</span><span class="p">;</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">sql_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION&#39;</span><span class="p">;</span>
+
+<span class="c1">-- SELECT @@lc_time_names;</span>
+<span class="c1">-- set @day_offset = 1; -- sunday SET DATEFIRST 1 ;</span>
+</code></pre></div>
+<h3 id="por-que-se-hace-esta-configuracion">¿Por qué se hace esta configuración?</h3>
+<ul>
+<li><code>USE farmadb</code> asegura que todo el ETL manual se ejecute sobre la base donde conviven OLTP y DataMart en esta práctica.</li>
+<li><code>SET lc_time_names = 'es_ES'</code> permite que <code>DAYNAME()</code> y <code>MONTHNAME()</code> devuelvan nombres en español.</li>
+<li><code>SET sql_mode = ...</code> ayuda a trabajar con una configuración más estricta y controlada durante la carga.</li>
+</ul>
+<h2 id="9-carga-manual-de-dimensiones">9. Carga manual de dimensiones</h2>
+<h3 id="91-cargar-dim_cliente">9.1 Cargar <code>dim_cliente</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">dim_cliente</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">cliente_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre_cliente</span>
+<span class="p">)</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">nombre</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">clientes</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">c</span><span class="p">;</span>
+</code></pre></div>
+<p>Validación:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dim_cliente</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="92-cargar-dim_vendedor">9.2 Cargar <code>dim_vendedor</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">dim_vendedor</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">vendedor_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre_vendedor</span>
+<span class="p">)</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">nombre</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">vendedores</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+</code></pre></div>
+<p>Validación:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dim_vendedor</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="93-cargar-dim_producto">9.3 Cargar <code>dim_producto</code></h3>
+<p>En esta dimensión se integran <code>productos</code>, <code>categorias</code> y <code>familias</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">dim_producto</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">producto_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">codigo_producto</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre_producto</span><span class="p">,</span>
+<span class="w">    </span><span class="n">precio_compra</span><span class="p">,</span>
+<span class="w">    </span><span class="n">precio_venta</span><span class="p">,</span>
+<span class="w">    </span><span class="n">categoria_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre_categoria</span><span class="p">,</span>
+<span class="w">    </span><span class="n">familia_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre_familia</span>
+<span class="p">)</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">codigo</span><span class="p">,</span>
+<span class="w">    </span><span class="n">CONCAT</span><span class="p">(</span>
+<span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">concentracion</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">presentacion</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39; frac &#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fracciones</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nombre_producto</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">precio_compra</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">precio_venta</span><span class="p">,</span>
+<span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span>
+<span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">nombre</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">productos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">p</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">categorias</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">c</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">categoria_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">id</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">familias</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">f</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">familia_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</code></pre></div>
+<p>Validación:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dim_producto</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="94-cargar-dim_fecha">9.4 Cargar <code>dim_fecha</code></h3>
+<p>Para esta primera versión se utilizará <code>pedidos.fecha_creacion</code> como fecha analítica principal.</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">dim_fecha</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">fecha_key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fecha</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dia</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dia_semana_desc</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mes</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mes_desc</span><span class="p">,</span>
+<span class="w">    </span><span class="n">trimestre</span><span class="p">,</span>
+<span class="w">    </span><span class="n">anio</span>
+<span class="p">)</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="k">CAST</span><span class="p">(</span><span class="n">DATE_FORMAT</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;%Y%m%d&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fecha_key</span><span class="p">,</span>
+<span class="w">    </span><span class="nb">DATE</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fecha</span><span class="p">,</span>
+<span class="w">    </span><span class="k">DAY</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dia</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DAYNAME</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dia_semana_desc</span><span class="p">,</span>
+<span class="w">    </span><span class="k">MONTH</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mes</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MONTHNAME</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mes_desc</span><span class="p">,</span>
+<span class="w">    </span><span class="n">QUARTER</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">trimestre</span><span class="p">,</span>
+<span class="w">    </span><span class="k">YEAR</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">anio</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pedidos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">p</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="nb">DATE</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="nb">DATE</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">);</span>
+</code></pre></div>
+<p>Validación:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dim_fecha</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="95-cargar-dim_estado_pedido">9.5 Cargar <code>dim_estado_pedido</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">dim_estado_pedido</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">estado_pedido</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">estado</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pedidos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">p</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">estado</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</code></pre></div>
+<p>Validación:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dim_estado_pedido</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="10-que-hace-exactamente-la-vista-g">10. ¿Qué hace exactamente la vista <code>G</code>?</h2>
+<p>La vista <code>G</code> representa una tabla lógica intermedia construida con SQL para:</p>
+<ul>
+<li>unir <code>pedidos</code> con <code>pedido_detalles</code></li>
+<li>recuperar cliente y vendedor</li>
+<li>recuperar producto, categoría y familia</li>
+<li>calcular ventas, costos y descuentos</li>
+<li>calcular tiempos del proceso del pedido</li>
+</ul>
+<p>En otras palabras, <code>G</code> no es todavía la tabla de hechos final, pero sí es la fuente inmediata desde la que luego se cargará <code>fact_ventas</code>.</p>
+<h2 id="11-construccion-de-la-vista-g">11. Construcción de la vista <code>G</code></h2>
+<h3 id="111-crear-o-reemplazar-la-vista">11.1 Crear o reemplazar la vista</h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">vw_g_ventas</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="n">pe</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pedido_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ped</span><span class="p">.</span><span class="n">producto_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pe</span><span class="p">.</span><span class="n">cliente_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pe</span><span class="p">.</span><span class="n">vendedor_id</span><span class="p">,</span>
+<span class="w">    </span><span class="nb">DATE</span><span class="p">(</span><span class="n">pe</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fecha</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pe</span><span class="p">.</span><span class="n">estado</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">codigo</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">codigo_producto</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">nombre</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nombre_producto_base</span><span class="p">,</span>
+<span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">nombre</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nombre_categoria</span><span class="p">,</span>
+<span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">nombre</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nombre_familia</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ped</span><span class="p">.</span><span class="n">precio_compra_unitario</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ped</span><span class="p">.</span><span class="n">precio_venta_unitario</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">total_descuento_unitario</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_descuento_unitario</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ped</span><span class="p">.</span><span class="n">igv_unitario</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ped</span><span class="p">.</span><span class="n">precio_venta_unitario</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">venta_bruta</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">total_descuento_unitario</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">descuento_total</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">precio_venta_unitario</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">total_descuento_unitario</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">venta_neta</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ped</span><span class="p">.</span><span class="n">precio_compra_unitario</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">costo_total</span><span class="p">,</span>
+<span class="w">    </span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">precio_venta_unitario</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">total_descuento_unitario</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)))</span>
+<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ped</span><span class="p">.</span><span class="n">precio_compra_unitario</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">margen_bruto</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CASE</span>
+<span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">precio_venta_unitario</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">total_descuento_unitario</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="k">ELSE</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="p">(</span>
+<span class="w">                </span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">precio_venta_unitario</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">total_descuento_unitario</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)))</span>
+<span class="w">                </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ped</span><span class="p">.</span><span class="n">precio_compra_unitario</span><span class="p">)</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">            </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">cantidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">precio_venta_unitario</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">ped</span><span class="p">.</span><span class="n">total_descuento_unitario</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)))</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pct_margen_bruto</span><span class="p">,</span>
+<span class="w">    </span><span class="n">TIMESTAMPDIFF</span><span class="p">(</span><span class="k">MINUTE</span><span class="p">,</span><span class="w"> </span><span class="n">pe</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">,</span><span class="w"> </span><span class="n">pe</span><span class="p">.</span><span class="n">fecha_confirmacion</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">minutos_confirmacion</span><span class="p">,</span>
+<span class="w">    </span><span class="n">TIMESTAMPDIFF</span><span class="p">(</span><span class="k">MINUTE</span><span class="p">,</span><span class="w"> </span><span class="n">pe</span><span class="p">.</span><span class="n">fecha_confirmacion</span><span class="p">,</span><span class="w"> </span><span class="n">pe</span><span class="p">.</span><span class="n">fecha_envio</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">minutos_despacho</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="n">TIMESTAMPDIFF</span><span class="p">(</span><span class="k">SECOND</span><span class="p">,</span><span class="w"> </span><span class="n">pe</span><span class="p">.</span><span class="n">fecha_envio</span><span class="p">,</span><span class="w"> </span><span class="n">pe</span><span class="p">.</span><span class="n">fecha_entrega</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">horas_entrega</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="n">TIMESTAMPDIFF</span><span class="p">(</span><span class="k">SECOND</span><span class="p">,</span><span class="w"> </span><span class="n">pe</span><span class="p">.</span><span class="n">fecha_creacion</span><span class="p">,</span><span class="w"> </span><span class="n">pe</span><span class="p">.</span><span class="n">fecha_entrega</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">horas_lead_time</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pedidos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pe</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">pedido_detalles</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ped</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">pe</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ped</span><span class="p">.</span><span class="n">pedido_id</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">productos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">p</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">ped</span><span class="p">.</span><span class="n">producto_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">id</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">categorias</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">c</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">categoria_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">id</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">familias</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">f</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">familia_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="112-validar-la-vista">11.2 Validar la vista</h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">vw_g_ventas</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="12-como-leer-la-vista-g">12. Cómo leer la vista <code>G</code></h2>
+<p>La vista <code>G</code> debe entenderse en bloques:</p>
+<h3 id="bloque-1-base-transaccional">Bloque 1. Base transaccional</h3>
+<ul>
+<li><code>pedidos</code></li>
+<li><code>pedido_detalles</code></li>
+</ul>
+<p>Aquí aparece la unidad base del hecho:</p>
+<ul>
+<li>una línea de pedido por producto</li>
+</ul>
+<h3 id="bloque-2-contexto-de-negocio">Bloque 2. Contexto de negocio</h3>
+<ul>
+<li><code>clientes</code></li>
+<li><code>vendedores</code></li>
+<li><code>productos</code></li>
+<li><code>categorias</code></li>
+<li><code>familias</code></li>
+</ul>
+<p>Esto aporta el contexto dimensional del análisis.</p>
+<h3 id="bloque-3-calculo-de-metricas">Bloque 3. Cálculo de métricas</h3>
+<p>Se calculan:</p>
+<ul>
+<li><code>venta_bruta</code></li>
+<li><code>descuento_total</code></li>
+<li><code>venta_neta</code></li>
+<li><code>costo_total</code></li>
+<li><code>margen_bruto</code></li>
+<li><code>pct_margen_bruto</code></li>
+</ul>
+<h3 id="bloque-4-calculo-de-tiempos">Bloque 4. Cálculo de tiempos</h3>
+<p>Se calculan:</p>
+<ul>
+<li><code>minutos_confirmacion</code></li>
+<li><code>minutos_despacho</code></li>
+<li><code>horas_entrega</code></li>
+<li><code>horas_lead_time</code></li>
+</ul>
+<h2 id="13-carga-de-fact_ventas">13. Carga de <code>fact_ventas</code></h2>
+<p>Una vez creadas las dimensiones y la vista <code>G</code>, se carga la tabla de hechos.</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">fact_ventas</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">pedido_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fecha_key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cliente_key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vendedor_key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">producto_key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">estado_key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cantidad_vendida</span><span class="p">,</span>
+<span class="w">    </span><span class="n">venta_bruta</span><span class="p">,</span>
+<span class="w">    </span><span class="n">descuento_total</span><span class="p">,</span>
+<span class="w">    </span><span class="n">venta_neta</span><span class="p">,</span>
+<span class="w">    </span><span class="n">costo_total</span><span class="p">,</span>
+<span class="w">    </span><span class="n">margen_bruto</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pct_margen_bruto</span><span class="p">,</span>
+<span class="w">    </span><span class="n">minutos_confirmacion</span><span class="p">,</span>
+<span class="w">    </span><span class="n">minutos_despacho</span><span class="p">,</span>
+<span class="w">    </span><span class="n">horas_entrega</span><span class="p">,</span>
+<span class="w">    </span><span class="n">horas_lead_time</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pedido_count</span>
+<span class="p">)</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">pedido_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">fecha_key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dc</span><span class="p">.</span><span class="n">cliente_key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dv</span><span class="p">.</span><span class="n">vendedor_key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dp</span><span class="p">.</span><span class="n">producto_key</span><span class="p">,</span>
+<span class="w">    </span><span class="n">de</span><span class="p">.</span><span class="n">estado_key</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">cantidad</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">venta_bruta</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">descuento_total</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">venta_neta</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">costo_total</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">margen_bruto</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">pct_margen_bruto</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">minutos_confirmacion</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">minutos_despacho</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">horas_entrega</span><span class="p">,</span>
+<span class="w">    </span><span class="k">g</span><span class="p">.</span><span class="n">horas_lead_time</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pedido_count</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">vw_g_ventas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">g</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_fecha</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">df</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">fecha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">fecha</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_cliente</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dc</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">cliente_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dc</span><span class="p">.</span><span class="n">cliente_id</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_vendedor</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dv</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">vendedor_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dv</span><span class="p">.</span><span class="n">vendedor_id</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_producto</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dp</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">producto_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span><span class="p">.</span><span class="n">producto_id</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_estado_pedido</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">de</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">estado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">de</span><span class="p">.</span><span class="n">estado_pedido</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="14-validacion-de-la-carga-del-hecho">14. Validación de la carga del hecho</h2>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">fact_ventas</span><span class="p">;</span>
+</code></pre></div>
+<p>Valida también el número de filas:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_fact_rows</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">fact_ventas</span><span class="p">;</span>
+</code></pre></div>
+<p>Y compáralo con:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_detalle_rows</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pedido_detalles</span><span class="p">;</span>
+</code></pre></div>
+<p>La idea es comprobar que el hecho mantiene el detalle base y no se resumió indebidamente.</p>
+<h2 id="15-diferencia-entre-este-enfoque-y-una-tabla-resumen">15. Diferencia entre este enfoque y una tabla resumen</h2>
+<p>En esta práctica la tabla de hechos debe conservar el grano:</p>
+<ul>
+<li>una fila por línea de pedido por producto</li>
+</ul>
+<p>Por eso, en esta carga:</p>
+<ul>
+<li>no se usa un <code>GROUP BY</code> para consolidar por fecha, cliente, vendedor y producto</li>
+<li>no se hace una tabla resumen adelantada</li>
+<li>primero se conserva el detalle, luego el análisis agregado se realiza en consultas posteriores</li>
+</ul>
+<h2 id="16-consultas-de-verificacion-rapida">16. Consultas de verificación rápida</h2>
+<h3 id="verificar-ventas-por-producto">Verificar ventas por producto</h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">dp</span><span class="p">.</span><span class="n">nombre_producto</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">fv</span><span class="p">.</span><span class="n">venta_neta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ventas_netas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">fact_ventas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fv</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_producto</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dp</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">producto_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span><span class="p">.</span><span class="n">producto_key</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dp</span><span class="p">.</span><span class="n">nombre_producto</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ventas_netas</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="verificar-ventas-por-cliente">Verificar ventas por cliente</h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">dc</span><span class="p">.</span><span class="n">nombre_cliente</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">fv</span><span class="p">.</span><span class="n">venta_neta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ventas_netas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">fact_ventas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fv</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">dim_cliente</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dc</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">cliente_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dc</span><span class="p">.</span><span class="n">cliente_key</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dc</span><span class="p">.</span><span class="n">nombre_cliente</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ventas_netas</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="verificar-tiempos-del-proceso">Verificar tiempos del proceso</h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">minutos_confirmacion</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">promedio_confirmacion</span><span class="p">,</span>
+<span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">minutos_despacho</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">promedio_despacho</span><span class="p">,</span>
+<span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">horas_entrega</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">promedio_entrega</span><span class="p">,</span>
+<span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">horas_lead_time</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">promedio_lead_time</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">fact_ventas</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="17-que-debe-quedar-listo-al-cerrar-esta-sesion">17. Qué debe quedar listo al cerrar esta sesión</h2>
+<p>Al terminar esta práctica debe quedar:</p>
+<ul>
+<li><code>dim_cliente</code> poblada</li>
+<li><code>dim_vendedor</code> poblada</li>
+<li><code>dim_producto</code> poblada</li>
+<li><code>dim_fecha</code> poblada</li>
+<li><code>dim_estado_pedido</code> poblada</li>
+<li><code>vw_g_ventas</code> creada</li>
+<li><code>fact_ventas</code> cargada</li>
+</ul>
+<h2 id="18-que-viene-en-la-siguiente-practica">18. Qué viene en la siguiente práctica</h2>
+<p>En la siguiente sesión se trabajará la validación analítica del DataMart manual para:</p>
+<ul>
+<li>contrastar resultados contra el OLTP</li>
+<li>validar métricas</li>
+<li>revisar el comportamiento del esquema estrella</li>
+<li>reconocer límites del enfoque manual dentro del mismo motor transaccional</li>
+</ul>
+<h2 id="19-evidencias-a-entregar">19. Evidencias a entregar</h2>
+<ul>
+<li>captura de <code>SELECT * FROM dim_producto</code></li>
+<li>captura de <code>SELECT * FROM dim_fecha</code></li>
+<li>captura de <code>SELECT * FROM vw_g_ventas</code></li>
+<li>captura de <code>SELECT * FROM fact_ventas</code></li>
+<li>explicación breve de qué hace la vista <code>G</code></li>
+</ul>
+<h2 id="20-cierre">20. Cierre</h2>
+<p>Esta práctica representa el corazón técnico de la fase manual del DW. Aquí el estudiante transforma datos transaccionales en datos analíticos mediante SQL puro, comprende la lógica de integración del negocio y deja listo el DataMart para su validación posterior.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid.js"></script>
+      
+    
+  </body>
+</html>
