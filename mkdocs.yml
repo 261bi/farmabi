@@ -4,29 +4,25 @@ docs_dir: docs
 
 nav:
   - Inicio: index.md
-  - Sesiones:
-      - S1 Fundamentos BI: sesiones/s01-fundamentos-bi.md
-      - S2 Requerimientos y KPIs: sesiones/s02-requerimientos-kpis.md
-      - S3 Modelado dimensional y metadata: sesiones/s03-modelado-dimensional-metadata.md
-      - S4 Diseno de la solucion BI: sesiones/s04-diseno-solucion-bi.md
-      - S5 Evaluacion U1: sesiones/s05-evaluacion-u1.md
-      - S6 DW manual con SQL: sesiones/s06-dw-manual-sql.md
-      - S7 Pipeline BI con herramientas: sesiones/s07-pipeline-bi-herramientas.md
-      - S8 Modelo semantico y metricas: sesiones/s08-modelo-semantico-metricas.md
-      - S9 Visualizacion BI base: sesiones/s09-visualizacion-bi-base.md
-      - S10 Paneles interactivos: sesiones/s10-paneles-interactivos.md
-      - S11 Interpretacion y gobierno del dato: sesiones/s11-interpretacion-gobierno-dato.md
-      - S12 Evaluacion U2: sesiones/s12-evaluacion-u2.md
-      - S13 Integracion end-to-end: sesiones/s13-integracion-end-to-end.md
-      - S14 Validacion con negocio: sesiones/s14-validacion-negocio.md
-      - S15 Sustentacion final: sesiones/s15-sustentacion-final.md
-      - S16 Evaluacion final: sesiones/s16-evaluacion-final.md
-  - Guias:
-      - Plantilla entregable U2: guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART.md
-      - Comparativos ventas pedidos: guias/pasos_24_25_comparativos_ventas_pedidos.md
-  - Historico:
-      - Modelo semantico version anterior: historico/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI_vAnterior.md
-      - Medidas DAX version anterior: historico/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES_vAnterior.md
+  - "1. Definicion del sistema de informacion para ejecutivos":
+      - S1 - Fundamentos BI: sesiones/s01-fundamentos-bi.md
+      - S2 - Requerimientos y KPIs: sesiones/s02-requerimientos-kpis.md
+      - S3 - Modelado dimensional y metadata: sesiones/s03-modelado-dimensional-metadata.md
+      - S4 - Diseno de la solucion BI: sesiones/s04-diseno-solucion-bi.md
+      - S5 - Evaluacion U1: sesiones/s05-evaluacion-u1.md
+  - "2. Construccion del BI":
+      - S6 - DW manual con SQL: sesiones/s06-dw-manual-sql.md
+      - S7 - Pipeline BI con herramientas: sesiones/s07-pipeline-bi-herramientas.md
+      - S8 - Modelo semantico y metricas: sesiones/s08-modelo-semantico-metricas.md
+      - S9 - Visualizacion BI base: sesiones/s09-visualizacion-bi-base.md
+      - S10 - Paneles interactivos: sesiones/s10-paneles-interactivos.md
+      - S11 - Interpretacion y gobierno del dato: sesiones/s11-interpretacion-gobierno-dato.md
+      - S12 - Evaluacion U2: sesiones/s12-evaluacion-u2.md
+  - "3. Integracion y toma de decisiones":
+      - S13 - Integracion end-to-end: sesiones/s13-integracion-end-to-end.md
+      - S14 - Validacion con negocio: sesiones/s14-validacion-negocio.md
+      - S15 - Sustentacion final: sesiones/s15-sustentacion-final.md
+      - S16 - Evaluacion final: sesiones/s16-evaluacion-final.md
 
 theme:
   name: material
