@@ -1,9 +1,10 @@
-name: farmabi-debezium
+﻿name: farmabi-debezium
 
 services:
   zookeeper:
     image: debezium/zookeeper:2.7.3.Final
     container_name: farmabi-debezium-zookeeper
+    restart: unless-stopped
     ports:
       - "52181:2181"
     networks:
@@ -12,6 +13,7 @@ services:
   kafka:
     image: debezium/kafka:2.7.3.Final
     container_name: farmabi-debezium-kafka
+    restart: unless-stopped
     ports:
       - "59092:9092"
     environment:
@@ -38,6 +40,7 @@ services:
   connect:
     image: debezium/connect:2.7.3.Final
     container_name: farmabi-debezium-connect
+    restart: unless-stopped
     ports:
       - "58083:8083"
     environment:
@@ -55,3 +58,4 @@ networks:
   farmabi-net:
     external: true
     name: farmabi-net
+

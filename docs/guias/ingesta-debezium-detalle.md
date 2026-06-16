@@ -6,7 +6,7 @@ Este proyecto levanta una base mínima de infraestructura para trabajar Change D
 
 Esta carpeta complementa la sesión 2 de la Unidad 2:
 
-- [SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD.md](../sesiones/SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD.md)
+- [S7 - Pipeline BI con herramientas](../sesiones/s07-pipeline-bi-herramientas.md)
 
 La intención del stack es servir como laboratorio o punto de partida para una migración desde MySQL hacia PostgreSQL, manteniendo ambos sistemas sincronizados mientras se realiza la carga histórica inicial.
 
