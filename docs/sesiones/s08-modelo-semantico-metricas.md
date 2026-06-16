@@ -55,6 +55,15 @@ Medidas minimas:
 
 ## 3. Aplica: actividad practica guiada
 
+### 3.0 Material legacy de referencia
+
+Estas practicas antiguas quedan archivadas fuera del menu principal y sirven para recuperar pasos detallados:
+
+| Practica legacy | Uso recomendado |
+|---|---|
+| [U2 S3 P1 - Modelo semantico Power BI](_u2_legacy/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI.md) | Crear relaciones, cardinalidades y jerarquias |
+| [U2 S3 P2 - Medidas DAX y agregaciones](_u2_legacy/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES.md) | Implementar medidas BI y validar agregaciones |
+
 ### 3.1 Conectar Power BI
 
 **Producto del paso:** tablas `marts` importadas.

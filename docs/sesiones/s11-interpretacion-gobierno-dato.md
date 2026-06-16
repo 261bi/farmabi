@@ -40,6 +40,14 @@ Que dato lo respalda?
 
 ## 3. Aplica: actividad practica guiada
 
+### 3.0 Material legacy de referencia
+
+Esta practica antigua queda archivada fuera del menu principal y sirve para recuperar pasos detallados:
+
+| Practica legacy | Uso recomendado |
+|---|---|
+| [U2 S6 P1 - Gobierno del dato BI](_u2_legacy/SESION_U2_S6_P1_GOBIERNO_DEL_DATO_BI.md) | Base para trazabilidad, validacion, calidad y gobierno del dato |
+
 ### 3.1 Seleccionar hallazgos
 
 **Producto del paso:** tres hallazgos defendibles.

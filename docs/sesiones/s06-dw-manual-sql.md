@@ -60,6 +60,16 @@ En esta sesion no se usa Airbyte, Debezium ni dbt. El objetivo es entender:
 
 Tiempo: 3h.
 
+### 3.0 Material legacy de referencia
+
+Estas practicas antiguas quedan archivadas fuera del menu principal y sirven para recuperar pasos detallados:
+
+| Practica legacy | Uso recomendado |
+|---|---|
+| [U2 S1 P1 - Implementacion fisica manual](_u2_legacy/SESION_U2_S1_P1_IMPLEMENTACION_FISICA_MANUAL_DEL_DATAMART_DENTRO_DEL_MISMO_OLTP.md) | Crear dimensiones y tabla de hechos en MySQL |
+| [U2 S1 P2 - ETL manual con SQL](_u2_legacy/SESION_U2_S1_P2_ETL_MANUAL_CON_SQL_PARA_DIMENSIONES_Y_HECHO_MEDIANTE_LA_VISTA_G.md) | Cargar dimensiones y hecho con SQL |
+| [U2 S1 P3 - Validacion analitica manual](_u2_legacy/SESION_U2_S1_P3_VALIDACION_ANALITICA_DEL_DATAMART_MANUAL.md) | Validar totales y consistencia del DataMart manual |
+
 ### 3.1 Preparar MySQL OLTP
 
 **Producto del paso:** fuente transaccional operativa.

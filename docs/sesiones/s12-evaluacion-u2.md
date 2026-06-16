@@ -28,6 +28,14 @@ Solucion BI construida, validada y presentada con evidencias tecnicas.
 
 ## 3. Actividad evaluativa
 
+### 3.0 Material legacy de referencia
+
+Esta practica antigua queda archivada fuera del menu principal y sirve para recuperar criterios de evaluacion y evidencias:
+
+| Practica legacy | Uso recomendado |
+|---|---|
+| [U2 S7 P1 - Evaluacion U2 BI end-to-end](_u2_legacy/SESION_U2_S7_P1_EVALUACION_U2_BI_END_TO_END.md) | Base para demo, rubrica y evidencias de cierre U2 |
+
 ### 3.1 Demo tecnica
 
 Guion sugerido:

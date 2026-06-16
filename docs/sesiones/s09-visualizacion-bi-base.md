@@ -43,6 +43,15 @@ Descuentos por categoria
 
 ## 3. Aplica: actividad practica guiada
 
+### 3.0 Material legacy de referencia
+
+Estas practicas antiguas quedan archivadas fuera del menu principal y sirven para recuperar pasos detallados:
+
+| Practica legacy | Uso recomendado |
+|---|---|
+| [U2 S4 P1 - Exploracion OLAP y storytelling Power BI](_u2_legacy/SESION_U2_S4_P1_EXPLORACION_OLAP_STORYTELLING_POWER_BI.md) | Base para exploracion OLAP, primeras lecturas y storytelling |
+| [U2 S5 P1 - Dashboard KPIs y visualizacion BI](_u2_legacy/SESION_U2_S5_P1_DASHBOARD_KPIS_VISUALIZACION_BI.md) | Base para crear visuales KPI iniciales |
+
 ### 3.1 Crear pagina Resumen ejecutivo
 
 **Producto del paso:** pagina inicial del dashboard.

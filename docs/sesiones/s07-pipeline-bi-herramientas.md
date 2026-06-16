@@ -55,6 +55,17 @@ No se usan Airbyte y Debezium al mismo tiempo para la misma carga del laboratori
 
 ## 3. Aplica: actividad practica guiada
 
+### 3.0 Material legacy de referencia
+
+Estas practicas antiguas quedan archivadas fuera del menu principal y sirven para recuperar pasos detallados:
+
+| Practica legacy | Uso recomendado |
+|---|---|
+| [U2 S2 P1 - Airbyte replica MySQL PostgreSQL](_u2_legacy/SESION_U2_S2_P1_AIRBYTE_REPLICA_MYSQL_POSTGRES.md) | Variante batch/configurada de ingesta hacia `raw` |
+| [U2 S2 P2 - dbt modelado fisico DataMart](_u2_legacy/SESION_U2_S2_P2_DBT_MODELADO_FISICO_DATAMART.md) | Construccion de `staging` y `marts` con dbt |
+| [U2 S2 P3 - Validacion analitica del DataMart](_u2_legacy/SESION_U2_S2_P3_VALIDACION_ANALITICA_DEL_DATAMART.md) | Validacion del DataMart construido con herramientas |
+| [U2 S2 P4 - CDC, carga incremental y SCD](_u2_legacy/SESION_U2_S2_P4_CDC_CARGA_INCREMENTAL_Y_SCD.md) | Extension CDC con Debezium/Kafka e incrementalidad |
+
 ### 3.1 Levantar fuente y DW
 
 **Producto del paso:** MySQL y PostgreSQL disponibles.
