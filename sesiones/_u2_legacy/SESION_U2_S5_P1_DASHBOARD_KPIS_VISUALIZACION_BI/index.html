@@ -1,0 +1,2102 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentacion del proyecto BI farmabi">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Sesión U2 S5 P1: Ventas actuales vs año previo mismo periodo - farmabi - Business Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sesion-u2-s5-p1-ventas-actuales-vs-ano-previo-mismo-periodo" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="farmabi - Business Intelligence" class="md-header__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            farmabi - Business Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sesión U2 S5 P1: Ventas actuales vs año previo mismo periodo
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="farmabi - Business Intelligence" class="md-nav__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    farmabi - Business Intelligence
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sesiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s01-fundamentos-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 Fundamentos BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s02-requerimientos-kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 Requerimientos y KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s03-modelado-dimensional-metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 Modelado dimensional y metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s04-diseno-solucion-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S4 Diseno de la solucion BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s05-evaluacion-u1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 Evaluacion U1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s06-dw-manual-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S6 DW manual con SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s07-pipeline-bi-herramientas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S7 Pipeline BI con herramientas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s08-modelo-semantico-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S8 Modelo semantico y metricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s09-visualizacion-bi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S9 Visualizacion BI base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s10-paneles-interactivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S10 Paneles interactivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s11-interpretacion-gobierno-dato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S11 Interpretacion y gobierno del dato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s12-evaluacion-u2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S12 Evaluacion U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s13-integracion-end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S13 Integracion end-to-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s14-validacion-negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S14 Validacion con negocio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s15-sustentacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S15 Sustentacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s16-evaluacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S16 Evaluacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guias/pasos_24_25_comparativos_ventas_pedidos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparativos ventas pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Historico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../historico/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo semantico version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../historico/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medidas DAX version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-titulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Título
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-relacion-con-el-laboratorio-original" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Relación con el laboratorio original
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-requisitos-previos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Requisitos previos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-preparar-la-pagina-de-trabajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Preparar la página de trabajo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-matriz-de-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Matriz de control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-segmentador-de-ano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Segmentador de año
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-medida-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Medida base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-medida-ventas-ano-previo-mismo-periodo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Medida: ventas año previo mismo periodo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-medidas-de-variacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Medidas de variación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-medida-ano-previo-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Medida: año previo completo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-tabla-desconectada-para-el-eje-mensual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Tabla desconectada para el eje mensual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-medidas-auxiliares-para-el-grafico-con-meses-eje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Medidas auxiliares para el gráfico con Meses Eje
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-tarjetas-de-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Tarjetas de control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-grafico-de-lineas-mensual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Gráfico de líneas mensual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-medida-titulo-dinamico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Medida: título dinámico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-convertir-el-grafico-copiado-a-kpi-anual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Convertir el gráfico copiado a KPI anual
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Convertir el gráfico copiado a KPI anual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#171-ajustar-el-eje-de-tendencia-del-kpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.1 Ajustar el eje de tendencia del KPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#172-si-el-kpi-sigue-en-blanco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.2 Si el KPI sigue en blanco
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#173-kpi-mensual-con-fondo-de-comportamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.3 KPI mensual con fondo de comportamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#174-formato-de-los-kpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.4 Formato de los KPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-comparativo-por-dias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Comparativo por días
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-medida-titulo-dinamico-por-dias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Medida: título dinámico por días
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-preguntas-de-analisis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Preguntas de análisis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-validacion-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Validación SQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-actividad-final-organizar-medidas-en-carpetas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Actividad final: organizar medidas en carpetas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-resultado-esperado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. Resultado esperado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-evidencias-a-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. Evidencias a entregar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-cierre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. Cierre
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sesion-u2-s5-p1-ventas-actuales-vs-ano-previo-mismo-periodo">Sesión U2 S5 P1: Ventas actuales vs año previo mismo periodo</h1>
+<h2 id="1-titulo">1. Título</h2>
+<p>Comparativo de ventas actuales contra ventas del año pasado para el mismo periodo en Power BI.</p>
+<h2 id="2-objetivo">2. Objetivo</h2>
+<p>Realizar un comparativo de ventas actuales con las ventas del año pasado para el mismo periodo usando inteligencia de tiempo y control de contexto en Power BI.</p>
+<p>La práctica se construye como en el flujo real de clase:</p>
+<div class="highlight"><pre><span></span><code>matriz de control -&gt; segmentador -&gt; medidas -&gt; gráfico -&gt; tarjetas -&gt; KPI -&gt; análisis diario
+</code></pre></div>
+<p>Al finalizar, el informe debe permitir:</p>
+<ul>
+<li>comparar ventas actuales vs año anterior</li>
+<li>analizar comportamiento por año</li>
+<li>analizar comportamiento por mes</li>
+<li>analizar comportamiento por día</li>
+<li>identificar crecimiento o disminución de ventas</li>
+<li>diferenciar una comparación de mismo periodo de una referencia anual completa</li>
+</ul>
+<h2 id="3-relacion-con-el-laboratorio-original">3. Relación con el laboratorio original</h2>
+<p>Esta práctica toma como referencia el paso 24 de <code>PBI03-Practica 04-Modelado de datos.docx</code>.</p>
+<p>En el laboratorio original se usa:</p>
+<div class="highlight"><pre><span></span><code>DTIEMPO[Date]
+[Ventas]
+Datos_Curso_DAX_Completo.xlsx
+</code></pre></div>
+<p>En el modelo BI de farmacia se adapta a:</p>
+<div class="highlight"><pre><span></span><code>dim_fecha[fecha]
+[Ventas Netas]
+farmabi_dw.marts.fact_ventas
+</code></pre></div>
+<p>Si se trabaja directamente con el archivo Excel del laboratorio, reemplaza <code>dim_fecha[fecha]</code> por <code>DTIEMPO[Date]</code> y <code>[Ventas Netas]</code> por <code>[Ventas]</code>.</p>
+<h2 id="4-requisitos-previos">4. Requisitos previos</h2>
+<p>Antes de iniciar, valida que:</p>
+<ul>
+<li><code>dim_fecha</code> esté relacionada con <code>fact_ventas</code></li>
+<li><code>dim_fecha[fecha]</code> sea de tipo fecha</li>
+<li><code>dim_fecha</code> esté marcada como tabla de fechas en Power BI</li>
+<li>exista la medida <code>[Ventas Netas]</code></li>
+<li>existan <code>año</code>, <code>mes_desc</code>, <code>mes_numero</code> y <code>dia</code></li>
+<li><code>dim_fecha[mes_desc]</code> esté ordenado por <code>dim_fecha[mes_numero]</code></li>
+</ul>
+<p>Relación esperada:</p>
+<div class="highlight"><pre><span></span><code>dim_fecha[fecha_key] 1 ---- * fact_ventas[fecha_key]
+</code></pre></div>
+<h2 id="5-preparar-la-pagina-de-trabajo">5. Preparar la página de trabajo</h2>
+<p>Crea una página nueva para esta práctica.</p>
+<p>Nombre sugerido:</p>
+<div class="highlight"><pre><span></span><code>S5 P1 - Año previo
+</code></pre></div>
+<p>Distribución sugerida:</p>
+<div class="highlight"><pre><span></span><code>Izquierda  -&gt; segmentador de año y matriz de control
+Centro    -&gt; gráfico de líneas comparativo
+Derecha   -&gt; tarjetas y KPI
+Inferior  -&gt; visual diario, si se trabaja el detalle por día
+</code></pre></div>
+<h2 id="6-matriz-de-control">6. Matriz de control</h2>
+<p>Primero crea una matriz para comprobar los datos por año y mes antes de crear el gráfico comparativo.</p>
+<p>Visual:</p>
+<div class="highlight"><pre><span></span><code>Matriz
+</code></pre></div>
+<p>Campos:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Ubicacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dim_fecha[mes_desc]</code></td>
+<td>Filas</td>
+</tr>
+<tr>
+<td><code>dim_fecha[año]</code></td>
+<td>Columnas</td>
+</tr>
+<tr>
+<td><code>[Ventas Netas]</code></td>
+<td>Valores</td>
+</tr>
+</tbody>
+</table>
+<p>Lectura esperada:</p>
+<ul>
+<li>cada columna muestra un año</li>
+<li>cada fila muestra un mes</li>
+<li>los totales permiten validar rapidamente si las medidas posteriores cuadran</li>
+</ul>
+<p>Esta matriz no es el visual final principal. Es un control para saber si los calculos comparativos tienen sentido.</p>
+<h2 id="7-segmentador-de-ano">7. Segmentador de año</h2>
+<p>Agrega un segmentador:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Ubicacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dim_fecha[año]</code></td>
+<td>Campo</td>
+</tr>
+</tbody>
+</table>
+<p>Configúralo como lista.</p>
+<p>Para la práctica, selecciona un solo año. Ejemplo:</p>
+<div class="highlight"><pre><span></span><code>2026
+</code></pre></div>
+<p>Regla:</p>
+<div class="highlight"><pre><span></span><code>La comparación de año previo debe evaluarse con un solo año seleccionado.
+</code></pre></div>
+<p>Si seleccionas dos años, <code>[Ventas Netas]</code> suma ambos años y la lectura deja de ser clara para el objetivo de esta práctica.</p>
+<h2 id="8-medida-base">8. Medida base</h2>
+<p>Usa la medida principal de ventas del modelo:</p>
+<div class="highlight"><pre><span></span><code>Ventas Netas =
+<span class="nf">SUM</span><span class="p">(</span><span class="na">fact_ventas[venta_neta]</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="9-medida-ventas-ano-previo-mismo-periodo">9. Medida: ventas año previo mismo periodo</h2>
+<p>Agrega la siguiente medida en la tabla <code>_Medidas</code>.</p>
+<div class="highlight"><pre><span></span><code>Ventas Anio Previo Mismo Periodo =
+<span class="nb">VAR</span><span class="w"> </span>__anio_actual =
+<span class="w">    </span><span class="nf">SELECTEDVALUE</span><span class="p">(</span><span class="na">dim_fecha[año]</span><span class="p">)</span>
+<span class="nb">VAR</span><span class="w"> </span>__meses_actuales =
+<span class="w">    </span><span class="nf">VALUES</span><span class="p">(</span><span class="na">dim_fecha[mes_numero]</span><span class="p">)</span>
+<span class="nb">VAR</span><span class="w"> </span>__dias_actuales =
+<span class="w">    </span><span class="nf">VALUES</span><span class="p">(</span><span class="na">dim_fecha[dia]</span><span class="p">)</span>
+<span class="nb">VAR</span><span class="w"> </span>__usar_dia =
+<span class="w">    </span><span class="nf">ISINSCOPE</span><span class="p">(</span><span class="na">dim_fecha[dia]</span><span class="p">)</span>
+<span class="nb">RETURN</span>
+<span class="w">    </span><span class="nf">IF</span><span class="p">(</span>
+<span class="w">        </span><span class="nf">ISBLANK</span><span class="p">(</span>__anio_actual),
+<span class="w">        </span><span class="nf">BLANK</span><span class="p">(),</span>
+<span class="w">        </span><span class="nf">IF</span><span class="p">(</span>
+<span class="w">            </span>__usar_dia,
+<span class="w">            </span><span class="nf">CALCULATE</span><span class="p">(</span>
+<span class="w">                </span><span class="na">[Ventas Netas]</span><span class="p">,</span>
+<span class="w">                </span><span class="nf">REMOVEFILTERS</span><span class="p">(</span>dim_fecha),
+<span class="w">                </span><span class="na">dim_fecha[año]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>__anio_actual - 1,
+<span class="w">                </span><span class="nf">TREATAS</span><span class="p">(</span>__meses_actuales, dim_fecha[mes_numero]),
+<span class="w">                </span><span class="nf">TREATAS</span><span class="p">(</span>__dias_actuales, dim_fecha[dia])
+<span class="w">            </span><span class="p">),</span>
+<span class="w">            </span><span class="nf">CALCULATE</span><span class="p">(</span>
+<span class="w">                </span><span class="na">[Ventas Netas]</span><span class="p">,</span>
+<span class="w">                </span><span class="nf">REMOVEFILTERS</span><span class="p">(</span>dim_fecha),
+<span class="w">                </span><span class="na">dim_fecha[año]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>__anio_actual - 1,
+<span class="w">                </span><span class="nf">TREATAS</span><span class="p">(</span>__meses_actuales, dim_fecha[mes_numero])
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+</code></pre></div>
+<p>Esta medida compara el periodo visible contra el mismo periodo del año anterior.</p>
+<p>Ejemplos:</p>
+<div class="highlight"><pre><span></span><code>2026 seleccionado        -&gt; enero-mayo 2026 vs enero-mayo 2025
+marzo 2026 en el visual  -&gt; marzo 2026 vs marzo 2025
+día 10 de marzo 2026     -&gt; día 10 de marzo 2026 vs día 10 de marzo 2025
+</code></pre></div>
+<p>Se usa <code>REMOVEFILTERS(dim_fecha)</code> porque el segmentador mantiene el año actual. Si no se remueve ese filtro, Power BI intenta calcular algo como:</p>
+<div class="highlight"><pre><span></span><code>fecha del año previo y año actual al mismo tiempo
+</code></pre></div>
+<p>El resultado seria blanco.</p>
+<h2 id="10-medidas-de-variacion">10. Medidas de variación</h2>
+<p>Medida de variación absoluta:</p>
+<div class="highlight"><pre><span></span><code>Variacion Ventas vs Anio Previo =
+<span class="na">[Ventas Netas]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="na">[Ventas Anio Previo Mismo Periodo]</span>
+</code></pre></div>
+<p>Medida de variación porcentual:</p>
+<div class="highlight"><pre><span></span><code>% Variacion Ventas vs Anio Previo =
+<span class="nf">DIVIDE</span><span class="p">(</span>
+<span class="w">    </span><span class="na">[Variacion Ventas vs Anio Previo]</span><span class="p">,</span>
+<span class="w">    </span><span class="na">[Ventas Anio Previo Mismo Periodo]</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Formato de <code>[% Variacion Ventas vs Anio Previo]</code>:</p>
+<ul>
+<li>tipo: porcentaje</li>
+<li>decimales: 2</li>
+</ul>
+<p>Estas medidas se usan para tarjetas, tablas, matrices, tooltips y lectura ejecutiva. No son medidas auxiliares de eje.</p>
+<h2 id="11-medida-ano-previo-completo">11. Medida: año previo completo</h2>
+<p>Esta medida sirve como referencia anual completa.</p>
+<div class="highlight"><pre><span></span><code>Ventas Anio Previo Completo =
+<span class="nb">VAR</span><span class="w"> </span>__anio_actual =
+<span class="w">    </span><span class="nf">SELECTEDVALUE</span><span class="p">(</span><span class="na">dim_fecha[año]</span><span class="p">)</span>
+<span class="nb">VAR</span><span class="w"> </span>__mes_actual =
+<span class="w">    </span><span class="nf">SELECTEDVALUE</span><span class="p">(</span><span class="na">dim_fecha[mes_numero]</span><span class="p">)</span>
+<span class="nb">VAR</span><span class="w"> </span>__en_mes =
+<span class="w">    </span><span class="nf">ISINSCOPE</span><span class="p">(</span><span class="na">dim_fecha[mes_desc]</span><span class="p">)</span>
+<span class="w">        </span>|| ISINSCOPE(dim_fecha[mes_numero])
+<span class="nb">RETURN</span>
+<span class="w">    </span><span class="nf">IF</span><span class="p">(</span>
+<span class="w">        </span><span class="nf">ISBLANK</span><span class="p">(</span>__anio_actual),
+<span class="w">        </span><span class="nf">BLANK</span><span class="p">(),</span>
+<span class="w">        </span><span class="nf">IF</span><span class="p">(</span>
+<span class="w">            </span>__en_mes,
+<span class="w">            </span><span class="nf">CALCULATE</span><span class="p">(</span>
+<span class="w">                </span><span class="na">[Ventas Netas]</span><span class="p">,</span>
+<span class="w">                </span><span class="nf">REMOVEFILTERS</span><span class="p">(</span>dim_fecha),
+<span class="w">                </span><span class="na">dim_fecha[año]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>__anio_actual - 1,
+<span class="w">                </span><span class="na">dim_fecha[mes_numero]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>__mes_actual
+<span class="w">            </span><span class="p">),</span>
+<span class="w">            </span><span class="nf">CALCULATE</span><span class="p">(</span>
+<span class="w">                </span><span class="na">[Ventas Netas]</span><span class="p">,</span>
+<span class="w">                </span><span class="nf">REMOVEFILTERS</span><span class="p">(</span>dim_fecha),
+<span class="w">                </span><span class="na">dim_fecha[año]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>__anio_actual - 1
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+</code></pre></div>
+<p>Uso recomendado:</p>
+<div class="highlight"><pre><span></span><code>Ventas Año Previo Mismo Periodo -&gt; KPI y tarjeta de comparación justa
+Ventas Año Previo Completo      -&gt; referencia anual completa
+</code></pre></div>
+<p>Ejemplo con 2026 seleccionado:</p>
+<div class="highlight"><pre><span></span><code>Ventas Netas                         -&gt; enero-mayo 2026
+Ventas Año Previo Mismo Periodo     -&gt; enero-mayo 2025
+Ventas Año Previo Completo          -&gt; enero-diciembre 2025
+</code></pre></div>
+<h2 id="12-tabla-desconectada-para-el-eje-mensual">12. Tabla desconectada para el eje mensual</h2>
+<p>El gráfico del taller Excel puede mostrar el año previo hasta diciembre porque el eje tiene todos los meses disponibles.</p>
+<p>En nuestro DW, si el eje usa <code>dim_fecha[mes_desc]</code> y el año actual tiene ventas solo hasta mayo, Power BI corta el eje en mayo. Activar <code>Mostrar elementos sin datos</code> no resuelve este caso porque el filtro del año actual sigue dejando visible solo el dominio enero-mayo.</p>
+<p>Solución para clase: crear una tabla desconectada de meses.</p>
+<div class="highlight"><pre><span></span><code>Meses Eje =
+<span class="nf">DISTINCT</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">SELECTCOLUMNS</span><span class="p">(</span>
+<span class="w">        </span>dim_fecha,
+<span class="w">        </span><span class="s">&quot;mes_numero&quot;</span><span class="p">,</span><span class="w"> </span><span class="na">dim_fecha[mes_numero]</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;mes_desc&quot;</span><span class="p">,</span><span class="w"> </span><span class="na">dim_fecha[mes_desc]</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Luego ordena:</p>
+<div class="highlight"><pre><span></span><code>Meses Eje[mes_desc] por Meses Eje[mes_numero]
+</code></pre></div>
+<p>No relaciones <code>Meses Eje</code> con <code>dim_fecha</code>. Su función es controlar el eje del gráfico.</p>
+<h2 id="13-medidas-auxiliares-para-el-grafico-con-meses-eje">13. Medidas auxiliares para el gráfico con Meses Eje</h2>
+<p>Estas medidas se usan solo para el gráfico que necesita mostrar enero-diciembre.</p>
+<div class="highlight"><pre><span></span><code>Ventas Netas Eje Mes =
+<span class="nb">VAR</span><span class="w"> </span>__anio_actual =
+<span class="w">    </span><span class="nf">SELECTEDVALUE</span><span class="p">(</span><span class="na">dim_fecha[año]</span><span class="p">)</span>
+<span class="nb">VAR</span><span class="w"> </span>__mes_eje =
+<span class="w">    </span><span class="nf">SELECTEDVALUE</span><span class="p">(</span><span class="na">&#39;Meses Eje&#39;[mes_numero]</span><span class="p">)</span>
+<span class="nb">RETURN</span>
+<span class="w">    </span><span class="nf">CALCULATE</span><span class="p">(</span>
+<span class="w">        </span><span class="na">[Ventas Netas]</span><span class="p">,</span>
+<span class="w">        </span><span class="nf">REMOVEFILTERS</span><span class="p">(</span>dim_fecha),
+<span class="w">        </span><span class="na">dim_fecha[año]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>__anio_actual,
+<span class="w">        </span><span class="na">dim_fecha[mes_numero]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>__mes_eje
+<span class="w">    </span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Ventas Anio Previo Completo Eje Mes =
+<span class="nb">VAR</span><span class="w"> </span>__anio_actual =
+<span class="w">    </span><span class="nf">SELECTEDVALUE</span><span class="p">(</span><span class="na">dim_fecha[año]</span><span class="p">)</span>
+<span class="nb">VAR</span><span class="w"> </span>__mes_eje =
+<span class="w">    </span><span class="nf">SELECTEDVALUE</span><span class="p">(</span><span class="na">&#39;Meses Eje&#39;[mes_numero]</span><span class="p">)</span>
+<span class="nb">RETURN</span>
+<span class="w">    </span><span class="nf">CALCULATE</span><span class="p">(</span>
+<span class="w">        </span><span class="na">[Ventas Netas]</span><span class="p">,</span>
+<span class="w">        </span><span class="nf">REMOVEFILTERS</span><span class="p">(</span>dim_fecha),
+<span class="w">        </span><span class="na">dim_fecha[año]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>__anio_actual - 1,
+<span class="w">        </span><span class="na">dim_fecha[mes_numero]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>__mes_eje
+<span class="w">    </span><span class="p">)</span>
+</code></pre></div>
+<p>Regla:</p>
+<div class="highlight"><pre><span></span><code>Las medidas Eje Mes son auxiliares de visual.
+No reemplazan a las medidas oficiales de análisis.
+</code></pre></div>
+<h2 id="14-tarjetas-de-control">14. Tarjetas de control</h2>
+<p>Crea tarjetas o una tabla simple de control con:</p>
+<table>
+<thead>
+<tr>
+<th>Medida</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[Ventas Netas]</code></td>
+<td>ventas del periodo actual</td>
+</tr>
+<tr>
+<td><code>[Ventas Anio Previo Mismo Periodo]</code></td>
+<td>comparación justa mismo periodo</td>
+</tr>
+<tr>
+<td><code>[Ventas Anio Previo Completo]</code></td>
+<td>referencia anual completa</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo con 2026 seleccionado:</p>
+<div class="highlight"><pre><span></span><code>Ventas Netas                     -&gt; 41,820.75
+Ventas Año Previo Mismo Periodo -&gt; 50,994.50
+Ventas Año Previo Completo      -&gt; 122,075.00
+</code></pre></div>
+<p>Si esos importes coinciden con la matriz de control, la lógica está correcta.</p>
+<h2 id="15-grafico-de-lineas-mensual">15. Gráfico de líneas mensual</h2>
+<p>Ahora crea el gráfico principal.</p>
+<p>Visual:</p>
+<div class="highlight"><pre><span></span><code>Gráfico de líneas
+</code></pre></div>
+<p>Campos:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Ubicacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Meses Eje[mes_desc]</code></td>
+<td>Eje X</td>
+</tr>
+<tr>
+<td><code>[Ventas Netas Eje Mes]</code></td>
+<td>Eje Y</td>
+</tr>
+<tr>
+<td><code>[Ventas Anio Previo Completo Eje Mes]</code></td>
+<td>Eje Y</td>
+</tr>
+</tbody>
+</table>
+<p>Formato recomendado:</p>
+<ul>
+<li>ordenar el eje por <code>Meses Eje[mes_numero]</code></li>
+<li>título fijo: <code>Ventas actuales vs año previo</code></li>
+<li>subtitulo dinámico con la medida del paso 16</li>
+<li>mantener la leyenda visible</li>
+</ul>
+<p>Resultado esperado:</p>
+<ul>
+<li>la linea del año actual se muestra hasta el ultimo mes con ventas</li>
+<li>la linea del año previo puede mostrarse hasta diciembre</li>
+<li>el eje mensual no depende del año filtrado</li>
+</ul>
+<h2 id="16-medida-titulo-dinamico">16. Medida: título dinámico</h2>
+<p>Crear una medida para que el subtitulo del gráfico cambie según el ultimo periodo con ventas en el contexto seleccionado.</p>
+<div class="highlight"><pre><span></span><code>Titulo Ventas Actual vs Anio Previo =
+<span class="nb">VAR</span><span class="w"> </span>__ultf =
+<span class="w">    </span><span class="nf">LASTNONBLANK</span><span class="p">(</span><span class="na">dim_fecha[fecha]</span><span class="p">,</span><span class="w"> </span><span class="na">[Ventas Netas]</span><span class="p">)</span>
+<span class="nb">VAR</span><span class="w"> </span>__anioact =
+<span class="w">    </span><span class="nf">FORMAT</span><span class="p">(</span>__ultf, &quot;yyyy&quot;)
+<span class="nb">VAR</span><span class="w"> </span>__anioprev =
+<span class="w">    </span><span class="nf">FORMAT</span><span class="p">(</span>
+<span class="w">        </span><span class="nf">DATE</span><span class="p">(</span><span class="nf">YEAR</span><span class="p">(</span>__ultf) - 1, 1, 1),
+<span class="w">        </span><span class="s">&quot;yyyy&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="nb">RETURN</span>
+<span class="w">    </span>__anioact &amp; &quot; VS &quot; &amp; __anioprev
+</code></pre></div>
+<p>Aplicar la medida en el subtitulo del gráfico:</p>
+<ol>
+<li>Selecciona el gráfico.</li>
+<li>Ve a <code>Formato visual</code>.</li>
+<li>Entra a <code>General</code>.</li>
+<li>Activa <code>Subtitulo</code>.</li>
+<li>En <code>Texto</code>, selecciona el boton <code>fx</code>.</li>
+<li>Configura:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>Formato por: Valor de campo
+Basado en el campo: [Título Ventas Actual vs Año Previo]
+</code></pre></div>
+<ol>
+<li>Confirma con <code>Aceptar</code>.</li>
+</ol>
+<p>Recomendación:</p>
+<div class="highlight"><pre><span></span><code>Título del gráfico    -&gt; nombre fijo del análisis
+Subtitulo del gráfico -&gt; periodo dinámico, por ejemplo 2026 VS 2025
+</code></pre></div>
+<h2 id="17-convertir-el-grafico-copiado-a-kpi-anual">17. Convertir el gráfico copiado a KPI anual</h2>
+<p>Esta parte replica el flujo del taller: crear un gráfico, copiarlo y cambiar el compilador visual a KPI.</p>
+<p>Cómo el subtitulo dinámico ya fue configurado en el gráfico de líneas, al copiar y pegar el visual el KPI hereda esa configuracion.</p>
+<p>Pasos:</p>
+<ol>
+<li>Selecciona el gráfico de líneas mensual.</li>
+<li>Copia y pega el visual.</li>
+<li>En <code>Visualizaciones</code>, cambia el compilador visual a <code>KPI</code>.</li>
+<li>Es normal que el KPI aparezca inicialmente como <code>(En blanco)</code>, porque viene copiado con las medidas auxiliares del gráfico.</li>
+<li>Reemplaza los campos por las medidas oficiales:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Ubicacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[Ventas Netas]</code></td>
+<td>Indicador</td>
+</tr>
+<tr>
+<td><code>Meses Eje[mes_desc]</code></td>
+<td>Eje de tendencia</td>
+</tr>
+<tr>
+<td><code>[Ventas Anio Previo Mismo Periodo]</code></td>
+<td>Objetivo</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Verifica que el KPI muestre el valor de ventas, el objetivo y el porcentaje de variación.</li>
+</ol>
+<p>Antes del cambio, el KPI puede quedar asi:</p>
+<div class="highlight"><pre><span></span><code>Valor    -&gt; [Ventas Netas Eje Mes]
+Destino  -&gt; [Ventas Año Previo Completo Eje Mes]
+</code></pre></div>
+<p>Despues del cambio, debe quedar asi:</p>
+<div class="highlight"><pre><span></span><code>Valor             -&gt; [Ventas Netas]
+Eje de tendencia  -&gt; Meses Eje[mes_desc]
+Destino           -&gt; [Ventas Año Previo Mismo Periodo]
+</code></pre></div>
+<p>Lectura del KPI anual:</p>
+<div class="highlight"><pre><span></span><code>valor central -&gt; total del año/periodo seleccionado
+fondo         -&gt; queda sin tendencia real; no se fuerza comportamiento mensual
+objetivo      -&gt; ventas del mismo periodo del año previo
+</code></pre></div>
+<p>Decisión de diseno:</p>
+<div class="highlight"><pre><span></span><code>Para el KPI anual se prioriza que el valor central y el objetivo sean correctos.
+El comportamiento mensual queda en el gráfico de líneas, no en el fondo del KPI.
+</code></pre></div>
+<p>Si despues de reemplazar los campos el KPI ya muestra correctamente el valor, no es necesario agregar el filtro <code>no esta en blanco</code>.</p>
+<h3 id="171-ajustar-el-eje-de-tendencia-del-kpi">17.1 Ajustar el eje de tendencia del KPI</h3>
+<p>Despues de cambiar el visual a KPI, revisa el campo <code>Eje de tendencia</code>.</p>
+<p>En el taller original con Excel se usaba:</p>
+<div class="highlight"><pre><span></span><code>DTIEMPO[Date] -&gt; Mes
+</code></pre></div>
+<p>En nuestro modelo BI de farmacia, para el KPI anual usa el eje mensual desconectado:</p>
+<div class="highlight"><pre><span></span><code>Meses Eje[mes_desc]
+</code></pre></div>
+<p>Resultado esperado:</p>
+<div class="highlight"><pre><span></span><code>Indicador       -&gt; [Ventas Netas]
+Eje tendencia   -&gt; Meses Eje[mes_desc]
+Objetivo        -&gt; [Ventas Año Previo Mismo Periodo]
+</code></pre></div>
+<p>Si al copiar el gráfico el eje de tendencia queda con varios niveles, por ejemplo:</p>
+<div class="highlight"><pre><span></span><code>año
+trimestre
+mes_desc
+día
+</code></pre></div>
+<p>quita los niveles que sobran y deja solo:</p>
+<div class="highlight"><pre><span></span><code>Meses Eje[mes_desc]
+</code></pre></div>
+<p>No uses la jerarquía automática de <code>dim_fecha[fecha]</code> para este KPI.</p>
+<p>No uses <code>dim_fecha[mes_desc]</code> en este KPI anual si el objetivo es conservar el valor anual del KPI. Con <code>dim_fecha[mes_desc]</code>, el fondo se ve mejor, pero el valor central puede pasar a representar el ultimo mes del eje. Para este caso dejamos el fondo sin tendencia real y conservamos el comparativo anual correcto.</p>
+<h3 id="172-si-el-kpi-sigue-en-blanco">17.2 Si el KPI sigue en blanco</h3>
+<p>Este ajuste solo se aplica si el KPI sigue mostrando <code>(En blanco)</code> despues de reemplazar las medidas auxiliares por las medidas oficiales.</p>
+<ol>
+<li>Abre el panel <code>Filtros</code>.</li>
+<li>En <code>Filtros de este objeto visual</code>, ubica la medida <code>[Ventas Netas]</code>.</li>
+<li>Cambia la condición de filtro a:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>no está en blanco
+</code></pre></div>
+<ol>
+<li>Selecciona <code>Aplicar filtro</code>.</li>
+<li>Verifica que el KPI ya muestre el valor de ventas y el objetivo.</li>
+</ol>
+<p>Si despues de aplicar el filtro el KPI sigue en blanco, revisa:</p>
+<ul>
+<li>que exista un solo año seleccionado</li>
+<li>que <code>[Ventas Netas]</code> tenga datos para ese año</li>
+<li>que el eje de tendencia sea <code>Meses Eje[mes_desc]</code></li>
+<li>que el objetivo sea <code>[Ventas Anio Previo Mismo Periodo]</code></li>
+</ul>
+<h3 id="173-kpi-mensual-con-fondo-de-comportamiento">17.3 KPI mensual con fondo de comportamiento</h3>
+<p>Si se quiere ver el fondo con la progresión mensual, crea un segundo KPI.</p>
+<p>Este KPI no reemplaza al KPI anual. Sirve para leer el ultimo mes visible contra el mismo mes del año previo.</p>
+<p>Configura:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Ubicacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[Ventas Netas]</code></td>
+<td>Indicador</td>
+</tr>
+<tr>
+<td><code>dim_fecha[mes_desc]</code> o <code>Calendario[mes_desc]</code></td>
+<td>Eje de tendencia</td>
+</tr>
+<tr>
+<td><code>[Ventas Anio Previo Mismo Periodo]</code></td>
+<td>Objetivo</td>
+</tr>
+</tbody>
+</table>
+<p>Lectura:</p>
+<div class="highlight"><pre><span></span><code>valor central -&gt; ultimo mes visible del año seleccionado
+fondo         -&gt; comportamiento mensual del año seleccionado
+objetivo      -&gt; mismo mes del año previo
+</code></pre></div>
+<p>Ejemplo con 2026 seleccionado:</p>
+<div class="highlight"><pre><span></span><code>KPI anual
+Valor:    41,820.75
+Objetivo: 50,994.50
+
+KPI mensual con fondo
+Valor:    mayo 2026 = 5,468.25
+Objetivo: mayo 2025 = 8,959.50
+</code></pre></div>
+<p>Conclusion:</p>
+<div class="highlight"><pre><span></span><code>KPI anual                 -&gt; Meses Eje[mes_desc], valor anual correcto, fondo sin tendencia real
+KPI mensual con fondo     -&gt; dim_fecha[mes_desc], valor del ultimo mes, fondo mensual visible
+Gráfico de líneas mensual -&gt; Meses Eje[mes_desc], enero-diciembre y referencia completa
+</code></pre></div>
+<h3 id="174-formato-de-los-kpi">17.4 Formato de los KPI</h3>
+<p>En <code>Formato visual</code>, revisa:</p>
+<ul>
+<li>título fijo del visual: <code>Ventas actuales vs año previo</code></li>
+<li>subtitulo dinámico: <code>[Titulo Ventas Actual vs Anio Previo]</code></li>
+<li>etiqueta de objetivo visible</li>
+<li>unidades de visualización según criterio del docente, por ejemplo <code>Miles</code></li>
+<li>colores sobrios para no competir con la lectura del número</li>
+</ul>
+<p>Nota:</p>
+<div class="highlight"><pre><span></span><code>El KPI anual comunica el desempeno acumulado contra el mismo periodo del año previo.
+El KPI mensual con fondo comunica el ultimo mes visible contra el mismo mes del año previo.
+El gráfico de líneas muestra la forma mensual y la referencia anual completa.
+</code></pre></div>
+<h2 id="18-comparativo-por-dias">18. Comparativo por días</h2>
+<p>Para analizar por días, crea otro KPI copiando el KPI mensual.</p>
+<p>No reemplaces el KPI mensual, porque al cambiar el eje a día se pierde la lectura por mes.</p>
+<p>Configura el segundo KPI asi:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Ubicacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[Ventas Netas]</code></td>
+<td>Indicador</td>
+</tr>
+<tr>
+<td><code>dim_fecha[dia]</code></td>
+<td>Eje de tendencia</td>
+</tr>
+<tr>
+<td><code>[Ventas Anio Previo Mismo Periodo]</code></td>
+<td>Objetivo</td>
+</tr>
+<tr>
+<td><code>dim_fecha[mes_desc]</code></td>
+<td>Filtro o segmentador</td>
+</tr>
+</tbody>
+</table>
+<p>Agrega un filtro de mes para concentrar la lectura diaria.</p>
+<p>Usa <code>dim_fecha[fecha]</code> solo si necesitas mostrar la fecha completa como texto o detalle exacto. Para el KPI diario y la jerarquía <code>Calendario</code>, usa <code>dim_fecha[dia]</code>; no arrastres la jerarquía automática de <code>fecha</code>.</p>
+<h2 id="19-medida-titulo-dinamico-por-dias">19. Medida: título dinámico por días</h2>
+<div class="highlight"><pre><span></span><code>Titulo Ventas Actual vs Anio Previo x Dias =
+<span class="nb">VAR</span><span class="w"> </span>__ultf =
+<span class="w">    </span><span class="nf">LASTNONBLANK</span><span class="p">(</span><span class="na">dim_fecha[fecha]</span><span class="p">,</span><span class="w"> </span><span class="na">[Ventas Netas]</span><span class="p">)</span>
+<span class="nb">VAR</span><span class="w"> </span>__anioact =
+<span class="w">    </span><span class="nf">FORMAT</span><span class="p">(</span>__ultf, &quot;dd-mmmm-yyyy&quot;)
+<span class="nb">VAR</span><span class="w"> </span>__anioprev =
+<span class="w">    </span><span class="nf">FORMAT</span><span class="p">(</span>
+<span class="w">        </span><span class="nf">DATE</span><span class="p">(</span>
+<span class="w">            </span><span class="nf">YEAR</span><span class="p">(</span>__ultf) - 1,
+<span class="w">            </span><span class="nf">MONTH</span><span class="p">(</span>__ultf),
+<span class="w">            </span><span class="nf">DAY</span><span class="p">(</span>__ultf)
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="s">&quot;dd-mmmm-yyyy&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="nb">RETURN</span>
+<span class="w">    </span>__anioact &amp; &quot; VS &quot; &amp; __anioprev
+</code></pre></div>
+<p>Usa está medida como subtitulo condicional del KPI diario.</p>
+<h2 id="20-preguntas-de-analisis">20. Preguntas de análisis</h2>
+<p>Responde con base en los visuales:</p>
+<ul>
+<li>Las ventas actuales superan a las del año anterior?</li>
+<li>En que meses hubo mayor crecimiento?</li>
+<li>En que meses disminuyeron las ventas?</li>
+<li>Qué diferencia hay entre mismo periodo y año previo completo?</li>
+<li>Qué días muestran diferencias más marcadas?</li>
+<li>Qué productos explican la diferencia?</li>
+<li>Qué categorias crecieron más frente al año anterior?</li>
+<li>Qué vendedores o clientes aportaron más al crecimiento?</li>
+</ul>
+<h2 id="21-validacion-sql">21. Validación SQL</h2>
+<p>La validación depende del año seleccionado en Power BI. Ajusta los años según los datos disponibles.</p>
+<p>Ejemplo para comparar 2026 contra 2025:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">mes_numero</span><span class="p">,</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">mes_desc</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">anio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">venta_neta</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ventas_actuales</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">anio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2025</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">venta_neta</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ventas_anio_previo</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">anio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2026</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">venta_neta</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">anio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2025</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">venta_neta</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">variacion_ventas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">fact_ventas</span><span class="w"> </span><span class="n">fv</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">dim_fecha</span><span class="w"> </span><span class="n">df</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">fecha_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">fecha_key</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">mes_numero</span><span class="p">,</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">mes_desc</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">mes_numero</span><span class="p">;</span>
+</code></pre></div>
+<p>Para validar por día, agrega <code>df.fecha</code> al <code>SELECT</code>, al <code>GROUP BY</code> y al <code>ORDER BY</code>.</p>
+<p>Para validar año previo completo:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">fv</span><span class="p">.</span><span class="n">venta_neta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ventas_anio_previo_completo</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">fact_ventas</span><span class="w"> </span><span class="n">fv</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">dim_fecha</span><span class="w"> </span><span class="n">df</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">fecha_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">fecha_key</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">anio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2025</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="22-actividad-final-organizar-medidas-en-carpetas">22. Actividad final: organizar medidas en carpetas</h2>
+<p>Para mantener el modelo semántico ordenado, organiza las medidas dentro de la tabla <code>_Medidas</code>.</p>
+<p>Ruta en Power BI:</p>
+<div class="highlight"><pre><span></span><code>Vista Modelo -&gt; seleccionar medida -&gt; Propiedades -&gt; Carpeta para mostrar
+</code></pre></div>
+<p>Si no aparece el panel de propiedades:</p>
+<div class="highlight"><pre><span></span><code>Ver -&gt; Paneles -&gt; Propiedades
+</code></pre></div>
+<p>Carpetas sugeridas:</p>
+<div class="highlight"><pre><span></span><code>01 Basicas
+02 Tiempo - Año previo
+03 Tiempo - Mes anterior
+04 Auxiliares
+</code></pre></div>
+<p>Distribución recomendada:</p>
+<div class="highlight"><pre><span></span><code>01 Basicas
+- Descuentos
+- Pedidos
+- Ticket Promedio
+- Unidades Vendidas
+- Ventas Netas
+- Ventas Netas Acumuladas
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>02 Tiempo - Año previo
+- Ventas Año Previo Mismo Periodo
+- Ventas Año Previo Completo
+- Variación Ventas vs Año Previo
+- % Variación Ventas vs Año Previo
+- Título Ventas Actual vs Año Previo
+- Título Ventas Actual vs Año Previo x Días
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>03 Tiempo - Mes anterior
+- Venta Mes Anterior
+- Variación Ventas vs Mes Anterior
+- % Variación Ventas vs Mes Anterior
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>04 Auxiliares
+- Ventas Netas Eje Mes
+- Ventas Año Previo Completo Eje Mes
+</code></pre></div>
+<p>Regla:</p>
+<div class="highlight"><pre><span></span><code>Las medidas auxiliares sirven para resolver un visual especifico.
+No deben mezclarse con las medidas oficiales de análisis.
+</code></pre></div>
+<h2 id="23-resultado-esperado">23. Resultado esperado</h2>
+<p>El informe debe permitir:</p>
+<ul>
+<li>comparar ventas actuales vs año anterior en mismo periodo</li>
+<li>mostrar una referencia anual completa del año previo</li>
+<li>explicar por que se usa <code>Meses Eje</code></li>
+<li>analizar comportamiento por año</li>
+<li>analizar comportamiento por mes</li>
+<li>analizar comportamiento por día</li>
+<li>identificar crecimiento o disminución de ventas</li>
+<li>organizar medidas por carpetas funcionales</li>
+</ul>
+<h2 id="24-checklist">24. Checklist</h2>
+<ul>
+<li>existe matriz de control por mes y año</li>
+<li>existe segmentador de año</li>
+<li>existe medida <code>[Ventas Anio Previo Mismo Periodo]</code></li>
+<li>existe medida <code>[Ventas Anio Previo Completo]</code></li>
+<li>existe tabla <code>Meses Eje</code></li>
+<li>existen medidas auxiliares <code>[Ventas Netas Eje Mes]</code> y <code>[Ventas Anio Previo Completo Eje Mes]</code></li>
+<li>existe gráfico de líneas mensual con <code>Meses Eje[mes_desc]</code></li>
+<li>existe tarjeta de ventas actuales, mismo periodo y año previo completo</li>
+<li>existe KPI anual con <code>Meses Eje[mes_desc]</code> y valores acumulados correctos</li>
+<li>existe KPI mensual con <code>dim_fecha[mes_desc]</code> o <code>Calendario[mes_desc]</code> y fondo de comportamiento</li>
+<li>existe KPI diario independiente</li>
+<li>el subtitulo dinámico cambia según el periodo</li>
+<li>los filtros de año y mes funcionan</li>
+<li>el resultado fue validado contra SQL</li>
+<li>las medidas quedaron organizadas en carpetas dentro de <code>_Medidas</code></li>
+</ul>
+<h2 id="25-evidencias-a-entregar">25. Evidencias a entregar</h2>
+<ul>
+<li>captura de la matriz de control</li>
+<li>captura del segmentador de año</li>
+<li>captura de la tabla <code>Meses Eje</code></li>
+<li>captura del gráfico mensual con eje enero-diciembre</li>
+<li>captura de tarjetas de control</li>
+<li>captura del KPI anual</li>
+<li>captura del KPI mensual con fondo de comportamiento</li>
+<li>captura del KPI diario</li>
+<li>captura con filtro de mes aplicado para el análisis diario</li>
+<li>captura de las carpetas de medidas en <code>_Medidas</code></li>
+<li>captura de validación SQL</li>
+</ul>
+<p>Nombre sugerido:</p>
+<div class="highlight"><pre><span></span><code>FarmaciaPBI_U2_S5_P1_Ventas_Actual_vs_Anio_Previo.pbix
+</code></pre></div>
+<h2 id="26-cierre">26. Cierre</h2>
+<p>Con esta práctica, la sesión 05 inicia con un comparativo real de negocio: no solo cuánto se vendió, sino si la venta mejora o cae frente al mismo periodo del año anterior.</p>
+<p>Tambien queda una decisión importante de modelado visual:</p>
+<div class="highlight"><pre><span></span><code>las medidas calculan valores,
+pero el eje define que categorias puede dibujar el visual.
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../javascripts/mermaid.js"></script>
+      
+    
+  </body>
+</html>

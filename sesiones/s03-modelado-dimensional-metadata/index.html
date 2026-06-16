@@ -1,0 +1,2119 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentacion del proyecto BI farmabi">
+      
+      
+      
+      
+        <link rel="prev" href="../s02-requerimientos-kpis/">
+      
+      
+        <link rel="next" href="../s04-diseno-solucion-bi/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>S3 Modelado dimensional y metadata - farmabi - Business Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#s3-modelado-dimensional-y-metadata" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="farmabi - Business Intelligence" class="md-header__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            farmabi - Business Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              S3 Modelado dimensional y metadata
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="farmabi - Business Intelligence" class="md-nav__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    farmabi - Business Intelligence
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sesiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s01-fundamentos-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 Fundamentos BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s02-requerimientos-kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 Requerimientos y KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 Modelado dimensional y metadata
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 Modelado dimensional y metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduccion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduccion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Proposito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-resultado-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Resultado de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-producto-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Producto de sesion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-motivacion-de-la-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Motivacion de la sesion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-ubicacion-en-el-curso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Ubicacion en el curso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-explica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Explica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Explica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-conceptos-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Conceptos clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-hecho-y-grano-oficial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Hecho y grano oficial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-dimensiones-oficiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Dimensiones oficiales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-jerarquias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Jerarquias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-esquema-estrella-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Esquema estrella conceptual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aplica-actividad-practica-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Aplica: actividad practica guiada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Aplica: actividad practica guiada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-confirmar-proceso-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Confirmar proceso de negocio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-definir-medidas-del-hecho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Definir medidas del hecho
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-construir-matriz-fuente-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Construir matriz fuente-modelo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-definir-metadata-minima" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Definir metadata minima
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-validar-el-modelo-contra-preguntas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Validar el modelo contra preguntas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crea-actividad-autonoma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Crea: actividad autonoma
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cierre-evaluativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cierre evaluativo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cierre evaluativo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-resultados-esperados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Resultados esperados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-preguntas-de-defensa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Preguntas de defensa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-rubrica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Rubrica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s04-diseno-solucion-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S4 Diseno de la solucion BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s05-evaluacion-u1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 Evaluacion U1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s06-dw-manual-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S6 DW manual con SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s07-pipeline-bi-herramientas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S7 Pipeline BI con herramientas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s08-modelo-semantico-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S8 Modelo semantico y metricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s09-visualizacion-bi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S9 Visualizacion BI base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s10-paneles-interactivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S10 Paneles interactivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s11-interpretacion-gobierno-dato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S11 Interpretacion y gobierno del dato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s12-evaluacion-u2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S12 Evaluacion U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s13-integracion-end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S13 Integracion end-to-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s14-validacion-negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S14 Validacion con negocio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s15-sustentacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S15 Sustentacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../s16-evaluacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S16 Evaluacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/pasos_24_25_comparativos_ventas_pedidos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparativos ventas pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Historico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../historico/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo semantico version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../historico/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medidas DAX version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduccion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduccion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Proposito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-resultado-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Resultado de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-producto-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Producto de sesion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-motivacion-de-la-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Motivacion de la sesion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-ubicacion-en-el-curso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Ubicacion en el curso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-explica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Explica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Explica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-conceptos-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Conceptos clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-hecho-y-grano-oficial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Hecho y grano oficial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-dimensiones-oficiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Dimensiones oficiales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-jerarquias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Jerarquias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-esquema-estrella-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Esquema estrella conceptual
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aplica-actividad-practica-guiada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Aplica: actividad practica guiada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Aplica: actividad practica guiada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-confirmar-proceso-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Confirmar proceso de negocio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-definir-medidas-del-hecho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Definir medidas del hecho
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-construir-matriz-fuente-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Construir matriz fuente-modelo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-definir-metadata-minima" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Definir metadata minima
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-validar-el-modelo-contra-preguntas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Validar el modelo contra preguntas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crea-actividad-autonoma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Crea: actividad autonoma
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cierre-evaluativo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cierre evaluativo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cierre evaluativo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-resultados-esperados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Resultados esperados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-preguntas-de-defensa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Preguntas de defensa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-rubrica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Rubrica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="s3-modelado-dimensional-y-metadata">S3 - Modelado dimensional y metadata</h1>
+<h2 id="1-introduccion">1. Introduccion</h2>
+<p>Tiempo: 20 min.</p>
+<h3 id="11-proposito">1.1 Proposito</h3>
+<p>Diseñar el modelo dimensional conceptual del caso <code>farmabi</code>, definiendo hecho, grano, dimensiones, jerarquias, metadata y trazabilidad desde el OLTP.</p>
+<h3 id="12-resultado-de-aprendizaje">1.2 Resultado de aprendizaje</h3>
+<p>El estudiante convierte requerimientos analiticos y KPIs en un modelo estrella verificable, identificando la tabla de hechos, su granularidad, dimensiones, jerarquias y mapeo fuente-modelo.</p>
+<h3 id="13-producto-de-sesion">1.3 Producto de sesion</h3>
+<p>Modelo dimensional de ventas y ciclo de pedidos con <code>fact_ventas</code>, dimensiones oficiales, grano congelado, jerarquias y matriz de trazabilidad OLTP -&gt; DataMart.</p>
+<h3 id="14-motivacion-de-la-sesion">1.4 Motivacion de la sesion</h3>
+<p>En S1 y S2 se definieron problema, preguntas y KPIs. Ahora se responde:</p>
+<div class="highlight"><pre><span></span><code>Que estructura analitica necesitamos para responder esas preguntas de forma consistente?
+</code></pre></div>
+<p>El modelo dimensional evita que cada usuario calcule ventas, margen o lead time de forma distinta. El diseño se hace antes de construir tablas fisicas.</p>
+<h3 id="15-ubicacion-en-el-curso">1.5 Ubicacion en el curso</h3>
+<ul>
+<li>Unidad: U1 - Definicion del sistema de informacion para ejecutivos.</li>
+<li>Producto de unidad: diseño funcional y analitico de la solucion BI.</li>
+<li>Avance del producto en esta sesion: modelo estrella y metadata.</li>
+</ul>
+<p>Roadmap:</p>
+<pre class="mermaid"><code>flowchart TB
+    S1["S1&lt;br/&gt;Problema"]
+    S2["S2&lt;br/&gt;KPIs"]
+    S3["S3&lt;br/&gt;Modelo dimensional&lt;br/&gt;HOY"]
+    S4["S4&lt;br/&gt;Blueprint dashboard"]
+    S5["S5&lt;br/&gt;Evaluacion U1"]
+    U2["U2&lt;br/&gt;Construccion fisica"]
+
+    S1 --&gt; S2 --&gt; S3 --&gt; S4 --&gt; S5 --&gt; U2
+
+    classDef today fill:#ffe08a,stroke:#9a6b00,stroke-width:2px,color:#111;
+    class S3 today;</code></pre>
+<h2 id="2-explica">2. Explica</h2>
+<p>Tiempo: 15 min.</p>
+<h3 id="21-conceptos-clave">2.1 Conceptos clave</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Uso en <code>farmabi</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proceso de negocio</td>
+<td>Pedidos / ventas</td>
+</tr>
+<tr>
+<td>Hecho</td>
+<td><code>fact_ventas</code></td>
+</tr>
+<tr>
+<td>Grano</td>
+<td>Una fila por linea de pedido por producto</td>
+</tr>
+<tr>
+<td>Dimension</td>
+<td>Eje para analizar el hecho</td>
+</tr>
+<tr>
+<td>Jerarquia</td>
+<td>Ruta de exploracion dentro de una dimension</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>Definicion de campos, origen, formula y reglas</td>
+</tr>
+<tr>
+<td>Trazabilidad</td>
+<td>Relacion fuente -&gt; modelo -&gt; KPI</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-hecho-y-grano-oficial">2.2 Hecho y grano oficial</h3>
+<p>Hecho principal:</p>
+<div class="highlight"><pre><span></span><code>fact_ventas
+</code></pre></div>
+<p>Grano congelado:</p>
+<div class="highlight"><pre><span></span><code>una fila por linea de pedido por producto
+</code></pre></div>
+<p>Esto significa que el hecho conserva el detalle de <code>pedido_detalles</code>, complementado con datos de cabecera de <code>pedidos</code>.</p>
+<p>No se modela una fila resumida por dia, cliente, vendedor y producto. Ese resumen se obtiene despues mediante agregaciones en SQL, dbt o Power BI.</p>
+<h3 id="23-dimensiones-oficiales">2.3 Dimensiones oficiales</h3>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Origen</th>
+<th>Rol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dim_fecha</code></td>
+<td><code>pedidos.fecha_creacion</code></td>
+<td>Analisis temporal</td>
+</tr>
+<tr>
+<td><code>dim_cliente</code></td>
+<td><code>clientes</code></td>
+<td>Analisis por comprador</td>
+</tr>
+<tr>
+<td><code>dim_vendedor</code></td>
+<td><code>vendedores</code></td>
+<td>Analisis comercial</td>
+</tr>
+<tr>
+<td><code>dim_producto</code></td>
+<td><code>productos + categorias + familias</code></td>
+<td>Producto y clasificacion comercial</td>
+</tr>
+<tr>
+<td><code>dim_estado_pedido</code></td>
+<td><code>pedidos.estado_pedido</code></td>
+<td>Estado del proceso</td>
+</tr>
+</tbody>
+</table>
+<p>Decision de diseño:</p>
+<div class="highlight"><pre><span></span><code>No se crean dim_categoria ni dim_familia.
+Categoria y familia se denormalizan dentro de dim_producto.
+</code></pre></div>
+<h3 id="24-jerarquias">2.4 Jerarquias</h3>
+<table>
+<thead>
+<tr>
+<th>Jerarquia</th>
+<th>Niveles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tiempo</td>
+<td>Dia -&gt; Mes -&gt; Trimestre -&gt; Anio</td>
+</tr>
+<tr>
+<td>Producto comercial</td>
+<td>Familia -&gt; Categoria -&gt; Producto</td>
+</tr>
+</tbody>
+</table>
+<p>Estas jerarquias se usaran luego en Power BI para drill-down y navegacion analitica.</p>
+<h3 id="25-esquema-estrella-conceptual">2.5 Esquema estrella conceptual</h3>
+<pre class="mermaid"><code>flowchart TB
+    Fecha["dim_fecha"]
+    Cliente["dim_cliente"]
+    Vendedor["dim_vendedor"]
+    Producto["dim_producto&lt;br/&gt;familia + categoria + producto"]
+    Estado["dim_estado_pedido"]
+    Fact["fact_ventas&lt;br/&gt;linea de pedido por producto"]
+
+    Fecha --&gt; Fact
+    Cliente --&gt; Fact
+    Vendedor --&gt; Fact
+    Producto --&gt; Fact
+    Estado --&gt; Fact</code></pre>
+<h2 id="3-aplica-actividad-practica-guiada">3. Aplica: actividad practica guiada</h2>
+<p>Tiempo: 3h.</p>
+<h3 id="31-confirmar-proceso-de-negocio">3.1 Confirmar proceso de negocio</h3>
+<p><strong>Producto del paso:</strong> proceso analitico oficial.</p>
+<p>Completa:</p>
+<div class="highlight"><pre><span></span><code>Proceso: Pedidos / Ventas
+Hecho: fact_ventas
+Grano: una fila por linea de pedido por producto
+Fuente base: pedido_detalles
+Fuente complementaria: pedidos
+</code></pre></div>
+<h3 id="32-definir-medidas-del-hecho">3.2 Definir medidas del hecho</h3>
+<p><strong>Producto del paso:</strong> lista de medidas de <code>fact_ventas</code>.</p>
+<p>Medidas oficiales:</p>
+<table>
+<thead>
+<tr>
+<th>Medida</th>
+<th>Definicion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cantidad_vendida</code></td>
+<td>Unidades vendidas</td>
+</tr>
+<tr>
+<td><code>venta_bruta</code></td>
+<td>Cantidad * precio venta unitario</td>
+</tr>
+<tr>
+<td><code>descuento_total</code></td>
+<td>Cantidad * descuento unitario</td>
+</tr>
+<tr>
+<td><code>venta_neta</code></td>
+<td>Venta bruta - descuento total</td>
+</tr>
+<tr>
+<td><code>costo_total</code></td>
+<td>Cantidad * precio compra unitario</td>
+</tr>
+<tr>
+<td><code>margen_bruto</code></td>
+<td>Venta neta - costo total</td>
+</tr>
+<tr>
+<td><code>pct_margen_bruto</code></td>
+<td>Margen bruto / venta neta</td>
+</tr>
+<tr>
+<td><code>minutos_confirmacion</code></td>
+<td>Creacion -&gt; confirmacion</td>
+</tr>
+<tr>
+<td><code>minutos_despacho</code></td>
+<td>Confirmacion -&gt; envio</td>
+</tr>
+<tr>
+<td><code>horas_entrega</code></td>
+<td>Envio -&gt; entrega</td>
+</tr>
+<tr>
+<td><code>horas_lead_time</code></td>
+<td>Creacion -&gt; entrega</td>
+</tr>
+<tr>
+<td><code>pedido_count</code></td>
+<td>Auxiliar para conteo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-construir-matriz-fuente-modelo">3.3 Construir matriz fuente-modelo</h3>
+<p><strong>Producto del paso:</strong> trazabilidad OLTP -&gt; DataMart.</p>
+<table>
+<thead>
+<tr>
+<th>Elemento modelo</th>
+<th>Fuente OLTP</th>
+<th>Regla</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fact_ventas</code></td>
+<td><code>pedido_detalles + pedidos</code></td>
+<td>Integrar detalle con cabecera</td>
+</tr>
+<tr>
+<td><code>dim_cliente</code></td>
+<td><code>clientes</code></td>
+<td>Una fila por cliente</td>
+</tr>
+<tr>
+<td><code>dim_vendedor</code></td>
+<td><code>vendedores</code></td>
+<td>Una fila por vendedor</td>
+</tr>
+<tr>
+<td><code>dim_producto</code></td>
+<td><code>productos + categorias + familias</code></td>
+<td>Producto denormalizado con clasificacion</td>
+</tr>
+<tr>
+<td><code>dim_fecha</code></td>
+<td><code>pedidos.fecha_creacion</code></td>
+<td>Fecha analitica principal</td>
+</tr>
+<tr>
+<td><code>dim_estado_pedido</code></td>
+<td><code>pedidos.estado_pedido</code></td>
+<td>Estados distintos del pedido</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-definir-metadata-minima">3.4 Definir metadata minima</h3>
+<p><strong>Producto del paso:</strong> diccionario de datos inicial.</p>
+<p>Ejemplo:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tabla</th>
+<th>Tipo conceptual</th>
+<th>Formula u origen</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>venta_neta</code></td>
+<td><code>fact_ventas</code></td>
+<td>Medida monetaria</td>
+<td>venta bruta - descuento</td>
+<td>KPI ventas</td>
+</tr>
+<tr>
+<td><code>familia_nombre</code></td>
+<td><code>dim_producto</code></td>
+<td>Atributo</td>
+<td><code>familias.nombre</code></td>
+<td>Jerarquia producto</td>
+</tr>
+<tr>
+<td><code>fecha_key</code></td>
+<td><code>dim_fecha</code></td>
+<td>Clave</td>
+<td><code>yyyymmdd</code></td>
+<td>Relacion temporal</td>
+</tr>
+<tr>
+<td><code>horas_lead_time</code></td>
+<td><code>fact_ventas</code></td>
+<td>Medida operativa</td>
+<td>creacion -&gt; entrega</td>
+<td>KPI operativo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="35-validar-el-modelo-contra-preguntas">3.5 Validar el modelo contra preguntas</h3>
+<p><strong>Producto del paso:</strong> matriz pregunta-modelo.</p>
+<table>
+<thead>
+<tr>
+<th>Pregunta</th>
+<th>Hecho</th>
+<th>Dimensiones</th>
+<th>Medidas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cuanto se vende por mes?</td>
+<td><code>fact_ventas</code></td>
+<td><code>dim_fecha</code></td>
+<td><code>venta_neta</code></td>
+</tr>
+<tr>
+<td>Que familia genera mayor margen?</td>
+<td><code>fact_ventas</code></td>
+<td><code>dim_producto</code></td>
+<td><code>margen_bruto</code></td>
+</tr>
+<tr>
+<td>Que vendedor vende mas?</td>
+<td><code>fact_ventas</code></td>
+<td><code>dim_vendedor</code></td>
+<td><code>venta_neta</code></td>
+</tr>
+<tr>
+<td>Que pedidos demoran mas?</td>
+<td><code>fact_ventas</code></td>
+<td><code>dim_estado_pedido</code>, <code>dim_fecha</code></td>
+<td><code>horas_lead_time</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-crea-actividad-autonoma">4. Crea: actividad autonoma</h2>
+<p>Tiempo: 4h fuera del aula.</p>
+<p>Entrega un PDF:</p>
+<div class="highlight"><pre><span></span><code>S03_Equipo##_ApellidoNombre.pdf
+</code></pre></div>
+<p>Debe incluir:</p>
+<ol>
+<li>Esquema estrella conceptual.</li>
+<li>Grano del hecho con ejemplo.</li>
+<li>Lista de dimensiones y atributos principales.</li>
+<li>Lista de medidas oficiales.</li>
+<li>Matriz fuente-modelo.</li>
+<li>Diccionario de datos minimo.</li>
+<li>Validacion de al menos cinco preguntas analiticas contra el modelo.</li>
+<li>Reflexion breve:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>Que error ocurre si no se define correctamente el grano del hecho?
+</code></pre></div>
+<h2 id="5-cierre-evaluativo">5. Cierre evaluativo</h2>
+<p>Tiempo: 20 min.</p>
+<h3 id="51-resultados-esperados">5.1 Resultados esperados</h3>
+<p>El estudiante debe demostrar que:</p>
+<ul>
+<li>Define el hecho y su grano.</li>
+<li>Identifica dimensiones y jerarquias.</li>
+<li>Explica por que <code>dim_producto</code> es denormalizada.</li>
+<li>Mapea fuentes OLTP hacia el modelo dimensional.</li>
+<li>Valida que el modelo responde preguntas analiticas.</li>
+</ul>
+<h3 id="52-preguntas-de-defensa">5.2 Preguntas de defensa</h3>
+<ol>
+<li>Cual es el grano de <code>fact_ventas</code>?</li>
+<li>Por que no se agregan filas por fecha y producto?</li>
+<li>Por que categoria y familia viven en <code>dim_producto</code>?</li>
+<li>Que tablas fuente alimentan el hecho?</li>
+<li>Que KPI usa las fechas de <code>pedidos</code>?</li>
+</ol>
+<h3 id="53-rubrica">5.3 Rubrica</h3>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th style="text-align: right;">Peso</th>
+<th>3 - Logro destacado</th>
+<th>2 - Logro</th>
+<th>1 - Proceso</th>
+<th>0 - Inicio</th>
+<th style="text-align: right;">Puntuacion obtenida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hecho y grano</td>
+<td style="text-align: right;">2</td>
+<td>Define y justifica el grano con ejemplo claro.</td>
+<td>Define hecho y grano.</td>
+<td>Definicion parcial.</td>
+<td>No define grano.</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>Dimensiones y jerarquias</td>
+<td style="text-align: right;">2</td>
+<td>Identifica dimensiones, atributos y jerarquias correctamente.</td>
+<td>Identifica dimensiones principales.</td>
+<td>Omite dimensiones o jerarquias.</td>
+<td>No presenta modelo.</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>Trazabilidad fuente-modelo</td>
+<td style="text-align: right;">2</td>
+<td>Mapea fuentes, reglas y campos con precision.</td>
+<td>Mapea fuentes principales.</td>
+<td>Mapeo incompleto.</td>
+<td>Sin trazabilidad.</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td style="text-align: right;">2</td>
+<td>Diccionario util para construir U2.</td>
+<td>Diccionario basico.</td>
+<td>Metadata superficial.</td>
+<td>Sin metadata.</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>Defensa conceptual</td>
+<td style="text-align: right;">1</td>
+<td>Explica decisiones de diseño con claridad.</td>
+<td>Explica decisiones principales.</td>
+<td>Explicacion debil.</td>
+<td>No defiende.</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>Orden y evidencia</td>
+<td style="text-align: right;">1</td>
+<td>Documento claro y verificable.</td>
+<td>Documento comprensible.</td>
+<td>Documento desordenado.</td>
+<td>Sin evidencia.</td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<p>Puntuacion acumulada = suma de (<code>Peso</code> * <code>Puntuacion obtenida</code>) = ____.</p>
+<p>Nota final = (<code>Puntuacion acumulada</code> / 30) * 20 = ____.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid.js"></script>
+      
+    
+  </body>
+</html>

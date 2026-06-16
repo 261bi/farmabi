@@ -1,0 +1,1893 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentacion del proyecto BI farmabi">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Sesión U2 S4 P1: Exploración OLAP, progresión y storytelling BI - farmabi - Business Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sesion-u2-s4-p1-exploracion-olap-progresion-y-storytelling-bi" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="farmabi - Business Intelligence" class="md-header__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            farmabi - Business Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sesión U2 S4 P1: Exploración OLAP, progresión y storytelling BI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="farmabi - Business Intelligence" class="md-nav__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    farmabi - Business Intelligence
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sesiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s01-fundamentos-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 Fundamentos BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s02-requerimientos-kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 Requerimientos y KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s03-modelado-dimensional-metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 Modelado dimensional y metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s04-diseno-solucion-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S4 Diseno de la solucion BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s05-evaluacion-u1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 Evaluacion U1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s06-dw-manual-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S6 DW manual con SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s07-pipeline-bi-herramientas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S7 Pipeline BI con herramientas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s08-modelo-semantico-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S8 Modelo semantico y metricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s09-visualizacion-bi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S9 Visualizacion BI base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s10-paneles-interactivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S10 Paneles interactivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s11-interpretacion-gobierno-dato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S11 Interpretacion y gobierno del dato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s12-evaluacion-u2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S12 Evaluacion U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s13-integracion-end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S13 Integracion end-to-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s14-validacion-negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S14 Validacion con negocio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s15-sustentacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S15 Sustentacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s16-evaluacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S16 Evaluacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guias/pasos_24_25_comparativos_ventas_pedidos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparativos ventas pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Historico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../historico/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo semantico version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../historico/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medidas DAX version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-titulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Título
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-relacion-con-practicas-previas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Relación con prácticas previas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-idea-central" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Idea central
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pagina-de-trabajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Página de trabajo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-matriz-olap-por-producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Matriz OLAP por producto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-progresion-mensual-y-acumulada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Progresión mensual y acumulada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ventas-por-mes-y-ano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ventas por mes y año
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-radar-por-dia-de-semana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Radar por día de semana
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-detalle-diario-para-investigar-picos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Detalle diario para investigar picos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-drill-through-de-producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Drill-through de producto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-drill-through-de-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Drill-through de cliente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-tooltip-contextual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Tooltip contextual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-segmentadores-de-exploracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Segmentadores de exploración
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-de-hallazgo-a-historia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. De hallazgo a historia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-plantilla-de-narrativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Plantilla de narrativa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-validacion-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Validación SQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Validación SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#171-ventas-por-familia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.1 Ventas por familia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#172-ventas-por-mes-y-ano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.2 Ventas por mes y año
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#173-ventas-por-dia-de-semana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.3 Ventas por día de semana
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-evidencias-a-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Evidencias a entregar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-cierre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Cierre
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sesion-u2-s4-p1-exploracion-olap-progresion-y-storytelling-bi">Sesión U2 S4 P1: Exploración OLAP, progresión y storytelling BI</h1>
+<h2 id="1-titulo">1. Título</h2>
+<p>Exploración de ventas netas por tiempo y producto para identificar hallazgos y construir una narrativa BI.</p>
+<h2 id="2-objetivo">2. Objetivo</h2>
+<p>Usar jerarquías, filtros e interacciones de Power BI para explorar ventas netas, analizar su progresión temporal y redactar hallazgos de negocio.</p>
+<p>Al finalizar la práctica, el alumno debe poder:</p>
+<ul>
+<li>navegar la jerarquía <code>Calendario</code></li>
+<li>navegar la jerarquía <code>Producto Comercial</code></li>
+<li>analizar ventas netas por año, mes, día, familia, categoría y producto</li>
+<li>usar interacciones visuales y filtrado cruzado</li>
+<li>usar drill-down, drill-up y drill-through</li>
+<li>usar tooltips para ampliar contexto</li>
+<li>identificar picos, caídas y concentraciones de venta</li>
+<li>validar un hallazgo contra SQL</li>
+<li>redactar una mini narrativa BI</li>
+</ul>
+<h2 id="3-relacion-con-practicas-previas">3. Relación con prácticas previas</h2>
+<p>Esta práctica continúa desde:</p>
+<ul>
+<li><a href="../SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI/">SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI.md</a></li>
+<li><a href="../SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES/">SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES.md</a></li>
+</ul>
+<p>Antes de iniciar, verifica:</p>
+<ul>
+<li>relaciones activas entre dimensiones y <code>fact_ventas</code></li>
+<li>jerarquía <code>Calendario</code></li>
+<li>jerarquía <code>Producto Comercial</code></li>
+<li>medida <code>[Ventas Netas]</code></li>
+<li>medida <code>[Pedidos]</code></li>
+<li>medida <code>[Unidades Vendidas]</code></li>
+<li>medida <code>[Ticket Promedio]</code></li>
+</ul>
+<p>Medidas opcionales:</p>
+<ul>
+<li><code>[Margen Bruto]</code></li>
+<li><code>[% Margen Bruto]</code></li>
+</ul>
+<h2 id="4-idea-central">4. Idea central</h2>
+<p>La secuencia de la sesión es:</p>
+<div class="highlight"><pre><span></span><code>ventas netas -&gt; exploración -&gt; detalle -&gt; hallazgo -&gt; historia
+</code></pre></div>
+<p>La S4 no busca construir el dashboard final. Busca entender qué está pasando.</p>
+<p>Usaremos tres formas de exploración:</p>
+<ul>
+<li><code>filtrado cruzado</code>: seleccionar un dato y actualizar los visuales de la misma página</li>
+<li><code>drill-down / drill-up</code>: bajar o subir dentro de una jerarquía</li>
+<li><code>drill-through / Obtener detalles</code>: ir desde un dato seleccionado hacia una página de detalle</li>
+</ul>
+<h2 id="5-pagina-de-trabajo">5. Página de trabajo</h2>
+<p>Crea una página llamada:</p>
+<div class="highlight"><pre><span></span><code>Exploración OLAP
+</code></pre></div>
+<p>Debe contener:</p>
+<ul>
+<li>matriz OLAP por producto</li>
+<li>gráfico de progresión mensual y acumulada</li>
+<li>gráfico comparativo por mes y año</li>
+<li>radar por día de semana</li>
+<li>análisis diario opcional para investigar picos</li>
+<li>tabla o matriz de clientes para análisis de detalle</li>
+<li>segmentadores de exploración</li>
+<li>tooltip contextual</li>
+<li>espacio de texto para hallazgos</li>
+</ul>
+<p>Preparación para interacciones:</p>
+<ul>
+<li>la matriz OLAP por producto será el visual de origen para <code>Detalle Producto</code></li>
+<li>la tabla o matriz de clientes será el visual de origen para <code>Detalle Cliente</code></li>
+<li>los gráficos temporales y el radar responderán al filtrado cruzado cuando selecciones un producto, cliente, año o mes</li>
+</ul>
+<p>Tabla o matriz de clientes:</p>
+<ul>
+<li>filas: <code>dim_cliente[nombre_cliente]</code></li>
+<li>valores: <code>[Ventas Netas]</code>, <code>[Pedidos]</code>, <code>[Ticket Promedio]</code></li>
+<li>orden: <code>[Ventas Netas]</code> de mayor a menor</li>
+</ul>
+<h2 id="6-matriz-olap-por-producto">6. Matriz OLAP por producto</h2>
+<p>Crea una matriz.</p>
+<p>Filas:</p>
+<ul>
+<li><code>dim_producto[nombre_familia]</code></li>
+<li><code>dim_producto[nombre_categoria]</code></li>
+<li><code>dim_producto[nombre_producto]</code></li>
+</ul>
+<p>Valores:</p>
+<ul>
+<li><code>[Ventas Netas]</code></li>
+<li><code>[Pedidos]</code></li>
+<li><code>[Unidades Vendidas]</code></li>
+<li><code>[Ticket Promedio]</code></li>
+</ul>
+<p>Interpretación importante:</p>
+<div class="highlight"><pre><span></span><code>La columna [Pedidos] no se suma verticalmente como [Ventas Netas] o [Unidades Vendidas].
+</code></pre></div>
+<p>Un mismo pedido puede contener productos de más de una familia o categoría. Por eso:</p>
+<ul>
+<li>el subtotal de una familia cuenta los pedidos distintos que incluyen productos de esa familia</li>
+<li>el subtotal de otra familia puede contar algunos de esos mismos pedidos</li>
+<li>el total general cuenta pedidos distintos una sola vez</li>
+</ul>
+<p>Entonces, si los pedidos por familia suman más que el total general, no es un error. Significa que algunos pedidos compraron productos de varias familias.</p>
+<p>Opcional:</p>
+<ul>
+<li><code>[Margen Bruto]</code></li>
+<li><code>[% Margen Bruto]</code></li>
+</ul>
+<p>Acciones:</p>
+<ol>
+<li>Expande de familia a categoría.</li>
+<li>Expande de categoría a producto.</li>
+<li>Ordena por <code>[Ventas Netas]</code>.</li>
+<li>Identifica la familia con mayor venta.</li>
+<li>Identifica una categoría que concentre ventas.</li>
+</ol>
+<p>Preguntas:</p>
+<ul>
+<li>¿qué familia vende más?</li>
+<li>¿qué categoría explica la venta?</li>
+<li>¿hay productos que concentran el resultado?</li>
+<li>¿la mayor venta viene de muchos pedidos o de pocos pedidos grandes?</li>
+</ul>
+<p>Esta matriz también será el visual de origen para el drill-through de producto. Más adelante, al usar <code>Detalle Producto</code>, harás clic derecho sobre un producto de esta matriz.</p>
+<h2 id="7-progresion-mensual-y-acumulada">7. Progresión mensual y acumulada</h2>
+<p>Crea un gráfico de líneas.</p>
+<p>Eje:</p>
+<ul>
+<li><code>dim_fecha[mes_desc]</code></li>
+</ul>
+<p>Valores:</p>
+<ul>
+<li><code>[Ventas Netas]</code></li>
+<li><code>[Ventas Netas Acumuladas]</code></li>
+</ul>
+<p>Segmentador:</p>
+<ul>
+<li><code>dim_fecha[año]</code></li>
+</ul>
+<p>Selecciona un solo año para iniciar la lectura.</p>
+<p>Recuerda que <code>mes_desc</code> debe estar ordenado por <code>mes_numero</code>.</p>
+<p>Prueba:</p>
+<ol>
+<li>Selecciona <code>2024</code>.</li>
+<li>Observa la venta mensual y la línea acumulada.</li>
+<li>Selecciona <code>2025</code>.</li>
+<li>Compara si el acumulado crece de forma parecida o diferente.</li>
+<li>Selecciona <code>2026</code>.</li>
+<li>Observa que el acumulado se detiene en mayo porque el año está incompleto.</li>
+</ol>
+<p>Pregunta:</p>
+<div class="highlight"><pre><span></span><code>¿El avance acumulado del año actual puede compararse contra un año completo?
+</code></pre></div>
+<p>Respuesta esperada:</p>
+<div class="highlight"><pre><span></span><code>No directamente. 2026 solo tiene datos hasta mayo; debe compararse contra el mismo periodo de años anteriores o indicarse que es un año parcial.
+</code></pre></div>
+<h2 id="8-ventas-por-mes-y-ano">8. Ventas por mes y año</h2>
+<p>Crea un gráfico de líneas.</p>
+<p>Eje:</p>
+<ul>
+<li><code>dim_fecha[mes_desc]</code></li>
+</ul>
+<p>Leyenda:</p>
+<ul>
+<li><code>dim_fecha[año]</code></li>
+</ul>
+<p>Valores:</p>
+<ul>
+<li><code>[Ventas Netas]</code></li>
+</ul>
+<p>Recuerda que <code>mes_desc</code> debe estar ordenado por <code>mes_numero</code>.</p>
+<p>Uso:</p>
+<ul>
+<li>comparar meses equivalentes entre años</li>
+<li>detectar meses fuertes o débiles</li>
+<li>mostrar visualmente que 2026 es un periodo parcial</li>
+</ul>
+<p>Preguntas:</p>
+<ul>
+<li>¿qué meses muestran mayor venta?</li>
+<li>¿qué año tiene mejor comportamiento?</li>
+<li>¿hay meses comparables con diferencias visibles?</li>
+<li>¿2026 debe leerse como año completo o como periodo parcial?</li>
+</ul>
+<p>Interpretación esperada:</p>
+<div class="highlight"><pre><span></span><code>2026 no debe compararse contra todo 2024 o todo 2025 como año completo. Solo tiene datos hasta mayo, por eso su línea termina antes.
+</code></pre></div>
+<h2 id="9-radar-por-dia-de-semana">9. Radar por día de semana</h2>
+<p>Crea un gráfico de radar.</p>
+<p>Categoría o eje:</p>
+<ul>
+<li><code>dim_fecha[dia_semana_desc]</code></li>
+</ul>
+<p>Valores:</p>
+<ul>
+<li><code>[Pedidos]</code></li>
+</ul>
+<p>Pregunta principal:</p>
+<div class="highlight"><pre><span></span><code>¿Qué patrón semanal muestran los pedidos?
+</code></pre></div>
+<p>Preguntas de lectura:</p>
+<ul>
+<li>¿qué día concentra más pedidos?</li>
+<li>¿qué día concentra menos pedidos?</li>
+<li>¿conviene reforzar stock o atención en ciertos días?</li>
+</ul>
+<p>Nota:</p>
+<ul>
+<li>el orden de <code>dim_fecha[dia_semana_desc]</code> ya debe estar configurado en el modelo semántico</li>
+<li>si el orden aparece alfabético, vuelve a la S3 P1 y revisa la sección <code>8. Orden semántico de fechas</code></li>
+<li>el radar se usa para ver la forma del patrón semanal, no para leer importes exactos</li>
+</ul>
+<h2 id="10-detalle-diario-para-investigar-picos">10. Detalle diario para investigar picos</h2>
+<p>Esta actividad es opcional. Úsala solo si en los gráficos mensuales aparece un pico o caída que necesita explicación.</p>
+<p>Crea un gráfico de columnas.</p>
+<p>Eje:</p>
+<ul>
+<li><code>dim_fecha[dia]</code></li>
+</ul>
+<p>Valores:</p>
+<ul>
+<li><code>[Ventas Netas]</code></li>
+</ul>
+<p>Segmentadores obligatorios:</p>
+<ul>
+<li><code>dim_fecha[año]</code></li>
+<li><code>dim_fecha[mes_desc]</code></li>
+</ul>
+<p>Uso:</p>
+<ul>
+<li>selecciona primero un año</li>
+<li>selecciona luego un mes</li>
+<li>sirve para detectar picos puntuales dentro de un periodo filtrado</li>
+</ul>
+<p>Pregunta:</p>
+<div class="highlight"><pre><span></span><code>¿El pico observado corresponde a un comportamiento recurrente o a un día puntual?
+</code></pre></div>
+<p>Nota:</p>
+<div class="highlight"><pre><span></span><code>La lectura por fecha exacta puede generar ruido si se muestran muchos años o meses a la vez. Primero analiza mes y acumulado; luego baja al día solo si necesitas explicar un pico.
+</code></pre></div>
+<h2 id="11-drill-through-de-producto">11. Drill-through de producto</h2>
+<p>El drill-through necesita dos partes:</p>
+<div class="highlight"><pre><span></span><code>visual de origen -&gt; página de detalle
+</code></pre></div>
+<p>El visual de origen ya quedó preparado en la sección <code>6. Matriz OLAP por producto</code>.</p>
+<p>Luego crea una página nueva:</p>
+<div class="highlight"><pre><span></span><code>Detalle Producto
+</code></pre></div>
+<p>Campo de drill-through:</p>
+<ul>
+<li><code>dim_producto[nombre_producto]</code></li>
+</ul>
+<p>Pasos:</p>
+<ol>
+<li>Quédate en la página <code>Detalle Producto</code>.</li>
+<li>En el panel <code>Datos</code>, abre la tabla <code>dim_producto</code>.</li>
+<li>Ubica el campo <code>nombre_producto</code>.</li>
+<li>Arrastra <code>nombre_producto</code> hacia el panel <code>Visualizaciones</code>.</li>
+<li>Suelta el campo en la sección <code>Obtener detalles</code>.</li>
+<li>Verifica que aparezca <code>nombre_producto</code> dentro de <code>Obtener detalles</code>.</li>
+<li>Deja activada la opción <code>Mantener todos los filtros</code>.</li>
+<li>En <code>Permitir obtención de detalles cuando</code>, deja la opción <code>Se utiliza como categoría</code>.</li>
+</ol>
+<p>Agrega tres tarjetas:</p>
+<ol>
+<li>Selecciona el visual <code>Tarjeta</code>.</li>
+<li>Arrastra la medida <code>[Ventas Netas]</code> a la tarjeta.</li>
+<li>Repite el proceso para crear una tarjeta con <code>[Pedidos]</code>.</li>
+<li>Repite el proceso para crear una tarjeta con <code>[Unidades Vendidas]</code>.</li>
+</ol>
+<p>Agrega un gráfico de ventas por fecha:</p>
+<ol>
+<li>Selecciona <code>Gráfico de líneas</code> o <code>Gráfico de columnas</code>.</li>
+<li>En el eje X, coloca <code>dim_fecha[fecha]</code>.</li>
+<li>En valores, coloca <code>[Ventas Netas]</code>.</li>
+<li>Ordena el eje por fecha ascendente si fuera necesario.</li>
+</ol>
+<p>Agrega una tabla por cliente:</p>
+<ol>
+<li>Selecciona el visual <code>Tabla</code> o <code>Matriz</code>.</li>
+<li>En filas o columnas del visual, coloca <code>dim_cliente[nombre_cliente]</code>.</li>
+<li>En valores, coloca <code>[Ventas Netas]</code>, <code>[Pedidos]</code> y <code>[Unidades Vendidas]</code>.</li>
+<li>Ordena por <code>[Ventas Netas]</code> de mayor a menor.</li>
+</ol>
+<p>Botón <code>Volver</code>:</p>
+<p>En versiones recientes de Power BI, al agregar un campo en <code>Obtener detalles</code>, Power BI crea automáticamente el botón de regreso en la página.</p>
+<p>Si el botón aparece automáticamente:</p>
+<ul>
+<li>déjalo en la parte superior izquierda</li>
+<li>prueba el retorno con <code>Ctrl + clic</code> en Power BI Desktop</li>
+</ul>
+<p>Solo si el botón no aparece, agrégalo manualmente:</p>
+<ol>
+<li>Ve a <code>Insertar</code>.</li>
+<li>Selecciona <code>Botones</code>.</li>
+<li>Elige <code>Atrás</code>.</li>
+<li>Coloca el botón en la parte superior izquierda de la página.</li>
+<li>Si el botón no regresa, selecciónalo y configura:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>Acción: Activado
+Tipo: Atrás
+</code></pre></div>
+<p>Prueba:</p>
+<ol>
+<li>Regresa a la página <code>Exploración OLAP</code>.</li>
+<li>En la matriz OLAP por producto, expande hasta el nivel <code>nombre_producto</code>.</li>
+<li>Haz clic derecho sobre un producto.</li>
+<li>Selecciona <code>Obtener detalles</code>.</li>
+<li>Elige <code>Detalle Producto</code>.</li>
+<li>Verifica que la página muestre solo el producto seleccionado.</li>
+</ol>
+<p>Pregunta:</p>
+<div class="highlight"><pre><span></span><code>¿El producto depende de pocos clientes o tiene venta distribuida?
+</code></pre></div>
+<h2 id="12-drill-through-de-cliente">12. Drill-through de cliente</h2>
+<p>El visual de origen ya quedó preparado en la sección <code>5. Página de trabajo</code>, con la tabla o matriz de clientes.</p>
+<p>Luego crea una página nueva:</p>
+<div class="highlight"><pre><span></span><code>Detalle Cliente
+</code></pre></div>
+<p>Campo de drill-through:</p>
+<ul>
+<li><code>dim_cliente[nombre_cliente]</code></li>
+</ul>
+<p>Pasos:</p>
+<ol>
+<li>Quédate en la página <code>Detalle Cliente</code>.</li>
+<li>En el panel <code>Datos</code>, abre la tabla <code>dim_cliente</code>.</li>
+<li>Ubica el campo <code>nombre_cliente</code>.</li>
+<li>Arrastra <code>nombre_cliente</code> hacia el panel <code>Visualizaciones</code>.</li>
+<li>Suelta el campo en la sección <code>Obtener detalles</code>.</li>
+<li>Verifica que aparezca <code>nombre_cliente</code> dentro de <code>Obtener detalles</code>.</li>
+<li>Deja activada la opción <code>Mantener todos los filtros</code>.</li>
+<li>En <code>Permitir obtención de detalles cuando</code>, deja la opción <code>Se utiliza como categoría</code>.</li>
+</ol>
+<p>Agrega tres tarjetas:</p>
+<ol>
+<li>Selecciona el visual <code>Tarjeta</code>.</li>
+<li>Arrastra la medida <code>[Ventas Netas]</code> a la tarjeta.</li>
+<li>Repite el proceso para crear una tarjeta con <code>[Pedidos]</code>.</li>
+<li>Repite el proceso para crear una tarjeta con <code>[Ticket Promedio]</code>.</li>
+</ol>
+<p>Agrega una matriz por producto:</p>
+<ol>
+<li>Selecciona el visual <code>Matriz</code>.</li>
+<li>En filas, coloca la jerarquía <code>Producto Comercial</code>.</li>
+<li>En valores, coloca <code>[Ventas Netas]</code>, <code>[Pedidos]</code> y <code>[Unidades Vendidas]</code>.</li>
+<li>Expande la jerarquía para revisar familia, categoría y producto.</li>
+</ol>
+<p>Agrega un gráfico de ventas por fecha:</p>
+<ol>
+<li>Selecciona <code>Gráfico de líneas</code> o <code>Gráfico de columnas</code>.</li>
+<li>En el eje X, coloca <code>dim_fecha[fecha]</code>.</li>
+<li>En valores, coloca <code>[Ventas Netas]</code>.</li>
+<li>Ordena el eje por fecha ascendente si fuera necesario.</li>
+</ol>
+<p>Botón <code>Volver</code>:</p>
+<p>En versiones recientes de Power BI, al agregar un campo en <code>Obtener detalles</code>, Power BI crea automáticamente el botón de regreso en la página.</p>
+<p>Si el botón aparece automáticamente:</p>
+<ul>
+<li>déjalo en la parte superior izquierda</li>
+<li>prueba el retorno con <code>Ctrl + clic</code> en Power BI Desktop</li>
+</ul>
+<p>Solo si el botón no aparece, agrégalo manualmente:</p>
+<ol>
+<li>Ve a <code>Insertar</code>.</li>
+<li>Selecciona <code>Botones</code>.</li>
+<li>Elige <code>Atrás</code>.</li>
+<li>Coloca el botón en la parte superior izquierda de la página.</li>
+<li>Si el botón no regresa, selecciónalo y configura:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>Acción: Activado
+Tipo: Atrás
+</code></pre></div>
+<p>Prueba:</p>
+<ol>
+<li>Regresa a la página <code>Exploración OLAP</code>.</li>
+<li>Desde una tabla, matriz o visual con clientes, haz clic derecho sobre un cliente.</li>
+<li>Selecciona <code>Obtener detalles</code>.</li>
+<li>Elige <code>Detalle Cliente</code>.</li>
+<li>Verifica que la página muestre solo el cliente seleccionado.</li>
+</ol>
+<p>Pregunta:</p>
+<div class="highlight"><pre><span></span><code>¿El cliente compra de forma recurrente, concentrada o esporádica?
+</code></pre></div>
+<h2 id="13-tooltip-contextual">13. Tooltip contextual</h2>
+<p>Crea una página tooltip:</p>
+<div class="highlight"><pre><span></span><code>TT Ventas
+</code></pre></div>
+<p>Configura la página:</p>
+<ol>
+<li>Selecciona un espacio vacío de la página.</li>
+<li>Ve al panel <code>Formato</code>.</li>
+<li>En <code>Información de página</code>, activa <code>Permitir usar como información sobre herramientas</code>.</li>
+<li>En <code>Configuración del lienzo</code>, cambia el tipo de página a <code>Información sobre herramientas</code> o <code>Tooltip</code>.</li>
+</ol>
+<p>Incluye tarjetas pequeñas:</p>
+<ul>
+<li><code>[Ventas Netas]</code></li>
+<li><code>[Pedidos]</code></li>
+<li><code>[Unidades Vendidas]</code></li>
+<li><code>[Ticket Promedio]</code></li>
+</ul>
+<p>Asigna el tooltip a:</p>
+<ul>
+<li>matriz OLAP</li>
+<li>gráfico de progresión mensual</li>
+<li>gráfico comparativo por mes y año</li>
+<li>radar por día de semana</li>
+</ul>
+<p>Para asignarlo a un visual:</p>
+<ol>
+<li>Selecciona el visual.</li>
+<li>Abre el panel <code>Formato</code>.</li>
+<li>Busca <code>Información sobre herramientas</code>.</li>
+<li>Cambia el tipo a <code>Página de informe</code>.</li>
+<li>Selecciona la página <code>TT Ventas</code>.</li>
+</ol>
+<p>Prueba:</p>
+<div class="highlight"><pre><span></span><code>Pasa el mouse sobre una marca del visual y verifica que aparezca el tooltip con las métricas.
+</code></pre></div>
+<h2 id="14-segmentadores-de-exploracion">14. Segmentadores de exploración</h2>
+<p>Agrega segmentadores:</p>
+<ul>
+<li><code>dim_fecha[año]</code></li>
+<li><code>dim_fecha[mes_desc]</code></li>
+<li><code>dim_producto[nombre_familia]</code></li>
+<li><code>dim_estado_pedido[estado_pedido]</code></li>
+</ul>
+<p>Regla:</p>
+<ul>
+<li>usa campos de negocio</li>
+<li>no uses claves técnicas</li>
+</ul>
+<h2 id="15-de-hallazgo-a-historia">15. De hallazgo a historia</h2>
+<p>Un hallazgo debe tener evidencia.</p>
+<p>Ejemplo débil:</p>
+<div class="highlight"><pre><span></span><code>La categoría X vende más.
+</code></pre></div>
+<p>Ejemplo BI:</p>
+<div class="highlight"><pre><span></span><code>La categoría X concentra la mayor venta neta del periodo seleccionado. Al revisar la progresión mensual, la venta se concentra en los meses de mayor actividad, por lo que conviene monitorear disponibilidad y reposición en esos periodos.
+</code></pre></div>
+<p>Ejemplo con la página construida:</p>
+<div class="highlight"><pre><span></span><code>El comportamiento de ventas muestra que 2026 debe leerse como un periodo parcial, no como un año completo. En el gráfico mensual, la línea de 2026 solo llega hasta mayo, mientras que 2024 y 2025 tienen datos hasta diciembre. Por ello, cualquier comparación anual debe hacerse contra el mismo periodo de años anteriores o indicar explícitamente que el año actual está incompleto.
+</code></pre></div>
+<p>Otro ejemplo:</p>
+<div class="highlight"><pre><span></span><code>El radar semanal muestra que los pedidos se distribuyen durante toda la semana, con mayor intensidad relativa en algunos días. Esta lectura ayuda a identificar días donde podría reforzarse atención, stock o seguimiento comercial, pero debe complementarse con ventas netas antes de tomar una decisión operativa.
+</code></pre></div>
+<p>Estructura:</p>
+<div class="highlight"><pre><span></span><code>Contexto -&gt; Evidencia -&gt; Interpretación -&gt; Acción sugerida
+</code></pre></div>
+<h2 id="16-plantilla-de-narrativa">16. Plantilla de narrativa</h2>
+<p>Completa tres narrativas:</p>
+<div class="highlight"><pre><span></span><code>Hallazgo:
+Contexto:
+Evidencia:
+Interpretación:
+Acción sugerida:
+Visual usado:
+Validación SQL:
+</code></pre></div>
+<p>Temas sugeridos:</p>
+<ul>
+<li>familia o categoría</li>
+<li>progresión mensual</li>
+<li>día de semana</li>
+<li>producto</li>
+<li>cliente</li>
+</ul>
+<p>Ejemplo completo:</p>
+<div class="highlight"><pre><span></span><code>Hallazgo:
+El avance de ventas de 2026 muestra un desempeño parcial que requiere comparación contra el mismo tramo enero-mayo de años anteriores.
+
+Contexto:
+Se analiza la página Exploración OLAP con ventas netas por mes y año.
+
+Evidencia:
+La línea de 2026 aparece solo hasta mayo, mientras que 2024 y 2025 tienen datos hasta diciembre.
+
+Interpretación:
+Si se compara 2026 contra años completos, el análisis puede sugerir una caída artificial. La lectura correcta es evaluar el avance acumulado de enero a mayo y revisar si el ritmo mensual está por encima o por debajo del mismo periodo de 2024 y 2025.
+
+Acción sugerida:
+Crear una comparación parcial enero-mayo por año y usarla como base para estimar si 2026 mantiene, mejora o reduce el ritmo de ventas antes de proyectar metas o alertas.
+
+Visual usado:
+Ventas por mes y año; Ventas Netas Acumuladas por mes.
+
+Validación SQL:
+Consulta de ventas por mes y año en marts.fact_ventas y marts.dim_fecha.
+</code></pre></div>
+<p>Ejemplo adicional:</p>
+<div class="highlight"><pre><span></span><code>Hallazgo:
+La venta por categoría muestra diferencias importantes en unidades vendidas.
+
+Contexto:
+Se revisa la tabla de unidades vendidas por categoría en la página Exploración OLAP.
+
+Evidencia:
+Las categorías como Tableta y Polvo para Solución Inyectable concentran más unidades vendidas que otras categorías.
+
+Interpretación:
+La concentración de unidades puede indicar mayor rotación y necesidad de seguimiento de inventario.
+
+Acción sugerida:
+Revisar disponibilidad de productos en las categorías con mayor rotación y contrastar con ventas netas para priorizar reposición.
+
+Visual usado:
+Tabla de unidades vendidas por categoría.
+
+Validación SQL:
+Consulta agrupada por dim_producto[nombre_categoria] usando SUM(fact_ventas[cantidad_vendida]).
+</code></pre></div>
+<h2 id="17-validacion-sql">17. Validación SQL</h2>
+<h3 id="171-ventas-por-familia">17.1 Ventas por familia</h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">dp</span><span class="p">.</span><span class="n">nombre_familia</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">fv</span><span class="p">.</span><span class="n">venta_neta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ventas_netas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">fact_ventas</span><span class="w"> </span><span class="n">fv</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">dim_producto</span><span class="w"> </span><span class="n">dp</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">producto_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span><span class="p">.</span><span class="n">producto_key</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dp</span><span class="p">.</span><span class="n">nombre_familia</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ventas_netas</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="172-ventas-por-mes-y-ano">17.2 Ventas por mes y año</h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">anio</span><span class="p">,</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">mes_numero</span><span class="p">,</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">mes_desc</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">fv</span><span class="p">.</span><span class="n">venta_neta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ventas_netas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">fact_ventas</span><span class="w"> </span><span class="n">fv</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">dim_fecha</span><span class="w"> </span><span class="n">df</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">fecha_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">fecha_key</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">anio</span><span class="p">,</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">mes_numero</span><span class="p">,</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">mes_desc</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">anio</span><span class="p">,</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">mes_numero</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="173-ventas-por-dia-de-semana">17.3 Ventas por día de semana</h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">dia_semana_numero</span><span class="p">,</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">dia_semana_desc</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">fv</span><span class="p">.</span><span class="n">venta_neta</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ventas_netas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">fact_ventas</span><span class="w"> </span><span class="n">fv</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">dim_fecha</span><span class="w"> </span><span class="n">df</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">fv</span><span class="p">.</span><span class="n">fecha_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">fecha_key</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">dia_semana_numero</span><span class="p">,</span>
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">dia_semana_desc</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">df</span><span class="p">.</span><span class="n">dia_semana_numero</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="18-checklist">18. Checklist</h2>
+<ul>
+<li>existe página <code>Exploración OLAP</code></li>
+<li>se usa <code>[Ventas Netas]</code> como medida principal</li>
+<li>la matriz permite navegar familia, categoría y producto</li>
+<li>existe tabla o matriz de clientes para análisis de detalle</li>
+<li>existe visual de progresión mensual y acumulada</li>
+<li>existe visual de ventas por mes y año</li>
+<li>si se usa análisis diario, está filtrado por año y mes</li>
+<li>el radar por día de semana respeta el orden configurado en el modelo semántico</li>
+<li>existe drill-through de producto</li>
+<li>existe drill-through de cliente</li>
+<li>existe tooltip contextual</li>
+<li>se redactaron tres hallazgos</li>
+<li>al menos un hallazgo fue validado contra SQL</li>
+</ul>
+<h2 id="19-evidencias-a-entregar">19. Evidencias a entregar</h2>
+<ul>
+<li>captura de matriz OLAP</li>
+<li>captura de tabla o matriz de clientes</li>
+<li>captura de progresión mensual y acumulada</li>
+<li>captura de ventas por mes y año</li>
+<li>captura opcional de ventas por día del mes</li>
+<li>captura del radar por día de semana</li>
+<li>captura de drill-through de producto</li>
+<li>captura de drill-through de cliente</li>
+<li>tres hallazgos redactados</li>
+<li>validación SQL</li>
+</ul>
+<p>Nombre sugerido:</p>
+<div class="highlight"><pre><span></span><code>FarmaciaPBI_U2_S4_OLAP_Progresion_Storytelling.pbix
+</code></pre></div>
+<h2 id="20-cierre">20. Cierre</h2>
+<p>Con esta práctica, el alumno aprende a explorar ventas netas, leer su progresión y convertir observaciones en hallazgos. La siguiente sesión convierte esos hallazgos en una página ejecutiva con KPIs.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../javascripts/mermaid.js"></script>
+      
+    
+  </body>
+</html>

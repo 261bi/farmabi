@@ -1,0 +1,1623 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentacion del proyecto BI farmabi">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Sesión U2 S3 P1: Modelo semántico en Power BI v2 - farmabi - Business Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sesion-u2-s3-p1-modelo-semantico-en-power-bi-v2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="farmabi - Business Intelligence" class="md-header__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            farmabi - Business Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sesión U2 S3 P1: Modelo semántico en Power BI v2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="farmabi - Business Intelligence" class="md-nav__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    farmabi - Business Intelligence
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sesiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s01-fundamentos-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 Fundamentos BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s02-requerimientos-kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 Requerimientos y KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s03-modelado-dimensional-metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 Modelado dimensional y metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s04-diseno-solucion-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S4 Diseno de la solucion BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s05-evaluacion-u1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 Evaluacion U1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s06-dw-manual-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S6 DW manual con SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s07-pipeline-bi-herramientas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S7 Pipeline BI con herramientas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s08-modelo-semantico-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S8 Modelo semantico y metricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s09-visualizacion-bi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S9 Visualizacion BI base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s10-paneles-interactivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S10 Paneles interactivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s11-interpretacion-gobierno-dato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S11 Interpretacion y gobierno del dato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s12-evaluacion-u2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S12 Evaluacion U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s13-integracion-end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S13 Integracion end-to-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s14-validacion-negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S14 Validacion con negocio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s15-sustentacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S15 Sustentacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s16-evaluacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S16 Evaluacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guias/pasos_24_25_comparativos_ventas_pedidos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparativos ventas pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Historico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../historico/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo semantico version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../historico/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medidas DAX version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-titulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Título
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-punto-de-partida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Punto de partida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-conexion-desde-power-bi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Conexión desde Power BI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modelo-estrella-esperado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Modelo estrella esperado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-grano-de-la-tabla-de-hechos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Grano de la tabla de hechos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-campos-visibles-y-ocultos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Campos visibles y ocultos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-orden-semantico-de-fechas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Orden semántico de fechas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Orden semántico de fechas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-actividad-orden-temporal-del-dia-de-semana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Actividad: orden temporal del día de semana
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-jerarquias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Jerarquías
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-formatos-semanticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Formatos semánticos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-validacion-visual-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Validación visual del modelo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Validación visual del modelo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-segmentador-por-ano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Segmentador por año
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-grafico-de-ventas-por-mes-y-ano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Gráfico de ventas por mes y año
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-matriz-calendario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Matriz calendario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-tablas-de-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Tablas de control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-evidencias-a-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Evidencias a entregar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-cierre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Cierre
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sesion-u2-s3-p1-modelo-semantico-en-power-bi-v2">Sesión U2 S3 P1: Modelo semántico en Power BI v2</h1>
+<h2 id="1-titulo">1. Título</h2>
+<p>Construcción del modelo semántico BI en Power BI a partir del DataMart <code>marts</code>.</p>
+<h2 id="2-objetivo">2. Objetivo</h2>
+<p>Conectar Power BI al DataMart en PostgreSQL y dejar un modelo estrella limpio, navegable y listo para construir medidas DAX.</p>
+<p>Al finalizar la práctica, el alumno debe poder:</p>
+<ul>
+<li>conectarse a PostgreSQL desde Power BI</li>
+<li>cargar solo las tablas analíticas del schema <code>marts</code></li>
+<li>reconocer dimensiones y tabla de hechos</li>
+<li>crear relaciones de uno a muchos</li>
+<li>identificar el grano de <code>fact_ventas</code></li>
+<li>ocultar campos técnicos</li>
+<li>ordenar correctamente atributos temporales</li>
+<li>crear jerarquías de fecha y producto</li>
+<li>validar que el modelo responde a filtros desde dimensiones</li>
+</ul>
+<h2 id="3-punto-de-partida">3. Punto de partida</h2>
+<p>Esta práctica continúa desde el DataMart construido con dbt:</p>
+<div class="highlight"><pre><span></span><code>MySQL -&gt; Airbyte o Debezium -&gt; PostgreSQL raw -&gt; dbt staging -&gt; dbt marts -&gt; Power BI
+</code></pre></div>
+<p>Antes de iniciar, valida en PostgreSQL:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">fact_ventas</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">dim_fecha</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">marts</span><span class="p">.</span><span class="n">dim_producto</span><span class="p">;</span>
+</code></pre></div>
+<p>Tablas que se importarán:</p>
+<ul>
+<li><code>marts.dim_fecha</code></li>
+<li><code>marts.dim_producto</code></li>
+<li><code>marts.dim_cliente</code></li>
+<li><code>marts.dim_vendedor</code></li>
+<li><code>marts.dim_estado_pedido</code></li>
+<li><code>marts.fact_ventas</code></li>
+</ul>
+<h2 id="4-conexion-desde-power-bi">4. Conexión desde Power BI</h2>
+<p>En Power BI Desktop:</p>
+<ol>
+<li>Selecciona <code>Obtener datos</code>.</li>
+<li>Elige <code>Base de datos PostgreSQL</code>.</li>
+<li>Usa:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>Servidor: 127.0.0.1:55432
+Base de datos: farmabi_dw
+Usuario: postgres
+Password: postgres
+</code></pre></div>
+<p>Selecciona modo <code>Importar</code>.</p>
+<p>No cargues tablas de:</p>
+<ul>
+<li><code>raw</code></li>
+<li><code>staging</code></li>
+</ul>
+<p>El reporte debe consumir la capa <code>marts</code>.</p>
+<h2 id="5-modelo-estrella-esperado">5. Modelo estrella esperado</h2>
+<p>Tabla de hechos:</p>
+<ul>
+<li><code>fact_ventas</code></li>
+</ul>
+<p>Dimensiones:</p>
+<ul>
+<li><code>dim_fecha</code></li>
+<li><code>dim_producto</code></li>
+<li><code>dim_cliente</code></li>
+<li><code>dim_vendedor</code></li>
+<li><code>dim_estado_pedido</code></li>
+</ul>
+<p>Diagrama del modelo:</p>
+<pre class="mermaid"><code>erDiagram
+    dim_fecha ||--o{ fact_ventas : "fecha_key"
+    dim_producto ||--o{ fact_ventas : "producto_key"
+    dim_cliente ||--o{ fact_ventas : "cliente_key"
+    dim_vendedor ||--o{ fact_ventas : "vendedor_key"
+    dim_estado_pedido ||--o{ fact_ventas : "estado_pedido_key"
+
+    dim_fecha {
+        int fecha_key PK
+        date fecha
+        int año
+        int trimestre
+        int mes_numero
+        string mes_desc
+        int dia
+        int dia_semana_numero
+        string dia_semana_desc
+    }
+
+    dim_producto {
+        int producto_key PK
+        int producto_id
+        string nombre_familia
+        string nombre_categoria
+        string nombre_producto
+    }
+
+    dim_cliente {
+        int cliente_key PK
+        int cliente_id
+        string nombre_cliente
+    }
+
+    dim_vendedor {
+        int vendedor_key PK
+        int vendedor_id
+        string nombre_vendedor
+    }
+
+    dim_estado_pedido {
+        int estado_pedido_key PK
+        string estado_pedido
+    }
+
+    fact_ventas {
+        int fecha_key FK
+        int producto_key FK
+        int cliente_key FK
+        int vendedor_key FK
+        int estado_pedido_key FK
+        int pedido_id
+        int producto_id
+        decimal cantidad_vendida
+        decimal venta_neta
+    }</code></pre>
+<p>Configuración:</p>
+<ul>
+<li>cardinalidad: <code>Uno a varios</code></li>
+<li>dirección de filtro: <code>Simple</code></li>
+<li>relación activa: <code>Sí</code></li>
+</ul>
+<h2 id="6-grano-de-la-tabla-de-hechos">6. Grano de la tabla de hechos</h2>
+<p>El grano de <code>fact_ventas</code> es:</p>
+<div class="highlight"><pre><span></span><code>una fila por línea de pedido por producto
+</code></pre></div>
+<p>Esto significa:</p>
+<ul>
+<li>un <code>pedido_id</code> puede repetirse</li>
+<li>un pedido puede tener varios productos</li>
+<li>las ventas se suman por línea</li>
+<li>los pedidos se cuentan con <code>DISTINCTCOUNT</code></li>
+</ul>
+<h2 id="7-campos-visibles-y-ocultos">7. Campos visibles y ocultos</h2>
+<p>Oculta claves técnicas usadas para relaciones:</p>
+<ul>
+<li><code>fact_ventas[fecha_key]</code></li>
+<li><code>fact_ventas[producto_key]</code></li>
+<li><code>fact_ventas[cliente_key]</code></li>
+<li><code>fact_ventas[vendedor_key]</code></li>
+<li><code>fact_ventas[estado_pedido_key]</code></li>
+</ul>
+<p>También puedes ocultar claves de dimensiones:</p>
+<ul>
+<li><code>cliente_key</code></li>
+<li><code>producto_key</code></li>
+<li><code>vendedor_key</code></li>
+<li><code>estado_pedido_key</code></li>
+<li><code>cliente_id</code></li>
+<li><code>producto_id</code></li>
+<li><code>vendedor_id</code></li>
+<li><code>categoria_id</code></li>
+<li><code>familia_id</code></li>
+</ul>
+<p>Deja visibles los campos de negocio:</p>
+<ul>
+<li><code>dim_fecha[fecha]</code></li>
+<li><code>dim_fecha[año]</code></li>
+<li><code>dim_fecha[trimestre]</code></li>
+<li><code>dim_fecha[mes_desc]</code></li>
+<li><code>dim_fecha[dia]</code></li>
+<li><code>dim_fecha[dia_semana_desc]</code></li>
+<li><code>dim_producto[nombre_familia]</code></li>
+<li><code>dim_producto[nombre_categoria]</code></li>
+<li><code>dim_producto[nombre_producto]</code></li>
+<li><code>dim_cliente[nombre_cliente]</code></li>
+<li><code>dim_vendedor[nombre_vendedor]</code></li>
+<li><code>dim_estado_pedido[estado_pedido]</code></li>
+</ul>
+<h2 id="8-orden-semantico-de-fechas">8. Orden semántico de fechas</h2>
+<p>Configura <code>No resumir</code> en:</p>
+<ul>
+<li><code>dim_fecha[año]</code></li>
+<li><code>dim_fecha[trimestre]</code></li>
+<li><code>dim_fecha[mes_numero]</code></li>
+<li><code>dim_fecha[dia]</code></li>
+<li><code>dim_fecha[dia_semana_numero]</code></li>
+</ul>
+<p>Ordena:</p>
+<div class="highlight"><pre><span></span><code>dim_fecha[mes_desc]         por dim_fecha[mes_numero]
+dim_fecha[dia_semana_desc]  por dim_fecha[dia_semana_numero]
+</code></pre></div>
+<p>Esto evita que Power BI ordene meses o días como texto.</p>
+<h3 id="81-actividad-orden-temporal-del-dia-de-semana">8.1 Actividad: orden temporal del día de semana</h3>
+<p>Crea una tabla simple.</p>
+<p>Filas:</p>
+<ul>
+<li><code>dim_fecha[dia_semana_desc]</code></li>
+</ul>
+<p>Valores:</p>
+<ul>
+<li>suma de <code>fact_ventas[venta_neta]</code></li>
+</ul>
+<p>Pregunta:</p>
+<div class="highlight"><pre><span></span><code>¿Qué sucede con el informe?
+</code></pre></div>
+<p>Si los días aparecen en orden alfabético, corrige:</p>
+<ol>
+<li>Ve a la vista <code>Datos</code>.</li>
+<li>Selecciona <code>dim_fecha[dia_semana_desc]</code>.</li>
+<li>Elige <code>Ordenar por columna</code>.</li>
+<li>Selecciona <code>dim_fecha[dia_semana_numero]</code>.</li>
+<li>Regresa al informe.</li>
+</ol>
+<p>Resultado esperado:</p>
+<div class="highlight"><pre><span></span><code>domingo
+lunes
+martes
+miércoles
+jueves
+viernes
+sábado
+</code></pre></div>
+<p>Pregunta final:</p>
+<div class="highlight"><pre><span></span><code>¿Cambió el dato o cambió la forma correcta de leerlo?
+</code></pre></div>
+<p>La respuesta esperada: cambió la forma correcta de leerlo. Los importes no cambiaron; cambió el orden de presentación.</p>
+<h2 id="9-jerarquias">9. Jerarquías</h2>
+<p>Crea la jerarquía:</p>
+<div class="highlight"><pre><span></span><code>Calendario
+  año
+  trimestre
+  mes_desc
+  dia
+</code></pre></div>
+<p>Crea la jerarquía:</p>
+<div class="highlight"><pre><span></span><code>Producto Comercial
+  nombre_familia
+  nombre_categoria
+  nombre_producto
+</code></pre></div>
+<p>No uses la jerarquía automática de fechas como jerarquía oficial del curso.</p>
+<p>Nota de uso para la jerarquía <code>Calendario</code>:</p>
+<div class="highlight"><pre><span></span><code>Calendario -&gt; navegación agregada por año, trimestre, mes y día
+dim_fecha[fecha] -&gt; campo suelto solo si necesitas mostrar la fecha exacta
+</code></pre></div>
+<p>No coloques <code>dim_fecha[fecha]</code> dentro de la jerarquía <code>Calendario</code> para esta práctica. Power BI suele expandir una columna de tipo fecha como jerarquía automática con <code>Año</code>, <code>Trimestre</code>, <code>Mes</code> y <code>Día</code>; eso genera niveles duplicados cuando ya tenemos <code>año</code>, <code>trimestre</code>, <code>mes_desc</code> y <code>dia</code>.</p>
+<h2 id="10-formatos-semanticos">10. Formatos semánticos</h2>
+<p>Configura el formato de los campos numéricos visibles. Esta configuración forma parte del modelo semántico porque define cómo se leerán los datos en cualquier visual.</p>
+<p>Columnas base:</p>
+<ul>
+<li>moneda: <code>fact_ventas[venta_neta]</code></li>
+<li>entero o número sin decimales: <code>fact_ventas[pedido_count]</code></li>
+<li>entero o número sin decimales: <code>fact_ventas[cantidad_vendida]</code></li>
+</ul>
+<p>Columnas opcionales:</p>
+<ul>
+<li>moneda: <code>fact_ventas[venta_bruta]</code></li>
+<li>moneda: <code>fact_ventas[descuento_total]</code></li>
+<li>moneda: <code>fact_ventas[costo_total]</code></li>
+<li>moneda: <code>fact_ventas[margen_bruto]</code></li>
+<li>porcentaje: <code>fact_ventas[pct_margen_bruto]</code></li>
+</ul>
+<p>Cuando se creen medidas en la siguiente práctica, usa el mismo criterio:</p>
+<ul>
+<li>moneda: <code>[Ventas Netas]</code>, <code>[Ticket Promedio]</code></li>
+<li>entero: <code>[Pedidos]</code>, <code>[Unidades Vendidas]</code></li>
+<li>moneda opcional: <code>[Ventas Brutas]</code>, <code>[Descuentos]</code>, <code>[Costo Total]</code>, <code>[Margen Bruto]</code></li>
+<li>porcentaje opcional: <code>[% Margen Bruto]</code></li>
+</ul>
+<h2 id="11-validacion-visual-del-modelo">11. Validación visual del modelo</h2>
+<p>En una página temporal, arma una validación rápida del modelo. Esta página no es todavía el dashboard final; solo sirve para comprobar que las relaciones, jerarquías y filtros funcionan correctamente.</p>
+<h3 id="111-segmentador-por-ano">11.1 Segmentador por año</h3>
+<p>Agrega un <code>Segmentador</code>.</p>
+<p>Campo:</p>
+<ul>
+<li><code>dim_fecha[año]</code></li>
+</ul>
+<p>Configúralo como lista o mosaico.</p>
+<p>Resultado esperado:</p>
+<ul>
+<li>aparecen los años disponibles</li>
+<li>al seleccionar un año, cambian el gráfico y la matriz</li>
+<li>no necesitas filtrar directamente la tabla de hechos</li>
+</ul>
+<h3 id="112-grafico-de-ventas-por-mes-y-ano">11.2 Gráfico de ventas por mes y año</h3>
+<p>Agrega un <code>Gráfico de líneas</code>.</p>
+<p>Configura:</p>
+<ul>
+<li>Eje X: <code>dim_fecha[mes_desc]</code></li>
+<li>Eje Y: suma de <code>fact_ventas[venta_neta]</code></li>
+<li>Leyenda: <code>dim_fecha[año]</code></li>
+</ul>
+<p>Verifica que <code>dim_fecha[mes_desc]</code> esté ordenado por <code>dim_fecha[mes_numero]</code>.</p>
+<p>Resultado esperado:</p>
+<ul>
+<li>los meses aparecen de enero a diciembre</li>
+<li>cada año se muestra como una línea diferente</li>
+<li>2026 aparece solo hasta el mes disponible en los datos</li>
+</ul>
+<p>Pregunta de interpretación:</p>
+<div class="highlight"><pre><span></span><code>¿Se puede comparar 2026 contra 2024 o 2025 como si fuera un año completo?
+</code></pre></div>
+<p>Respuesta esperada:</p>
+<div class="highlight"><pre><span></span><code>No. 2026 todavía es un año parcial; la comparación debe leerse hasta el mismo periodo o aclarar que el año está incompleto.
+</code></pre></div>
+<h3 id="113-matriz-calendario">11.3 Matriz calendario</h3>
+<p>Agrega una <code>Matriz</code>.</p>
+<p>Filas:</p>
+<ul>
+<li>jerarquía <code>Calendario</code></li>
+</ul>
+<p>Valor:</p>
+<ul>
+<li>suma de <code>fact_ventas[venta_neta]</code></li>
+</ul>
+<p>Expande la jerarquía hasta:</p>
+<div class="highlight"><pre><span></span><code>año
+trimestre
+mes_desc
+dia
+</code></pre></div>
+<p>Resultado esperado:</p>
+<ul>
+<li>puedes navegar de año a trimestre, mes y día</li>
+<li>el subtotal de cada nivel se calcula automáticamente</li>
+<li>el modelo responde correctamente desde <code>dim_fecha</code> hacia <code>fact_ventas</code></li>
+<li>no aparece una segunda jerarquía interna de <code>fecha</code> con <code>Año</code>, <code>Trimestre</code>, <code>Mes</code> y <code>Día</code></li>
+</ul>
+<h3 id="114-tablas-de-control">11.4 Tablas de control</h3>
+<p>Agrega una tabla simple por mes.</p>
+<p>Campos:</p>
+<ul>
+<li><code>dim_fecha[mes_desc]</code></li>
+<li>suma de <code>fact_ventas[venta_neta]</code></li>
+</ul>
+<p>Agrega otra tabla simple por día de semana.</p>
+<p>Campos:</p>
+<ul>
+<li><code>dim_fecha[dia_semana_desc]</code></li>
+<li>suma de <code>fact_ventas[venta_neta]</code></li>
+</ul>
+<p>Resultado esperado:</p>
+<ul>
+<li>los meses respetan el orden calendario</li>
+<li>los días respetan el orden domingo a sábado</li>
+<li>los totales coinciden entre gráfico, matriz y tablas</li>
+</ul>
+<p>Nota:</p>
+<div class="highlight"><pre><span></span><code>En la siguiente práctica se reemplazará la suma automática por la medida oficial [Ventas Netas].
+</code></pre></div>
+<h2 id="12-evidencias-a-entregar">12. Evidencias a entregar</h2>
+<ul>
+<li>captura de conexión a PostgreSQL</li>
+<li>captura de tablas <code>marts</code> importadas</li>
+<li>captura del modelo estrella</li>
+<li>captura de relaciones</li>
+<li>captura de jerarquía <code>Calendario</code></li>
+<li>captura de jerarquía <code>Producto Comercial</code></li>
+<li>captura de ordenamiento de <code>mes_desc</code> o <code>dia_semana_desc</code></li>
+<li>captura de formatos semánticos aplicados</li>
+<li>captura del segmentador por año</li>
+<li>captura del gráfico de ventas por mes y año</li>
+<li>captura de la matriz calendario</li>
+<li>captura de las tablas de control por mes y día de semana</li>
+</ul>
+<h2 id="13-cierre">13. Cierre</h2>
+<p>Con esta práctica, Power BI queda conectado a un modelo semántico limpio. La siguiente práctica define las medidas oficiales que usarán todas las páginas del reporte.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../javascripts/mermaid.js"></script>
+      
+    
+  </body>
+</html>

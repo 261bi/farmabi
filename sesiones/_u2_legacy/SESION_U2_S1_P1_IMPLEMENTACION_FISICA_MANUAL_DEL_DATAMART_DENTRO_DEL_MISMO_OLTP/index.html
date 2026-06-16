@@ -1,0 +1,2490 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentacion del proyecto BI farmabi">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Sesión U2 S1 P1: Implementación física manual del DataMart dentro del mismo OLTP - farmabi - Business Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sesion-u2-s1-p1-implementacion-fisica-manual-del-datamart-dentro-del-mismo-oltp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="farmabi - Business Intelligence" class="md-header__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            farmabi - Business Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sesión U2 S1 P1: Implementación física manual del DataMart dentro del mismo OLTP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="farmabi - Business Intelligence" class="md-nav__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    farmabi - Business Intelligence
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sesiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sesiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s01-fundamentos-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 Fundamentos BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s02-requerimientos-kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 Requerimientos y KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s03-modelado-dimensional-metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 Modelado dimensional y metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s04-diseno-solucion-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S4 Diseno de la solucion BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s05-evaluacion-u1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 Evaluacion U1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s06-dw-manual-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S6 DW manual con SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s07-pipeline-bi-herramientas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S7 Pipeline BI con herramientas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s08-modelo-semantico-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S8 Modelo semantico y metricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s09-visualizacion-bi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S9 Visualizacion BI base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s10-paneles-interactivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S10 Paneles interactivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s11-interpretacion-gobierno-dato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S11 Interpretacion y gobierno del dato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s12-evaluacion-u2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S12 Evaluacion U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s13-integracion-end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S13 Integracion end-to-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s14-validacion-negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S14 Validacion con negocio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s15-sustentacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S15 Sustentacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../s16-evaluacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S16 Evaluacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guias/pasos_24_25_comparativos_ventas_pedidos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparativos ventas pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Historico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../historico/SESION_U2_S3_P1_MODELO_SEMANTICO_POWER_BI_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo semantico version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../historico/SESION_U2_S3_P2_MEDIDAS_DAX_Y_AGREGACIONES_vAnterior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medidas DAX version anterior
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-titulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Título
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-proposito-de-la-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Propósito de la sesión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-caso-de-negocio-oficial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Caso de negocio oficial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-problema-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Problema de negocio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-area-o-proceso-involucrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Área o proceso involucrado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-objetivo-analitico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Objetivo analítico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-punto-de-partida-real-el-oltp-farma_oltp_db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Punto de partida real: el OLTP farma_oltp_db
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-recordatorio-importante-de-diseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Recordatorio importante de diseño
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-preguntas-analiticas-congeladas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Preguntas analíticas congeladas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-kpis-congelados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. KPIs congelados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. KPIs congelados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-kpis-comerciales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. KPIs comerciales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-kpis-operativos-del-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. KPIs operativos del proceso
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-kpis-que-quedan-fuera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. KPIs que quedan fuera
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-granularidad-congelada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Granularidad congelada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Granularidad congelada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aclaracion-con-ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aclaración con ejemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion-del-ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusión del ejemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-tabla-de-hechos-congelada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Tabla de hechos congelada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-dimensiones-congeladas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Dimensiones congeladas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Dimensiones congeladas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#origen-de-las-dimensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Origen de las dimensiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-de-diseno-congelada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisión de diseño congelada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-jerarquias-congeladas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Jerarquías congeladas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Jerarquías congeladas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tiempo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tiempo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#producto-comercial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Producto comercial
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-mapeo-oltp-modelo-dimensional-congelado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Mapeo OLTP -&gt; modelo dimensional congelado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Mapeo OLTP -&gt; modelo dimensional congelado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hecho-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hecho principal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-de-integracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas de integración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#campos-de-negocio-mapeados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campos de negocio mapeados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#construccion-de-dimensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Construcción de dimensiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-matriz-bus-congelada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Matriz BUS congelada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-validacion-congelada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Validación congelada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-version-final-congelada-para-el-curso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Versión final congelada para el curso
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="19. Versión final congelada para el curso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alcance-oficial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alcance oficial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-oficial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura oficial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kpi-rey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KPI rey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hecho-principal_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hecho principal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esquema-dimensional-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Esquema dimensional final
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nota-de-actualizacion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nota de actualización técnica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-estructura-fisica-que-se-construira" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Estructura física que se construirá
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="20. Estructura física que se construirá">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#201-dim_cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20.1 dim_cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#202-dim_vendedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20.2 dim_vendedor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#203-dim_producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20.3 dim_producto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#204-dim_fecha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20.4 dim_fecha
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#205-dim_estado_pedido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20.5 dim_estado_pedido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#206-fact_ventas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20.6 fact_ventas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-relacion-entre-el-oltp-y-el-datamart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Relación entre el OLTP y el DataMart
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="21. Relación entre el OLTP y el DataMart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fuentes-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fuentes principales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-de-integracion-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas de integración base
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-decision-tecnica-de-esta-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Decisión técnica de esta práctica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-preparacion-del-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. Preparación del entorno
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-implementacion-fisica-manual-del-datamart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Implementación física manual del DataMart
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="24. Implementación física manual del DataMart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#171-crear-dim_cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.1 Crear dim_cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#172-crear-dim_vendedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.2 Crear dim_vendedor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#173-crear-dim_producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.3 Crear dim_producto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#174-crear-dim_fecha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.4 Crear dim_fecha
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#175-crear-dim_estado_pedido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.5 Crear dim_estado_pedido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#176-crear-fact_ventas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.6 Crear fact_ventas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-validacion-de-la-estructura-creada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. Validación de la estructura creada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-que-debe-quedar-listo-al-cerrar-esta-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. Qué debe quedar listo al cerrar esta sesión
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-que-viene-en-la-siguiente-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        27. Qué viene en la siguiente práctica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-evidencias-a-entregar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        28. Evidencias a entregar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-cierre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29. Cierre
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sesion-u2-s1-p1-implementacion-fisica-manual-del-datamart-dentro-del-mismo-oltp">Sesión U2 S1 P1: Implementación física manual del DataMart dentro del mismo OLTP</h1>
+<h2 id="1-titulo">1. Título</h2>
+<p>Implementación física manual del DataMart del caso <code>farma_oltp_db</code> dentro del mismo motor MySQL transaccional.</p>
+<h2 id="2-proposito-de-la-sesion">2. Propósito de la sesión</h2>
+<p>En esta práctica el estudiante no usará todavía Airbyte ni dbt. Primero construirá manualmente la estructura física del DataMart directamente en la misma base <code>farma_oltp_db</code>, para entender cómo se implementa un modelo analítico con SQL antes de pasar a herramientas especializadas.</p>
+<p>Esta sesión se concentra solo en la parte física:</p>
+<ul>
+<li>revisar el OLTP real</li>
+<li>identificar las tablas fuente</li>
+<li>definir el modelo estrella que se implementará</li>
+<li>crear manualmente las dimensiones</li>
+<li>crear manualmente la tabla de hechos</li>
+<li>dejar lista la estructura para la sesión siguiente, donde se hará el ETL manual</li>
+</ul>
+<h2 id="3-caso-de-negocio-oficial">3. Caso de negocio oficial</h2>
+<p>Caso práctico del curso:</p>
+<p><strong>Análisis comercial y operativo del ciclo de pedidos de una distribuidora farmacéutica usando <code>farma_oltp_db</code>.</strong></p>
+<h2 id="4-problema-de-negocio">4. Problema de negocio</h2>
+<p>La empresa registra pedidos y productos vendidos en una base transaccional, pero la información está distribuida entre cabecera del pedido, detalle, cliente, vendedor, producto, categoría y familia. Esto dificulta evaluar de manera integrada el desempeño comercial y la eficiencia operativa del proceso de atención del pedido.</p>
+<p>En consecuencia, la gerencia no puede responder con rapidez preguntas como:</p>
+<ul>
+<li>cuánto se vende</li>
+<li>qué productos o categorías generan mayor ingreso y margen</li>
+<li>qué vendedor o cliente concentra mayor actividad</li>
+<li>cuánto descuento se otorga</li>
+<li>cuánto tarda un pedido en ser confirmado, despachado y entregado</li>
+</ul>
+<h2 id="5-area-o-proceso-involucrado">5. Área o proceso involucrado</h2>
+<p>Proceso principal:</p>
+<p><strong>Gestión de pedidos y ventas</strong></p>
+<p>Esto se sustenta en la relación entre:</p>
+<ul>
+<li><code>pedidos</code></li>
+<li><code>pedido_detalles</code></li>
+</ul>
+<p>junto con las entidades de contexto:</p>
+<ul>
+<li><code>clientes</code></li>
+<li><code>vendedores</code></li>
+<li><code>productos</code></li>
+<li><code>categorias</code></li>
+<li><code>familias</code></li>
+</ul>
+<h2 id="6-objetivo-analitico">6. Objetivo analítico</h2>
+<p>Diseñar e implementar físicamente un DataMart que permita analizar el desempeño comercial y operativo del proceso de pedidos, integrando métricas de ventas, cantidades, descuentos, margen bruto y tiempos del ciclo del pedido.</p>
+<h2 id="7-punto-de-partida-real-el-oltp-farma_oltp_db">7. Punto de partida real: el OLTP <code>farma_oltp_db</code></h2>
+<p>La base transaccional real se encuentra en:</p>
+<ul>
+<li><a href="https://github.com/261bi/farmabi/blob/main/oltp-mysql/mysql/init/farma_oltp_db.sql">farma_oltp_db.sql</a></li>
+</ul>
+<p>En esa base existen las tablas fuente:</p>
+<ul>
+<li><code>familias</code></li>
+<li><code>categorias</code></li>
+<li><code>productos</code></li>
+<li><code>clientes</code></li>
+<li><code>vendedores</code></li>
+<li><code>pedidos</code></li>
+<li><code>pedido_detalles</code></li>
+</ul>
+<h2 id="8-recordatorio-importante-de-diseno">8. Recordatorio importante de diseño</h2>
+<p>En la Unidad 1 ya se realizó el modelado dimensional conceptual en papel. En esta sesión no se vuelve a diseñar desde cero. Aquí se toma ese diseño aprobado y se lo convierte en estructuras físicas reales en MySQL.</p>
+<h2 id="9-preguntas-analiticas-congeladas">9. Preguntas analíticas congeladas</h2>
+<p>Estas serán las preguntas oficiales del caso:</p>
+<ul>
+<li>¿Cuál es el monto total vendido por día, mes y año?</li>
+<li>¿Cuántas unidades se venden por producto, categoría y familia?</li>
+<li>¿Qué productos generan mayor venta neta?</li>
+<li>¿Qué productos, categorías y familias generan mayor margen bruto?</li>
+<li>¿Qué clientes registran mayor volumen de compra y mayor ticket promedio?</li>
+<li>¿Qué vendedores generan mayores ventas y mejor margen?</li>
+<li>¿Cuánto descuento total se otorga por producto, cliente y vendedor?</li>
+<li>¿Cuánto tiempo tarda un pedido en ser confirmado?</li>
+<li>¿Cuánto tiempo tarda un pedido en ser despachado?</li>
+<li>¿Cuánto tiempo tarda un pedido en ser entregado?</li>
+<li>¿Cuál es el lead time total del pedido desde creación hasta entrega?</li>
+<li>¿Qué porcentaje de pedidos se entrega dentro del tiempo objetivo definido?</li>
+<li>¿Qué etapa del proceso concentra mayor demora: confirmación, despacho o entrega?</li>
+</ul>
+<p>Estas preguntas son viables porque la base contiene medidas monetarias y de cantidad en <code>pedido_detalles</code>, el estado y las fechas del flujo en <code>pedidos</code>, y la clasificación comercial vía <code>productos -&gt; categorias -&gt; familias</code>.</p>
+<h2 id="10-kpis-congelados">10. KPIs congelados</h2>
+<h3 id="a-kpis-comerciales">A. KPIs comerciales</h3>
+<p><strong>KPI 1. Ventas netas</strong></p>
+<ul>
+<li>Definición: monto total vendido después de descuentos.</li>
+<li>Fórmula base: suma de ventas netas por línea de pedido.</li>
+<li>Fuente: <code>pedido_detalles</code>.</li>
+<li>Implementación esperada en el DataMart: columna física <code>venta_neta</code> en <code>fact_ventas</code>.</li>
+</ul>
+<p><strong>KPI 2. Unidades vendidas</strong></p>
+<ul>
+<li>Definición: total de unidades vendidas.</li>
+<li>Fórmula base: suma de <code>cantidad</code>.</li>
+<li>Fuente: <code>pedido_detalles</code>.</li>
+<li>Implementación esperada en el DataMart: columna física <code>cantidad_vendida</code> en <code>fact_ventas</code>.</li>
+</ul>
+<p><strong>KPI 3. Margen bruto</strong></p>
+<ul>
+<li>Definición: diferencia entre venta neta y costo total.</li>
+<li>Fuente: <code>pedido_detalles</code>, usando precio de venta, precio de compra, descuento y cantidad.</li>
+<li>Implementación esperada en el DataMart: columna física <code>margen_bruto</code> en <code>fact_ventas</code>.</li>
+</ul>
+<p><strong>KPI 4. % Margen bruto</strong></p>
+<ul>
+<li>Definición: proporción del margen bruto respecto de la venta neta.</li>
+<li>Fuente: derivado desde las medidas de detalle.</li>
+<li>Implementación esperada en el DataMart: columna física <code>pct_margen_bruto</code> en <code>fact_ventas</code>.</li>
+</ul>
+<p><strong>KPI 5. Ticket promedio por pedido</strong></p>
+<ul>
+<li>Definición: venta neta promedio por pedido.</li>
+<li>Fuente: <code>pedidos</code> + <code>pedido_detalles</code>.</li>
+<li>Implementación esperada en el DataMart: indicador derivado.</li>
+<li>Cálculo analítico esperado: <code>SUM(venta_neta) / COUNT(DISTINCT pedido_id)</code>.</li>
+</ul>
+<p><strong>KPI 6. Descuento total otorgado</strong></p>
+<ul>
+<li>Definición: monto total de descuento aplicado en las líneas del pedido.</li>
+<li>Fuente: <code>pedido_detalles</code>.</li>
+<li>Implementación esperada en el DataMart: columna física <code>descuento_total</code> en <code>fact_ventas</code>.</li>
+</ul>
+<h3 id="b-kpis-operativos-del-proceso">B. KPIs operativos del proceso</h3>
+<p><strong>KPI 7. Tiempo de confirmación (minutos)</strong></p>
+<ul>
+<li>Definición: tiempo entre creación y confirmación del pedido.</li>
+<li>Base temporal: <code>fecha_creacion -&gt; fecha_confirmacion</code> en <code>pedidos</code>.</li>
+<li>Implementación esperada en el DataMart: columna física <code>minutos_confirmacion</code> en <code>fact_ventas</code>.</li>
+</ul>
+<p><strong>KPI 8. Tiempo de despacho (minutos)</strong></p>
+<ul>
+<li>Definición: tiempo entre confirmación y envío.</li>
+<li>Base temporal: <code>fecha_confirmacion -&gt; fecha_envio</code> en <code>pedidos</code>.</li>
+<li>Implementación esperada en el DataMart: columna física <code>minutos_despacho</code> en <code>fact_ventas</code>.</li>
+</ul>
+<p><strong>KPI 9. Tiempo de entrega (horas)</strong></p>
+<ul>
+<li>Definición: tiempo entre envío y entrega.</li>
+<li>Base temporal: <code>fecha_envio -&gt; fecha_entrega</code> en <code>pedidos</code>.</li>
+<li>Implementación esperada en el DataMart: columna física <code>horas_entrega</code> en <code>fact_ventas</code>.</li>
+</ul>
+<p><strong>KPI 10. Lead time del pedido (horas)</strong></p>
+<ul>
+<li>Definición: tiempo total del pedido desde creación hasta entrega.</li>
+<li>Base temporal: <code>fecha_creacion -&gt; fecha_entrega</code> en <code>pedidos</code>.</li>
+<li>Este será el KPI rey del proceso.</li>
+<li>Implementación esperada en el DataMart: columna física <code>horas_lead_time</code> en <code>fact_ventas</code>.</li>
+</ul>
+<p><strong>KPI 11. % Pedidos entregados a tiempo</strong></p>
+<ul>
+<li>Definición: porcentaje de pedidos cuyo lead time está dentro del SLA definido por el negocio.</li>
+<li>Fuente: derivado desde las fechas del pedido.</li>
+<li>Implementación esperada en el DataMart: indicador derivado.</li>
+<li>Cálculo analítico esperado: porcentaje de <code>pedido_id</code> cuyo <code>horas_lead_time</code> esté dentro del umbral definido por el negocio.</li>
+</ul>
+<p><strong>KPI 12. Cantidad de pedidos</strong></p>
+<ul>
+<li>Definición: número de pedidos registrados.</li>
+<li>Fuente: <code>pedidos</code>.</li>
+<li>Implementación esperada en el DataMart: columna auxiliar <code>pedido_count</code> en <code>fact_ventas</code>, con valor 1 por fila de hecho.</li>
+<li>Cálculo analítico esperado: <code>COUNT(DISTINCT pedido_id)</code> o <code>SUM(pedido_count)</code> según el nivel de análisis.</li>
+</ul>
+<h2 id="11-kpis-que-quedan-fuera">11. KPIs que quedan fuera</h2>
+<p>Para mantener trazabilidad y coherencia con la fuente, no se incluirán KPIs de:</p>
+<ul>
+<li>stock</li>
+<li>rotación de inventario</li>
+<li>compras</li>
+<li>proveedores</li>
+<li>quiebres</li>
+<li>abastecimiento</li>
+<li>devoluciones</li>
+<li>metas o presupuesto</li>
+</ul>
+<p>El alcance oficial queda restringido a ventas y ciclo de pedidos.</p>
+<h2 id="12-granularidad-congelada">12. Granularidad congelada</h2>
+<p>El grano congelado del hecho será:</p>
+<p><strong>una fila por línea de pedido por producto</strong></p>
+<p>Esto es coherente porque el detalle transaccional está en <code>pedido_detalles</code>, vinculado al pedido y al producto, y desde ahí se derivan las medidas comerciales, mientras que las fechas operativas vienen de <code>pedidos</code>.</p>
+<h3 id="aclaracion-con-ejemplo">Aclaración con ejemplo</h3>
+<p>Supón que en <code>pedido_detalles</code> existen estas filas:</p>
+<table>
+<thead>
+<tr>
+<th>pedido_id</th>
+<th style="text-align: right;">producto_id</th>
+<th style="text-align: right;">cliente_id</th>
+<th style="text-align: right;">vendedor_id</th>
+<th>fecha</th>
+<th style="text-align: right;">cantidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td>2020-03-08</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td>2020-03-08</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td>2020-03-08</td>
+<td style="text-align: right;">7</td>
+</tr>
+</tbody>
+</table>
+<p>Si agrupamos por:</p>
+<ul>
+<li>fecha</li>
+<li>producto</li>
+<li>cliente</li>
+<li>vendedor</li>
+</ul>
+<p>entonces las dos primeras filas se consolidan en una sola, porque comparten:</p>
+<ul>
+<li>misma fecha</li>
+<li>mismo producto</li>
+<li>mismo cliente</li>
+<li>mismo vendedor</li>
+</ul>
+<p>El resultado agregado sería algo así:</p>
+<table>
+<thead>
+<tr>
+<th>fecha</th>
+<th style="text-align: right;">producto_id</th>
+<th style="text-align: right;">cliente_id</th>
+<th style="text-align: right;">vendedor_id</th>
+<th style="text-align: right;">cantidad_total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020-03-08</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td>2020-03-08</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+</tr>
+</tbody>
+</table>
+<p>Aquí ya no tenemos una fila por línea de pedido por producto. Ahora tenemos una fila resumida por combinación de dimensiones.</p>
+<p>Si en cambio respetamos el grano oficial del curso, entonces el hecho debe conservar el detalle transaccional así:</p>
+<table>
+<thead>
+<tr>
+<th>pedido_id</th>
+<th style="text-align: right;">producto_id</th>
+<th style="text-align: right;">cliente_id</th>
+<th style="text-align: right;">vendedor_id</th>
+<th>fecha</th>
+<th style="text-align: right;">cantidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td>2020-03-08</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td>2020-03-08</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td>2020-03-08</td>
+<td style="text-align: right;">7</td>
+</tr>
+</tbody>
+</table>
+<h3 id="conclusion-del-ejemplo">Conclusión del ejemplo</h3>
+<ul>
+<li>el primer caso crea una tabla resumen</li>
+<li>el segundo caso conserva el detalle transaccional</li>
+<li>para este curso, <code>fact_ventas</code> debe respetar el segundo enfoque</li>
+</ul>
+<p>En otras palabras, la unidad de negocio de cada fila no será una agregación por fecha, cliente, vendedor y producto, sino la línea del pedido representada en la fuente por <code>pedido_id + producto_id</code>.</p>
+<h2 id="13-tabla-de-hechos-congelada">13. Tabla de hechos congelada</h2>
+<p><code>fact_ventas</code></p>
+<p>Será la tabla de hechos central del caso. Contendrá medidas comerciales y operativas derivadas del pedido y su detalle.</p>
+<p>Medidas congeladas:</p>
+<ul>
+<li><code>cantidad_vendida</code></li>
+<li><code>venta_bruta</code></li>
+<li><code>descuento_total</code></li>
+<li><code>venta_neta</code></li>
+<li><code>costo_total</code></li>
+<li><code>margen_bruto</code></li>
+<li><code>pct_margen_bruto</code></li>
+<li><code>minutos_confirmacion</code></li>
+<li><code>minutos_despacho</code></li>
+<li><code>horas_entrega</code></li>
+<li><code>horas_lead_time</code></li>
+<li><code>pedido_count</code></li>
+</ul>
+<h2 id="14-dimensiones-congeladas">14. Dimensiones congeladas</h2>
+<p>Para esta versión final del curso, el esquema estrella queda congelado con estas dimensiones:</p>
+<ul>
+<li><code>dim_fecha</code></li>
+<li><code>dim_cliente</code></li>
+<li><code>dim_vendedor</code></li>
+<li><code>dim_producto</code></li>
+<li><code>dim_estado_pedido</code></li>
+</ul>
+<p>Y con una tabla de hechos central:</p>
+<ul>
+<li><code>fact_ventas</code></li>
+</ul>
+<h3 id="origen-de-las-dimensiones">Origen de las dimensiones</h3>
+<p><code>dim_cliente</code></p>
+<ul>
+<li>desde <code>clientes</code></li>
+<li>campos base esperados:</li>
+<li><code>cliente_id</code></li>
+<li><code>nombre</code></li>
+</ul>
+<p><code>dim_vendedor</code></p>
+<ul>
+<li>desde <code>vendedores</code></li>
+<li>campos base esperados:</li>
+<li><code>vendedor_id</code></li>
+<li><code>nombre</code></li>
+</ul>
+<p><code>dim_producto</code></p>
+<ul>
+<li>desde <code>productos</code></li>
+<li>desde <code>categorias</code></li>
+<li>desde <code>familias</code></li>
+<li>esta dimensión concentra la jerarquía comercial completa del producto</li>
+<li>campos base esperados:</li>
+<li><code>producto_id</code></li>
+<li><code>codigo</code></li>
+<li><code>nombre_producto</code></li>
+<li><code>concentracion</code></li>
+<li><code>presentacion</code></li>
+<li><code>fracciones</code></li>
+<li><code>categoria_id</code></li>
+<li><code>categoria_nombre</code></li>
+<li><code>familia_id</code></li>
+<li><code>familia_nombre</code></li>
+</ul>
+<p><code>dim_fecha</code></p>
+<ul>
+<li>derivada de <code>pedidos.fecha_creacion</code> como fecha principal</li>
+<li>campos base esperados:</li>
+<li><code>fecha</code></li>
+<li><code>dia</code></li>
+<li><code>mes</code></li>
+<li><code>trimestre</code></li>
+<li><code>anio</code></li>
+<li>inicialmente se usará <code>fecha_creacion</code> como fecha analítica principal</li>
+<li>más adelante, si se requiere, podrán manejarse roles de fecha para confirmación, envío y entrega</li>
+</ul>
+<p><code>dim_estado_pedido</code></p>
+<ul>
+<li>desde <code>pedidos.estado</code></li>
+<li>campos base esperados:</li>
+<li><code>estado_pedido</code></li>
+</ul>
+<h3 id="decision-de-diseno-congelada">Decisión de diseño congelada</h3>
+<p>No se crearán <code>dim_categoria</code> ni <code>dim_familia</code> como dimensiones separadas.</p>
+<p>La implementación final del curso trabajará con una sola <code>dim_producto</code>, la cual quedará <strong>denormalizada</strong> e incorporará también los atributos de categoría y familia.</p>
+<p>Esto mantiene una estrella más limpia, más simple y más consistente con el alcance analítico del caso.</p>
+<h2 id="15-jerarquias-congeladas">15. Jerarquías congeladas</h2>
+<h3 id="tiempo">Tiempo</h3>
+<ul>
+<li>Día -&gt; Mes -&gt; Trimestre -&gt; Año</li>
+</ul>
+<h3 id="producto-comercial">Producto comercial</h3>
+<ul>
+<li>Familia -&gt; Categoría -&gt; Producto</li>
+</ul>
+<p>En la implementación física, la segunda jerarquía quedará materializada dentro de <code>dim_producto</code>.</p>
+<h2 id="16-mapeo-oltp-modelo-dimensional-congelado">16. Mapeo OLTP -&gt; modelo dimensional congelado</h2>
+<h3 id="hecho-principal">Hecho principal</h3>
+<p>Origen de <code>fact_ventas</code></p>
+<ul>
+<li>Base principal: <code>pedido_detalles</code></li>
+<li>Complemento: <code>pedidos</code></li>
+</ul>
+<h3 id="reglas-de-integracion">Reglas de integración</h3>
+<ul>
+<li><code>pedido_detalles.pedido_id</code> enlaza con <code>pedidos.id</code></li>
+<li><code>pedidos.cliente_id</code> aporta cliente</li>
+<li><code>pedidos.vendedor_id</code> aporta vendedor</li>
+<li><code>pedidos.fecha_creacion</code>, <code>fecha_confirmacion</code>, <code>fecha_envio</code>, <code>fecha_entrega</code> aportan métricas de proceso</li>
+<li><code>pedidos.estado</code> aporta estado del pedido</li>
+<li><code>pedido_detalles.producto_id</code> aporta producto</li>
+<li><code>productos.categoria_id</code> enlaza con <code>categorias.id</code></li>
+<li><code>categorias.familia_id</code> enlaza con <code>familias.id</code></li>
+</ul>
+<h3 id="campos-de-negocio-mapeados">Campos de negocio mapeados</h3>
+<ul>
+<li>cantidad vendida &lt;- <code>pedido_detalles.cantidad</code></li>
+<li>precio venta unitario &lt;- <code>pedido_detalles.precio_venta_unitario</code></li>
+<li>precio compra unitario &lt;- <code>pedido_detalles.precio_compra_unitario</code></li>
+<li>descuento &lt;- <code>pedido_detalles.total_descuento_unitario</code></li>
+<li>fechas operativas &lt;- <code>pedidos</code></li>
+<li>estado &lt;- <code>pedidos.estado</code></li>
+</ul>
+<h3 id="construccion-de-dimensiones">Construcción de dimensiones</h3>
+<ul>
+<li><code>dim_cliente</code> &lt;- <code>clientes</code></li>
+<li><code>dim_vendedor</code> &lt;- <code>vendedores</code></li>
+<li><code>dim_producto</code> &lt;- <code>productos + categorias + familias</code></li>
+<li><code>dim_estado_pedido</code> &lt;- <code>pedidos.estado</code></li>
+<li><code>dim_fecha</code> &lt;- derivada de <code>pedidos.fecha_creacion</code></li>
+</ul>
+<h2 id="17-matriz-bus-congelada">17. Matriz BUS congelada</h2>
+<p>Solo habrá un proceso fuerte, para no inventar procesos que el esquema no soporta.</p>
+<table>
+<thead>
+<tr>
+<th>Proceso</th>
+<th>Métricas</th>
+<th>Dimensiones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pedidos / Ventas</td>
+<td>ventas netas, unidades vendidas, margen bruto, % margen, ticket promedio, descuento total, tiempo de confirmación, tiempo de despacho, tiempo de entrega, lead time</td>
+<td>fecha, cliente, vendedor, producto, estado del pedido</td>
+</tr>
+</tbody>
+</table>
+<h2 id="18-validacion-congelada">18. Validación congelada</h2>
+<p><strong>¿Los KPIs responden al problema?</strong></p>
+<p>Sí. El problema es comercial y operativo, y los KPIs cubren ventas, rentabilidad y eficiencia del ciclo del pedido.</p>
+<p><strong>¿El modelo soporta el análisis?</strong></p>
+<p>Sí. El grano por línea de pedido permite analizar ventas y margen por producto, cliente y vendedor, y además cruzar eso con tiempos del proceso tomados desde <code>pedidos</code>.</p>
+<p><strong>¿Las fuentes son suficientes?</strong></p>
+<p>Sí, para este alcance de pedidos/ventas. No para inventario ni abastecimiento.</p>
+<h2 id="19-version-final-congelada-para-el-curso">19. Versión final congelada para el curso</h2>
+<h3 id="alcance-oficial">Alcance oficial</h3>
+<p>DataMart de ventas y ciclo de pedidos</p>
+<h3 id="arquitectura-oficial">Arquitectura oficial</h3>
+<p>MySQL (<code>farma_oltp_db</code>) -&gt; Airbyte -&gt; PostgreSQL <code>raw</code> -&gt; dbt -&gt; DataMart -&gt; Power BI</p>
+<h3 id="kpi-rey">KPI rey</h3>
+<p>Lead time del pedido</p>
+<h3 id="hecho-principal_1">Hecho principal</h3>
+<p><code>fact_ventas</code></p>
+<h3 id="esquema-dimensional-final">Esquema dimensional final</h3>
+<ul>
+<li><code>dim_fecha</code></li>
+<li><code>dim_cliente</code></li>
+<li><code>dim_vendedor</code></li>
+<li><code>dim_producto</code></li>
+<li><code>dim_estado_pedido</code></li>
+<li><code>fact_ventas</code></li>
+</ul>
+<h3 id="nota-de-actualizacion-tecnica">Nota de actualización técnica</h3>
+<p>El esquema transaccional fue normalizado en nombres, por lo que ahora usa tablas en plural y columnas en <code>snake_case</code>. Además, se incorporaron los campos <code>fecha_creacion</code> y <code>fecha_modificacion</code>, sin alterar el alcance analítico definido.</p>
+<h2 id="20-estructura-fisica-que-se-construira">20. Estructura física que se construirá</h2>
+<h3 id="201-dim_cliente">20.1 <code>dim_cliente</code></h3>
+<p>Representa al cliente que realiza el pedido.</p>
+<p>Campos esperados:</p>
+<ul>
+<li>clave sustituta de dimensión</li>
+<li>identificador de negocio del cliente</li>
+<li>nombre del cliente</li>
+</ul>
+<h3 id="202-dim_vendedor">20.2 <code>dim_vendedor</code></h3>
+<p>Representa al vendedor asociado al pedido.</p>
+<p>Campos esperados:</p>
+<ul>
+<li>clave sustituta de dimensión</li>
+<li>identificador de negocio del vendedor</li>
+<li>nombre del vendedor</li>
+</ul>
+<h3 id="203-dim_producto">20.3 <code>dim_producto</code></h3>
+<p>Representa al producto comercial y también contiene los atributos denormalizados de clasificación.</p>
+<p>Campos esperados:</p>
+<ul>
+<li>clave sustituta de dimensión</li>
+<li>identificador de negocio del producto</li>
+<li>código del producto</li>
+<li>nombre comercial del producto</li>
+<li>precio de compra</li>
+<li>precio de venta</li>
+<li>identificador y nombre de categoría</li>
+<li>identificador y nombre de familia</li>
+</ul>
+<h3 id="204-dim_fecha">20.4 <code>dim_fecha</code></h3>
+<p>Representa la fecha analítica principal del pedido. Para esta versión se tomará inicialmente la <code>fecha_creacion</code> del pedido.</p>
+<p>Campos esperados:</p>
+<ul>
+<li>clave de fecha</li>
+<li>fecha completa</li>
+<li>día</li>
+<li>nombre del día</li>
+<li>mes</li>
+<li>nombre del mes</li>
+<li>trimestre</li>
+<li>año</li>
+</ul>
+<h3 id="205-dim_estado_pedido">20.5 <code>dim_estado_pedido</code></h3>
+<p>Representa el estado del pedido tomado desde <code>pedidos.estado</code>.</p>
+<p>Campos esperados:</p>
+<ul>
+<li>clave sustituta del estado</li>
+<li>nombre del estado</li>
+</ul>
+<h3 id="206-fact_ventas">20.6 <code>fact_ventas</code></h3>
+<p>Tabla de hechos central del caso.</p>
+<p>Medidas congeladas:</p>
+<ul>
+<li><code>cantidad_vendida</code></li>
+<li><code>venta_bruta</code></li>
+<li><code>descuento_total</code></li>
+<li><code>venta_neta</code></li>
+<li><code>costo_total</code></li>
+<li><code>margen_bruto</code></li>
+<li><code>pct_margen_bruto</code></li>
+<li><code>minutos_confirmacion</code></li>
+<li><code>minutos_despacho</code></li>
+<li><code>horas_entrega</code></li>
+<li><code>horas_lead_time</code></li>
+<li><code>pedido_count</code></li>
+</ul>
+<h2 id="21-relacion-entre-el-oltp-y-el-datamart">21. Relación entre el OLTP y el DataMart</h2>
+<h3 id="fuentes-principales">Fuentes principales</h3>
+<ul>
+<li><code>pedido_detalles</code> aporta el detalle de cantidad, precios y descuentos</li>
+<li><code>pedidos</code> aporta cliente, vendedor, estado y fechas del proceso</li>
+<li><code>productos</code> aporta el producto</li>
+<li><code>categorias</code> y <code>familias</code> aportan la clasificación comercial del producto</li>
+</ul>
+<h3 id="reglas-de-integracion-base">Reglas de integración base</h3>
+<ul>
+<li><code>pedido_detalles.pedido_id</code> enlaza con <code>pedidos.id</code></li>
+<li><code>pedidos.cliente_id</code> enlaza con <code>clientes.id</code></li>
+<li><code>pedidos.vendedor_id</code> enlaza con <code>vendedores.id</code></li>
+<li><code>pedido_detalles.producto_id</code> enlaza con <code>productos.id</code></li>
+<li><code>productos.categoria_id</code> enlaza con <code>categorias.id</code></li>
+<li><code>categorias.familia_id</code> enlaza con <code>familias.id</code></li>
+</ul>
+<h2 id="22-decision-tecnica-de-esta-practica">22. Decisión técnica de esta práctica</h2>
+<p>En esta sesión el DataMart se construirá <strong>dentro de la misma base <code>farma_oltp_db</code></strong>.</p>
+<p>Esto no es la arquitectura final recomendada, pero sí es una excelente estrategia pedagógica para que el estudiante comprenda:</p>
+<ul>
+<li>cómo se crean manualmente las tablas dimensionales</li>
+<li>cómo se diseña físicamente una tabla de hechos</li>
+<li>cómo se pasa desde OLTP hacia análisis</li>
+</ul>
+<p>Más adelante, en la siguiente sesión macro, el DW se separará hacia PostgreSQL y se trabajará con herramientas.</p>
+<h2 id="23-preparacion-del-entorno">23. Preparación del entorno</h2>
+<p>Levanta el MySQL del laboratorio:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd </span><span class="n">oltp-mysql</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="nb">ps</span>
+</code></pre></div>
+<p>Ingresa al motor:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">farmabi-oltp-mysql</span> <span class="n">mysql</span> <span class="n">-uroot</span> <span class="n">-proot</span> <span class="n">farma_oltp_db</span>
+</code></pre></div>
+<p>Valida las tablas transaccionales:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">clientes</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">vendedores</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">categorias</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">productos</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">pedidos</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">pedido_detalles</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="24-implementacion-fisica-manual-del-datamart">24. Implementación física manual del DataMart</h2>
+<h3 id="171-crear-dim_cliente">17.1 Crear <code>dim_cliente</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">dim_cliente</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">cliente_key</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cliente_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre_cliente</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">cliente_key</span><span class="p">),</span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">uk_dim_cliente_id</span><span class="w"> </span><span class="p">(</span><span class="n">cliente_id</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="172-crear-dim_vendedor">17.2 Crear <code>dim_vendedor</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">dim_vendedor</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">vendedor_key</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vendedor_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre_vendedor</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">vendedor_key</span><span class="p">),</span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">uk_dim_vendedor_id</span><span class="w"> </span><span class="p">(</span><span class="n">vendedor_id</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="173-crear-dim_producto">17.3 Crear <code>dim_producto</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">dim_producto</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">producto_key</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">producto_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">codigo_producto</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre_producto</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">precio_compra</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">precio_venta</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">categoria_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre_categoria</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">familia_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre_familia</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">producto_key</span><span class="p">),</span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">uk_dim_producto_id</span><span class="w"> </span><span class="p">(</span><span class="n">producto_id</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="174-crear-dim_fecha">17.4 Crear <code>dim_fecha</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">dim_fecha</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">fecha_key</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fecha</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dia</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dia_semana_desc</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mes</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mes_desc</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">trimestre</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">anio</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">fecha_key</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="175-crear-dim_estado_pedido">17.5 Crear <code>dim_estado_pedido</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">dim_estado_pedido</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">estado_key</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">estado_pedido</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">estado_key</span><span class="p">),</span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">uk_dim_estado_pedido</span><span class="w"> </span><span class="p">(</span><span class="n">estado_pedido</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="176-crear-fact_ventas">17.6 Crear <code>fact_ventas</code></h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">fact_ventas</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">fact_venta_key</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pedido_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fecha_key</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cliente_key</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vendedor_key</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">producto_key</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">estado_key</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cantidad_vendida</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">venta_bruta</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">descuento_total</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">venta_neta</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">costo_total</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">margen_bruto</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pct_margen_bruto</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">minutos_confirmacion</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">minutos_despacho</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">horas_entrega</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">horas_lead_time</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">pedido_count</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">fact_venta_key</span><span class="p">),</span>
+<span class="w">    </span><span class="k">KEY</span><span class="w"> </span><span class="n">idx_fact_ventas_fecha_key</span><span class="w"> </span><span class="p">(</span><span class="n">fecha_key</span><span class="p">),</span>
+<span class="w">    </span><span class="k">KEY</span><span class="w"> </span><span class="n">idx_fact_ventas_cliente_key</span><span class="w"> </span><span class="p">(</span><span class="n">cliente_key</span><span class="p">),</span>
+<span class="w">    </span><span class="k">KEY</span><span class="w"> </span><span class="n">idx_fact_ventas_vendedor_key</span><span class="w"> </span><span class="p">(</span><span class="n">vendedor_key</span><span class="p">),</span>
+<span class="w">    </span><span class="k">KEY</span><span class="w"> </span><span class="n">idx_fact_ventas_producto_key</span><span class="w"> </span><span class="p">(</span><span class="n">producto_key</span><span class="p">),</span>
+<span class="w">    </span><span class="k">KEY</span><span class="w"> </span><span class="n">idx_fact_ventas_estado_key</span><span class="w"> </span><span class="p">(</span><span class="n">estado_key</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h2 id="25-validacion-de-la-estructura-creada">25. Validación de la estructura creada</h2>
+<p>Lista las nuevas tablas:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;dim_%&#39;</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;fact_%&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>Revisa su estructura:</p>
+<div class="highlight"><pre><span></span><code><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">dim_cliente</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">dim_vendedor</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">dim_producto</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">dim_fecha</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">dim_estado_pedido</span><span class="p">;</span>
+<span class="k">DESCRIBE</span><span class="w"> </span><span class="n">fact_ventas</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="26-que-debe-quedar-listo-al-cerrar-esta-sesion">26. Qué debe quedar listo al cerrar esta sesión</h2>
+<p>Al terminar esta práctica todavía no deberías haber cargado datos del DataMart. Lo que debe quedar listo es:</p>
+<ul>
+<li>las tablas dimensionales creadas</li>
+<li>la tabla de hechos creada</li>
+<li>la estructura estrella implementada físicamente en MySQL</li>
+<li>el entorno listo para la siguiente sesión, donde se poblarán dimensiones y hecho con SQL</li>
+</ul>
+<h2 id="27-que-viene-en-la-siguiente-practica">27. Qué viene en la siguiente práctica</h2>
+<p>En la siguiente sesión se trabajará:</p>
+<ul>
+<li>el ETL manual con SQL</li>
+<li>la construcción de dimensiones con <code>INSERT INTO ... SELECT ...</code></li>
+<li>la integración de fuentes mediante la vista <code>G</code></li>
+<li>la posterior carga de <code>fact_ventas</code></li>
+</ul>
+<h2 id="28-evidencias-a-entregar">28. Evidencias a entregar</h2>
+<ul>
+<li>captura de <code>SHOW TABLES</code> mostrando tablas OLTP y tablas <code>dim_*</code> / <code>fact_*</code></li>
+<li>captura de <code>DESCRIBE dim_producto</code></li>
+<li>captura de <code>DESCRIBE fact_ventas</code></li>
+<li>breve explicación de por qué <code>dim_producto</code> queda denormalizada</li>
+</ul>
+<h2 id="29-cierre">29. Cierre</h2>
+<p>En esta sesión se construyó manualmente la base física del DataMart dentro del mismo OLTP. Esta decisión permite entender con claridad cómo se implementa un esquema estrella desde SQL puro, antes de pasar a un pipeline más moderno con Airbyte, PostgreSQL y dbt.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../../javascripts/mermaid.js"></script>
+      
+    
+  </body>
+</html>
