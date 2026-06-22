@@ -45,6 +45,7 @@ El entregable debe demostrar que la solucion BI funciona desde la fuente transac
 | Modelo semantico | Power BI / otro |  |
 | Dashboard | Power BI / otro |  |
 | Validacion | SQL / dbt test / Power BI |  |
+| Sustentacion | PowerPoint / Google Slides / otro |  |
 
 El repositorio GitHub debe ser equivalente al repositorio del curso: debe contener el codigo, archivos de configuracion, scripts, modelos, dashboard o evidencias, y una carpeta `docs/` con MkDocs donde se expliquen las guias para construir cada parte del entregable.
 
@@ -426,6 +427,40 @@ Responder brevemente:
 6. Que limitaciones tiene la solucion actual?
 7. Que mejoras se implementarian en una siguiente version?
 
+### 15.1 Presentacion PPT de sustentacion
+
+El equipo debe preparar una presentacion para sustentar el producto del curso.
+
+Estructura sugerida:
+
+| Slide | Contenido esperado |
+| --- | --- |
+| 1 | Titulo del proyecto, equipo, integrantes y links de GitHub/MkDocs |
+| 2 | Problema de negocio, usuarios y decision que se busca mejorar |
+| 3 | KPIs principales y preguntas de negocio |
+| 4 | Arquitectura BI end-to-end |
+| 5 | Fuente OLTP, ingesta y capas raw/staging/marts |
+| 6 | Modelo dimensional y DataMart |
+| 7 | Modelo semantico y medidas principales |
+| 8 | Dashboard y graficos comparativos obligatorios |
+| 9 | Validacion SQL vs Power BI y trazabilidad |
+| 10 | Hallazgos, decision recomendada y mejoras futuras |
+| 11 | Aportes individuales |
+
+### 15.2 Preguntas del docente
+
+Durante la sustentacion, cada equipo debe responder preguntas del docente sobre el producto presentado. Las respuestas deben evidenciar dominio tecnico y de negocio.
+
+Preguntas esperadas:
+
+1. Como se conecta el problema de negocio con los KPIs?
+2. Que parte del repositorio demuestra la construccion del pipeline?
+3. Como se valida que el dashboard muestra resultados correctos?
+4. Por que el modelo dimensional soporta los analisis presentados?
+5. Que diferencia hay entre la fuente OLTP, el DataMart y el modelo semantico?
+6. Que hallazgo justifica la decision recomendada?
+7. Que componente construyo o valido cada integrante?
+
 ---
 
 ## 16. Evidencias obligatorias
@@ -451,6 +486,8 @@ Responder brevemente:
 | Validacion SQL vs Power BI | tabla comparativa |  |
 | Trazabilidad de KPIs | matriz |  |
 | Aporte individual | tabla |  |
+| Presentacion PPT de sustentacion | `.pptx` / enlace Google Slides / PDF |  |
+| Registro de preguntas del docente y respuestas | seccion en informe / anexo / diapositiva final |  |
 
 ---
 
@@ -496,7 +533,8 @@ El equipo debe entregar:
 4. Sitio MkDocs generado o publicado con las guias del proyecto.
 5. Scripts SQL y/o proyecto dbt.
 6. Evidencias de ingesta, transformacion y validacion.
-7. Presentacion o demo para sustentacion.
+7. Presentacion PPT de sustentacion.
+8. Registro de respuestas a preguntas del docente durante la sustentacion.
 
 Nombre sugerido:
 
@@ -520,5 +558,6 @@ PRODUCTO_CURSO_BI_Equipo##_NombreProyecto.pdf
 | 8. Validacion de KPIs | Concilia SQL vs Power BI, documenta diferencias, aplica ajustes y demuestra consistencia | Valida KPIs principales con cobertura parcial | Validacion superficial o solo con capturas aisladas | No valida KPIs |
 | 9. Trazabilidad y calidad de datos | Evidencia trazabilidad fuente-modelo-KPI-visual y controles de calidad relevantes | Presenta trazabilidad o calidad con detalle parcial | Trazabilidad debil o controles insuficientes | No evidencia trazabilidad ni calidad |
 | 10. Interpretacion y toma de decisiones | Presenta hallazgos claros y una decision recomendada sustentada en datos | Presenta hallazgos, pero la decision es poco profunda | Interpretacion descriptiva sin decision clara | No interpreta resultados |
-| 11. Sustentacion tecnica | Explica decisiones tecnicas, problemas resueltos, limitaciones y mejoras con dominio | Sustenta la solucion con vacios menores | Sustentacion insegura o dependiente de pocos integrantes | No sustenta tecnicamente |
-| 12. Aporte individual | Cada integrante evidencia aportes verificables y equilibrados | La mayoria evidencia aportes | Participacion desigual o poco verificable | No se evidencia aporte individual |
+| 11. Presentacion PPT de sustentacion | Presenta una PPT clara, ordenada y completa, con problema, arquitectura, DataMart, dashboard, validacion, hallazgos, decision y aportes individuales | PPT completa pero con organizacion, evidencia o sintesis mejorable | PPT incompleta, desordenada o desconectada del producto tecnico | No presenta PPT |
+| 12. Defensa tecnica y respuestas al docente | Responde con dominio las preguntas del docente, justificando decisiones tecnicas, validacion, trazabilidad, hallazgos y aporte individual | Responde la mayoria de preguntas con vacios menores | Respuestas inseguras, incompletas o dependientes de pocos integrantes | No responde adecuadamente las preguntas del docente |
+| 13. Aporte individual | Cada integrante evidencia aportes verificables y equilibrados | La mayoria evidencia aportes | Participacion desigual o poco verificable | No se evidencia aporte individual |
