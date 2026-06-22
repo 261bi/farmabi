@@ -291,7 +291,7 @@ Insertar imagen o captura del modelo estrella.
 | Productos | Evaluar desempeno de productos | Ranking, matriz | Categoria, familia |
 | Clientes | Analizar comportamiento de clientes | Ranking, segmentacion | Cliente, zona |
 
-### 10.2 Interactividad implementada
+### 10.2 Interactividad implementada (opcional)
 
 | Funcionalidad | Pagina / visual | Proposito | Evidencia |
 | --- | --- | --- | --- |
@@ -301,7 +301,21 @@ Insertar imagen o captura del modelo estrella.
 | Tooltips |  |  |  |
 | Navegacion entre paginas |  |  |  |
 
-### 10.3 Capturas obligatorias
+Estas funcionalidades mejoran la experiencia del dashboard, pero no reemplazan las actividades obligatorias de comparativos, KPIs y validacion.
+
+### 10.3 Comparativos y KPIs obligatorios del dashboard
+
+El dashboard final debe incluir visuales equivalentes a los comparativos trabajados durante el curso. No es obligatorio que todos los equipos usen ventas; pueden aplicar la misma logica sobre cantidades, pedidos, unidades, atenciones, incidencias, costos, margen u otra metrica principal del caso.
+
+Estos comparativos deben construirse usando la dimension fecha del Data Warehouse/DataMart y medidas del modelo semantico, controlando correctamente el contexto de filtros del dashboard.
+
+| Actividad obligatoria | Objetivo | Evidencia esperada |
+| --- | --- | --- |
+| Comparativo del periodo actual vs mismo periodo del anio anterior | Comparar la metrica principal del periodo seleccionado contra el mismo periodo del anio anterior | Matriz de control, segmentador de anio, grafico mensual o por periodo, tarjetas, KPI comparativo y validacion SQL |
+| Comparativo del periodo actual vs periodo anterior | Comparar la metrica principal del mes, semana o periodo seleccionado contra el periodo inmediatamente anterior | Segmentadores de anio y periodo, matriz de control, tarjetas comparativas, grafico de tendencia, KPI comparativo y validacion SQL |
+| Tabla KPI de variacion por dimension de negocio | Analizar variacion absoluta y porcentual de la metrica principal por una o mas dimensiones relevantes | Tabla o matriz KPI por anio, categoria, producto, cliente, sede, area u otra dimension; iconos o formato condicional; validacion SQL |
+
+### 10.4 Capturas obligatorias
 
 Agregar capturas de:
 
@@ -309,7 +323,10 @@ Agregar capturas de:
 - Filtros o segmentadores.
 - KPIs principales.
 - Visuales por tiempo, producto, cliente o vendedor.
-- Interacciones relevantes.
+- Comparativo de la metrica principal actual vs mismo periodo del anio anterior.
+- Comparativo de la metrica principal actual vs periodo anterior.
+- Tabla KPI de variacion por una dimension de negocio relevante.
+- Interacciones relevantes, si fueron implementadas.
 
 ---
 
@@ -419,6 +436,9 @@ Responder brevemente:
 | Modelo semantico Power BI | captura |  |
 | Medidas DAX | tabla / captura |  |
 | Dashboard interactivo | `.pbix` / captura |  |
+| Comparativo metrica actual vs mismo periodo del anio anterior | pagina Power BI / captura / SQL |  |
+| Comparativo metrica actual vs periodo anterior | pagina Power BI / captura / SQL |  |
+| Tabla KPI de variacion por dimension de negocio | pagina Power BI / captura / SQL |  |
 | Validacion SQL vs Power BI | tabla comparativa |  |
 | Trazabilidad de KPIs | matriz |  |
 | Aporte individual | tabla |  |
@@ -484,10 +504,10 @@ PRODUCTO_CURSO_BI_Equipo##_NombreProyecto.pdf
 | 2. Arquitectura BI | Presenta arquitectura coherente, separando OLTP, ingesta, DW/DataMart, modelo semantico y consumo BI | Arquitectura clara con detalles menores incompletos | Arquitectura confusa o poco justificada | No presenta arquitectura |
 | 3. DataMart y modelo dimensional | DataMart consistente con hechos, dimensiones, grano, claves y reglas de negocio bien documentadas | DataMart funcional con errores menores | Modelo incompleto o con inconsistencias importantes | No presenta DataMart valido |
 | 4. Pipeline de ingesta y transformacion | Ingesta y transformacion funcionan, con evidencia de raw, staging, marts, ejecucion y pruebas | Pipeline funcional con evidencia parcial | Pipeline incompleto o poco verificable | No presenta pipeline |
-| 5. Modelo semantico y dashboard | Power BI presenta relaciones correctas, medidas DAX, interactividad y visuales alineados al negocio | Dashboard funcional con errores menores | Dashboard incompleto o con medidas poco confiables | No presenta dashboard funcional |
-| 6. Validacion de KPIs | Concilia SQL vs Power BI, documenta diferencias, aplica ajustes y demuestra consistencia | Valida KPIs principales con cobertura parcial | Validacion superficial o solo con capturas aisladas | No valida KPIs |
-| 7. Trazabilidad y calidad de datos | Evidencia trazabilidad fuente-modelo-KPI-visual y controles de calidad relevantes | Presenta trazabilidad o calidad con detalle parcial | Trazabilidad debil o controles insuficientes | No evidencia trazabilidad ni calidad |
-| 8. Interpretacion y toma de decisiones | Presenta hallazgos claros y una decision recomendada sustentada en datos | Presenta hallazgos, pero la decision es poco profunda | Interpretacion descriptiva sin decision clara | No interpreta resultados |
-| 9. Sustentacion tecnica | Explica decisiones tecnicas, problemas resueltos, limitaciones y mejoras con dominio | Sustenta la solucion con vacios menores | Sustentacion insegura o dependiente de pocos integrantes | No sustenta tecnicamente |
-| 10. Aporte individual | Cada integrante evidencia aportes verificables y equilibrados | La mayoria evidencia aportes | Participacion desigual o poco verificable | No se evidencia aporte individual |
-
+| 5. Modelo semantico y dashboard | Power BI presenta relaciones correctas, medidas DAX y visuales alineados al negocio | Dashboard funcional con errores menores o interactividad opcional incompleta | Dashboard incompleto o con medidas poco confiables | No presenta dashboard funcional |
+| 6. Graficos comparativos y tabla KPI | Incluye comparativo de metrica actual vs mismo periodo del anio anterior, comparativo vs periodo anterior y tabla KPI de variacion por dimension de negocio, todos validados y coherentes con la dimension fecha del DataMart | Incluye los comparativos principales, pero con evidencia, diseno o validacion parcial | Presenta solo un comparativo o los graficos no permiten interpretar claramente la variacion | No presenta graficos comparativos ni tabla KPI de variacion |
+| 7. Validacion de KPIs | Concilia SQL vs Power BI, documenta diferencias, aplica ajustes y demuestra consistencia | Valida KPIs principales con cobertura parcial | Validacion superficial o solo con capturas aisladas | No valida KPIs |
+| 8. Trazabilidad y calidad de datos | Evidencia trazabilidad fuente-modelo-KPI-visual y controles de calidad relevantes | Presenta trazabilidad o calidad con detalle parcial | Trazabilidad debil o controles insuficientes | No evidencia trazabilidad ni calidad |
+| 9. Interpretacion y toma de decisiones | Presenta hallazgos claros y una decision recomendada sustentada en datos | Presenta hallazgos, pero la decision es poco profunda | Interpretacion descriptiva sin decision clara | No interpreta resultados |
+| 10. Sustentacion tecnica | Explica decisiones tecnicas, problemas resueltos, limitaciones y mejoras con dominio | Sustenta la solucion con vacios menores | Sustentacion insegura o dependiente de pocos integrantes | No sustenta tecnicamente |
+| 11. Aporte individual | Cada integrante evidencia aportes verificables y equilibrados | La mayoria evidencia aportes | Participacion desigual o poco verificable | No se evidencia aporte individual |
