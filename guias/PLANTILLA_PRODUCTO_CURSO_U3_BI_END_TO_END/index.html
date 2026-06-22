@@ -2278,6 +2278,8 @@ dashboard interactivo, validacion de KPIs, trazabilidad y sustentacion tecnica.
 <p><strong>Integrantes:</strong>  </p>
 <p><strong>Proceso de negocio analizado:</strong>  </p>
 <p><strong>Fuente transaccional usada:</strong>  </p>
+<p><strong>Link del repositorio GitHub del proyecto:</strong>  </p>
+<p><strong>Link del sitio MkDocs publicado o generado:</strong>  </p>
 <p><strong>Herramientas utilizadas:</strong>  </p>
 <table>
 <thead>
@@ -2325,6 +2327,7 @@ dashboard interactivo, validacion de KPIs, trazabilidad y sustentacion tecnica.
 </tr>
 </tbody>
 </table>
+<p>El repositorio GitHub debe ser equivalente al repositorio del curso: debe contener el codigo, archivos de configuracion, scripts, modelos, dashboard o evidencias, y una carpeta <code>docs/</code> con MkDocs donde se expliquen las guias para construir cada parte del entregable.</p>
 <hr />
 <h2 id="2-resumen-ejecutivo">2. Resumen ejecutivo</h2>
 <p>Redactar una sintesis de media pagina como maximo.</p>
@@ -3381,8 +3384,23 @@ dashboard interactivo, validacion de KPIs, trazabilidad y sustentacion tecnica.
 </thead>
 <tbody>
 <tr>
+<td>Link del repositorio GitHub del proyecto</td>
+<td>URL publica o privada compartida con el docente</td>
+<td></td>
+</tr>
+<tr>
+<td>Sitio MkDocs generado o publicado</td>
+<td>URL / captura / carpeta <code>site/</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Guias MkDocs para construir cada componente del entregable</td>
+<td>archivos <code>.md</code> en <code>docs/</code></td>
+<td></td>
+</tr>
+<tr>
 <td>Repositorio organizado</td>
-<td>enlace / captura</td>
+<td>estructura de carpetas / captura</td>
 <td></td>
 </tr>
 <tr>
@@ -3521,7 +3539,8 @@ Que mejorarias?
 <ol>
 <li>Informe en PDF usando esta plantilla.</li>
 <li>Archivo Power BI <code>.pbix</code>.</li>
-<li>Repositorio o carpeta del proyecto.</li>
+<li>Link del repositorio GitHub del proyecto.</li>
+<li>Sitio MkDocs generado o publicado con las guias del proyecto.</li>
 <li>Scripts SQL y/o proyecto dbt.</li>
 <li>Evidencias de ingesta, transformacion y validacion.</li>
 <li>Presentacion o demo para sustentacion.</li>
@@ -3550,70 +3569,77 @@ Que mejorarias?
 <td>No demuestra flujo end-to-end</td>
 </tr>
 <tr>
-<td>2. Arquitectura BI</td>
+<td>2. Repositorio GitHub y documentacion MkDocs</td>
+<td>Entrega link de GitHub con estructura organizada y MkDocs generado/publicado, incluyendo guias para construir cada componente del entregable</td>
+<td>Repositorio y MkDocs existen, pero con documentacion parcial o estructura mejorable</td>
+<td>Repositorio incompleto, sin guias suficientes o con MkDocs no verificable</td>
+<td>No entrega repositorio GitHub ni documentacion MkDocs</td>
+</tr>
+<tr>
+<td>3. Arquitectura BI</td>
 <td>Presenta arquitectura coherente, separando OLTP, ingesta, DW/DataMart, modelo semantico y consumo BI</td>
 <td>Arquitectura clara con detalles menores incompletos</td>
 <td>Arquitectura confusa o poco justificada</td>
 <td>No presenta arquitectura</td>
 </tr>
 <tr>
-<td>3. DataMart y modelo dimensional</td>
+<td>4. DataMart y modelo dimensional</td>
 <td>DataMart consistente con hechos, dimensiones, grano, claves y reglas de negocio bien documentadas</td>
 <td>DataMart funcional con errores menores</td>
 <td>Modelo incompleto o con inconsistencias importantes</td>
 <td>No presenta DataMart valido</td>
 </tr>
 <tr>
-<td>4. Pipeline de ingesta y transformacion</td>
+<td>5. Pipeline de ingesta y transformacion</td>
 <td>Ingesta y transformacion funcionan, con evidencia de raw, staging, marts, ejecucion y pruebas</td>
 <td>Pipeline funcional con evidencia parcial</td>
 <td>Pipeline incompleto o poco verificable</td>
 <td>No presenta pipeline</td>
 </tr>
 <tr>
-<td>5. Modelo semantico y dashboard</td>
+<td>6. Modelo semantico y dashboard</td>
 <td>Power BI presenta relaciones correctas, medidas DAX y visuales alineados al negocio</td>
 <td>Dashboard funcional con errores menores o interactividad opcional incompleta</td>
 <td>Dashboard incompleto o con medidas poco confiables</td>
 <td>No presenta dashboard funcional</td>
 </tr>
 <tr>
-<td>6. Graficos comparativos y tabla KPI</td>
+<td>7. Graficos comparativos y tabla KPI</td>
 <td>Incluye comparativo de metrica actual vs mismo periodo del anio anterior, comparativo vs periodo anterior y tabla KPI de variacion por dimension de negocio, todos validados y coherentes con la dimension fecha del DataMart</td>
 <td>Incluye los comparativos principales, pero con evidencia, diseno o validacion parcial</td>
 <td>Presenta solo un comparativo o los graficos no permiten interpretar claramente la variacion</td>
 <td>No presenta graficos comparativos ni tabla KPI de variacion</td>
 </tr>
 <tr>
-<td>7. Validacion de KPIs</td>
+<td>8. Validacion de KPIs</td>
 <td>Concilia SQL vs Power BI, documenta diferencias, aplica ajustes y demuestra consistencia</td>
 <td>Valida KPIs principales con cobertura parcial</td>
 <td>Validacion superficial o solo con capturas aisladas</td>
 <td>No valida KPIs</td>
 </tr>
 <tr>
-<td>8. Trazabilidad y calidad de datos</td>
+<td>9. Trazabilidad y calidad de datos</td>
 <td>Evidencia trazabilidad fuente-modelo-KPI-visual y controles de calidad relevantes</td>
 <td>Presenta trazabilidad o calidad con detalle parcial</td>
 <td>Trazabilidad debil o controles insuficientes</td>
 <td>No evidencia trazabilidad ni calidad</td>
 </tr>
 <tr>
-<td>9. Interpretacion y toma de decisiones</td>
+<td>10. Interpretacion y toma de decisiones</td>
 <td>Presenta hallazgos claros y una decision recomendada sustentada en datos</td>
 <td>Presenta hallazgos, pero la decision es poco profunda</td>
 <td>Interpretacion descriptiva sin decision clara</td>
 <td>No interpreta resultados</td>
 </tr>
 <tr>
-<td>10. Sustentacion tecnica</td>
+<td>11. Sustentacion tecnica</td>
 <td>Explica decisiones tecnicas, problemas resueltos, limitaciones y mejoras con dominio</td>
 <td>Sustenta la solucion con vacios menores</td>
 <td>Sustentacion insegura o dependiente de pocos integrantes</td>
 <td>No sustenta tecnicamente</td>
 </tr>
 <tr>
-<td>11. Aporte individual</td>
+<td>12. Aporte individual</td>
 <td>Cada integrante evidencia aportes verificables y equilibrados</td>
 <td>La mayoria evidencia aportes</td>
 <td>Participacion desigual o poco verificable</td>
