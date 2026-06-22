@@ -752,10 +752,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#102-interactividad-implementada" class="md-nav__link">
+  <a href="#102-interactividad-implementada-opcional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10.2 Interactividad implementada
+        10.2 Interactividad implementada (opcional)
       
     </span>
   </a>
@@ -763,10 +763,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#103-capturas-obligatorias" class="md-nav__link">
+  <a href="#103-comparativos-y-kpis-obligatorios-del-dashboard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10.3 Capturas obligatorias
+        10.3 Comparativos y KPIs obligatorios del dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-capturas-obligatorias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 Capturas obligatorias
       
     </span>
   </a>
@@ -2021,10 +2032,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#102-interactividad-implementada" class="md-nav__link">
+  <a href="#102-interactividad-implementada-opcional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10.2 Interactividad implementada
+        10.2 Interactividad implementada (opcional)
       
     </span>
   </a>
@@ -2032,10 +2043,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#103-capturas-obligatorias" class="md-nav__link">
+  <a href="#103-comparativos-y-kpis-obligatorios-del-dashboard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10.3 Capturas obligatorias
+        10.3 Comparativos y KPIs obligatorios del dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-capturas-obligatorias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 Capturas obligatorias
       
     </span>
   </a>
@@ -2988,7 +3010,7 @@ dashboard interactivo, validacion de KPIs, trazabilidad y sustentacion tecnica.
 </tr>
 </tbody>
 </table>
-<h3 id="102-interactividad-implementada">10.2 Interactividad implementada</h3>
+<h3 id="102-interactividad-implementada-opcional">10.2 Interactividad implementada (opcional)</h3>
 <table>
 <thead>
 <tr>
@@ -3031,14 +3053,47 @@ dashboard interactivo, validacion de KPIs, trazabilidad y sustentacion tecnica.
 </tr>
 </tbody>
 </table>
-<h3 id="103-capturas-obligatorias">10.3 Capturas obligatorias</h3>
+<p>Estas funcionalidades mejoran la experiencia del dashboard, pero no reemplazan las actividades obligatorias de comparativos, KPIs y validacion.</p>
+<h3 id="103-comparativos-y-kpis-obligatorios-del-dashboard">10.3 Comparativos y KPIs obligatorios del dashboard</h3>
+<p>El dashboard final debe incluir visuales equivalentes a los comparativos trabajados durante el curso. No es obligatorio que todos los equipos usen ventas; pueden aplicar la misma logica sobre cantidades, pedidos, unidades, atenciones, incidencias, costos, margen u otra metrica principal del caso.</p>
+<p>Estos comparativos deben construirse usando la dimension fecha del Data Warehouse/DataMart y medidas del modelo semantico, controlando correctamente el contexto de filtros del dashboard.</p>
+<table>
+<thead>
+<tr>
+<th>Actividad obligatoria</th>
+<th>Objetivo</th>
+<th>Evidencia esperada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comparativo del periodo actual vs mismo periodo del anio anterior</td>
+<td>Comparar la metrica principal del periodo seleccionado contra el mismo periodo del anio anterior</td>
+<td>Matriz de control, segmentador de anio, grafico mensual o por periodo, tarjetas, KPI comparativo y validacion SQL</td>
+</tr>
+<tr>
+<td>Comparativo del periodo actual vs periodo anterior</td>
+<td>Comparar la metrica principal del mes, semana o periodo seleccionado contra el periodo inmediatamente anterior</td>
+<td>Segmentadores de anio y periodo, matriz de control, tarjetas comparativas, grafico de tendencia, KPI comparativo y validacion SQL</td>
+</tr>
+<tr>
+<td>Tabla KPI de variacion por dimension de negocio</td>
+<td>Analizar variacion absoluta y porcentual de la metrica principal por una o mas dimensiones relevantes</td>
+<td>Tabla o matriz KPI por anio, categoria, producto, cliente, sede, area u otra dimension; iconos o formato condicional; validacion SQL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="104-capturas-obligatorias">10.4 Capturas obligatorias</h3>
 <p>Agregar capturas de:</p>
 <ul>
 <li>Vista general del dashboard.</li>
 <li>Filtros o segmentadores.</li>
 <li>KPIs principales.</li>
 <li>Visuales por tiempo, producto, cliente o vendedor.</li>
-<li>Interacciones relevantes.</li>
+<li>Comparativo de la metrica principal actual vs mismo periodo del anio anterior.</li>
+<li>Comparativo de la metrica principal actual vs periodo anterior.</li>
+<li>Tabla KPI de variacion por una dimension de negocio relevante.</li>
+<li>Interacciones relevantes, si fueron implementadas.</li>
 </ul>
 <hr />
 <h2 id="11-validacion-de-kpis">11. Validacion de KPIs</h2>
@@ -3376,6 +3431,21 @@ dashboard interactivo, validacion de KPIs, trazabilidad y sustentacion tecnica.
 <td></td>
 </tr>
 <tr>
+<td>Comparativo metrica actual vs mismo periodo del anio anterior</td>
+<td>pagina Power BI / captura / SQL</td>
+<td></td>
+</tr>
+<tr>
+<td>Comparativo metrica actual vs periodo anterior</td>
+<td>pagina Power BI / captura / SQL</td>
+<td></td>
+</tr>
+<tr>
+<td>Tabla KPI de variacion por dimension de negocio</td>
+<td>pagina Power BI / captura / SQL</td>
+<td></td>
+</tr>
+<tr>
 <td>Validacion SQL vs Power BI</td>
 <td>tabla comparativa</td>
 <td></td>
@@ -3502,41 +3572,48 @@ Que mejorarias?
 </tr>
 <tr>
 <td>5. Modelo semantico y dashboard</td>
-<td>Power BI presenta relaciones correctas, medidas DAX, interactividad y visuales alineados al negocio</td>
-<td>Dashboard funcional con errores menores</td>
+<td>Power BI presenta relaciones correctas, medidas DAX y visuales alineados al negocio</td>
+<td>Dashboard funcional con errores menores o interactividad opcional incompleta</td>
 <td>Dashboard incompleto o con medidas poco confiables</td>
 <td>No presenta dashboard funcional</td>
 </tr>
 <tr>
-<td>6. Validacion de KPIs</td>
+<td>6. Graficos comparativos y tabla KPI</td>
+<td>Incluye comparativo de metrica actual vs mismo periodo del anio anterior, comparativo vs periodo anterior y tabla KPI de variacion por dimension de negocio, todos validados y coherentes con la dimension fecha del DataMart</td>
+<td>Incluye los comparativos principales, pero con evidencia, diseno o validacion parcial</td>
+<td>Presenta solo un comparativo o los graficos no permiten interpretar claramente la variacion</td>
+<td>No presenta graficos comparativos ni tabla KPI de variacion</td>
+</tr>
+<tr>
+<td>7. Validacion de KPIs</td>
 <td>Concilia SQL vs Power BI, documenta diferencias, aplica ajustes y demuestra consistencia</td>
 <td>Valida KPIs principales con cobertura parcial</td>
 <td>Validacion superficial o solo con capturas aisladas</td>
 <td>No valida KPIs</td>
 </tr>
 <tr>
-<td>7. Trazabilidad y calidad de datos</td>
+<td>8. Trazabilidad y calidad de datos</td>
 <td>Evidencia trazabilidad fuente-modelo-KPI-visual y controles de calidad relevantes</td>
 <td>Presenta trazabilidad o calidad con detalle parcial</td>
 <td>Trazabilidad debil o controles insuficientes</td>
 <td>No evidencia trazabilidad ni calidad</td>
 </tr>
 <tr>
-<td>8. Interpretacion y toma de decisiones</td>
+<td>9. Interpretacion y toma de decisiones</td>
 <td>Presenta hallazgos claros y una decision recomendada sustentada en datos</td>
 <td>Presenta hallazgos, pero la decision es poco profunda</td>
 <td>Interpretacion descriptiva sin decision clara</td>
 <td>No interpreta resultados</td>
 </tr>
 <tr>
-<td>9. Sustentacion tecnica</td>
+<td>10. Sustentacion tecnica</td>
 <td>Explica decisiones tecnicas, problemas resueltos, limitaciones y mejoras con dominio</td>
 <td>Sustenta la solucion con vacios menores</td>
 <td>Sustentacion insegura o dependiente de pocos integrantes</td>
 <td>No sustenta tecnicamente</td>
 </tr>
 <tr>
-<td>10. Aporte individual</td>
+<td>11. Aporte individual</td>
 <td>Cada integrante evidencia aportes verificables y equilibrados</td>
 <td>La mayoria evidencia aportes</td>
 <td>Participacion desigual o poco verificable</td>
