@@ -204,5 +204,7 @@ Convencion del diagrama: esta variante reemplaza Debezium + Kafka por Airbyte. A
 ## Enlaces
 
 - [Sesiones](sesiones/s01-fundamentos-bi.md)
+- [Plantilla entregable U1](guias/PLANTILLA_ENTREGABLE_U1_REQUERIMIENTOS_BI_MODELADO_DIMENSIONAL.md)
 - [Plantilla entregable U2](guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART.md)
+- [Plantilla producto del curso U3](guias/PLANTILLA_PRODUCTO_CURSO_U3_BI_END_TO_END.md)
 - [Comparativos ventas pedidos](guias/pasos_24_25_comparativos_ventas_pedidos.md)

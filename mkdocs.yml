@@ -4,6 +4,12 @@ docs_dir: docs
 
 nav:
   - Inicio: index.md
+  - "Guias y plantillas":
+      - Plantilla entregable U1: guias/PLANTILLA_ENTREGABLE_U1_REQUERIMIENTOS_BI_MODELADO_DIMENSIONAL.md
+      - Plantilla entregable U2: guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART.md
+      - Plantilla producto del curso U3: guias/PLANTILLA_PRODUCTO_CURSO_U3_BI_END_TO_END.md
+      - Guia ingesta Debezium: guias/ingesta-debezium-detalle.md
+      - Comparativos ventas pedidos: guias/pasos_24_25_comparativos_ventas_pedidos.md
   - "1. Definicion del sistema de informacion para ejecutivos":
       - S1 - Fundamentos BI: sesiones/s01-fundamentos-bi.md
       - S2 - Requerimientos y KPIs: sesiones/s02-requerimientos-kpis.md
