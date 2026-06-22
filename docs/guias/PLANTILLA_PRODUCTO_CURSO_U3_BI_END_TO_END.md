@@ -30,6 +30,10 @@ El entregable debe demostrar que la solucion BI funciona desde la fuente transac
 
 **Fuente transaccional usada:**  
 
+**Link del repositorio GitHub del proyecto:**  
+
+**Link del sitio MkDocs publicado o generado:**  
+
 **Herramientas utilizadas:**  
 
 | Componente | Herramienta / tecnologia | Evidencia |
@@ -41,6 +45,8 @@ El entregable debe demostrar que la solucion BI funciona desde la fuente transac
 | Modelo semantico | Power BI / otro |  |
 | Dashboard | Power BI / otro |  |
 | Validacion | SQL / dbt test / Power BI |  |
+
+El repositorio GitHub debe ser equivalente al repositorio del curso: debe contener el codigo, archivos de configuracion, scripts, modelos, dashboard o evidencias, y una carpeta `docs/` con MkDocs donde se expliquen las guias para construir cada parte del entregable.
 
 ---
 
@@ -426,7 +432,10 @@ Responder brevemente:
 
 | Evidencia | Formato sugerido | Estado |
 | --- | --- | --- |
-| Repositorio organizado | enlace / captura |  |
+| Link del repositorio GitHub del proyecto | URL publica o privada compartida con el docente |  |
+| Sitio MkDocs generado o publicado | URL / captura / carpeta `site/` |  |
+| Guias MkDocs para construir cada componente del entregable | archivos `.md` en `docs/` |  |
+| Repositorio organizado | estructura de carpetas / captura |  |
 | Base OLTP operativa | captura / consulta |  |
 | Ingesta funcionando | captura Debezium, Kafka, Airbyte o log |  |
 | Tablas raw en DW | captura / SQL |  |
@@ -483,10 +492,11 @@ El equipo debe entregar:
 
 1. Informe en PDF usando esta plantilla.
 2. Archivo Power BI `.pbix`.
-3. Repositorio o carpeta del proyecto.
-4. Scripts SQL y/o proyecto dbt.
-5. Evidencias de ingesta, transformacion y validacion.
-6. Presentacion o demo para sustentacion.
+3. Link del repositorio GitHub del proyecto.
+4. Sitio MkDocs generado o publicado con las guias del proyecto.
+5. Scripts SQL y/o proyecto dbt.
+6. Evidencias de ingesta, transformacion y validacion.
+7. Presentacion o demo para sustentacion.
 
 Nombre sugerido:
 
@@ -501,13 +511,14 @@ PRODUCTO_CURSO_BI_Equipo##_NombreProyecto.pdf
 | Criterio | N3 - Logro alto | N2 - Esperado | N1 - En proceso | N0 - Deficiente |
 | --- | --- | --- | --- | --- |
 | 1. Integracion end-to-end | Demuestra flujo completo desde OLTP hasta dashboard, con evidencias claras de cada componente | El flujo funciona, pero alguna evidencia o conexion esta incompleta | La integracion es parcial o requiere pasos no demostrados | No demuestra flujo end-to-end |
-| 2. Arquitectura BI | Presenta arquitectura coherente, separando OLTP, ingesta, DW/DataMart, modelo semantico y consumo BI | Arquitectura clara con detalles menores incompletos | Arquitectura confusa o poco justificada | No presenta arquitectura |
-| 3. DataMart y modelo dimensional | DataMart consistente con hechos, dimensiones, grano, claves y reglas de negocio bien documentadas | DataMart funcional con errores menores | Modelo incompleto o con inconsistencias importantes | No presenta DataMart valido |
-| 4. Pipeline de ingesta y transformacion | Ingesta y transformacion funcionan, con evidencia de raw, staging, marts, ejecucion y pruebas | Pipeline funcional con evidencia parcial | Pipeline incompleto o poco verificable | No presenta pipeline |
-| 5. Modelo semantico y dashboard | Power BI presenta relaciones correctas, medidas DAX y visuales alineados al negocio | Dashboard funcional con errores menores o interactividad opcional incompleta | Dashboard incompleto o con medidas poco confiables | No presenta dashboard funcional |
-| 6. Graficos comparativos y tabla KPI | Incluye comparativo de metrica actual vs mismo periodo del anio anterior, comparativo vs periodo anterior y tabla KPI de variacion por dimension de negocio, todos validados y coherentes con la dimension fecha del DataMart | Incluye los comparativos principales, pero con evidencia, diseno o validacion parcial | Presenta solo un comparativo o los graficos no permiten interpretar claramente la variacion | No presenta graficos comparativos ni tabla KPI de variacion |
-| 7. Validacion de KPIs | Concilia SQL vs Power BI, documenta diferencias, aplica ajustes y demuestra consistencia | Valida KPIs principales con cobertura parcial | Validacion superficial o solo con capturas aisladas | No valida KPIs |
-| 8. Trazabilidad y calidad de datos | Evidencia trazabilidad fuente-modelo-KPI-visual y controles de calidad relevantes | Presenta trazabilidad o calidad con detalle parcial | Trazabilidad debil o controles insuficientes | No evidencia trazabilidad ni calidad |
-| 9. Interpretacion y toma de decisiones | Presenta hallazgos claros y una decision recomendada sustentada en datos | Presenta hallazgos, pero la decision es poco profunda | Interpretacion descriptiva sin decision clara | No interpreta resultados |
-| 10. Sustentacion tecnica | Explica decisiones tecnicas, problemas resueltos, limitaciones y mejoras con dominio | Sustenta la solucion con vacios menores | Sustentacion insegura o dependiente de pocos integrantes | No sustenta tecnicamente |
-| 11. Aporte individual | Cada integrante evidencia aportes verificables y equilibrados | La mayoria evidencia aportes | Participacion desigual o poco verificable | No se evidencia aporte individual |
+| 2. Repositorio GitHub y documentacion MkDocs | Entrega link de GitHub con estructura organizada y MkDocs generado/publicado, incluyendo guias para construir cada componente del entregable | Repositorio y MkDocs existen, pero con documentacion parcial o estructura mejorable | Repositorio incompleto, sin guias suficientes o con MkDocs no verificable | No entrega repositorio GitHub ni documentacion MkDocs |
+| 3. Arquitectura BI | Presenta arquitectura coherente, separando OLTP, ingesta, DW/DataMart, modelo semantico y consumo BI | Arquitectura clara con detalles menores incompletos | Arquitectura confusa o poco justificada | No presenta arquitectura |
+| 4. DataMart y modelo dimensional | DataMart consistente con hechos, dimensiones, grano, claves y reglas de negocio bien documentadas | DataMart funcional con errores menores | Modelo incompleto o con inconsistencias importantes | No presenta DataMart valido |
+| 5. Pipeline de ingesta y transformacion | Ingesta y transformacion funcionan, con evidencia de raw, staging, marts, ejecucion y pruebas | Pipeline funcional con evidencia parcial | Pipeline incompleto o poco verificable | No presenta pipeline |
+| 6. Modelo semantico y dashboard | Power BI presenta relaciones correctas, medidas DAX y visuales alineados al negocio | Dashboard funcional con errores menores o interactividad opcional incompleta | Dashboard incompleto o con medidas poco confiables | No presenta dashboard funcional |
+| 7. Graficos comparativos y tabla KPI | Incluye comparativo de metrica actual vs mismo periodo del anio anterior, comparativo vs periodo anterior y tabla KPI de variacion por dimension de negocio, todos validados y coherentes con la dimension fecha del DataMart | Incluye los comparativos principales, pero con evidencia, diseno o validacion parcial | Presenta solo un comparativo o los graficos no permiten interpretar claramente la variacion | No presenta graficos comparativos ni tabla KPI de variacion |
+| 8. Validacion de KPIs | Concilia SQL vs Power BI, documenta diferencias, aplica ajustes y demuestra consistencia | Valida KPIs principales con cobertura parcial | Validacion superficial o solo con capturas aisladas | No valida KPIs |
+| 9. Trazabilidad y calidad de datos | Evidencia trazabilidad fuente-modelo-KPI-visual y controles de calidad relevantes | Presenta trazabilidad o calidad con detalle parcial | Trazabilidad debil o controles insuficientes | No evidencia trazabilidad ni calidad |
+| 10. Interpretacion y toma de decisiones | Presenta hallazgos claros y una decision recomendada sustentada en datos | Presenta hallazgos, pero la decision es poco profunda | Interpretacion descriptiva sin decision clara | No interpreta resultados |
+| 11. Sustentacion tecnica | Explica decisiones tecnicas, problemas resueltos, limitaciones y mejoras con dominio | Sustenta la solucion con vacios menores | Sustentacion insegura o dependiente de pocos integrantes | No sustenta tecnicamente |
+| 12. Aporte individual | Cada integrante evidencia aportes verificables y equilibrados | La mayoria evidencia aportes | Participacion desigual o poco verificable | No se evidencia aporte individual |
