@@ -1,0 +1,2363 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentacion del proyecto BI farmabi">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../silabo_bi_2026_2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Silabo 2026-1 - farmabi - Business Intelligence</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#silabo-inteligencia-de-negocios" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="farmabi - Business Intelligence" class="md-header__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            farmabi - Business Intelligence
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Silabo 2026-1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="farmabi - Business Intelligence" class="md-nav__button md-logo" aria-label="farmabi - Business Intelligence" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    farmabi - Business Intelligence
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Silabos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Silabos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Silabo 2026-1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Silabo 2026-1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-informacion-general-de-asignatura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Informacion General de Asignatura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-sumilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Sumilla
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-competencia-del-perfil-de-egreso-en-relacion-a-la-asignatura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Competencia del perfil de egreso en relacion a la asignatura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-resultado-de-aprendizaje-de-la-asignatura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Resultado de aprendizaje de la asignatura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-unidades-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Unidades de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unidad-1-requerimientos-bi-y-modelado-dimensional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unidad 1: Requerimientos BI y modelado dimensional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unidad 1: Requerimientos BI y modelado dimensional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sesiones-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sesiones de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unidad-2-etl-calidad-de-datos-y-datamart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unidad 2: ETL, calidad de datos y DataMart
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unidad 2: ETL, calidad de datos y DataMart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sesiones-de-aprendizaje_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sesiones de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unidad-3-dashboards-storytelling-y-gobierno-del-dato" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unidad 3: Dashboards, storytelling y gobierno del dato
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unidad 3: Dashboards, storytelling y gobierno del dato">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sesiones-de-aprendizaje_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sesiones de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-estrategias-metodologicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VI. Estrategias metodologicas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vii-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VII. Evaluacion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VII. Evaluacion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-de-evaluacion-y-ponderacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes de evaluacion y ponderacion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programacion-de-evaluaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programacion de evaluaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viii-recursos-medios-y-materiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VIII. Recursos, medios y materiales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ix-referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IX. Referencias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IX. Referencias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#libros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Libros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enlaces-de-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enlaces de internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../silabo_bi_2026_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Silabo 2026-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias y plantillas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias y plantillas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/PLANTILLA_ENTREGABLE_U1_REQUERIMIENTOS_BI_MODELADO_DIMENSIONAL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla entregable U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/PLANTILLA_PRODUCTO_CURSO_U3_BI_END_TO_END/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla producto del curso U3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/ingesta-debezium-detalle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia ingesta Debezium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guias/pasos_24_25_comparativos_ventas_pedidos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparativos ventas pedidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Definicion del sistema de informacion para ejecutivos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Definicion del sistema de informacion para ejecutivos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s01-fundamentos-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 - Fundamentos BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s02-requerimientos-kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S2 - Requerimientos y KPIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s03-modelado-dimensional-metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S3 - Modelado dimensional y metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s04-diseno-solucion-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S4 - Diseno de la solucion BI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s05-evaluacion-u1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 - Evaluacion U1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Construccion del BI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Construccion del BI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s06-dw-manual-sql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S6 - DW manual con SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s07-pipeline-bi-herramientas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S7 - Pipeline BI con herramientas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s08-modelo-semantico-metricas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S8 - Modelo semantico y metricas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s09-visualizacion-bi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S9 - Visualizacion BI base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s10-paneles-interactivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S10 - Paneles interactivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s11-interpretacion-gobierno-dato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S11 - Interpretacion y gobierno del dato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s12-evaluacion-u2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S12 - Evaluacion U2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Integracion y toma de decisiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Integracion y toma de decisiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s13-integracion-end-to-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S13 - Integracion end-to-end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s14-validacion-negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S14 - Validacion con negocio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s15-sustentacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S15 - Sustentacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sesiones/s16-evaluacion-final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S16 - Evaluacion final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-informacion-general-de-asignatura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Informacion General de Asignatura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-sumilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Sumilla
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-competencia-del-perfil-de-egreso-en-relacion-a-la-asignatura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Competencia del perfil de egreso en relacion a la asignatura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-resultado-de-aprendizaje-de-la-asignatura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Resultado de aprendizaje de la asignatura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-unidades-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Unidades de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unidad-1-requerimientos-bi-y-modelado-dimensional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unidad 1: Requerimientos BI y modelado dimensional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unidad 1: Requerimientos BI y modelado dimensional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sesiones-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sesiones de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unidad-2-etl-calidad-de-datos-y-datamart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unidad 2: ETL, calidad de datos y DataMart
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unidad 2: ETL, calidad de datos y DataMart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sesiones-de-aprendizaje_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sesiones de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unidad-3-dashboards-storytelling-y-gobierno-del-dato" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unidad 3: Dashboards, storytelling y gobierno del dato
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unidad 3: Dashboards, storytelling y gobierno del dato">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sesiones-de-aprendizaje_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sesiones de aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-estrategias-metodologicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VI. Estrategias metodologicas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vii-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VII. Evaluacion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VII. Evaluacion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-de-evaluacion-y-ponderacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes de evaluacion y ponderacion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programacion-de-evaluaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programacion de evaluaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viii-recursos-medios-y-materiales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VIII. Recursos, medios y materiales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ix-referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IX. Referencias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IX. Referencias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#libros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Libros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enlaces-de-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enlaces de internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<!-- Transcripcion fiel generada desde: bi2026-1.docx -->
+
+<p>Universidad Peruana Union<br />
+Carret. Central km. 19.5 Nana. Telf. 01-6186300 Casilla 3564 Lima 1, Peru</p>
+<h1 id="silabo-inteligencia-de-negocios">Silabo: Inteligencia de Negocios</h1>
+<h2 id="i-informacion-general-de-asignatura">I. Informacion General de Asignatura</h2>
+<table>
+<thead>
+<tr>
+<th>N.</th>
+<th>Campo</th>
+<th>Informacion</th>
+<th>N.</th>
+<th>Campo</th>
+<th>Informacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>Facultad/EGP</td>
+<td>Facultad de Ingenieria y Arquitectura</td>
+<td>09</td>
+<td>Ano de plan de estudio</td>
+<td>2022-1</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Programa de estudio</td>
+<td>EP Ingenieria de Sistemas</td>
+<td>10</td>
+<td>Ciclo de estudio</td>
+<td>8</td>
+</tr>
+<tr>
+<td>03</td>
+<td>Tipo de estudio</td>
+<td>General</td>
+<td>11</td>
+<td>Codigo de asignatura</td>
+<td></td>
+</tr>
+<tr>
+<td>04</td>
+<td>Nombre de asignatura</td>
+<td>Inteligencia de Negocios</td>
+<td>12</td>
+<td>Numero de creditos</td>
+<td>3</td>
+</tr>
+<tr>
+<td>05</td>
+<td>Duracion</td>
+<td></td>
+<td>13</td>
+<td>Nota minima probatoria</td>
+<td>13</td>
+</tr>
+<tr>
+<td>06</td>
+<td>Horas de la asignatura</td>
+<td>H. Te. Pract: 32 / H. Prc. Pres: 32</td>
+<td>14</td>
+<td>Ano y semestre academico</td>
+<td>2026-1</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Docente</td>
+<td>Sullon Macalupu Abel Angel</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>08</td>
+<td>Pre requisito</td>
+<td>Gestion de Procesos</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-sumilla">II. Sumilla</h2>
+<p>La asignatura de Inteligencia de Negocios es de caracter teorico practico, perteneciente al Area de Formacion Especializada y Sub Area de Gestion de TI e Innovacion tecnologica, cuyo proposito es formar al estudiante para que pueda gestionar con exito proyectos orientados a la toma de decisiones gerenciales respetando y fomentando sus principios cristianos. Comprende: Nociones de inteligencia de negocios y sus componentes, analisis para una solucion de inteligencia de negocios, implementacion de una solucion de inteligencia de negocios.</p>
+<h2 id="iii-competencia-del-perfil-de-egreso-en-relacion-a-la-asignatura">III. Competencia del perfil de egreso en relacion a la asignatura</h2>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Competencia</th>
+<th>Nivel / dimensiones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General</td>
+<td>Pensamiento superior (caracter y aprendizaje autonomo).</td>
+<td>N. 1.1: Firmeza de proposito, ejecucion, dominio propio, mantener el esfuerzo, habilidades tecnicas, salud socio emocional.</td>
+</tr>
+<tr>
+<td>Especifica</td>
+<td>Disena y gestiona sistemas inteligentes basandose en metodologias, estandares y herramientas a fin de lograr estrategias de mejora para la organizacion.</td>
+<td>N. 1.1: Define requerimientos de inteligencia analitica, construye datasets, analiza los datos y define estrategias.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="iv-resultado-de-aprendizaje-de-la-asignatura">IV. Resultado de aprendizaje de la asignatura</h2>
+<table>
+<thead>
+<tr>
+<th>Resultado de aprendizaje</th>
+<th>Producto Academico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disena e implementa una solucion de Inteligencia de Negocios integrando modelado dimensional, procesos ETL, almacenamiento analitico y visualizacion interactiva, para resolver un problema organizacional y soportar la toma de decisiones basada en datos.</td>
+<td><strong>Nombre:</strong> Solucion completa de Inteligencia de Negocios para un caso organizacional.</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Descripcion:</strong> Solucion de Inteligencia de Negocios que integra el levantamiento de requerimientos analiticos, modelado dimensional, construccion de Data Warehouse/DataMart, implementacion de procesos ETL, creacion de cubos analiticos y desarrollo de dashboards interactivos, orientados a la generacion de insights y recomendaciones para la toma de decisiones.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="v-unidades-de-aprendizaje">V. Unidades de aprendizaje</h2>
+<h2 id="unidad-1-requerimientos-bi-y-modelado-dimensional">Unidad 1: Requerimientos BI y modelado dimensional</h2>
+<table>
+<thead>
+<tr>
+<th>Resultado de aprendizaje</th>
+<th>Producto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Define requerimientos analiticos y disena modelos dimensionales para la construccion de un Data Warehouse o DataMart, identificando KPIs, fuentes de datos y estructuras analiticas alineadas a necesidades del negocio.</td>
+<td><strong>Nombre:</strong> Modelo dimensional y metadata de fuentes.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Criterios de evaluacion del producto</th>
+<th>Descripcion del producto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Definicion correcta de KPIs alineados al problema de negocio. Identificacion adecuada de fuentes de datos. Diseno correcto del modelo dimensional (hechos y dimensiones). Consistencia del diccionario de datos. Trazabilidad clara entre fuentes y Data Warehouse/DataMart. Coherencia del modelo con los requerimientos analiticos.</td>
+<td>Documento tecnico que define KPIs, identifica fuentes de datos y presenta el diseno del modelo dimensional (esquema estrella o copo de nieve), incluyendo diccionario de datos y mapeo entre las fuentes y el Data Warehouse o DataMart.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sesiones-de-aprendizaje">Sesiones de aprendizaje</h3>
+<table>
+<thead>
+<tr>
+<th>N.</th>
+<th>Fecha</th>
+<th>Contenido</th>
+<th>HT</th>
+<th>HP</th>
+<th>Actividad practica</th>
+<th>Actividad autonoma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>15/03/2026 - 21/03/2026</td>
+<td>Fundamentos de BI: fundamentos de Inteligencia de Negocios, ciclo BI (negocio -&gt; datos -&gt; insight -&gt; decision), arquitectura BI, metodologia Kimball.</td>
+<td>2</td>
+<td>2</td>
+<td>Analisis de un caso organizacional para identificar decisiones soportadas por BI.</td>
+<td>Elaborar un esquema del ciclo BI aplicado al caso de estudio e identificar decisiones clave del negocio.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>22/03/2026 - 28/03/2026</td>
+<td>Levantamiento de requerimientos BI: identificacion de stakeholders, definicion de KPIs y metricas, procesos de negocio, identificacion de fuentes de datos.</td>
+<td>2</td>
+<td>2</td>
+<td>Definicion de KPIs y metricas para el caso de negocio.</td>
+<td>Refinar la definicion de KPIs y completar la matriz de requerimientos analiticos.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>29/03/2026 - 04/04/2026</td>
+<td>Modelado dimensional: tabla de hechos, dimensiones, esquema estrella y copo de nieve, tipos de dimensiones (SCD), dimensiones degeneradas, jerarquias.</td>
+<td>2</td>
+<td>2</td>
+<td>Diseno del modelo dimensional (hechos y dimensiones).</td>
+<td>Ajustar el modelo dimensional incorporando jerarquias y validando hechos y dimensiones.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>05/04/2026 - 11/04/2026</td>
+<td>Desarrollo de metadata fuente: data profiling, diccionario de datos, mapeo fuente-destino, trazabilidad entre fuentes y Data Warehouse/DataMart.</td>
+<td>2</td>
+<td>2</td>
+<td>Construccion del mapeo fuente -&gt; DW/DM y diccionario inicial.</td>
+<td>Completar el diccionario de datos y el mapeo fuente-destino del modelo.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>12/04/2026 - 18/04/2026</td>
+<td>Producto de unidad: modelo dimensional completo, diccionario de datos de DW/DM y metadata fuente.</td>
+<td>2</td>
+<td>2</td>
+<td>Integracion y entrega del modelo dimensional y metadata de fuentes, validando la alineacion entre KPIs, requerimientos del negocio, diccionario de datos y mapeo fuente-destino, realizando ajustes tecnicos finales.</td>
+<td>Consolidar y documentar el modelo dimensional y metadata, incorporando retroalimentacion.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="unidad-2-etl-calidad-de-datos-y-datamart">Unidad 2: ETL, calidad de datos y DataMart</h2>
+<table>
+<thead>
+<tr>
+<th>Resultado de aprendizaje</th>
+<th>Producto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Implementa procesos ETL y estructuras de almacenamiento analitico aplicando reglas de calidad de datos, estrategias de carga y control de cambios para integrar informacion en un Data Warehouse o DataMart funcional.</td>
+<td><strong>Nombre:</strong> ETL, DataMart y cubos analiticos implementados.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Criterios de evaluacion del producto</th>
+<th>Descripcion del producto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Diseno adecuado del flujo ETL. Implementacion correcta de procesos de extraccion, transformacion y carga. Aplicacion de reglas de calidad de datos. Uso correcto de claves sustitutas y manejo de cambios (SCD). Implementacion funcional del DataMart. Construccion correcta de cubos analiticos. Documentacion del proceso ETL y validaciones.</td>
+<td>Implementacion tecnica que integra procesos ETL para la extraccion, transformacion y carga de datos, construccion del DataMart y desarrollo de cubos analiticos, incorporando controles de calidad, reglas de negocio y documentacion del flujo de datos.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sesiones-de-aprendizaje_1">Sesiones de aprendizaje</h3>
+<table>
+<thead>
+<tr>
+<th>N.</th>
+<th>Fecha</th>
+<th>Contenido</th>
+<th>HT</th>
+<th>HP</th>
+<th>Actividad practica</th>
+<th>Actividad autonoma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>19/04/2026 - 25/04/2026</td>
+<td>Implementacion del DW/DM: gestion de espacios, clausula Storage, particionamiento de tablas, indices, estrategias de actualizacion periodica.</td>
+<td>2</td>
+<td>2</td>
+<td>Configuracion fisica del DW/DM (creacion de tablas, indices o particiones).</td>
+<td>Documentar la estructura fisica del DW/DM y justificar decisiones de diseno (indices, particiones).</td>
+</tr>
+<tr>
+<td>2</td>
+<td>26/04/2026 - 02/05/2026</td>
+<td>Diseno del proceso ETL con codigo nativo: extraccion, transformacion (limpieza e integracion) y carga usando codigo nativo de base de datos (PL/SQL).</td>
+<td>2</td>
+<td>2</td>
+<td>Diseno del flujo ETL conceptual (extraccion, transformacion y carga).</td>
+<td>Documentar la estructura fisica del DW/DM y justificar decisiones de diseno (indices, particiones).</td>
+</tr>
+<tr>
+<td>3</td>
+<td>03/05/2026 - 09/05/2026</td>
+<td>Diseno del proceso ETL con herramienta BI y calidad de datos: extraccion, transformacion (limpieza e integracion) y carga usando herramienta BI (Integration Services de SQL Server), calidad de datos en ETL, reglas de negocio, reconciliacion fuente-destino, auditoria.</td>
+<td>2</td>
+<td>2</td>
+<td>Implementacion de un proceso ETL con herramienta BI o SQL.</td>
+<td>Refinar el diseno del flujo ETL y describir transformaciones necesarias.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>10/05/2026 - 16/05/2026</td>
+<td>Carga de datos en el DW/DM: carga inicial e incremental, claves sustitutas, control de cambios.</td>
+<td>2</td>
+<td>2</td>
+<td>Implementacion de carga inicial e incremental con claves sustitutas.</td>
+<td>Completar la implementacion ETL y registrar validaciones de calidad de datos.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>17/05/2026 - 23/05/2026</td>
+<td>Construccion de cubos: construccion de cubos y carga de datos usando herramienta BI (Analysis Services de SQL Server).</td>
+<td>2</td>
+<td>2</td>
+<td>Construccion de cubo analitico y validacion de medidas.</td>
+<td>Documentar el proceso de carga incremental, manejo de SCD y controles de cambios.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>24/05/2026 - 30/05/2026</td>
+<td>Producto de unidad: ETL, DataMart y cubos analiticos implementados.</td>
+<td>2</td>
+<td>2</td>
+<td>Integracion, ejecucion y documentacion del proceso ETL, DataMart y cubos analiticos, verificando calidad de datos, cargas correctas y consistencia del flujo de datos, realizando validaciones y ajustes finales.</td>
+<td>Refinar cubos analiticos y validar medidas con el caso de negocio.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="unidad-3-dashboards-storytelling-y-gobierno-del-dato">Unidad 3: Dashboards, storytelling y gobierno del dato</h2>
+<table>
+<thead>
+<tr>
+<th>Resultado de aprendizaje</th>
+<th>Producto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desarrolla dashboards analiticos y aplica principios de storytelling y gobierno del dato para comunicar insights y apoyar la toma de decisiones en un contexto organizacional.</td>
+<td><strong>Nombre:</strong> Solucion completa de Inteligencia de Negocios.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Criterios de evaluacion del producto</th>
+<th>Descripcion del producto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Correcta conexion al Data Warehouse/DataMart. Modelado semantico adecuado. Definicion correcta de KPIs y medidas. Diseno visual claro y usable. Uso adecuado de interactividad (filtros, drill-down). Narrativa orientada a la toma de decisiones. Coherencia entre insights y recomendaciones.</td>
+<td>Solucion de Inteligencia de Negocios que integra el levantamiento de requerimientos analiticos, modelado dimensional, implementacion de procesos ETL, construccion de estructuras analiticas y desarrollo de dashboards interactivos orientados a la generacion de insights y recomendaciones para la toma de decisiones.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sesiones-de-aprendizaje_2">Sesiones de aprendizaje</h3>
+<table>
+<thead>
+<tr>
+<th>N.</th>
+<th>Fecha</th>
+<th>Contenido</th>
+<th>HT</th>
+<th>HP</th>
+<th>Actividad practica</th>
+<th>Actividad autonoma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>31/05/2026 - 06/06/2026</td>
+<td>Power BI y modelado semantico: conexion al Data Warehouse, modelado semantico, medidas DAX, gestion de relaciones.</td>
+<td>2</td>
+<td>2</td>
+<td>Construccion del modelo semantico y medidas DAX en Power BI.</td>
+<td>Consolidar documentacion tecnica del ETL, DataMart y cubos, incorporando ajustes.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>07/06/2026 - 13/06/2026</td>
+<td>Diseno de dashboards: principios de visualizacion, KPI cards, filtros, drill-down.</td>
+<td>2</td>
+<td>2</td>
+<td>Diseno de dashboard con KPIs e interactividad.</td>
+<td>Completar y mejorar el dashboard iniciado en clases, aplicando principios de visualizacion y buenas practicas (jerarquia visual, consistencia, uso adecuado de colores/etiquetas y reduccion de ruido).</td>
+</tr>
+<tr>
+<td>3</td>
+<td>14/06/2026 - 20/06/2026</td>
+<td>Storytelling con datos y gobierno del dato: narrativa orientada a la decision, audiencia, recomendaciones. Gobierno del dato: diccionario, linaje de datos, roles y responsabilidades.</td>
+<td>2</td>
+<td>2</td>
+<td>Elaboracion de narrativa analitica y definicion de elementos de gobierno del dato.</td>
+<td>Consolidar dashboard final, documentacion y recomendaciones.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>21/06/2026 - 27/06/2026</td>
+<td>Producto de unidad: dashboard analitico conectado al Data Warehouse/DataMart que presenta KPIs, visualizaciones interactivas y narrativa orientada a la toma de decisiones, acompanado de un documento de gobierno del dato que describe diccionario, linaje y roles.</td>
+<td>2</td>
+<td>2</td>
+<td>Integracion y presentacion del dashboard analitico con KPIs trazables a decisiones, incluyendo narrativa analitica y elementos de gobierno del dato, realizando validacion con el caso de negocio y ajustes finales.</td>
+<td>Consolidar dashboard final, documentacion y recomendaciones.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>28/06/2026 - 04/07/2026</td>
+<td>Producto de curso: sustentacion de la solucion BI completa: metadata fuente, DM, ETL, cubos y dashboard (presentacion al cliente).</td>
+<td>2</td>
+<td>2</td>
+<td>Integracion, validacion y sustentacion de la solucion completa de Inteligencia de Negocios, demostrando la trazabilidad entre requerimientos, modelo dimensional, procesos ETL, estructuras analiticas y dashboards, presentando insights y recomendaciones para la toma de decisiones.</td>
+<td>Consolidar la version final del producto y evidencias tecnicas.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vi-estrategias-metodologicas">VI. Estrategias metodologicas</h2>
+<table>
+<thead>
+<tr>
+<th>N.</th>
+<th>Estrategias de ensenanza y de aprendizaje que se aplicaran en la asignatura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Aprendizaje Cooperativo: Fomenta habilidades colaborativas y de trabajo en equipo, cruciales en la mayoria de los entornos laborales modernos.</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Aprendizaje Basado en Problemas: Centra el aprendizaje en la resolucion de problemas reales, una habilidad esencial en casi todas las profesiones. Estimula el pensamiento critico y la colaboracion, elementos clave en el desarrollo de competencias.</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>Estudios de caso: Desarrolla el pensamiento critico y la toma de decisiones al analizar situaciones complejas, preparando a los estudiantes para enfrentar problemas similares en sus futuras carreras profesionales.</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>Proyectos: Fomentan habilidades de investigacion, gestion del tiempo y trabajo en equipo, todas cruciales en el mundo profesional.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vii-evaluacion">VII. Evaluacion</h2>
+<p>La evaluacion de los estudiantes se rige por el Reglamento de Estudios, disponible en: <a href="https://upeu.edu.pe/reglamentos/evaluacion/">https://upeu.edu.pe/reglamentos/evaluacion/</a>.</p>
+<p>La estructura evaluativa comprende componentes formativos y/o de procesos, de producto y genericos, reflejando un enfoque integral.</p>
+<h3 id="componentes-de-evaluacion-y-ponderacion">Componentes de evaluacion y ponderacion</h3>
+<ul>
+<li><strong>Evaluacion de Sesiones (ES):</strong> Es el promedio de las evaluaciones aplicadas a los estudiantes para verificar su proceso de aprendizaje durante las sesiones de las unidades. Su contribucion a la nota final es de hasta el 20%.</li>
+<li><strong>Evaluacion de Productos (EP):</strong> Es el promedio ponderado de las evaluaciones de los productos entregados en cada unidad. Este componente representa un minimo del 70% de la nota final.</li>
+<li><strong>Evaluacion de Competencias Generales (ECG):</strong> Esta evaluacion aporta hasta un 10% al calculo de la nota final.</li>
+</ul>
+<h3 id="programacion-de-evaluaciones">Programacion de evaluaciones</h3>
+<table>
+<thead>
+<tr>
+<th>Fecha</th>
+<th>Unidad</th>
+<th>Producto</th>
+<th>Evaluacion de proceso y de resultado</th>
+<th>Pesos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15/04/2026</td>
+<td>Unidad 1: Requerimientos BI y modelado dimensional</td>
+<td>Modelo dimensional y metadata de fuentes.</td>
+<td>Evaluacion de sesiones</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>15/04/2026</td>
+<td>Unidad 1: Requerimientos BI y modelado dimensional</td>
+<td>Modelo dimensional y metadata de fuentes.</td>
+<td>Evaluacion del producto</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>27/05/2026</td>
+<td>Unidad 2: ETL, calidad de datos y DataMart</td>
+<td>ETL, DataMart y cubos analiticos implementados.</td>
+<td>Evaluacion de sesiones</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>27/05/2026</td>
+<td>Unidad 2: ETL, calidad de datos y DataMart</td>
+<td>ETL, DataMart y cubos analiticos implementados.</td>
+<td>Evaluacion del producto</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>01/07/2026</td>
+<td>Unidad 3: Dashboards, storytelling y gobierno del dato</td>
+<td>Solucion completa de Inteligencia de Negocios.</td>
+<td>Evaluacion de sesiones</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>01/07/2026</td>
+<td>Unidad 3: Dashboards, storytelling y gobierno del dato</td>
+<td>Solucion completa de Inteligencia de Negocios.</td>
+<td>Evaluacion del producto</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>01/07/2026</td>
+<td>Competencia General</td>
+<td>Pensamiento superior (caracter y aprendizaje autonomo).</td>
+<td>Competencia General</td>
+<td>10%</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Peso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evaluacion de sesiones</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>Evaluacion del producto</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>Evaluacion de competencia generica</td>
+<td>10%</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>100%</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="viii-recursos-medios-y-materiales">VIII. Recursos, medios y materiales</h2>
+<table>
+<thead>
+<tr>
+<th>N.</th>
+<th>Recursos, medios y materiales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Guias y/o tutoriales</td>
+</tr>
+<tr>
+<td>2</td>
+<td>PC de Escritorio con programas de ofimatica</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Laboratorios</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Internet - Wifi</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Proyector y/o TV Smart</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ix-referencias">IX. Referencias</h2>
+<h3 id="libros">Libros</h3>
+<ul>
+<li>Sanchez Castro. (2013). <em>Fundamentos de Inteligencia Empresarial</em>. Bogota, CO: Filigrana.</li>
+<li>Powell, B. (2018). <em>Mastering Microsoft Power BI</em>. United Kingdom: Packt.</li>
+<li>Aspin, A. (2018). <em>Pro Power BI Desktop</em>. United Kingdom: Apress.</li>
+<li>Powell, B. (2017). <em>Microsoft Power BI Cookbook</em>. United Kingdom: Packt.</li>
+<li>Kimball, R. (2013). <em>The Data Warehouse Toolkit</em>. Wiley.</li>
+<li>Matteo Zaralli. (2024). <em>Virtual Reality and Artificial Intelligence: Risks and Opportunities for Your Business</em>. Productivity Press.</li>
+<li>Vincent Charles. (2023). <em>Data Analytics and Business Intelligence: Computational Frameworks, Practices, and Applications</em>. CRC Press.</li>
+<li>Santa Biblia. (1960). Sociedades Biblicas Unidas. Reina-Valera 1960.</li>
+<li>Hiran Kamal. (2023). <em>Handbook of Research on AI and Knowledge Engineering for Real-Time Business Intelligence</em>. Engineering Science Reference.</li>
+<li>Bernd Heesen. (2024). <em>Effective Strategy Execution: Business Intelligence Using Microsoft Power BI</em>. Springer.</li>
+<li>Sherman, R. (2015). <em>Business Intelligence Guidebook</em>. MK.</li>
+<li>Joyanes, L. (2020). <em>Inteligencia de negocios y analitica de datos</em>. Alfaomega.</li>
+<li>Jen Stirrup, Thomas Weinandy. (2024). <em>Artificial Intelligence with Microsoft Power BI: Simpler AI for the Enterprise</em>. O'Reilly Media.</li>
+<li>Kellenberger, K. (2016). <em>Beginning SQL Server Reporting Services</em>. Springer. DOI: <a href="https://doi.org/10.1007/978-1-4842-1990-4">https://doi.org/10.1007/978-1-4842-1990-4</a>.</li>
+<li>Marques, M. <em>Business Intelligence, Tecnicas, herramientas y aplicaciones</em>. Editorial RC.</li>
+</ul>
+<h3 id="enlaces-de-internet">Enlaces de internet</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/es-es/sql/sql-server/install/install-sql-server-business-intelligence-features?view=sql-server-ver16">https://learn.microsoft.com/es-es/sql/sql-server/install/install-sql-server-business-intelligence-features?view=sql-server-ver16</a></li>
+<li><a href="https://crai.upeu.edu.pe/repositorios-upeu/">https://crai.upeu.edu.pe/repositorios-upeu/</a></li>
+<li><a href="https://renati.sunedu.gob.pe/">https://renati.sunedu.gob.pe/</a></li>
+<li><a href="https://www.biblegateway.com/versions/Reina-Valera-1960-RVR1960-Biblia/">https://www.biblegateway.com/versions/Reina-Valera-1960-RVR1960-Biblia/</a></li>
+<li><a href="https://repositorio.upeu.edu.pe/">https://repositorio.upeu.edu.pe/</a></li>
+<li><a href="https://learn.microsoft.com/es-es/sql/samples/adventureworks-install-configure?view=sql-server-ver16&amp;tabs=ssms">https://learn.microsoft.com/es-es/sql/samples/adventureworks-install-configure?view=sql-server-ver16&amp;tabs=ssms</a></li>
+<li><a href="https://alicia.concytec.gob.pe/vufind/">https://alicia.concytec.gob.pe/vufind/</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/mermaid.js"></script>
+      
+    
+  </body>
+</html>
