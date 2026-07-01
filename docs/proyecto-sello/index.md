@@ -1,4 +1,4 @@
-?# Proyecto Sello de Inteligencia de Negocios
+# Proyecto Sello de Inteligencia de Negocios
 
 ## 1. Propósito
 
@@ -71,6 +71,24 @@ Este alineamiento muestra cómo la solución BI pasa de una necesidad de decisi�
 
 ## 5. Producto Final
 
+### Repositorio académico y topics
+
+Desde la primera presentación del proyecto, el repositorio debe estar creado y configurado con los topics académicos mínimos. Esta configuración es obligatoria porque permite identificar campus, semestre, línea, tipo de proyecto, curso, sección y grupo.
+
+El detalle oficial del estándar se encuentra en [Estándar transversal de topics para repositorios académicos](https://upeuoficial.github.io/planb/anexos/estandar-topics-repositorios/).
+
+Ejemplo base para BI:
+
+```text
+campus-juliaca
+semestre-2026-2
+linea-cdia
+tipo-ps
+bi
+seccion-g1
+grupo-<numero>-<nombre-proyecto>
+```
+
 Componentes mínimos:
 
 - Problema de negocio delimitado.
@@ -93,13 +111,13 @@ Componentes mínimos:
 | Problema y decisión | La solución responde a una necesidad de negocio y soporta decisiones concretas. |
 | Requerimientos y KPIs | Las preguntas, KPIs, fórmulas y criterios de aceptación están definidos y son verificables. |
 | Modelado dimensional | Hechos, grano, dimensiones y jerarquías son coherentes con el análisis. |
-| Pipeline y DataMart | La ingesta, transformación y carga funcionan con evidencias técnicas. |
-| Modelo semántico | Las relaciones, medidas y agregaciones son correctas y validadas. |
-| Visualización | El dashboard comunica KPIs, filtros, tendencias y hallazgos de manera clara. |
-| Trazabilidad y calidad | Existe correspondencia fuente-modelo-KPI y validación de consistencia. |
+| Pipeline y DataMart | La ingesta, transformación y carga funcionan con evidencias técnicas, scripts, consultas o resultados reproducibles. |
+| Modelo semántico | Las relaciones, medidas y agregaciones son correctas, validadas y sustentadas con resultados verificables. |
+| Visualización | El dashboard comunica KPIs, filtros, tendencias y hallazgos de manera clara, con capturas o demo funcional. |
+| Trazabilidad y calidad | Existe correspondencia fuente-modelo-KPI y validación de consistencia mediante evidencias revisables. |
 | Interpretación | La solución genera lectura ejecutiva, hallazgos y recomendaciones. |
-| Evidencias | Se presentan consultas, pruebas, capturas, scripts y resultados reproducibles. |
-| Sustentación profesional | El equipo demuestra la solución, defiende decisiones técnicas y evidencia aporte individual. |
+| Sustentación técnica | El equipo explica el problema, modelo dimensional, flujo de datos, KPIs, validaciones, resultados, limitaciones y evidencias generadas. |
+| Sustentación profesional | El equipo demuestra la solución, defiende decisiones técnicas, evidencia aporte individual y presenta el repositorio académico disponible desde la primera presentación con los topics mínimos configurados correctamente y evidencia el cumplimiento de estándares básicos de programación, organización del repositorio, documentación y reproducibilidad. |
 
 ## 7. Sustentación
 
@@ -119,4 +137,3 @@ Al finalizar el curso, el estudiante debe demostrar que puede transformar datos 
 ```text
 Necesidad de decisión -> Datos -> Modelo -> Pipeline -> Dashboard -> Insight -> Recomendación
 ```
-
