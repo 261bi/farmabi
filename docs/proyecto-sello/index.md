@@ -119,7 +119,7 @@ Los criterios se organizan según una matriz común de evaluación de proyectos 
 | Calidad técnica | Trazabilidad y calidad | Existe correspondencia fuente-modelo-KPI y validación de consistencia mediante evidencias revisables. |
 | Validación, pruebas o resultados | Interpretación | La solución genera lectura ejecutiva, hallazgos, recomendaciones y resultados útiles para la toma de decisiones. |
 | Sustentación técnica | Sustentación técnica | El equipo explica el problema, modelo dimensional, flujo de datos, KPIs, validaciones, resultados, limitaciones y evidencias generadas. |
-| Sustentación profesional | Sustentación profesional | El equipo demuestra la solución, defiende decisiones técnicas, evidencia aporte individual y presenta el repositorio académico disponible desde la primera presentación con los topics mínimos configurados correctamente y evidencia el cumplimiento de estándares básicos de programación, organización del repositorio, documentación y reproducibilidad. |
+| Sustentación profesional | Sustentación profesional | El equipo demuestra la solución, defiende decisiones técnicas, evidencia aporte individual y evidencia comunicación clara, puntualidad, vestimenta limpia y adecuada, cabello ordenado, higiene personal y actitud profesional; además presenta el repositorio académico disponible desde la primera presentación con los topics mínimos configurados correctamente y evidencia el cumplimiento de estándares básicos de programación, organización del repositorio, documentación y reproducibilidad. |
 
 ## 7. Sustentación
 
@@ -129,8 +129,6 @@ Los criterios se organizan según una matriz común de evaluación de proyectos 
 | Demostración end-to-end | 5 minutos | Mostrar trazabilidad desde fuente transaccional hasta KPI, visualización y recomendación. |
 
 Cada integrante debe demostrar una parte verificable: requerimientos, modelo dimensional, pipeline, DataMart, Power BI, validación, storytelling o documentación. La demo debe evidenciar datos reales del proyecto, no solo pantallas estáticas.
-
-Se espera comunicación clara, presentación personal adecuada, puntualidad, vestimenta limpia y actitud profesional.
 
 ## 8. Resultado Esperado
 
