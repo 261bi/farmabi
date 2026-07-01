@@ -4,6 +4,9 @@ docs_dir: docs
 
 nav:
   - Inicio: index.md
+  - Silabos:
+      - Silabo 2026-1: silabo_bi_2026_1.md
+      - Silabo 2026-2: silabo_bi_2026_2.md
   - "Guias y plantillas":
       - Plantilla entregable U1: guias/PLANTILLA_ENTREGABLE_U1_REQUERIMIENTOS_BI_MODELADO_DIMENSIONAL.md
       - Plantilla entregable U2: guias/PLANTILLA_ENTREGABLE_U2_ETL_CALIDAD_DATOS_DATAMART.md
