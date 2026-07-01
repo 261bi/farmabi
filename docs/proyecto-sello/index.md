@@ -106,18 +106,20 @@ Componentes mínimos:
 
 ## 6. Evaluación
 
-| Criterio | Qué se observa |
-|---|---|
-| Problema y decisión | La solución responde a una necesidad de negocio y soporta decisiones concretas. |
-| Requerimientos y KPIs | Las preguntas, KPIs, fórmulas y criterios de aceptación están definidos y son verificables. |
-| Modelado dimensional | Hechos, grano, dimensiones y jerarquías son coherentes con el análisis. |
-| Pipeline y DataMart | La ingesta, transformación y carga funcionan con evidencias técnicas, scripts, consultas o resultados reproducibles. |
-| Modelo semántico | Las relaciones, medidas y agregaciones son correctas, validadas y sustentadas con resultados verificables. |
-| Visualización | El dashboard comunica KPIs, filtros, tendencias y hallazgos de manera clara, con capturas o demo funcional. |
-| Trazabilidad y calidad | Existe correspondencia fuente-modelo-KPI y validación de consistencia mediante evidencias revisables. |
-| Interpretación | La solución genera lectura ejecutiva, hallazgos y recomendaciones. |
-| Sustentación técnica | El equipo explica el problema, modelo dimensional, flujo de datos, KPIs, validaciones, resultados, limitaciones y evidencias generadas. |
-| Sustentación profesional | El equipo demuestra la solución, defiende decisiones técnicas, evidencia aporte individual y presenta el repositorio académico disponible desde la primera presentación con los topics mínimos configurados correctamente y evidencia el cumplimiento de estándares básicos de programación, organización del repositorio, documentación y reproducibilidad. |
+Los criterios se organizan según una matriz común de evaluación de proyectos académicos: problema, requerimientos, modelo, implementación, datos, integración, calidad, validación y sustentación. Cada criterio se adapta al enfoque de inteligencia de negocios y se verifica mediante evidencias del producto, el repositorio y la demostración.
+
+| Dimensión común | Criterio del PS | Qué se observa |
+|---|---|---|
+| Problema y alcance | Problema y decisión | La solución responde a una necesidad de negocio y soporta decisiones concretas. |
+| Requerimientos o funcionalidad esperada | Requerimientos y KPIs | Las preguntas, KPIs, fórmulas y criterios de aceptación están definidos y son verificables. |
+| Diseño, modelo o arquitectura | Modelado dimensional | Hechos, grano, dimensiones y jerarquías son coherentes con el análisis. |
+| Implementación técnica | Pipeline y DataMart | La ingesta, transformación y carga funcionan con evidencias técnicas, scripts, consultas o resultados reproducibles. |
+| Datos, persistencia o procesamiento | Modelo semántico | Las relaciones, medidas y agregaciones son correctas, validadas y sustentadas con resultados verificables. |
+| Integración del producto | Visualización | El dashboard integra KPIs, filtros, tendencias y hallazgos de manera clara, con capturas o demo funcional. |
+| Calidad técnica | Trazabilidad y calidad | Existe correspondencia fuente-modelo-KPI y validación de consistencia mediante evidencias revisables. |
+| Validación, pruebas o resultados | Interpretación | La solución genera lectura ejecutiva, hallazgos, recomendaciones y resultados útiles para la toma de decisiones. |
+| Sustentación técnica | Sustentación técnica | El equipo explica el problema, modelo dimensional, flujo de datos, KPIs, validaciones, resultados, limitaciones y evidencias generadas. |
+| Sustentación profesional | Sustentación profesional | El equipo demuestra la solución, defiende decisiones técnicas, evidencia aporte individual y presenta el repositorio académico disponible desde la primera presentación con los topics mínimos configurados correctamente y evidencia el cumplimiento de estándares básicos de programación, organización del repositorio, documentación y reproducibilidad. |
 
 ## 7. Sustentación
 
